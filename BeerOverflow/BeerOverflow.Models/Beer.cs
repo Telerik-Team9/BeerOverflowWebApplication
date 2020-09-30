@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BeerOverflow.Models
 {
-    class Beer
+    public class Beer
     {
         public Guid BeerID { get; set; }
 
@@ -14,7 +13,7 @@ namespace BeerOverflow.Models
 
         public string ImageURL { get; set; }
 
-        public float AlcoholPercent { get; set; }
+        public float ABV { get; set; }
 
         public decimal Price { get; set; } // should it be loat/double?
 
@@ -34,7 +33,7 @@ namespace BeerOverflow.Models
 
         public bool IsBeerOfTheMonth { get; set; }
 
-        // public ICollection<Review> Reviews { get; set; } = new List<Review>(); --> or hashset?
+        public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
 
         // Yo added a collecion of Wishlist ?
     }
