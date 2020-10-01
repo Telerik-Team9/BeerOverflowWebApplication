@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerOverflow.Models", "BeerOverflow.Models\BeerOverflow.Models.csproj", "{39B89800-90E4-4031-B539-CD0B4FE9539E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerOverflow.Models", "BeerOverflow.Models\BeerOverflow.Models.csproj", "{39B89800-90E4-4031-B539-CD0B4FE9539E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerOverflow.Web", "BeerOverflow.Web\BeerOverflow.Web.csproj", "{FF140658-19A1-4352-AA2F-4BDC349025D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerOverflow.Database", "BeerOverflow.Database\BeerOverflow.Database.csproj", "{72E6C029-5094-483A-AD04-86BCD938836D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{39B89800-90E4-4031-B539-CD0B4FE9539E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39B89800-90E4-4031-B539-CD0B4FE9539E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39B89800-90E4-4031-B539-CD0B4FE9539E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF140658-19A1-4352-AA2F-4BDC349025D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF140658-19A1-4352-AA2F-4BDC349025D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF140658-19A1-4352-AA2F-4BDC349025D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF140658-19A1-4352-AA2F-4BDC349025D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72E6C029-5094-483A-AD04-86BCD938836D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72E6C029-5094-483A-AD04-86BCD938836D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72E6C029-5094-483A-AD04-86BCD938836D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72E6C029-5094-483A-AD04-86BCD938836D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

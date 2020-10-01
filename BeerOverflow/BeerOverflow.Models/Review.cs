@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BeerOverflow.Models
 {
     public class Review
     {
-        public Guid ReviewId { get; set; }
+        [Key]
+        public Guid Id { get; set; }
         public string Content { get; set; }
         public DateTime CreatedOn { get; set; }
         public float Rating { get; set; }
@@ -13,6 +15,9 @@ namespace BeerOverflow.Models
         public bool IsFlagged { get; set; }
 
         public Beer Beer { get; set; }
+        public Guid BeerId { get; set; }
+        public User User { get; set; }
+        public Guid UserId { get; set; }
         //TODO: Add Nav property for User
     }
 }
