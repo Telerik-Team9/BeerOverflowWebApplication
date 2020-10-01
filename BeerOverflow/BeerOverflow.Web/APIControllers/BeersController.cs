@@ -42,7 +42,7 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpPost("")]
-        public IActionResult Post([FromBody] Beer model)
+        public IActionResult Post(Beer model)
         {
             if (model == null)
             {
@@ -57,41 +57,40 @@ namespace BeerOverflow.Web.APIControllers
             };
 
             Beers.Add(newBeer);
-
             return Created("post", newBeer);
         }
 
-/*        [HttpPut("name")]
-        public IActionResult Put(string name, [FromBody] Beer model)
-        {
-            if (model == null)
-            {
-                return BadRequest();
-            }
+        /*      [HttpPut("name")]
+                public IActionResult Put(string name, [FromBody] Beer model)
+                {
+                    if (model == null)
+                    {
+                        return BadRequest();
+                    }
 
-            var beerToChange = Beers.FirstOrDefault(b => b.Name == name);
-            beerToChange.Name = model.Name;
-            beerToChange.ABV = model.ABV;
-            beerToChange.Price = model.Price;
-
-
-
-            beerToChange = new Beer()
-            {
-                Name = model.Name,
-                ABV = model.ABV,
-                Price = model.Price
-            };
-
-            Beers.Add(newBeer);
-
-            return Created("post", newBeer);
-        }*/
+                    var beerToChange = Beers.FirstOrDefault(b => b.Name == name);
+                    beerToChange.Name = model.Name;
+                    beerToChange.ABV = model.ABV;
+                    beerToChange.Price = model.Price;
 
 
 
+                    beerToChange = new Beer()
+                    {
+                        Name = model.Name,
+                        ABV = model.ABV,
+                        Price = model.Price
+                    };
 
-       public static List<Beer> Beers { get; set; } = new List<Beer>
+                    Beers.Add(newBeer);
+
+                    return Created("post", newBeer);
+                }*/
+
+
+
+
+        public static List<Beer> Beers { get; set; } = new List<Beer>
         {
             new Beer
             {

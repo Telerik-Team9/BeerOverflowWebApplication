@@ -11,10 +11,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BeerOverflow.Database\BeerOverflow.Database.csproj" />
+    <ProjectReference Include="..\BeerOverflow.Services\BeerOverflow.Services.csproj" />
   </ItemGroup>
 
 </Project>
