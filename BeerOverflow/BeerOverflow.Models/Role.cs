@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BeerOverflow.Models
 {
-    public class Role: IdentityUser<Guid>
+    public class Role : IdentityRole<Guid>
     {
 
     }

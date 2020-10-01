@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BeerOverflow.Database;
+using BeerOverflow.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +27,25 @@ namespace BeerOverflow.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BeerOverflowDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            //.EnableSensitiveDataLogging());
+
+            services.AddIdentity<User, Role>(option => option.SignIn.RequireConfirmedAccount = false)
+               .AddEntityFrameworkStores<BeerOverflowDbContext>()
+               .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(option =>
+            {
+                option.Password.RequireDigit = false;
+                option.Password.RequireNonAlphanumeric = false;
+                option.Password.RequireUppercase = false;
+                option.Password.RequireLowercase = false;
+                option.Password.RequiredLength = 5;
+                option.Password.RequiredUniqueChars = 0;
+            });
+
             services.AddControllersWithViews();
         }
 
