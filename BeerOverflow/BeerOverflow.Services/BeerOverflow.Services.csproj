@@ -6,10 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BeerOverflow.Database\BeerOverflow.Database.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DTOs\" />
+    <ProjectReference Include="..\BeerOverflow.Models\BeerOverflow.Models.csproj" />
   </ItemGroup>
 
 </Project>

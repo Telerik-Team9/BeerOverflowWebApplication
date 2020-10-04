@@ -10,11 +10,12 @@ namespace BeerOverflow.Database.FakeDatabase
         {
             Seed();
         }
-        static ICollection<Beer> Beers { get; set; }
-        static ICollection<Brewery> Breweries { get; set; }
-        static ICollection<Country> Countries { get; set; }
-        static ICollection<Style> Styles { get; set; }
-        static ICollection<Review> Reviews { get; set; }
+
+        public static ICollection<Beer> Beers { get; set; } = new List<Beer>();
+        public static ICollection<Brewery> Breweries { get; set; } = new List<Brewery>();
+        public static ICollection<Country> Countries { get; set; } = new List<Country>();
+        public static ICollection<Style> Styles { get; set; } = new List<Style>();
+        public static ICollection<Review> Reviews { get; set; } = new List<Review>();
         public static void Seed()
         {
             Beers = new List<Beer>
