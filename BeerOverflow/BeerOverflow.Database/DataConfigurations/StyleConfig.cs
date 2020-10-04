@@ -1,16 +1,13 @@
 ﻿using BeerOverflow.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Text;
 
-namespace BeerOverflow.Database.Configurations
+namespace BeerOverflow.Database.DataConfigurations
 {
-    public class StyleConfig : IEntityTypeConfiguration<Style>
+    internal class StyleConfig : IEntityTypeConfiguration<Style>
     {
         public void Configure(EntityTypeBuilder<Style> builder)
         {
-
         }
     }
 }

@@ -13,6 +13,8 @@ namespace BeerOverflow.Models
         [Required]
         [MaxLength(NameMaxLength)]
         public string Name { get; set; }
+        [MaxLength(StyleDescriptionMaxLength)]
+        public string Description { get; set; }
 
         public DateTime CreatedOn { get; set; }
         public bool IsDeleted { get; set; }

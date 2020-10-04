@@ -9,7 +9,7 @@ namespace BeerOverflow.Models
     public class Country : IEntity, IModifiable
     {
         [Key]
-        public Guid CountryId { get; set; }
+        public Guid Id { get; set; }
         [Required]
         [MaxLength(NameMaxLength)]
         public string Name { get; set; }

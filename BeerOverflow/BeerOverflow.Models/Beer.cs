@@ -6,7 +6,7 @@ using static BeerOverflow.Models.Common.ModelsConstants;
 
 namespace BeerOverflow.Models
 {
-    public class Beer : IEntity, IModifiable
+    public class Beer : IEntity, IModifiable, IReviewable
     {
         [Key]
         public Guid Id { get; set; }
@@ -19,6 +19,8 @@ namespace BeerOverflow.Models
         [Required]
         [Range(PriceMin, PriceMax)]
         public double Price { get; set; }
+        [MaxLength(BeerDescriptionMaxLength)]
+        public string Description { get; set; }
         public string ImageURL { get; set; }
         public int Mililiters { get; set; }
         public bool IsUnlisted { get; set; }

@@ -6,7 +6,7 @@ using static BeerOverflow.Models.Common.ModelsConstants;
 
 namespace BeerOverflow.Models
 {
-    public class Brewery : IEntity, IModifiable
+    public class Brewery : IEntity, IModifiable // + IReviewable
     {
         [Key]
         public Guid Id { get; set; }
@@ -22,6 +22,5 @@ namespace BeerOverflow.Models
         public Guid CountryId { get; set; }
         public Country Country { get; set; }
         public ICollection<Beer> Beers { get; set; } = new List<Beer>();
-        //TODO: Creatable?
     }
 }

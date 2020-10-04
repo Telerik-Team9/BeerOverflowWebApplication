@@ -1,29 +1,27 @@
 ﻿using System;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using BeerOverflow.Models;
 using Microsoft.EntityFrameworkCore;
-using BeerOverflow.Database.Configurations;
+using BeerOverflow.Models;
+using BeerOverflow.Database.DataConfigurations;
 
 namespace BeerOverflow.Database
 {
-    public class BeerOverflowDbContext : IdentityDbContext<User, Role, Guid>
+    public class BeerOverflowDbContext : DbContext
     {
         public BeerOverflowDbContext(DbContextOptions options)
             : base(options) { }
 
         public DbSet<Beer> Beers { get; set; }
-        public DbSet<Brewery> Breweries{ get; set; }
+        public DbSet<Brewery> Breweries { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Style> Styles { get; set; }
+        //TODO: Add User/Role DbSet
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            builder.ApplyConfiguration(new BeerConfig());
-            builder.ApplyConfiguration(new BreweryConfig());
-            builder.ApplyConfiguration(new ReviewConfig());
-
-            base.OnModelCreating(builder);
+            //TODO: Reflection here
+            //modelBuilder.ApplyConfiguration(new BeerConfig());
+            //base.OnModelCreating(modelBuilder);
         }
     }
 }
