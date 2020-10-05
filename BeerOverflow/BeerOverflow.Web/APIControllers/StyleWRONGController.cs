@@ -7,29 +7,31 @@ namespace BeerOverflow.Web.APIControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StyleAPIContoller : ControllerBase
+    public class StyleWRONGContoller : ControllerBase
     {
         private readonly IStyleService service;
 
-        public StyleAPIContoller(IStyleService service)
+        public StyleWRONGContoller(IStyleService service)
         {
             this.service = service;
         }
 
         [HttpGet("")] //Add sort?
-        public IActionResult GetAllStyles()
+        public IActionResult RetrieveAll()
         {
             var styles = this.service.RetrieveAll()
                          .ToList();
 
             if (styles.Count == 0)
+            {
                 return NoContent();
+            }
 
             return Ok(styles);
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public IActionResult RetrieveById(Guid id)
         {
             //TODO: Remove Exception handling for nulls in the layers below
             var style = this.service.RetrieveById(id);

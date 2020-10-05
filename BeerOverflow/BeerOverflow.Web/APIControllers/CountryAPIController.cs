@@ -6,17 +6,17 @@ namespace BeerOverflow.Web.APIControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CountryController : ControllerBase
+    public class CountryAPIController : ControllerBase
     {
         private readonly ICountryService service;
 
-        public CountryController(ICountryService service)
+        public CountryAPIController(ICountryService service)
         {
             this.service = service;
         }
 
         [HttpGet("")]
-        public IActionResult GetAllCountries()
+        public IActionResult RetrieveAll()
         {
             var countries = this.service.RetrieveAll()
                            .ToList();

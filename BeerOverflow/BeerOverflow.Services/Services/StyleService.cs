@@ -21,6 +21,7 @@ namespace BeerOverflow.Services.Services
 
             return allStyles;
         }
+
         public StyleDTO RetrieveById(Guid id)
         {
             var style = Seeder.Styles
