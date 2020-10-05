@@ -6,5 +6,6 @@ namespace BeerOverflow.Services.Contracts
                     : ICRUDSupportive<CountryDTO>
     {
         //CRUD 
+        //CountryDTO RetrieveByName(string name);
     }
 }

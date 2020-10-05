@@ -54,6 +54,24 @@ namespace BeerOverflow.Services.Services
             return countryDTO;
         }
 
+/*        public CountryDTO RetrieveByName(string name)
+        {
+            var country = Seeder.Countries
+                .Where(c => !c.IsDeleted)
+                .FirstOrDefault(c => c.Name == name);
+
+            if (country == null)
+                throw new ArgumentException();      //TODO: ex
+
+            var countryDTO = new CountryDTO
+            {
+                Id = country.Id,
+                Name = country.Name
+            };
+
+            return countryDTO;
+        }*/
+
         public CountryDTO Update(Guid Id, CountryDTO countryDTO)
         {
             var country = Seeder.Countries
