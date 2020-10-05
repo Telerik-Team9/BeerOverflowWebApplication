@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using BeerOverflow.Services.Contracts;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BeerOverflow.Web.APIControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StyleWRONGContoller : ControllerBase
+    public class StyleController : ControllerBase
     {
         private readonly IStyleService service;
 
-        public StyleWRONGContoller(IStyleService service)
+        public StyleController(IStyleService service)
         {
             this.service = service;
         }
@@ -41,15 +44,6 @@ namespace BeerOverflow.Web.APIControllers
 
             return Ok(style);
         }
-
-        //[HttpPost("")]
-        //public IActionResult Post([FromBody] StyleViewModel model)
-        //{
-
-        //}
-
-        //[HttpPut("(id)")]
-        //public IActionResult Put(Guid id, [FromBody] StyleViewModel model)
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)

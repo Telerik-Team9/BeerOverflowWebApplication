@@ -6,11 +6,11 @@ namespace BeerOverflow.Web.APIControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CountryAPIController : ControllerBase
+    public class CountryController : ControllerBase
     {
         private readonly ICountryService service;
 
-        public CountryAPIController(ICountryService service)
+        public CountryController(ICountryService service)
         {
             this.service = service;
         }
