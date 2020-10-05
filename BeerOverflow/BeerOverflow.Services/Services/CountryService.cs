@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using BeerOverflow.Database.FakeDatabase;
-using BeerOverflow.Models;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOs;
 
@@ -12,26 +11,33 @@ namespace BeerOverflow.Services.Services
     {
         public CountryDTO Create(CountryDTO countryDTO)
         {
-            var countryToAdd = new Country
-            {
-                Id = Guid.NewGuid(),    // TODO: Should the Id be generated here or in .Web ?
-                Name = countryDTO.Name,
-                IsDeleted = false
-            };
+            //var countryToAdd = new Country
+            //{
+            //    Id = Guid.NewGuid(),    // TODO: Should the Id be generated here or in .Web ?
+            //    Name = countryDTO.Name,
+            //    IsDeleted = false
+            //};
 
-            Seeder.Countries.Add(countryToAdd);
+            //Seeder.Countries.Add(countryToAdd);
 
-            return countryDTO;
+            //return countryDTO;
+            throw new NotImplementedException();
         }
 
         public IEnumerable<CountryDTO> RetrieveAll()
         {
             var allCountries = Seeder.Countries
+                .Where(c => !c.IsDeleted)
                 .Select(c => new CountryDTO
                 {
                     Id = c.Id,
                     Name = c.Name
                 });
+
+            if (!allCountries.Any())
+            {
+                throw new Exception();
+            }
 
             return allCountries;
         }
@@ -54,23 +60,23 @@ namespace BeerOverflow.Services.Services
             return countryDTO;
         }
 
-/*        public CountryDTO RetrieveByName(string name)
-        {
-            var country = Seeder.Countries
-                .Where(c => !c.IsDeleted)
-                .FirstOrDefault(c => c.Name == name);
+        /*        public CountryDTO RetrieveByName(string name)
+                {
+                    var country = Seeder.Countries
+                        .Where(c => !c.IsDeleted)
+                        .FirstOrDefault(c => c.Name == name);
 
-            if (country == null)
-                throw new ArgumentException();      //TODO: ex
+                    if (country == null)
+                        throw new ArgumentException();      //TODO: ex
 
-            var countryDTO = new CountryDTO
-            {
-                Id = country.Id,
-                Name = country.Name
-            };
+                    var countryDTO = new CountryDTO
+                    {
+                        Id = country.Id,
+                        Name = country.Name
+                    };
 
-            return countryDTO;
-        }*/
+                    return countryDTO;
+                }*/
 
         public CountryDTO Update(Guid Id, CountryDTO countryDTO)
         {

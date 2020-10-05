@@ -21,6 +21,8 @@ namespace BeerOverflow.Web
             services.AddControllersWithViews();
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IStyleService, StyleService>();
+            services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<IBreweryService, BreweryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,13 +35,13 @@ namespace BeerOverflow.Web
 
             app.UseRouting();
 
-/*            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });*/
+            /*            app.UseEndpoints(endpoints =>
+                        {
+                            endpoints.MapGet("/", async context =>
+                            {
+                                await context.Response.WriteAsync("Hello World!");
+                            });
+                        });*/
 
             app.UseEndpoints(endpoints =>
             {

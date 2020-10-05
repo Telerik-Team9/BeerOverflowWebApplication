@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BeerOverflow.Services.DTOs
 {
     public class BreweryDTO
     {
-/*        public Guid Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public Guid CountryId { get; set; }
-        public Country Country { get; set; }
-        public ICollection<Beer> Beers { get; set; } = new List<Beer>();*/
+
+        //public DateTime CreatedOn { get; set; }
+        //public Guid CountryId { get; set; }
+        //public Country Country { get; set; } - DTO
+        //public ICollection<Beer> Beers { get; set; } = new List<Beer>(); List<BeerDTO>();
     }
 }

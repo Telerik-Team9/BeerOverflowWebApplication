@@ -1,10 +1,10 @@
-﻿using BeerOverflow.Database.FakeDatabase;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using BeerOverflow.Database.FakeDatabase;
 using BeerOverflow.Models;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BeerOverflow.Services.Services
 {
@@ -13,6 +13,7 @@ namespace BeerOverflow.Services.Services
         public IEnumerable<StyleDTO> RetrieveAll()
         {
             var allStyles = Seeder.Styles
+                .Where(s => !s.IsDeleted)
                 .Select(s => new StyleDTO
                 {
                     Id = s.Id,
@@ -39,6 +40,7 @@ namespace BeerOverflow.Services.Services
 
             return styleDTO;
         }
+
         public bool Delete(Guid id)
         {
             try
@@ -56,6 +58,7 @@ namespace BeerOverflow.Services.Services
                 return false;
             }
         }
+
         public StyleDTO Create(StyleDTO DTO)
         {
             //NULL check?
@@ -71,6 +74,7 @@ namespace BeerOverflow.Services.Services
             Seeder.Styles.Add(styleToAdd);
             return DTO;
         }
+
         public StyleDTO Update(Guid Id, StyleDTO DTO)
         {
             var style = Seeder.Styles
