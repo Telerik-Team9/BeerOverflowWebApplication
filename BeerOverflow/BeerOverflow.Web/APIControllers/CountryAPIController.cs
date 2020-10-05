@@ -1,6 +1,6 @@
-﻿using BeerOverflow.Services.Contracts;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
+using BeerOverflow.Services.Contracts;
 
 namespace BeerOverflow.Web.APIControllers
 {
@@ -18,7 +18,8 @@ namespace BeerOverflow.Web.APIControllers
         [HttpGet("")]
         public IActionResult GetAllCountries()
         {
-            var countries = this.service.GetAllCountries().ToList();
+            var countries = this.service.GetAllCountries()
+                           .ToList();
 
             if (countries.Count == 0)
             {

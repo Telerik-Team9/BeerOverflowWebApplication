@@ -15,7 +15,8 @@ namespace BeerOverflow.Services.Services
             var countryToAdd = new Country
             {
                 Id = Guid.NewGuid(),    // TODO: Should the Id be generated here or in .Web ?
-                Name = countryDTO.Name
+                Name = countryDTO.Name,
+                IsDeleted = false
             };
 
             Seeder.Countries.Add(countryToAdd);
@@ -23,25 +24,7 @@ namespace BeerOverflow.Services.Services
             return countryDTO;
         }
 
-        public bool Delete(Guid Id)
-        {
-            try
-            {
-                var countryToDelete = Seeder.Countries
-                    .FirstOrDefault(c => c.Id == Id);
-
-                countryToDelete.IsDeleted = true;
-                countryToDelete.DeletedOn = DateTime.Now; // TODO: Should we use provider here?
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public IEnumerable<CountryDTO> GetAllCountries()
+        public IEnumerable<CountryDTO> RetrieveAll()
         {
             var allCountries = Seeder.Countries
                 .Select(c => new CountryDTO
@@ -83,6 +66,24 @@ namespace BeerOverflow.Services.Services
             country.ModifiedOn = DateTime.Now;
 
             return countryDTO;
+        }
+
+        public bool Delete(Guid Id)
+        {
+            try
+            {
+                var countryToDelete = Seeder.Countries
+                    .FirstOrDefault(c => c.Id == Id);
+
+                countryToDelete.IsDeleted = true;
+                countryToDelete.DeletedOn = DateTime.Now; // TODO: Should we use provider here?
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
