@@ -18,7 +18,7 @@ namespace BeerOverflow.Web.APIControllers
         [HttpGet("")]
         public IActionResult GetAllCountries()
         {
-            var countries = this.service.GetAllCountries()
+            var countries = this.service.RetrieveAll()
                            .ToList();
 
             if (countries.Count == 0)
