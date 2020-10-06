@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BeerOverflow.Services.Contracts;
-using Microsoft.AspNetCore.Http;
+﻿using BeerOverflow.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace BeerOverflow.Web.APIControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BreweryController : ControllerBase
+    public class BeerController : ControllerBase
     {
-        private readonly IBreweryService service;
+        private readonly IBeerService service;
 
-        public BreweryController(IBreweryService service)
+        public BeerController(IBeerService service)
         {
             this.service = service;
         }
@@ -22,27 +19,29 @@ namespace BeerOverflow.Web.APIControllers
         [HttpGet("")] //Add sort?
         public IActionResult RetrieveAll()
         {
-            var breweries = this.service.RetrieveAll()
+            var beers = this.service.RetrieveAll()
                          .ToList();
 
-            if (breweries.Count == 0)
+            if (beers.Count == 0)
             {
                 return NoContent();
             }
 
-            return Ok(breweries);
+            return Ok(beers);
         }
 
         [HttpGet("{id}")]
         public IActionResult RetrieveById(Guid id)
         {
             //TODO: Remove Exception handling for nulls in the layers below
-            var brewery = this.service.RetrieveById(id);
+            var beer = this.service.RetrieveById(id);
 
-            if (brewery == null)
+            if (beer == null)
+            {
                 return NotFound();
+            }
 
-            return Ok(brewery);
+            return Ok(beer);
         }
 
         [HttpDelete("{id}")]
@@ -51,7 +50,9 @@ namespace BeerOverflow.Web.APIControllers
             var result = this.service.Delete(id);
 
             if (result)
+            {
                 return Ok();
+            }
 
             return BadRequest();
         }

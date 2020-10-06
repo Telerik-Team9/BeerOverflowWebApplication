@@ -2,8 +2,7 @@
 
 namespace BeerOverflow.Services.Contracts
 {
-    public interface ICountryService
-                    : ICRUDSupportive<CountryDTO>
+    public interface ICountryService : ICRUDSupportive<CountryDTO>
     {
         //CRUD 
         //CountryDTO RetrieveByName(string name);

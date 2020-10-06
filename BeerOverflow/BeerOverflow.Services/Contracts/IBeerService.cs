@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BeerOverflow.Services.Contracts
 {
-    public interface IBreweryService : ICRUDSupportive<BreweryDTO>
+    public interface IBeerService : ICRUDSupportive<BeerDTO>
     {
     }
 }

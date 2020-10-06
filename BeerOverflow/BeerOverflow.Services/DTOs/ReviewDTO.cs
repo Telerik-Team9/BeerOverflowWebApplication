@@ -8,10 +8,10 @@ namespace BeerOverflow.Services.DTOs
         public string Content { get; set; }
         public float Rating { get; set; }
         public int Likes { get; set; }
+        public bool IsFlagged { get; set; }
         public DateTime CreatedOn { get; set; } // Is this necessary?
-
-        //  public Guid BeerDTOId { get; set; }
-        //  public BeerDTO BeerDTO { get; set; }
+        public Guid BeerId { get; set; }
+        public string BeerName { get; set; }
         //  public UserDTO UserDTO
     }
 }
