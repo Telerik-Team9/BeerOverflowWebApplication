@@ -7,35 +7,23 @@ namespace BeerOverflow.Services.DTOMappers
     internal static class CountryDTOMapperExtention
     {
         internal static CountryDTO GetDTO(this Country item)
-        {
-           //var breweries = item.Breweries
-           //    .Select(b => new BreweryDTO
-           //    {
-           //        Id = 
-           //    });
-
-            var countryDTO = new CountryDTO
-            {
-                Id = item.Id,
-                Name = item.Name,
-             //   Breweries = breweries
-            };
-
-            return countryDTO;
-        }
+             => item == null ? null : new CountryDTO
+             {
+                 Id = item.Id,
+                 Name = item.Name,
+                 Breweries = item.Breweries
+                             .Select(b => b.GetDTO())
+                             .ToList()
+             };
 
         internal static Country GetModel(this CountryDTO item)
-        {
-          //  var breweries = item.Breweries.Select();
-
-            var countryModel = new Country
-            {
-                Id = item.Id,
-                Name = item.Name,
-             //   Breweries = breweries
-            };
-
-            return countryModel;
-        }
+             => item == null ? null : new Country
+             {
+                 Id = item.Id,
+                 Name = item.Name,
+                 Breweries = item.Breweries
+                                      .Select(b => b.GetModel())
+                                      .ToList()
+             };
     }
 }

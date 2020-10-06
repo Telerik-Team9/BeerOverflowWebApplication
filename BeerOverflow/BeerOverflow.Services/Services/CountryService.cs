@@ -26,36 +26,15 @@ namespace BeerOverflow.Services.Services
         }
 
         public IEnumerable<CountryDTO> RetrieveAll()
-        {
-            var allCountries = Seeder.Countries
-                .Where(c => !c.IsDeleted)
-                .Select(c => new CountryDTO
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                });
-
-            if (!allCountries.Any())
-            {
-                throw new Exception();
-            }
-
-            return allCountries;
-        }
+            => Seeder.Countries
+                     .Where(c => !c.IsDeleted)
+                     .Select(c => c.GetDTO());
 
         public CountryDTO RetrieveById(Guid Id)
-        {
-            var country = Seeder.Countries
-                .Where(c => !c.IsDeleted)
-                .FirstOrDefault(c => c.Id == Id);
-
-            if (country == null)
-                throw new ArgumentException();      //TODO: ex
-
-            var countryDTO = country.GetDTO();
-
-            return countryDTO;
-        }
+             => Seeder.Countries
+                      .Where(c => !c.IsDeleted)
+                      .FirstOrDefault(c => c.Id == Id)
+                      .GetDTO();
 
         /*        public CountryDTO RetrieveByName(string name)
                 {

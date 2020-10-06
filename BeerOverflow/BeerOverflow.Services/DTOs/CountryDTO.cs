@@ -1,5 +1,4 @@
-﻿using BeerOverflow.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace BeerOverflow.Services.DTOs
@@ -8,7 +7,6 @@ namespace BeerOverflow.Services.DTOs
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public ICollection<Brewery> Breweries { get; set; } = new List<Brewery>();
-
+        public ICollection<BreweryDTO> Breweries { get; set; }
     }
 }
