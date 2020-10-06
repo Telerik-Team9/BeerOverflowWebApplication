@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BeerOverflow.Database.FakeDatabase;
 using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
 
 namespace BeerOverflow.Services.Services
@@ -51,11 +52,7 @@ namespace BeerOverflow.Services.Services
             if (country == null)
                 throw new ArgumentException();      //TODO: ex
 
-            var countryDTO = new CountryDTO
-            {
-                Id = country.Id,
-                Name = country.Name
-            };
+            var countryDTO = country.GetDTO();
 
             return countryDTO;
         }

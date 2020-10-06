@@ -1,8 +1,5 @@
 ﻿using BeerOverflow.Models;
 using BeerOverflow.Services.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BeerOverflow.Services.DTOMappers
 {
@@ -19,11 +16,11 @@ namespace BeerOverflow.Services.DTOMappers
                 IsFlagged = item.IsFlagged,
                 CreatedOn = item.CreatedOn,
                 BeerId = item.BeerId,
-                BeerName = item.Beer.Name
+                BeerName = item.Beer?.Name
             };
 
             return reviewDTO;
-         }
+        }
 
         internal static Review GetModel(this ReviewDTO item)
         {

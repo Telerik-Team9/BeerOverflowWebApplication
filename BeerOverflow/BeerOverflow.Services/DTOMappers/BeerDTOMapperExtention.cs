@@ -1,8 +1,5 @@
 ﻿using BeerOverflow.Models;
 using BeerOverflow.Services.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BeerOverflow.Services.DTOMappers
 {

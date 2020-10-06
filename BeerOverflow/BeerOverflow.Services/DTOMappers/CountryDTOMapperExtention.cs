@@ -1,9 +1,6 @@
-﻿using BeerOverflow.Models;
+﻿using System.Linq;
+using BeerOverflow.Models;
 using BeerOverflow.Services.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BeerOverflow.Services.DTOMappers
 {
@@ -11,13 +8,17 @@ namespace BeerOverflow.Services.DTOMappers
     {
         internal static CountryDTO GetDTO(this Country item)
         {
-            var breweries = item.Breweries.Select();
+           //var breweries = item.Breweries
+           //    .Select(b => new BreweryDTO
+           //    {
+           //        Id = 
+           //    });
 
             var countryDTO = new CountryDTO
             {
                 Id = item.Id,
                 Name = item.Name,
-                Breweries = breweries
+             //   Breweries = breweries
             };
 
             return countryDTO;
@@ -25,13 +26,13 @@ namespace BeerOverflow.Services.DTOMappers
 
         internal static Country GetModel(this CountryDTO item)
         {
-            var breweries = item.Breweries.Select();
+          //  var breweries = item.Breweries.Select();
 
             var countryModel = new Country
             {
                 Id = item.Id,
                 Name = item.Name,
-                Breweries = breweries
+             //   Breweries = breweries
             };
 
             return countryModel;

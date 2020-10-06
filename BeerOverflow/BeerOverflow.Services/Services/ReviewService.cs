@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BeerOverflow.Database.FakeDatabase;
 using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
 
 namespace BeerOverflow.Services.Services
@@ -27,41 +28,15 @@ namespace BeerOverflow.Services.Services
         }
 
         public IEnumerable<ReviewDTO> RetrieveAll()
-        {
-            var allReviews = Seeder.Reviews
-                 .Where(r => !r.IsDeleted)
-                 .Select(r => new ReviewDTO
-                 {
-                     Id = r.Id,
-                     Content = r.Content,
-                     Rating = r.Rating,
-                     Likes = r.Likes,
-                     CreatedOn = r.CreatedOn
-                 });
-
-            return allReviews;
-        }
+            => Seeder.Reviews
+                     .Where(r => !r.IsDeleted)
+                     .Select(r => r.GetDTO());
 
         public ReviewDTO RetrieveById(Guid id)
-        {
-            var review = Seeder.Reviews
-                .Where(c => !c.IsDeleted)
-                .FirstOrDefault(r => r.Id == id);
-
-            if (review == null)
-                throw new ArgumentException();      //TODO: ex
-
-            var revieDTO = new ReviewDTO
-            {
-                Id = review.Id,
-                Content = review.Content,
-                Rating = review.Rating,
-                Likes = review.Likes,
-                CreatedOn = review.CreatedOn
-            };
-
-            return revieDTO;
-        }
+            => Seeder.Reviews
+                     .Where(c => !c.IsDeleted)
+                     .FirstOrDefault(r => r.Id == id)
+                     .GetDTO();
 
         public ReviewDTO Update(Guid id, ReviewDTO DTO)
         {
@@ -78,6 +53,7 @@ namespace BeerOverflow.Services.Services
 
             return DTO;
         }
+
         public bool Delete(Guid id)
         {
             try

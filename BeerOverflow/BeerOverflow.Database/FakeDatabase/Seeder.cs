@@ -209,7 +209,7 @@ namespace BeerOverflow.Database.FakeDatabase
             {
                 new Review
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("03461e43-1ebb-4035-8fa4-e5acf5c923f1"),
                     Content = "This is exellent beer",
                     Rating = 5,
                     Likes = 120,
