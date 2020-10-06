@@ -33,7 +33,7 @@ namespace BeerOverflow.Services.Services
 
         public BreweryDTO RetrieveById(Guid id)
             => Seeder.Breweries
-                      .Where(c => c.IsDeleted == false)
+                      .Where(c => !c.IsDeleted)
                       .FirstOrDefault(c => c.Id == id)
                       .GetDTO();
 

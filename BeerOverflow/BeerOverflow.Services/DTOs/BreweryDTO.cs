@@ -10,7 +10,5 @@ namespace BeerOverflow.Services.DTOs
         public Guid CountryId { get; set; }
         public string CountryName { get; set; }
         public ICollection<BeerDTO> Beers { get; set; }
-
-        //public DateTime CreatedOn { get; set; }
     }
 }

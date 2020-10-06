@@ -3,7 +3,7 @@ using BeerOverflow.Services.DTOs;
 
 namespace BeerOverflow.Services.DTOMappers
 {
-    internal static class BeerDTOMapperExtention
+    internal static class BeerDTOMapperExtension
     {
         internal static BeerDTO GetDTO(this Beer item)
         {

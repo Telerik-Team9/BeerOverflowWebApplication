@@ -4,6 +4,7 @@ using System.Linq;
 using BeerOverflow.Database.FakeDatabase;
 using BeerOverflow.Models;
 using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
 
 namespace BeerOverflow.Services.Services
@@ -11,35 +12,15 @@ namespace BeerOverflow.Services.Services
     public class StyleService : IStyleService
     {
         public IEnumerable<StyleDTO> RetrieveAll()
-        {
-            var allStyles = Seeder.Styles
-                .Where(s => !s.IsDeleted)
-                .Select(s => new StyleDTO
-                {
-                    Id = s.Id,
-                    Name = s.Name
-                });
-
-            return allStyles;
-        }
+            => Seeder.Styles
+                     .Where(s => !s.IsDeleted)
+                     .Select(s => s.GetDTO());
 
         public StyleDTO RetrieveById(Guid id)
-        {
-            var style = Seeder.Styles
-                .Where(c => !c.IsDeleted)
-                .FirstOrDefault(c => c.Id == id);
-
-            if (style == null)
-                throw new ArgumentException();      //TODO: null
-
-            var styleDTO = new StyleDTO
-            {
-                Id = style.Id,
-                Name = style.Name
-            };
-
-            return styleDTO;
-        }
+            => Seeder.Styles
+                     .Where(c => !c.IsDeleted)
+                     .FirstOrDefault(c => c.Id == id)
+                     .GetDTO();
 
         public bool Delete(Guid id)
         {
@@ -61,18 +42,19 @@ namespace BeerOverflow.Services.Services
 
         public StyleDTO Create(StyleDTO DTO)
         {
-            //NULL check?
-            var styleToAdd = new Style
-            {
-                Id = DTO.Id,
-                Name = DTO.Name,
-                Description = DTO.Description,
-                CreatedOn = DateTime.Now,
-                IsDeleted = false
-            };
+            /*            //NULL check?
+                        var styleToAdd = new Style
+                        {
+                            Id = DTO.Id,
+                            Name = DTO.Name,
+                            Description = DTO.Description,
+                            CreatedOn = DateTime.Now,
+                            IsDeleted = false
+                        };
 
-            Seeder.Styles.Add(styleToAdd);
-            return DTO;
+                        Seeder.Styles.Add(styleToAdd);
+                        return DTO;*/
+            throw new NotImplementedException();
         }
 
         public StyleDTO Update(Guid Id, StyleDTO DTO)
@@ -81,7 +63,9 @@ namespace BeerOverflow.Services.Services
                 .FirstOrDefault(c => c.Id == Id);
 
             if (style == null)
-                throw new ArgumentException();      //TODO: ex
+            {
+                return null;
+            }
 
             style.Name = DTO.Name; // Extension method for country = countryDTo
             style.ModifiedOn = DateTime.Now;

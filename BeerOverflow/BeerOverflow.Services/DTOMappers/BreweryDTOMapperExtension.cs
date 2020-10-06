@@ -4,7 +4,7 @@ using BeerOverflow.Services.DTOs;
 
 namespace BeerOverflow.Services.DTOMappers
 {
-    internal static class BreweryDTOMapperExtention
+    internal static class BreweryDTOMapperExtension
     {
         internal static BreweryDTO GetDTO(this Brewery item)
            => item == null ? null : new BreweryDTO

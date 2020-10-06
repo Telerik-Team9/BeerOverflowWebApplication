@@ -25,7 +25,7 @@ namespace BeerOverflow.Web.APIControllers
             var styles = this.service.RetrieveAll()
                          .ToList();
 
-            if (styles.Count == 0)
+            if (styles.Count == 0) // null validation as well?
             {
                 return NoContent();
             }
