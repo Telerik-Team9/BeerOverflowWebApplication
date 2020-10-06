@@ -148,8 +148,8 @@ namespace BeerOverflow.Database.FakeDatabase
             {
                 new Country
                 {
-                      Id = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b"),
-                      Name = "Bulgaria"
+                    Id = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b"),
+                    Name = "Bulgaria"
                 },
                 new Country
                 {

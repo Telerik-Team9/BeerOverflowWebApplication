@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using BeerOverflow.Database.FakeDatabase;
-using BeerOverflow.Models;
 using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
 
 namespace BeerOverflow.Services.Services
@@ -27,38 +27,15 @@ namespace BeerOverflow.Services.Services
         }
 
         public IEnumerable<BreweryDTO> RetrieveAll()
-        {
-            var allCountries = Seeder.Breweries
-               .Where(b => !b.IsDeleted)
-               .Select(b => new BreweryDTO
-               {
-                   Id = b.Id,
-                   Name = b.Name
-               });
-
-            return allCountries;
-        }
+            => Seeder.Breweries
+                   .Where(b => !b.IsDeleted)
+                   .Select(b => b.GetDTO());
 
         public BreweryDTO RetrieveById(Guid id)
-        {
-            var brewery = Seeder.Breweries
-                 .Where(c => c.IsDeleted == false)
-                 .FirstOrDefault(c => c.Id == id);
-
-            if (brewery == null)
-                throw new ArgumentException();      //TODO: ex
-
-            // if (brewery.IsDeleted)
-            //     throw new ArgumentException();
-
-            var breweryDTO = new BreweryDTO
-            {
-                Id = brewery.Id,
-                Name = brewery.Name
-            };
-
-            return breweryDTO;
-        }
+            => Seeder.Breweries
+                      .Where(c => c.IsDeleted == false)
+                      .FirstOrDefault(c => c.Id == id)
+                      .GetDTO();
 
         public BreweryDTO Update(Guid Id, BreweryDTO DTO)
         {
