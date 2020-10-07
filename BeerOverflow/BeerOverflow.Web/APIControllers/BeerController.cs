@@ -17,7 +17,7 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpGet("")] //Add sort?
-        public IActionResult RetrieveAll()
+        public IActionResult Get()
         {
             var beers = this.service.RetrieveAll()
                          .ToList();
@@ -31,7 +31,7 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult RetrieveById(Guid id)
+        public IActionResult Get(Guid id)
         {
             //TODO: Remove Exception handling for nulls in the layers below
             var beer = this.service.RetrieveById(id);

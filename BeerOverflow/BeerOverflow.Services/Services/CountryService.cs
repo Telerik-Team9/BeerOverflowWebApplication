@@ -12,17 +12,11 @@ namespace BeerOverflow.Services.Services
     {
         public CountryDTO Create(CountryDTO countryDTO)
         {
-            //var countryToAdd = new Country
-            //{
-            //    Id = Guid.NewGuid(),    // TODO: Should the Id be generated here or in .Web ?
-            //    Name = countryDTO.Name,
-            //    IsDeleted = false
-            //};
+            var countryToAdd = countryDTO.GetModel();
 
-            //Seeder.Countries.Add(countryToAdd);
+            Seeder.Countries.Add(countryToAdd);
 
-            //return countryDTO;
-            throw new NotImplementedException();
+            return countryDTO;
         }
 
         public IEnumerable<CountryDTO> RetrieveAll()

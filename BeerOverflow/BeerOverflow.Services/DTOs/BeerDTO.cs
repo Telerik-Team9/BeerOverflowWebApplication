@@ -21,7 +21,7 @@ namespace BeerOverflow.Services.DTOs
         public string StyleName { get; set; } // Porter, Ale, Lager etc.
         public Guid BreweryId { get; set; }
         public string BreweryName { get; set; }
-        public ICollection<ReviewDTO> Reviews { get; set; }
+        public ICollection<ReviewDTO> Reviews { get; set; } = new List<ReviewDTO>();
         //user
     }
 }

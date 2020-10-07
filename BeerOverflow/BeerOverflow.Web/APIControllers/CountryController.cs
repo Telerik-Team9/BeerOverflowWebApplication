@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using BeerOverflow.Services.Contracts;
 using System;
+using BeerOverflow.Web.Models;
+using BeerOverflow.Services.DTOs;
 
 namespace BeerOverflow.Web.APIControllers
 {
@@ -17,7 +19,7 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpGet]
-        public IActionResult RetrieveAll()
+        public IActionResult Get()
         {
             var countries = this.service.RetrieveAll()
                             .ToList();
@@ -31,7 +33,7 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult RetrieveById(Guid id)
+        public IActionResult Get(Guid id)
         {
             var country = this.service.RetrieveById(id);
 
@@ -42,20 +44,6 @@ namespace BeerOverflow.Web.APIControllers
 
             return Ok(country);
         }
-
-/*        //[HttpGet("api/[controller]/GetCountry/{name}")]
-        [HttpGet("country/{name}")]
-        public IActionResult RetrieveByName( string name)
-        {
-            var country = this.service.RetrieveByName(name);
-
-            if (country == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(country);
-        }*/
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
@@ -70,10 +58,41 @@ namespace BeerOverflow.Web.APIControllers
             return BadRequest();
         }
 
-        /*
-                CountryDTO Create(CountryDTO countryDTO);
-                CountryDTO RetrieveById(Guid Id);
-                CountryDTO Update(Guid Id, CountryDTO countryDTO);
-                bool Delete(Guid Id);*/
+        [HttpPost("")] //TODO: [FromBody] - 415
+        public IActionResult Post([FromQuery] CountryViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            var countryDTO = new CountryDTO
+            {
+                Id = model.Id,
+                Name = model.Name
+            };
+
+            var country = this.service.Create(countryDTO);
+
+            return Created("post", country);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, [FromQuery] CountryViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            var country = new CountryDTO
+            {
+                Name = model.Name
+            };
+
+            var updatedCountryDTO = this.service.Update(id, country);
+
+            return Ok(updatedCountryDTO);
+        }
     }
 }
