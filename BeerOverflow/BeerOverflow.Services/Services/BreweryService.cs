@@ -47,7 +47,7 @@ namespace BeerOverflow.Services.Services
 
             brewery.Name = DTO.Name; // Extension method for country = countryDTo
             brewery.ModifiedOn = DateTime.Now;
-
+            this.context.SaveChanges();
             return DTO;
         }
 
@@ -60,7 +60,7 @@ namespace BeerOverflow.Services.Services
 
                 breweryToDelete.IsDeleted = true;
                 breweryToDelete.DeletedOn = DateTime.Now; // TODO: Should we use provider here?
-
+                this.context.SaveChanges();
                 return true;
             }
             catch
