@@ -1,77 +1,77 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using BeerOverflow.Database.Seed;
-//using BeerOverflow.Models;
-//using BeerOverflow.Services.Contracts;
-//using BeerOverflow.Services.DTOMappers;
-//using BeerOverflow.Services.DTOs;
+﻿using BeerOverflow.Database;
+using BeerOverflow.Database.Seed;
+using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOMappers;
+using BeerOverflow.Services.DTOs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-//namespace BeerOverflow.Services.Services
-//{
-//    public class StyleService : IStyleService
-//    {
-//        public IEnumerable<StyleDTO> RetrieveAll()
-//            => Seeder.Styles
-//                     .Where(s => !s.IsDeleted)
-//                     .Select(s => s.GetDTO());
+namespace BeerOverflow.Services.Services
+{
+    public class StyleService : IStyleService
+    {
+        private readonly BeerOverflowDbContext context;
+        public StyleService(BeerOverflowDbContext context)
+        {
+            this.context = context;
+        }
 
-//        public StyleDTO RetrieveById(Guid id)
-//            => Seeder.Styles
-//                     .Where(c => !c.IsDeleted)
-//                     .FirstOrDefault(c => c.Id == id)
-//                     .GetDTO();
+        public IEnumerable<StyleDTO> RetrieveAll()
+            => this.context.Styles
+                     .Where(s => !s.IsDeleted)
+                     .Select(s => s.GetDTO());
 
-//        public bool Delete(Guid id)
-//        {
-//            try
-//            {
-//                var styleToDelete = Seeder.Styles
-//                    .FirstOrDefault(s => s.Id == id);
+        public StyleDTO RetrieveById(Guid id)
+            => this.context.Styles
+                     .Where(c => !c.IsDeleted)
+                     .FirstOrDefault(c => c.Id == id)
+                     .GetDTO();
 
-//                styleToDelete.IsDeleted = true;
-//                styleToDelete.DeletedOn = DateTime.Now;
+        public bool Delete(Guid id)
+        {
+            try
+            {
+                var styleToDelete = this.context.Styles
+                                  .FirstOrDefault(s => s.Id == id);
 
-//                return true;
-//            }
-//            catch (Exception)
-//            {
-//                return false;
-//            }
-//        }
+                styleToDelete.IsDeleted = true;
+                styleToDelete.DeletedOn = DateTime.Now;
+                this.context.SaveChanges();
 
-//        public StyleDTO Create(StyleDTO DTO)
-//        {
-//            /*            //NULL check?
-//                        var styleToAdd = new Style
-//                        {
-//                            Id = DTO.Id,
-//                            Name = DTO.Name,
-//                            Description = DTO.Description,
-//                            CreatedOn = DateTime.Now,
-//                            IsDeleted = false
-//                        };
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
-//                        Seeder.Styles.Add(styleToAdd);
-//                        return DTO;*/
-//            throw new NotImplementedException();
-//        }
+        public StyleDTO Create(StyleDTO DTO)
+        {
+            var styleToAdd = DTO.GetModel();
 
-//        public StyleDTO Update(Guid Id, StyleDTO DTO)
-//        {
-//            var style = Seeder.Styles
-//                .FirstOrDefault(c => c.Id == Id);
+            this.context.Styles.Add(styleToAdd);
+            this.context.SaveChanges();
+            return DTO;
+        }
 
-//            if (style == null)
-//            {
-//                return null;
-//            }
+        public StyleDTO Update(Guid Id, StyleDTO DTO)
+        {
+            var style = this.context.Styles
+                .FirstOrDefault(c => c.Id == Id);
 
-//            style.Name = DTO.Name; // Extension method for country = countryDTo
-//            style.ModifiedOn = DateTime.Now;
+            if (style == null)
+            {
+                return null;
+            }
 
-//            return DTO;
-//            //Update what?
-//        }
-//    }
-//}
+            style.Name = DTO.Name; // Extension method for country = countryDTo
+            style.Description = DTO.Description;
+            style.ModifiedOn = DateTime.Now;
+            this.context.SaveChanges();
+            return DTO;
+            //Update what?
+        }
+    }
+}

@@ -19,9 +19,9 @@ namespace BeerOverflow.Services.Services
 
         public BreweryDTO Create(BreweryDTO DTO)
         {
-            var countryToAdd = DTO.GetModel();
+            var breweryToAdd = DTO.GetModel();
 
-            this.context.Breweries.Add(countryToAdd);
+            this.context.Breweries.Add(breweryToAdd);
             this.context.SaveChanges();
             return DTO;
         }

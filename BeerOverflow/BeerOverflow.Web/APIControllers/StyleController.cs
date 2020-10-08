@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOs;
+using BeerOverflow.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -54,6 +56,47 @@ namespace BeerOverflow.Web.APIControllers
                 return Ok();
 
             return BadRequest();
+        }
+
+        [HttpPost("")]
+        public IActionResult Post([FromBody] StyleViewModel model)
+        {
+            if(model == null)
+            {
+                return BadRequest();
+            }
+
+            var styleDTO = new StyleDTO
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Description = model.Description,
+                Beers = new List<BeerDTO>()
+                // Beers = model.BeerViewModels.Select(o=>o.GetDTO/Model())
+            };
+
+            var style = this.service.Create(styleDTO);
+
+            return Created("post", style);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, [FromBody] StyleViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            var style = new StyleDTO
+            {
+                Name = model.Name,
+                Description = model.Description,
+            };
+
+            var updatedStyleDTO = this.service.Update(id, style);
+
+            return Ok(updatedStyleDTO);
         }
     }
 }
