@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOs;
+using BeerOverflow.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +25,7 @@ namespace BeerOverflow.Web.APIControllers
         public IActionResult Get()
         {
             var breweries = this.service.RetrieveAll()
-                         .ToList();
+                                        .ToList();
 
             if (breweries.Count == 0)
             {
@@ -40,7 +42,9 @@ namespace BeerOverflow.Web.APIControllers
             var brewery = this.service.RetrieveById(id);
 
             if (brewery == null)
+            {
                 return NotFound();
+            }
 
             return Ok(brewery);
         }
@@ -54,6 +58,28 @@ namespace BeerOverflow.Web.APIControllers
                 return Ok();
 
             return BadRequest();
+        }
+
+        [HttpPost("")]
+        public IActionResult Post([FromBody] BreweryViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            var breweryDTO = new BreweryDTO
+            {
+                Id = model.Id,
+                Name = model.Name,
+                CountryName = model.CountryName,
+                CountryId = model.CountryId,
+                Beers = new List<BeerDTO>()
+            };
+
+            var brewery = this.service.Create(breweryDTO);
+
+            return Created("post", brewery);
         }
     }
 }

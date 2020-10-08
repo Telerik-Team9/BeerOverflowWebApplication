@@ -8,7 +8,7 @@ namespace BeerOverflow.Database
     public class BeerOverflowDbContext : DbContext
     {
         public BeerOverflowDbContext(DbContextOptions options)
-            : base(options) { }
+             : base(options) { }
 
         public DbSet<Beer> Beers { get; set; }
         public DbSet<Brewery> Breweries { get; set; }
@@ -20,8 +20,13 @@ namespace BeerOverflow.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //TODO: Reflection here
-            //modelBuilder.ApplyConfiguration(new BeerConfig());
-            //base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new BeerConfig());
+            modelBuilder.ApplyConfiguration(new BreweryConfig());
+            modelBuilder.ApplyConfiguration(new CountryConfig());
+            modelBuilder.ApplyConfiguration(new ReviewConfig());
+            modelBuilder.ApplyConfiguration(new StyleConfig());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

@@ -58,8 +58,8 @@ namespace BeerOverflow.Web.APIControllers
             return BadRequest();
         }
 
-        [HttpPost("")] //TODO: [FromBody] - 415
-        public IActionResult Post([FromQuery] CountryViewModel model)
+        [HttpPost("")]
+        public IActionResult Post([FromBody] CountryViewModel model)
         {
             if (model == null)
             {
