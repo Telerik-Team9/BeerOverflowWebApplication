@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using BeerOverflow.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace BeerOverflow.Database.FakeDatabase
+namespace BeerOverflow.Database.Seed
 {
-    public static class Seeder
+    public static class Seeder // Should we name it DataExtensions?
     {
-        static Seeder()
-        {
-            Seed();
-        }
-
-        public static ICollection<Beer> Beers { get; set; } = new List<Beer>();
+/*        public static ICollection<Beer> Beers { get; set; } = new List<Beer>();
         public static ICollection<Brewery> Breweries { get; set; } = new List<Brewery>();
         public static ICollection<Country> Countries { get; set; } = new List<Country>();
         public static ICollection<Style> Styles { get; set; } = new List<Style>();
-        public static ICollection<Review> Reviews { get; set; } = new List<Review>();
-        public static void Seed()
+        public static ICollection<Review> Reviews { get; set; } = new List<Review>();*/
+
+        public static void Seed(this ModelBuilder builder)
         {
-            Beers = new List<Beer>
+            var beers = new List<Beer>
             {
                 new Beer
                {
@@ -123,15 +120,16 @@ namespace BeerOverflow.Database.FakeDatabase
                    ABV = float.Parse("5.5")
                }
             };
-            Breweries = new List<Brewery>
+            builder.Entity<Beer>().HasData(beers);
+
+            var breweries = new List<Brewery>
             {
                 new Brewery
-            {
-                Id = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622"),
-                Name = "KamenitzaAD",
-                CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")
-
-            },
+                {
+                    Id = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622"),
+                    Name = "KamenitzaAD",
+                    CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")
+                },
                 new Brewery
                 {
                     Id = Guid.Parse("3d046341-8215-453d-8647-cc5a63d039fb"),
@@ -144,7 +142,9 @@ namespace BeerOverflow.Database.FakeDatabase
                      Name = "Unknown",
                      CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")
                  }};
-            Countries = new List<Country>
+            builder.Entity<Brewery>().HasData(breweries);
+
+            var countries = new List<Country>
             {
                 new Country
                 {
@@ -172,7 +172,9 @@ namespace BeerOverflow.Database.FakeDatabase
                     Name = "Unknown",
                 }
             };
-            Styles = new List<Style>
+            builder.Entity<Country>().HasData(countries);
+
+            var styles = new List<Style>
             {
                 new Style
                 {
@@ -205,7 +207,9 @@ namespace BeerOverflow.Database.FakeDatabase
                      Description = "The Old Ale is an light amber to very dark reddish-brown colored English ale of moderate to fairly significant alcoholic strength, bigger than standard beers, though usually not as strong or rich as barleywine and often tilted towards a maltier balance. The predominant defining quality for this style is the impression of age, which can manifest itself in different ways (complexity, lactic, Brett, oxidation, leather, vinous qualities are some recurring examples). Roughly overlapping the British Strong Ale and the lower end of the English Barley Wine styles, but always having an aged quality. Barley Wines tend to develop more of an overall mature quality, while Old Ales can show more of the barrel qualities. Old Peculier are also considered as an Old Ale."
                  }
             };
-            Reviews = new List<Review>
+            builder.Entity<Style>().HasData(styles);
+
+            var reviews = new List<Review>
             {
                 new Review
                 {
@@ -221,6 +225,7 @@ namespace BeerOverflow.Database.FakeDatabase
                     BeerId = Guid.Parse("133e0d92-cedc-40a7-b8fd-e5669611b3dc"),
                 }
             };
+            builder.Entity<Review>().HasData(reviews);
         }
         //TODO: Map
     }

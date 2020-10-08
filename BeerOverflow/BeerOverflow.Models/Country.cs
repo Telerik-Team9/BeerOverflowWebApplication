@@ -1,17 +1,12 @@
-﻿using System;
+﻿using BeerOverflow.Models.Contracts;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using BeerOverflow.Models.Contracts;
-using static BeerOverflow.Models.Common.ModelsConstants;
 
 namespace BeerOverflow.Models
 {
     public class Country : IEntity, IModifiable
     {
-        [Key]
         public Guid Id { get; set; }
-        [Required]
-        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
         public DateTime CreatedOn { get; set; }

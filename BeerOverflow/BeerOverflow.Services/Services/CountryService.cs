@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BeerOverflow.Database;
+﻿using BeerOverflow.Database;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BeerOverflow.Services.Services
 {
     public class CountryService : ICountryService
     {
         private readonly BeerOverflowDbContext context;
+
         public CountryService(BeerOverflowDbContext context)
         {
             this.context = context;
         }
+
         public CountryDTO Create(CountryDTO countryDTO)
         {
             var countryToAdd = countryDTO.GetModel();

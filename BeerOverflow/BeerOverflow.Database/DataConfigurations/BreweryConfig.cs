@@ -8,10 +8,15 @@ namespace BeerOverflow.Database.DataConfigurations
     {
         public void Configure(EntityTypeBuilder<Brewery> builder)
         {
-            builder
-                 .HasOne(b => b.Country)
-                 .WithMany(c => c.Breweries)
-                 .HasForeignKey(c => c.CountryId);
+            builder.HasKey(b => b.Id);
+
+            builder.Property(b => b.Name)
+                   .HasMaxLength(40)
+                   .IsRequired(true);
+
+            builder.HasOne(b => b.Country)
+                   .WithMany(c => c.Breweries)
+                   .HasForeignKey(c => c.CountryId);
         }
     }
 }

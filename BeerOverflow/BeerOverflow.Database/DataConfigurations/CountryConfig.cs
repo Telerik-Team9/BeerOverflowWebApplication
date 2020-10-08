@@ -8,7 +8,13 @@ namespace BeerOverflow.Database.DataConfigurations
     {
         public void Configure(EntityTypeBuilder<Country> builder) 
         {
-            builder.HasIndex(c => c.Name).IsUnique(true); //TODO: ask later
+            builder.HasKey(c => c.Id);
+
+            builder.Property(c => c.Name)
+                   .HasMaxLength(40);
+
+            builder.HasIndex(c => c.Name)
+                   .IsUnique(true); //TODO: ask later
         }
     }
 }

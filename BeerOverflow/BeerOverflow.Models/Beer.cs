@@ -8,18 +8,12 @@ namespace BeerOverflow.Models
 {
     public class Beer : IEntity, IModifiable, IReviewable
     {
-        [Key]
         public Guid Id { get; set; }
-        [Required]
-        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
-        [Required]
         [Range(ABVMinPercent, ABVMaxPercent)]
         public float ABV { get; set; }
-        [Required]
         [Range(PriceMin, PriceMax)]
         public double Price { get; set; }
-        [MaxLength(BeerDescriptionMaxLength)]
         public string Description { get; set; }
         public string ImageURL { get; set; }
         public int Mililiters { get; set; }

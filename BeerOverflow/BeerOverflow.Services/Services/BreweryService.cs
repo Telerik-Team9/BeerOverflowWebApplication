@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BeerOverflow.Database.FakeDatabase;
+using BeerOverflow.Database.Seed;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;

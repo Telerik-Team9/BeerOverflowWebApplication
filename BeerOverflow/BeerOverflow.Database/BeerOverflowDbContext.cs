@@ -21,7 +21,9 @@ namespace BeerOverflow.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //TODO: Reflection here
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); // Reflection that replaces this
+            //modelBuilder.ApplyConfiguration(new BeerConfig());
+
         }
     }
 }
