@@ -8,6 +8,14 @@ namespace BeerOverflow.Database.DataConfigurations
     {
         public void Configure(EntityTypeBuilder<Style> builder)
         {
+            builder.HasKey(s => s.Id);
+
+            builder.Property(b => b.Name)
+                   .IsRequired(true)
+                   .HasMaxLength(40);
+
+            builder.Property(s => s.Description)
+                   .HasMaxLength(255);
         }
     }
 }

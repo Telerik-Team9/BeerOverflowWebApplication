@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BeerOverflow.Database.Seed;
+using BeerOverflow.Database;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
@@ -10,36 +10,36 @@ namespace BeerOverflow.Services.Services
 {
     public class BreweryService : IBreweryService
     {
+        private readonly BeerOverflowDbContext context;
+
+        public BreweryService(BeerOverflowDbContext context)
+        {
+            this.context = context;
+        }
+
         public BreweryDTO Create(BreweryDTO DTO)
         {
-            //    var breweryToAdd = new Brewery
-            //    {
-            //        Id = Guid.NewGuid(),    // TODO: Should the Id be generated here or in .Web ?
-            //        Name = DTO.Name,
-            //        CreatedOn = DateTime.Now,
-            //        IsDeleted = false,
-            //    };
+            var countryToAdd = DTO.GetModel();
 
-            //    Seeder.Breweries.Add(breweryToAdd);
-
-            //    return DTO;
-            throw new NotImplementedException();
+            this.context.Breweries.Add(countryToAdd);
+            this.context.SaveChanges();
+            return DTO;
         }
 
         public IEnumerable<BreweryDTO> RetrieveAll()
-            => Seeder.Breweries
+            => this.context.Breweries
                    .Where(b => !b.IsDeleted)
                    .Select(b => b.GetDTO());
 
         public BreweryDTO RetrieveById(Guid id)
-            => Seeder.Breweries
+            => this.context.Breweries
                       .Where(c => !c.IsDeleted)
                       .FirstOrDefault(c => c.Id == id)
                       .GetDTO();
 
         public BreweryDTO Update(Guid Id, BreweryDTO DTO)
         {
-            var brewery = Seeder.Breweries
+            var brewery = this.context.Breweries
                 .FirstOrDefault(c => c.Id == Id);
 
             if (brewery == null)
@@ -55,7 +55,7 @@ namespace BeerOverflow.Services.Services
         {
             try
             {
-                var breweryToDelete = Seeder.Breweries
+                var breweryToDelete = this.context.Breweries
                     .FirstOrDefault(c => c.Id == id);
 
                 breweryToDelete.IsDeleted = true;

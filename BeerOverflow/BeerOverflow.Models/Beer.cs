@@ -1,28 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using BeerOverflow.Models.Abstracts;
 using BeerOverflow.Models.Contracts;
-using static BeerOverflow.Models.Common.ModelsConstants;
+using System;
+using System.Collections.Generic;
 
 namespace BeerOverflow.Models
 {
-    public class Beer : IEntity, IModifiable, IReviewable
+    public class Beer : Entity, IModifiable, IReviewable
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        [Range(ABVMinPercent, ABVMaxPercent)]
+        //  [Range(ABVMinPercent, ABVMaxPercent)]
         public float ABV { get; set; }
-        [Range(PriceMin, PriceMax)]
+        // [Range(PriceMin, PriceMax)]
         public double Price { get; set; }
         public string Description { get; set; }
         public string ImageURL { get; set; }
         public int Mililiters { get; set; }
         public bool IsUnlisted { get; set; }
         public bool IsBeerOfTheMonth { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime? DeletedOn { get; set; }
         public DateTime? ModifiedOn { get; set; }
 
         public Guid StyleId { get; set; }

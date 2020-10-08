@@ -36,11 +36,11 @@ namespace BeerOverflow.Web
                             .GetConnectionString("DefaultConnection"))
                 );
 
-            services.AddScoped<IBeerService, BeerService>();
+           // services.AddScoped<IBeerService, BeerService>();
             services.AddScoped<IBreweryService, BreweryService>();
             services.AddScoped<ICountryService, CountryService>();
-            services.AddScoped<IReviewService, ReviewService>();
-            services.AddScoped<IStyleService, StyleService>();
+           // services.AddScoped<IReviewService, ReviewService>();
+           // services.AddScoped<IStyleService, StyleService>();
         }   
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

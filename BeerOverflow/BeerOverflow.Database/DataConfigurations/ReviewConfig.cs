@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using BeerOverflow.Models;
+﻿using BeerOverflow.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BeerOverflow.Database.DataConfigurations
@@ -8,6 +8,15 @@ namespace BeerOverflow.Database.DataConfigurations
     {
         public void Configure(EntityTypeBuilder<Review> builder)
         {
+            builder.HasKey(r => r.Id);
+
+            builder.Property(r => r.Content)
+                   .IsRequired(true)
+                   .HasMaxLength(255);
+
+            builder.Property(r => r.Rating)
+                   .IsRequired(true);
+
             builder
                 .HasOne(r => r.Beer)
                 .WithMany(b => b.Reviews)

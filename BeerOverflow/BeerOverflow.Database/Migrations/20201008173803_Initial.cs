@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BeerOverflow.Database.Migrations
 {
-    public partial class Intitial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,10 +12,11 @@ namespace BeerOverflow.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 40, nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(maxLength: 40, nullable: true),
+                    ISO = table.Column<string>(nullable: true),
                     ModifiedOn = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
@@ -28,11 +29,11 @@ namespace BeerOverflow.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 40, nullable: false),
-                    Description = table.Column<string>(maxLength: 300, nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(maxLength: 40, nullable: false),
+                    Description = table.Column<string>(maxLength: 255, nullable: true),
                     ModifiedOn = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
@@ -45,10 +46,10 @@ namespace BeerOverflow.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 40, nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(maxLength: 40, nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     CountryId = table.Column<Guid>(nullable: false)
                 },
@@ -68,17 +69,17 @@ namespace BeerOverflow.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 40, nullable: false),
                     ABV = table.Column<float>(nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    Description = table.Column<string>(maxLength: 300, nullable: true),
+                    Description = table.Column<string>(nullable: true),
                     ImageURL = table.Column<string>(nullable: true),
                     Mililiters = table.Column<int>(nullable: false),
                     IsUnlisted = table.Column<bool>(nullable: false),
                     IsBeerOfTheMonth = table.Column<bool>(nullable: false),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     StyleId = table.Column<Guid>(nullable: false),
                     BreweryId = table.Column<Guid>(nullable: false)
@@ -105,13 +106,13 @@ namespace BeerOverflow.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Content = table.Column<string>(maxLength: 2000, nullable: false),
-                    Rating = table.Column<float>(nullable: false),
-                    Likes = table.Column<int>(nullable: false),
-                    IsFlagged = table.Column<bool>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
+                    Content = table.Column<string>(maxLength: 255, nullable: false),
+                    Rating = table.Column<float>(nullable: false),
+                    Likes = table.Column<int>(nullable: false),
+                    IsFlagged = table.Column<bool>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     BeerId = table.Column<Guid>(nullable: false)
                 },
@@ -145,7 +146,8 @@ namespace BeerOverflow.Database.Migrations
                 name: "IX_Countries_Name",
                 table: "Countries",
                 column: "Name",
-                unique: true);
+                unique: true,
+                filter: "[Name] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_BeerId",

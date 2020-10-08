@@ -1,6 +1,8 @@
-﻿namespace BeerOverflow.Models
+﻿using BeerOverflow.Models.Abstracts;
+
+namespace BeerOverflow.Models
 {
-    public class User
+    public class User : Entity
     {
     }
 }

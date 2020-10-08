@@ -78,7 +78,7 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromQuery] CountryViewModel model)
+        public IActionResult Put(Guid id, [FromBody] CountryViewModel model)
         {
             if (model == null)
             {
