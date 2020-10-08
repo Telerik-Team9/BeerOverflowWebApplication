@@ -1,31 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BeerOverflow.Database.FakeDatabase;
+using BeerOverflow.Database;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace BeerOverflow.Services.Services
 {
     public class CountryService : ICountryService
     {
+        private readonly BeerOverflowDbContext context;
+        public CountryService(BeerOverflowDbContext context)
+        {
+            this.context = context;
+        }
         public CountryDTO Create(CountryDTO countryDTO)
         {
             var countryToAdd = countryDTO.GetModel();
 
-            Seeder.Countries.Add(countryToAdd);
-
+            this.context.Countries.Add(countryToAdd);
+            this.context.SaveChanges();
             return countryDTO;
         }
 
         public IEnumerable<CountryDTO> RetrieveAll()
-            => Seeder.Countries
+            => this.context.Countries
                      .Where(c => !c.IsDeleted)
                      .Select(c => c.GetDTO());
 
         public CountryDTO RetrieveById(Guid Id)
-             => Seeder.Countries
+             => this.context.Countries
                       .Where(c => !c.IsDeleted)
                       .FirstOrDefault(c => c.Id == Id)
                       .GetDTO();
@@ -50,7 +56,7 @@ namespace BeerOverflow.Services.Services
 
         public CountryDTO Update(Guid Id, CountryDTO countryDTO)
         {
-            var country = Seeder.Countries
+            var country = this.context.Countries
                 .FirstOrDefault(c => c.Id == Id);
 
             if (country == null)
@@ -59,6 +65,7 @@ namespace BeerOverflow.Services.Services
             country.Name = countryDTO.Name; // Extension method for country = countryDTo
             country.ModifiedOn = DateTime.Now;
 
+            this.context.SaveChanges();
             return countryDTO;
         }
 
@@ -66,12 +73,12 @@ namespace BeerOverflow.Services.Services
         {
             try
             {
-                var countryToDelete = Seeder.Countries
+                var countryToDelete = this.context.Countries
                     .FirstOrDefault(c => c.Id == Id);
 
                 countryToDelete.IsDeleted = true;
                 countryToDelete.DeletedOn = DateTime.Now; // TODO: Should we use provider here?
-
+                this.context.SaveChanges();
                 return true;
             }
             catch

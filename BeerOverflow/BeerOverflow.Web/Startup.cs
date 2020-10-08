@@ -30,15 +30,17 @@ namespace BeerOverflow.Web
             services.AddControllersWithViews();
             services.AddDbContext<BeerOverflowDbContext>
                 (
-                 options => options
-                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                     options => options
+                            .UseSqlServer(Configuration
+                            .GetConnectionString("DefaultConnection"))
+                );
 
             services.AddScoped<IBeerService, BeerService>();
             services.AddScoped<IBreweryService, BreweryService>();
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IStyleService, StyleService>();
-        }
+        }   
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

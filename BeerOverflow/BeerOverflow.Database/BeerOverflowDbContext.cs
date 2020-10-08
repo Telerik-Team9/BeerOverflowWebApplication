@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using BeerOverflow.Models;
 using BeerOverflow.Database.DataConfigurations;
+using System.Reflection;
 
 namespace BeerOverflow.Database
 {
@@ -20,13 +21,7 @@ namespace BeerOverflow.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //TODO: Reflection here
-            modelBuilder.ApplyConfiguration(new BeerConfig());
-            modelBuilder.ApplyConfiguration(new BreweryConfig());
-            modelBuilder.ApplyConfiguration(new CountryConfig());
-            modelBuilder.ApplyConfiguration(new ReviewConfig());
-            modelBuilder.ApplyConfiguration(new StyleConfig());
-
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

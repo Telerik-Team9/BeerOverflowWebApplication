@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BeerOverflow.Database.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Intitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
