@@ -39,7 +39,7 @@ namespace BeerOverflow.Web
            // services.AddScoped<IBeerService, BeerService>();
             services.AddScoped<IBreweryService, BreweryService>();
             services.AddScoped<ICountryService, CountryService>();
-           // services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IStyleService, StyleService>();
         }   
 

@@ -4,14 +4,16 @@ using BeerOverflow.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeerOverflow.Database.Migrations
 {
     [DbContext(typeof(BeerOverflowDbContext))]
-    partial class BeerOverflowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201008213645_AlterBeerIdProperty")]
+    partial class AlterBeerIdProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,7 @@ namespace BeerOverflow.Database.Migrations
 
             modelBuilder.Entity("BeerOverflow.Models.Beer", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("BeerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -69,7 +71,7 @@ namespace BeerOverflow.Database.Migrations
                     b.Property<Guid>("StyleId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("BeerId");
 
                     b.HasIndex("BreweryId");
 
@@ -200,8 +202,8 @@ namespace BeerOverflow.Database.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

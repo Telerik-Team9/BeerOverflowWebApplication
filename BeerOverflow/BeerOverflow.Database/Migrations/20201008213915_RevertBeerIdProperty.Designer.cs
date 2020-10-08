@@ -4,14 +4,16 @@ using BeerOverflow.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeerOverflow.Database.Migrations
 {
     [DbContext(typeof(BeerOverflowDbContext))]
-    partial class BeerOverflowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201008213915_RevertBeerIdProperty")]
+    partial class RevertBeerIdProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,8 +202,8 @@ namespace BeerOverflow.Database.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

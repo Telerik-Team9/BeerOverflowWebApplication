@@ -15,7 +15,7 @@ namespace BeerOverflow.Database.DataConfigurations
                    .HasMaxLength(40);
 
             builder.Property(s => s.Description)
-                   .HasMaxLength(255);
+                   .HasMaxLength(1000);
         }
     }
 }
