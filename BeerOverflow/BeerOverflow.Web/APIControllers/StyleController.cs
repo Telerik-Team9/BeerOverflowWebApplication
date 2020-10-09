@@ -58,7 +58,7 @@ namespace BeerOverflow.Web.APIControllers
             return BadRequest();
         }
 
-        [HttpPost("")]
+        [HttpPost]
         public IActionResult Post([FromBody] StyleViewModel model)
         {
             if(model == null)
@@ -68,11 +68,10 @@ namespace BeerOverflow.Web.APIControllers
 
             var styleDTO = new StyleDTO
             {
-                Id = model.Id,
+                Id = Guid.NewGuid(),
                 Name = model.Name,
                 Description = model.Description,
                 Beers = new List<BeerDTO>()
-                // Beers = model.BeerViewModels.Select(o=>o.GetDTO/Model())
             };
 
             var style = this.service.Create(styleDTO);
