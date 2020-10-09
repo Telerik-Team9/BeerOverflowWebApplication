@@ -10,6 +10,9 @@ namespace BeerOverflow.Database.DataConfigurations
         {
             builder.HasKey(b => b.Id);
 
+            builder.HasIndex(br => br.Name)
+                   .IsUnique(true);
+
             builder.Property(b => b.Name)
                    .HasMaxLength(40)
                    .IsRequired(true);

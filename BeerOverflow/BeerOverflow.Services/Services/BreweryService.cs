@@ -5,6 +5,7 @@ using BeerOverflow.Database;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace BeerOverflow.Services.Services
 {
@@ -19,20 +20,32 @@ namespace BeerOverflow.Services.Services
 
         public BreweryDTO Create(BreweryDTO DTO)
         {
-            var breweryToAdd = DTO.GetModel();
+            var country = this.context.Countries
+                .Where(c => c.Name == DTO.CountryName)
+                .FirstOrDefault();
 
-            this.context.Breweries.Add(breweryToAdd);
+            if (country == null)
+            {
+                throw new ArgumentException();
+            }
+
+            DTO.CountryId = country.Id;
+            this.context.Breweries.Add(DTO.GetModel());
             this.context.SaveChanges();
             return DTO;
         }
 
         public IEnumerable<BreweryDTO> RetrieveAll()
             => this.context.Breweries
-                   .Where(b => !b.IsDeleted)
-                   .Select(b => b.GetDTO());
+                   .Include(br => br.Beers)
+                   .Include(br => br.Country)
+                   .Where(br => !br.IsDeleted)
+                   .Select(br => br.GetDTO());
 
         public BreweryDTO RetrieveById(Guid id)
             => this.context.Breweries
+                      .Include(br => br.Beers)
+                      .Include(br => br.Country)
                       .Where(c => !c.IsDeleted)
                       .FirstOrDefault(c => c.Id == id)
                       .GetDTO();
@@ -40,15 +53,21 @@ namespace BeerOverflow.Services.Services
         public BreweryDTO Update(Guid Id, BreweryDTO DTO)
         {
             var brewery = this.context.Breweries
+                .Include(br => br.Beers)
+                .Include(br => br.Country)
                 .FirstOrDefault(c => c.Id == Id);
 
             if (brewery == null)
-                throw new ArgumentException();      //TODO: ex
+            {
+                throw new ArgumentNullException();      //TODO: ex
+            }
 
-            brewery.Name = DTO.Name; // Extension method for country = countryDTo
+            brewery.Name = DTO.Name;
+            brewery.CountryId = this.context.Countries.FirstOrDefault(c => c.Name == DTO.CountryName).Id; // Extension method for country = countryDTo
             brewery.ModifiedOn = DateTime.Now;
             this.context.SaveChanges();
-            return DTO;
+
+            return brewery.GetDTO();
         }
 
         public bool Delete(Guid id)

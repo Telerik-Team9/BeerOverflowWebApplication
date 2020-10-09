@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BeerOverflow.Models;
 using BeerOverflow.Database.DataConfigurations;
 using System.Reflection;
+using BeerOverflow.Database.Seed;
 
 namespace BeerOverflow.Database
 {
@@ -24,6 +25,7 @@ namespace BeerOverflow.Database
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); // Reflection that replaces this
             //modelBuilder.ApplyConfiguration(new BeerConfig());
 
+            modelBuilder.Seed();
         }
     }
 }

@@ -68,18 +68,38 @@ namespace BeerOverflow.Web.APIControllers
                 return BadRequest();
             }
 
-            var breweryDTO = new BreweryDTO
+            var breweryDTO = new BreweryDTO //TODO: MAP from model to dto!
             {
-                Id = model.Id,
+                Id = Guid.NewGuid(),
                 Name = model.Name,
                 CountryName = model.CountryName,
-                CountryId = model.CountryId,
                 Beers = new List<BeerDTO>()
             };
 
             var brewery = this.service.Create(breweryDTO);
 
             return Created("post", brewery);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, [FromBody] BreweryViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            var breweryDTO = new BreweryDTO
+            {
+                Id = id,
+                Name = model.Name,
+                CountryName = model.CountryName,
+                Beers = new List<BeerDTO>()
+            };
+
+            var updatedBrewery = this.service.Update(id, breweryDTO); // Should we validate / where
+
+            return Ok(updatedBrewery);
         }
     }
 }
