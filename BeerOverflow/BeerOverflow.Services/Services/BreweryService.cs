@@ -15,7 +15,7 @@ namespace BeerOverflow.Services.Services
 
         public BreweryService(BeerOverflowDbContext context)
         {
-            this.context = context;
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public BreweryDTO Create(BreweryDTO DTO)

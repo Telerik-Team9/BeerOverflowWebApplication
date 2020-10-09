@@ -3,6 +3,7 @@ using BeerOverflow.Database.Seed;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,18 @@ namespace BeerOverflow.Services.Services
         private readonly BeerOverflowDbContext context;
         public StyleService(BeerOverflowDbContext context)
         {
-            this.context = context;
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public IEnumerable<StyleDTO> RetrieveAll()
             => this.context.Styles
+                     .Include(s => s.Beers)
                      .Where(s => !s.IsDeleted)
                      .Select(s => s.GetDTO());
 
         public StyleDTO RetrieveById(Guid id)
             => this.context.Styles
+                     .Include(s => s.Beers)
                      .Where(c => !c.IsDeleted)
                      .FirstOrDefault(c => c.Id == id)
                      .GetDTO();
@@ -32,8 +35,7 @@ namespace BeerOverflow.Services.Services
         {
             try
             {
-                var styleToDelete = this.context.Styles
-                                  .FirstOrDefault(s => s.Id == id);
+                var styleToDelete = this.context.Styles.FirstOrDefault(s => s.Id == id);
 
                 styleToDelete.IsDeleted = true;
                 styleToDelete.DeletedOn = DateTime.Now;
@@ -58,8 +60,7 @@ namespace BeerOverflow.Services.Services
 
         public StyleDTO Update(Guid Id, StyleDTO DTO)
         {
-            var style = this.context.Styles
-                .FirstOrDefault(c => c.Id == Id);
+            var style = this.context.Styles.FirstOrDefault(c => c.Id == Id);
 
             if (style == null)
             {
@@ -70,7 +71,7 @@ namespace BeerOverflow.Services.Services
             style.Description = DTO.Description;
             style.ModifiedOn = DateTime.Now;
             this.context.SaveChanges();
-            return DTO;
+            return style.GetDTO();
             //Update what?
         }
     }
