@@ -11,6 +11,7 @@ namespace BeerOverflow.Services.DTOMappers
              {
                  Id = item.Id,
                  Name = item.Name,
+                 ISO = item.ISO,
                  Breweries = item.Breweries
                              .Select(b => b.GetDTO())
                              .ToList()
@@ -21,6 +22,7 @@ namespace BeerOverflow.Services.DTOMappers
              {
                  Id = item.Id,
                  Name = item.Name,
+                 ISO = item.ISO,
                  Breweries = item.Breweries
                                       .Select(b => b.GetModel())
                                       .ToList()

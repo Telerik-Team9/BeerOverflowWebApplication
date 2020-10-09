@@ -2,6 +2,7 @@
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,11 +29,13 @@ namespace BeerOverflow.Services.Services
 
         public IEnumerable<CountryDTO> RetrieveAll()
             => this.context.Countries
+                     .Include(c => c.Breweries)
                      .Where(c => !c.IsDeleted)
                      .Select(c => c.GetDTO());
 
         public CountryDTO RetrieveById(Guid Id)
              => this.context.Countries
+                      .Include(c => c.Breweries)
                       .Where(c => !c.IsDeleted)
                       .FirstOrDefault(c => c.Id == Id)
                       .GetDTO();
@@ -63,11 +66,12 @@ namespace BeerOverflow.Services.Services
             if (country == null)
                 throw new ArgumentException();      //TODO: ex
 
-            country.Name = countryDTO.Name; // Extension method for country = countryDTo
+            country.Name = countryDTO.Name;
+            country.ISO = countryDTO.ISO;// Extension method for country = countryDTo
             country.ModifiedOn = DateTime.Now;
 
             this.context.SaveChanges();
-            return countryDTO;
+            return country.GetDTO();
         }
 
         public bool Delete(Guid Id)

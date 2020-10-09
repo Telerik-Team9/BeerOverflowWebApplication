@@ -1,6 +1,9 @@
 ﻿using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOs;
+using BeerOverflow.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BeerOverflow.Web.APIControllers
@@ -19,8 +22,9 @@ namespace BeerOverflow.Web.APIControllers
         [HttpGet("")] //Add sort?
         public IActionResult Get()
         {
-            var beers = this.service.RetrieveAll()
-                         .ToList();
+            var beers = this.service
+                        .RetrieveAll()
+                        .ToList();
 
             if (beers.Count == 0)
             {
@@ -55,6 +59,68 @@ namespace BeerOverflow.Web.APIControllers
             }
 
             return BadRequest();
+        }
+
+        [HttpPost("")]
+        public IActionResult Post([FromBody] BeerViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            var beerDTO = new BeerDTO
+            {
+                Id = Guid.NewGuid(),
+                Name = model.Name,
+                ABV = model.ABV,
+                Price = model.Price,
+                Description = model.Description,
+                ImageURL = model.ImageURL,
+                Mililiters = model.Mililiters,
+                IsUnlisted = model.IsUnlisted,
+                IsDeleted = model.IsDeleted,
+                IsBeerOfTheMonth = model.IsBeerOfTheMonth,
+                StyleId = model.StyleId,
+                StyleName = model.StyleName,
+                BreweryId = model.BreweryId,
+                BreweryName = model.BreweryName,
+                Reviews = new List<ReviewDTO>()
+            };
+            var beer = this.service.Create(beerDTO);
+
+            return Created("post", beer);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, [FromBody] BeerViewModel model)
+        {
+            if(model == null)
+            {
+                return BadRequest();
+            }
+
+            var beerDTO = new BeerDTO
+            {
+                Id = Guid.NewGuid(),
+                Name = model.Name,
+                ABV = model.ABV,
+                Price = model.Price,
+                Description = model.Description,
+                ImageURL = model.ImageURL,
+                Mililiters = model.Mililiters,
+                IsUnlisted = model.IsUnlisted,
+                IsDeleted = model.IsDeleted,
+                IsBeerOfTheMonth = model.IsBeerOfTheMonth,
+                StyleId = model.StyleId,
+                StyleName = model.StyleName,
+                BreweryId = model.BreweryId,
+                BreweryName = model.BreweryName,
+                Reviews = new List<ReviewDTO>()
+            };
+
+            var updatedBeer = this.service.Update(id, beerDTO);
+            return Ok(updatedBeer);
         }
     }
 }

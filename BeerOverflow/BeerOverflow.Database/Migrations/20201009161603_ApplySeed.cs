@@ -3,10 +3,130 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BeerOverflow.Database.Migrations
 {
-    public partial class SeedDatabase : Migration
+    public partial class ApplySeed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Countries",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(maxLength: 40, nullable: true),
+                    ISO = table.Column<string>(nullable: true),
+                    ModifiedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Styles",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(maxLength: 40, nullable: false),
+                    Description = table.Column<string>(maxLength: 1000, nullable: true),
+                    ModifiedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Styles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Breweries",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(maxLength: 40, nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    CountryId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Breweries", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Breweries_Countries_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Countries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Beers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(maxLength: 40, nullable: false),
+                    ABV = table.Column<float>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    ImageURL = table.Column<string>(nullable: true),
+                    Mililiters = table.Column<int>(nullable: false),
+                    IsUnlisted = table.Column<bool>(nullable: false),
+                    IsBeerOfTheMonth = table.Column<bool>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    StyleId = table.Column<Guid>(nullable: false),
+                    BreweryId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Beers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Beers_Breweries_BreweryId",
+                        column: x => x.BreweryId,
+                        principalTable: "Breweries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Beers_Styles_StyleId",
+                        column: x => x.StyleId,
+                        principalTable: "Styles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Content = table.Column<string>(maxLength: 255, nullable: false),
+                    Rating = table.Column<float>(nullable: false),
+                    Likes = table.Column<int>(nullable: false),
+                    IsFlagged = table.Column<bool>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    BeerId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Beers_BeerId",
+                        column: x => x.BeerId,
+                        principalTable: "Beers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Countries",
                 columns: new[] { "Id", "CreatedOn", "DeletedOn", "ISO", "IsDeleted", "ModifiedOn", "Name" },
@@ -66,130 +186,58 @@ namespace BeerOverflow.Database.Migrations
             migrationBuilder.InsertData(
                 table: "Reviews",
                 columns: new[] { "Id", "BeerId", "Content", "CreatedOn", "DeletedOn", "IsDeleted", "IsFlagged", "Likes", "ModifiedOn", "Rating" },
-                values: new object[] { new Guid("03461e43-1ebb-4035-8fa4-e5acf5c923f1"), new Guid("133e0d92-cedc-40a7-b8fd-e5669611b3dc"), "This is exellent beer", new DateTime(2020, 10, 9, 12, 2, 28, 314, DateTimeKind.Local).AddTicks(8357), null, false, false, 120, null, 5f });
+                values: new object[] { new Guid("03461e43-1ebb-4035-8fa4-e5acf5c923f1"), new Guid("133e0d92-cedc-40a7-b8fd-e5669611b3dc"), "This is exellent beer", new DateTime(2020, 10, 9, 19, 16, 2, 880, DateTimeKind.Local).AddTicks(6144), null, false, false, 120, null, 5f });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Beers_BreweryId",
+                table: "Beers",
+                column: "BreweryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Beers_StyleId",
+                table: "Beers",
+                column: "StyleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Breweries_CountryId",
+                table: "Breweries",
+                column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Breweries_Name",
+                table: "Breweries",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Countries_Name",
+                table: "Countries",
+                column: "Name",
+                unique: true,
+                filter: "[Name] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reviews_BeerId",
+                table: "Reviews",
+                column: "BeerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DeleteData(
-                table: "Beers",
-                keyColumn: "Id",
-                keyValue: new Guid("4d65361e-c387-463c-b7ba-deff805032e5"));
+            migrationBuilder.DropTable(
+                name: "Reviews");
 
-            migrationBuilder.DeleteData(
-                table: "Beers",
-                keyColumn: "Id",
-                keyValue: new Guid("631a4aff-5de7-4609-b7e1-6d8ba402adcc"));
+            migrationBuilder.DropTable(
+                name: "Beers");
 
-            migrationBuilder.DeleteData(
-                table: "Beers",
-                keyColumn: "Id",
-                keyValue: new Guid("781a1380-ad56-4717-94de-89fbe6997213"));
+            migrationBuilder.DropTable(
+                name: "Breweries");
 
-            migrationBuilder.DeleteData(
-                table: "Beers",
-                keyColumn: "Id",
-                keyValue: new Guid("9af21ad7-d997-4fdb-b61e-8a32b780ef8e"));
+            migrationBuilder.DropTable(
+                name: "Styles");
 
-            migrationBuilder.DeleteData(
-                table: "Beers",
-                keyColumn: "Id",
-                keyValue: new Guid("b9c4fd4c-dd66-4418-add3-4e8199913413"));
-
-            migrationBuilder.DeleteData(
-                table: "Beers",
-                keyColumn: "Id",
-                keyValue: new Guid("bacfedee-043c-4c26-b135-76cb2a092f1d"));
-
-            migrationBuilder.DeleteData(
-                table: "Beers",
-                keyColumn: "Id",
-                keyValue: new Guid("d14758c8-3840-4b45-a861-bca2dca49de6"));
-
-            migrationBuilder.DeleteData(
-                table: "Beers",
-                keyColumn: "Id",
-                keyValue: new Guid("e13fe243-c8b3-494d-acca-39ea27cd8d41"));
-
-            migrationBuilder.DeleteData(
-                table: "Beers",
-                keyColumn: "Id",
-                keyValue: new Guid("e2e4bfd0-95e8-4b19-8666-731594961eb1"));
-
-            migrationBuilder.DeleteData(
-                table: "Breweries",
-                keyColumn: "Id",
-                keyValue: new Guid("70dc3f24-6681-4ca0-9a67-9e3e78fa8b93"));
-
-            migrationBuilder.DeleteData(
-                table: "Breweries",
-                keyColumn: "Id",
-                keyValue: new Guid("89e0215e-2726-489b-8d63-b851b997f622"));
-
-            migrationBuilder.DeleteData(
-                table: "Countries",
-                keyColumn: "Id",
-                keyValue: new Guid("56e91350-598b-4f55-94d9-eefd329f1861"));
-
-            migrationBuilder.DeleteData(
-                table: "Countries",
-                keyColumn: "Id",
-                keyValue: new Guid("7c1703b1-3f2a-4979-a9f0-7a176960c470"));
-
-            migrationBuilder.DeleteData(
-                table: "Countries",
-                keyColumn: "Id",
-                keyValue: new Guid("e0932858-11cb-4a27-87f2-8756649b8c86"));
-
-            migrationBuilder.DeleteData(
-                table: "Countries",
-                keyColumn: "Id",
-                keyValue: new Guid("f444594e-5626-4c1e-b285-571f33930010"));
-
-            migrationBuilder.DeleteData(
-                table: "Reviews",
-                keyColumn: "Id",
-                keyValue: new Guid("03461e43-1ebb-4035-8fa4-e5acf5c923f1"));
-
-            migrationBuilder.DeleteData(
-                table: "Styles",
-                keyColumn: "Id",
-                keyValue: new Guid("96cc020a-753d-4483-9531-02b0a83b0a66"));
-
-            migrationBuilder.DeleteData(
-                table: "Styles",
-                keyColumn: "Id",
-                keyValue: new Guid("ae339a73-e8cb-47f3-b250-a3d25c4cdedb"));
-
-            migrationBuilder.DeleteData(
-                table: "Styles",
-                keyColumn: "Id",
-                keyValue: new Guid("bad58025-7855-482b-8f96-e74c4c122a9b"));
-
-            migrationBuilder.DeleteData(
-                table: "Styles",
-                keyColumn: "Id",
-                keyValue: new Guid("f32de916-9ea8-4f93-96d2-732d1b01fe8e"));
-
-            migrationBuilder.DeleteData(
-                table: "Beers",
-                keyColumn: "Id",
-                keyValue: new Guid("133e0d92-cedc-40a7-b8fd-e5669611b3dc"));
-
-            migrationBuilder.DeleteData(
-                table: "Breweries",
-                keyColumn: "Id",
-                keyValue: new Guid("3d046341-8215-453d-8647-cc5a63d039fb"));
-
-            migrationBuilder.DeleteData(
-                table: "Styles",
-                keyColumn: "Id",
-                keyValue: new Guid("49657e0d-b39c-48ed-92ea-839e0f33afd7"));
-
-            migrationBuilder.DeleteData(
-                table: "Countries",
-                keyColumn: "Id",
-                keyValue: new Guid("eee1a9ab-c409-42c4-ae07-f622a959bb0b"));
+            migrationBuilder.DropTable(
+                name: "Countries");
         }
     }
 }

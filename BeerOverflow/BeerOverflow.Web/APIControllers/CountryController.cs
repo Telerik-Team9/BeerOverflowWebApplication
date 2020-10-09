@@ -4,6 +4,7 @@ using BeerOverflow.Services.Contracts;
 using System;
 using BeerOverflow.Web.Models;
 using BeerOverflow.Services.DTOs;
+using System.Collections.Generic;
 
 namespace BeerOverflow.Web.APIControllers
 {
@@ -68,8 +69,10 @@ namespace BeerOverflow.Web.APIControllers
 
             var countryDTO = new CountryDTO
             {
-                Id = model.Id,
-                Name = model.Name
+                Id = Guid.NewGuid(),
+                Name = model.Name,
+                ISO = model.ISO,
+                Breweries = new List<BreweryDTO>()
             };
 
             var country = this.service.Create(countryDTO);
@@ -87,7 +90,11 @@ namespace BeerOverflow.Web.APIControllers
 
             var country = new CountryDTO
             {
-                Name = model.Name
+                Id = id,
+                Name = model.Name,
+                ISO = model.ISO,
+                Breweries = new List<BreweryDTO>()
+               // Breweries = model.Breweries // map to viewmodel
             };
 
             var updatedCountryDTO = this.service.Update(id, country);

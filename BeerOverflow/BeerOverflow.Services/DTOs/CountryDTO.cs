@@ -7,6 +7,7 @@ namespace BeerOverflow.Services.DTOs
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string ISO { get; set; }
         public ICollection<BreweryDTO> Breweries { get; set; } = new List<BreweryDTO>();
     }
 }

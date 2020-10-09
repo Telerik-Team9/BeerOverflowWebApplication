@@ -36,7 +36,7 @@ namespace BeerOverflow.Web
                             .GetConnectionString("DefaultConnection"))
                 );
 
-           // services.AddScoped<IBeerService, BeerService>();
+            services.AddScoped<IBeerService, BeerService>();
             services.AddScoped<IBreweryService, BreweryService>();
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IReviewService, ReviewService>();

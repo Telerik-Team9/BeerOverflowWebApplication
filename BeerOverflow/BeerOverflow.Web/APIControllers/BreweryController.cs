@@ -91,10 +91,11 @@ namespace BeerOverflow.Web.APIControllers
 
             var breweryDTO = new BreweryDTO
             {
-                Id = id,
+                Id = id, // model.ID?
                 Name = model.Name,
                 CountryName = model.CountryName,
                 Beers = new List<BeerDTO>()
+                // Beers = map to viewmodel
             };
 
             var updatedBrewery = this.service.Update(id, breweryDTO); // Should we validate / where

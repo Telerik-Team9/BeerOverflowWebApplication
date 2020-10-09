@@ -270,6 +270,9 @@ namespace BeerOverflow.Database.Migrations
 
                     b.HasIndex("CountryId");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Breweries");
 
                     b.HasData(
@@ -417,7 +420,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("03461e43-1ebb-4035-8fa4-e5acf5c923f1"),
                             BeerId = new Guid("133e0d92-cedc-40a7-b8fd-e5669611b3dc"),
                             Content = "This is exellent beer",
-                            CreatedOn = new DateTime(2020, 10, 9, 12, 2, 28, 314, DateTimeKind.Local).AddTicks(8357),
+                            CreatedOn = new DateTime(2020, 10, 9, 19, 16, 2, 880, DateTimeKind.Local).AddTicks(6144),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 120,
