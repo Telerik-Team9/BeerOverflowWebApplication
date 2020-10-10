@@ -62,8 +62,11 @@ namespace BeerOverflow.Services.Services
                 throw new ArgumentNullException();      //TODO: ex
             }
 
+            brewery.Id = Id;
             brewery.Name = DTO.Name;
-            brewery.CountryId = this.context.Countries.FirstOrDefault(c => c.Name == DTO.CountryName).Id; // Extension method for country = countryDTo
+            brewery.CountryId = this.context
+                .Countries
+                .FirstOrDefault(c => c.Name == DTO.CountryName).Id; // Extension method for country = countryDTo
             brewery.ModifiedOn = DateTime.Now;
             this.context.SaveChanges();
 

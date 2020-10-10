@@ -32,8 +32,13 @@ namespace BeerOverflow.Services.Services
                 throw new ArgumentNullException();
             }
 
-            DTO.BreweryId = brewery.Id;
-            DTO.StyleId = style.Id;
+            DTO.BreweryId = this.context
+                .Breweries
+                .FirstOrDefault(br => br.Name == DTO.BreweryName).Id;
+            DTO.StyleId = this.context
+                .Styles
+                .FirstOrDefault(s => s.Name == DTO.StyleName).Id;
+
             this.context.Beers.Add(DTO.GetModel());
             this.context.SaveChanges();
             return DTO;
@@ -72,17 +77,12 @@ namespace BeerOverflow.Services.Services
                      .FirstOrDefault(b => b.Id == id)
                      .GetDTO();
 
-        public BeerDTO Update(Guid id, BeerDTO model)
+        public BeerDTO Update(Guid id, BeerDTO DTO)
         {
             var beer = this.context.Beers
                                .Include(b => b.Brewery)
                                .Include(b => b.Style)
-                               //.Where(b => b.Brewery.Name == beerDTO.BreweryName &&
-                               //            b.Style.Name == beerDTO.StyleName)
                                .FirstOrDefault(beer => beer.Id == id);
-
-            //var beer = this.context.Beers
-            //          .FirstOrDefault(b => b.Id == id);
 
             if (beer == null)
             {
@@ -90,14 +90,18 @@ namespace BeerOverflow.Services.Services
             }
 
             beer.ModifiedOn = DateTime.Now;
-            beer.Name = model.Name;
-            beer.Description = model.Description;
-            beer.Mililiters = model.Mililiters;
-            beer.Price = model.Price;
-            beer.ABV = model.ABV;
-            beer.IsBeerOfTheMonth = model.IsBeerOfTheMonth;
-            beer.BreweryId = model.BreweryId;
-            beer.StyleId = model.StyleId;
+            beer.Name = DTO.Name;
+            beer.Description = DTO.Description;
+            beer.Mililiters = DTO.Mililiters;
+            beer.Price = DTO.Price;
+            beer.ABV = DTO.ABV;
+            beer.IsBeerOfTheMonth = DTO.IsBeerOfTheMonth;
+            beer.BreweryId = this.context
+                .Breweries
+                .FirstOrDefault(br => br.Name == DTO.BreweryName).Id;
+            beer.StyleId = this.context
+                .Styles
+                .FirstOrDefault(s => s.Name == DTO.StyleName).Id;
 
 
             //   Id = Guid.NewGuid(),
@@ -111,7 +115,7 @@ namespace BeerOverflow.Services.Services
 
 
             this.context.SaveChanges();
-            return model;
-        }//TODO: Map id's towards name
+            return DTO;
+        }
     }
 }

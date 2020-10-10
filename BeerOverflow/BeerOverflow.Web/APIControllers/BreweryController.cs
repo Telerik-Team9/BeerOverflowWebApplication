@@ -90,8 +90,7 @@ namespace BeerOverflow.Web.APIControllers
             }
 
             var breweryDTO = new BreweryDTO
-            {
-                Id = id, // model.ID?
+            {                
                 Name = model.Name,
                 CountryName = model.CountryName,
                 Beers = new List<BeerDTO>()
