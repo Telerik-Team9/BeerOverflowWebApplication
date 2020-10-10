@@ -20,18 +20,18 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery]string order = "asc")
+        public IActionResult Get([FromQuery] string order = "asc")
         {
             var orderedBeers = this.service.OrderByName(order);
 
-            if(orderedBeers == null)
+            if (orderedBeers == null)
             {
                 return BadRequest();
             }
 
             return Ok(orderedBeers);
         }
-        
+
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
@@ -45,7 +45,7 @@ namespace BeerOverflow.Web.APIControllers
 
             return Ok(beer);
         }
-        
+
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
@@ -93,7 +93,7 @@ namespace BeerOverflow.Web.APIControllers
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, [FromBody] BeerViewModel model)
         {
-            if(model == null)
+            if (model == null)
             {
                 return BadRequest();
             }
@@ -119,6 +119,27 @@ namespace BeerOverflow.Web.APIControllers
 
             var updatedBeer = this.service.Update(id, beerDTO);
             return Ok(updatedBeer);
+        }
+
+        [HttpGet]
+        [Route("")]
+        public IActionResult Get(string criteria, [FromQuery] string name)
+        {
+            throw new NotImplementedException();
+            //
+            // if (criteria != "country" || criteria != "style")
+            // {
+            //     return BadRequest();
+            // }
+            //
+            // var filteredCollection = this.service.FilterByCriteria(criteria, name);
+            //
+            // if (filteredCollection == null)
+            // {
+            //     return NotFound();
+            // }
+            //
+            // return Ok(filteredCollection);
         }
     }
 }

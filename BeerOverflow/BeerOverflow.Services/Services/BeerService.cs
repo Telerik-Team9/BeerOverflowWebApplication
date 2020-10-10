@@ -73,7 +73,7 @@ namespace BeerOverflow.Services.Services
         public IEnumerable<BeerDTO> OrderByName(string order)
             => order == "desc" ? this.RetrieveAll().OrderByDescending(b => b.Name)
                                : this.RetrieveAll().OrderBy(b => b.Name);
-        
+
         public BeerDTO RetrieveById(Guid id)
             => this.context.Beers
                      .Include(b => b.Brewery)
@@ -85,9 +85,9 @@ namespace BeerOverflow.Services.Services
         public BeerDTO Update(Guid id, BeerDTO DTO)
         {
             var beer = this.context.Beers
-                               .Include(b => b.Brewery)
-                               .Include(b => b.Style)
-                               .FirstOrDefault(beer => beer.Id == id);
+                             .Include(b => b.Brewery)
+                             .Include(b => b.Style)
+                             .FirstOrDefault(beer => beer.Id == id);
 
             if (beer == null)
             {
@@ -123,10 +123,27 @@ namespace BeerOverflow.Services.Services
             return DTO;
         }
 
-/*        public BeerDTO Filter(string criteria)
+        public IEnumerable<BeerDTO> FilterByCriteria(string criteria, string name)
         {
-            if (criteria == "country")
-                }
-*/
+            if (criteria.Contains("country"))
+            {
+                return this.context.Beers
+                            .Include(b => b.Brewery)
+                            .Include(b => b.Style)
+                            .Where(b => !b.IsDeleted && b.Brewery.Country.Name == name)
+                            .Select(b => b.GetDTO());
+
+            }
+            else if (criteria.Contains("style"))
+            {
+                return this.context.Beers
+                           .Include(b => b.Brewery)
+                           .Include(b => b.Style)
+                           .Where(b => !b.IsDeleted && b.Style.Name == name)
+                           .Select(b => b.GetDTO());
+            }
+
+            throw new ArgumentException();
+        }
     }
 }
