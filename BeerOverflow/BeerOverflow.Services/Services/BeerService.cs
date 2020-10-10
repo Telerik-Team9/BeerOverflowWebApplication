@@ -18,7 +18,7 @@ namespace BeerOverflow.Services.Services
             this.context = context;
         }
 
-        public BeerDTO Create(BeerDTO DTO) //TODO: Map id's towards name
+        public BeerDTO Create(BeerDTO DTO)
         {
             var brewery = this.context.Breweries
                             .Where(br => br.Name == DTO.BreweryName)
@@ -144,6 +144,50 @@ namespace BeerOverflow.Services.Services
             }
 
             throw new ArgumentException();
+        }
+
+        public BeerDTO RetrieveByName(string name)
+          => this.context.Beers
+                   .Include(b => b.Brewery)
+                   .Include(b => b.Style)
+                   .Where(b => !b.IsDeleted)
+                   .FirstOrDefault(b => b.Name == name)
+                   .GetDTO();
+
+        public BeerDTO Rate(string name, RatingDTO DTO)
+        {
+            var beerDTO = this.RetrieveByName(name);
+
+            if (beerDTO == null)
+            {
+                throw new ArgumentException();
+            }
+
+            //  var newRating = new RatingDTO
+            //  {
+            //      Id = model.Id,
+            //      BeerName = beerDTO.Name,
+            //      BeerId = this.context.Beers.FirstOrDefault(b => b.Name == beerDTO.Name).Id,
+            //      UserName = model.UserName,
+            //      UserId = this.context.Users.FirstOrDefault(u => u.Name == model.UserName).Id,
+            //      RatingGiven = model.RatingGiven
+            //  };
+
+            DTO.BeerId = this.context
+                .Beers
+                .FirstOrDefault(b => b.Name == beerDTO.Name).Id;    
+
+            DTO.UserId = this.context
+                .Users
+                .FirstOrDefault(u => u.Name == DTO.UserName).Id;
+
+            beerDTO.Ratings.Add(DTO);
+            var beer = beerDTO.GetModel();
+
+            beer.Ratings.Add(DTO.GetModel());
+            this.context.Ratings.Add(DTO.GetModel());
+
+            return beerDTO;
         }
     }
 }

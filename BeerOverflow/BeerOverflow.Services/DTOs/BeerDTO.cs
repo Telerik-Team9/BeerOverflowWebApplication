@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BeerOverflow.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -22,6 +23,7 @@ namespace BeerOverflow.Services.DTOs
         public Guid BreweryId { get; set; }
         public string BreweryName { get; set; }
         public ICollection<ReviewDTO> Reviews { get; set; } = new List<ReviewDTO>();
+        public ICollection<RatingDTO> Ratings { get; set; } = new List<RatingDTO>();
         //user
     }
 }

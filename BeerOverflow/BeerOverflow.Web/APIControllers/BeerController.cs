@@ -116,30 +116,50 @@ namespace BeerOverflow.Web.APIControllers
                 BreweryName = model.BreweryName,
                 Reviews = new List<ReviewDTO>()
             };
-
+            
             var updatedBeer = this.service.Update(id, beerDTO);
             return Ok(updatedBeer);
         }
 
-        [HttpGet]
-        [Route("")]
-        public IActionResult Get(string criteria, [FromQuery] string name)
-        {
-            throw new NotImplementedException();
-            //
-            // if (criteria != "country" || criteria != "style")
-            // {
-            //     return BadRequest();
-            // }
-            //
-            // var filteredCollection = this.service.FilterByCriteria(criteria, name);
-            //
-            // if (filteredCollection == null)
-            // {
-            //     return NotFound();
-            // }
-            //
-            // return Ok(filteredCollection);
-        }
-    }
+        // [HttpGet]
+        // [Route("")]
+        // public IActionResult Get(string criteria, [FromQuery] string name)
+        // {
+        //     throw new NotImplementedException();
+        //     //
+        //     // if (criteria != "country" || criteria != "style")
+        //     // {
+        //     //     return BadRequest();
+        //     // }
+        //     //
+        //     // var filteredCollection = this.service.FilterByCriteria(criteria, name);
+        //     //
+        //     // if (filteredCollection == null)
+        //     // {
+        //     //     return NotFound();
+        //     // }
+        //     //
+        //     // return Ok(filteredCollection);
+        // }
+
+       // [HttpPut("{name:alpha}")]
+       // public IActionResult Put(string name, [FromBody] RatingViewModel model)
+       // {
+       //     var ratingDTO = new RatingDTO
+       //     {
+       //         Id = Guid.NewGuid(),
+       //         BeerName = model.BeerName,
+       //         UserName = model.UserName,
+       //         RatingGiven = model.RatingGiven
+       //     };
+       //
+       //     var beer = this.service.Rate(name, ratingDTO);
+       //     if (beer == null)
+       //     {
+       //         return NotFound();
+       //     }
+       //
+       //     return Ok(beer);
+       // }
+    }  
 }
