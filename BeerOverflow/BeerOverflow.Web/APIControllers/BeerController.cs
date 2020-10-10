@@ -19,21 +19,19 @@ namespace BeerOverflow.Web.APIControllers
             this.service = service;
         }
 
-        [HttpGet("")] //Add sort?
-        public IActionResult Get()
+        [HttpGet]
+        public IActionResult Get([FromQuery]string order = "asc")
         {
-            var beers = this.service
-                        .RetrieveAll()
-                        .ToList();
+            var orderedBeers = this.service.OrderByName(order);
 
-            if (beers.Count == 0)
+            if(orderedBeers == null)
             {
-                return NoContent();
+                return BadRequest();
             }
 
-            return Ok(beers);
+            return Ok(orderedBeers);
         }
-
+        
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
@@ -47,7 +45,7 @@ namespace BeerOverflow.Web.APIControllers
 
             return Ok(beer);
         }
-
+        
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
@@ -61,7 +59,7 @@ namespace BeerOverflow.Web.APIControllers
             return BadRequest();
         }
 
-        [HttpPost("")]
+        [HttpPost]
         public IActionResult Post([FromBody] BeerViewModel model)
         {
             if (model == null)

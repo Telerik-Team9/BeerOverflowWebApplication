@@ -12,6 +12,7 @@ namespace BeerOverflow.Services.Services
     public class BeerService : IBeerService
     {
         private readonly BeerOverflowDbContext context;
+
         public BeerService(BeerOverflowDbContext context)
         {
             this.context = context;
@@ -69,6 +70,10 @@ namespace BeerOverflow.Services.Services
                      .Where(b => !b.IsDeleted)
                      .Select(b => b.GetDTO());
 
+        public IEnumerable<BeerDTO> OrderByName(string order)
+            => order == "desc" ? this.RetrieveAll().OrderByDescending(b => b.Name)
+                               : this.RetrieveAll().OrderBy(b => b.Name);
+        
         public BeerDTO RetrieveById(Guid id)
             => this.context.Beers
                      .Include(b => b.Brewery)
@@ -111,11 +116,17 @@ namespace BeerOverflow.Services.Services
             //  IsDeleted = model.IsDeleted,
             //  StyleName = model.StyleName,
             //  BreweryName = model.BreweryName,
-            //  Reviews = new List<ReviewDTO>()
+            //      Reviews = new List<ReviewDTO>()
 
 
             this.context.SaveChanges();
             return DTO;
         }
+
+/*        public BeerDTO Filter(string criteria)
+        {
+            if (criteria == "country")
+                }
+*/
     }
 }

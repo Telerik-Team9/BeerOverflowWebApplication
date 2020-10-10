@@ -7,5 +7,6 @@ namespace BeerOverflow.Services.Contracts
 {
     public interface IBeerService : ICRUDSupportive<BeerDTO>
     {
+        public IEnumerable<BeerDTO> OrderByName(string order);
     }
 }
