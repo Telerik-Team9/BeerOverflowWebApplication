@@ -14,9 +14,6 @@ namespace BeerOverflow.Database.DataConfigurations
                    .IsRequired(true)
                    .HasMaxLength(255);
 
-            builder.Property(r => r.Rating)
-                   .IsRequired(true);
-
             builder
                 .HasOne(r => r.Beer)
                 .WithMany(b => b.Reviews)

@@ -17,7 +17,8 @@ namespace BeerOverflow.Models
         public bool IsAdmin { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
-        
+
+        public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
         public ICollection<Review> Reviews { get; set; } = new List<Review>(); 
         //public ICollection<Wishlist> Wishlist { get; set; } = new List<Wishlist>();
     }

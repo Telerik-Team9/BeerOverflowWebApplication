@@ -49,7 +49,6 @@ namespace BeerOverflow.Services.Services
             }
 
             review.Content = DTO.Content;
-            review.Rating = DTO.Rating;
             review.Likes = DTO.Likes;
             review.ModifiedOn = DateTime.Now;
             this.context.SaveChanges();

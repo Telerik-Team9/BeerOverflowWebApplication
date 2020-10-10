@@ -24,6 +24,7 @@ namespace BeerOverflow.Models
         public Style Style { get; set; } // Porter, Ale, Lager etc.
         public Guid BreweryId { get; set; }
         public Brewery Brewery { get; set; }
+        public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
         // Yo added a collecion of Wishlist ?
 

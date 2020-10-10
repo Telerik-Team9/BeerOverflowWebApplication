@@ -10,7 +10,6 @@ namespace BeerOverflow.Services.DTOMappers
              {
                  Id = item.Id,
                  Content = item.Content,
-                 Rating = item.Rating,
                  Likes = item.Likes,
                  IsFlagged = item.IsFlagged,
                  CreatedOn = item.CreatedOn,
@@ -23,7 +22,6 @@ namespace BeerOverflow.Services.DTOMappers
              {
                  Id = item.Id,
                  Content = item.Content,
-                 Rating = item.Rating,
                  Likes = item.Likes,
                  IsFlagged = item.IsFlagged,
                  CreatedOn = item.CreatedOn,

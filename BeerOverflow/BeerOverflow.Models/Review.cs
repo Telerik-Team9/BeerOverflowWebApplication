@@ -13,7 +13,6 @@ namespace BeerOverflow.Models
         public string Content { get; set; }
         // [Required]
         // [Range(RatingMin, RatingMax)]
-        public float Rating { get; set; }
         public int Likes { get; set; }
         public bool IsFlagged { get; set; }
         public DateTime? ModifiedOn { get; set; }
