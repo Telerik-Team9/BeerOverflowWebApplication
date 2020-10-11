@@ -26,6 +26,9 @@ namespace BeerOverflow.Services.DTOMappers
                 BreweryName = item.Brewery?.Name,
                 Reviews = item.Reviews
                               .Select(r => r.GetDTO())
+                              .ToList(),
+                Ratings = item.Ratings
+                              .Select(r => r.GetDTO())
                               .ToList()
             };
 
@@ -45,6 +48,9 @@ namespace BeerOverflow.Services.DTOMappers
                 StyleId = item.StyleId,
                 BreweryId = item.BreweryId,
                 Reviews = item.Reviews
+                              .Select(r => r.GetModel())
+                              .ToList(),
+                Ratings = item.Ratings
                               .Select(r => r.GetModel())
                               .ToList()
             };
@@ -71,7 +77,7 @@ namespace BeerOverflow.Services.DTOMappers
                     }),
                     Ratings = item.Ratings.Select(r => new
                     {
-                        User = r.UserName,
+                        UserId = r.UserId, //TODO: Maybe UserName?
                         RatingGiven = r.RatingGiven
                     })
                 };

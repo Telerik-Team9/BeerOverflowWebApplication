@@ -158,41 +158,32 @@ namespace BeerOverflow.Services.Services
                    .FirstOrDefault(b => b.Name == name)
                    .GetDTO();
 
-        public BeerDTO Rate(string name, RatingDTO DTO)
+        public BeerDTO Rate(string name, RatingDTO ratingDTO)
         {
-            throw new NotImplementedException();
-            //    var beerDTO = this.RetrieveByName(name);
-            //
-            //    if (beerDTO == null)
-            //    {
-            //        throw new ArgumentException();
-            //    }
-            //
-            //    //  var newRating = new RatingDTO
-            //    //  {
-            //    //      Id = model.Id,
-            //    //      BeerName = beerDTO.Name,
-            //    //      BeerId = this.context.Beers.FirstOrDefault(b => b.Name == beerDTO.Name).Id,
-            //    //      UserName = model.UserName,
-            //    //      UserId = this.context.Users.FirstOrDefault(u => u.Name == model.UserName).Id,
-            //    //      RatingGiven = model.RatingGiven
-            //    //  };
-            //
-            //    DTO.BeerId = this.context
-            //        .Beers
-            //        .FirstOrDefault(b => b.Name == beerDTO.Name).Id;    
-            //
-            //    DTO.UserId = this.context
-            //        .Users
-            //        .FirstOrDefault(u => u.Name == DTO.UserName).Id;
-            //
-            //    beerDTO.Ratings.Add(DTO);
-            //    var beer = beerDTO.GetModel();
-            //
-            //    beer.Ratings.Add(DTO.GetModel());
-            //    this.context.Ratings.Add(DTO.GetModel());
-            //
-            //    return beerDTO;
+            var beer = this.context.Beers
+                   .Include(b => b.Brewery)
+                   .Include(b => b.Style)
+                   .Include(b => b.Ratings)
+                   .ThenInclude(r => r.User)
+                   .Where(b => !b.IsDeleted)
+                   .FirstOrDefault(b => b.Name == name);
+
+            if (beer == null)
+            {
+                throw new ArgumentException();
+            }
+
+            ratingDTO.BeerId = this.context
+                .Beers
+                .FirstOrDefault(b => b.Name == beer.Name).Id;
+            ratingDTO.UserId = this.context
+                .Users
+                .FirstOrDefault(u => u.Username == ratingDTO.UserName).Id;
+
+            this.context.Ratings.Add(ratingDTO.GetModel());
+            this.context.SaveChanges();
+
+            return beer.GetDTO();
         }
     }
 }

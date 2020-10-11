@@ -141,14 +141,14 @@ namespace BeerOverflow.Web.APIControllers
             return Ok(filteredCollection);
         }
 
-        [HttpPut("rate/{id}")] // Put it in a separate controller?
+        [HttpPut("{name}")] // Put it in a separate controller?
         public IActionResult Put(string name, [FromBody] RatingViewModel model)
         {
             var ratingDTO = new RatingDTO
             {
                 Id = Guid.NewGuid(),
-                BeerName = model.BeerName,
-                UserName = model.UserName,
+                BeerName = name,
+                UserName = model.UserName, //FIX WHEN IDENTITY IS ADDED
                 RatingGiven = model.RatingGiven
             };
 
@@ -158,7 +158,7 @@ namespace BeerOverflow.Web.APIControllers
                 return NotFound();
             }
 
-            return Ok(beer);
+            return Ok(beer.GetModelAsObject());
         }
     }
 }

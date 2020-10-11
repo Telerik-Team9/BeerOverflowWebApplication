@@ -28,7 +28,7 @@ namespace BeerOverflow.Database.DataConfigurations
             builder.HasOne(b => b.Brewery)
                    .WithMany(br => br.Beers)
                    .HasForeignKey(b => b.BreweryId);
-            
+
             //Fluent API description:
             //builder.HasKey(b => b.Id);
             //builder.Property(b => b.Name)
