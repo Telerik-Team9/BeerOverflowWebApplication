@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeerOverflow.Database.Migrations
 {
     [DbContext(typeof(BeerOverflowDbContext))]
-    [Migration("20201011182132_InitialMigration")]
+    [Migration("20201011182411_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -446,7 +446,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("03461e43-1ebb-4035-8fa4-e5acf5c923f1"),
                             BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
                             Content = "This is exellent beer!",
-                            CreatedOn = new DateTime(2020, 10, 11, 21, 21, 32, 178, DateTimeKind.Local).AddTicks(2334),
+                            CreatedOn = new DateTime(2020, 10, 11, 21, 24, 11, 251, DateTimeKind.Local).AddTicks(7153),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 120
@@ -456,18 +456,18 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
                             BeerId = new Guid("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
                             Content = "I didn't really like it. Poor colour, bad taste.",
-                            CreatedOn = new DateTime(2020, 10, 11, 21, 21, 32, 181, DateTimeKind.Local).AddTicks(8360),
+                            CreatedOn = new DateTime(2020, 10, 11, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4731),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 8,
-                            ModifiedOn = new DateTime(2020, 10, 12, 21, 21, 32, 181, DateTimeKind.Local).AddTicks(8427)
+                            ModifiedOn = new DateTime(2020, 10, 12, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4794)
                         },
                         new
                         {
                             Id = new Guid("bc9fa1aa-d58a-4f37-a81d-7a7ca81f27bb"),
                             BeerId = new Guid("f13cdf0f-9f3c-4435-a107-e265e016b7d3"),
                             Content = "It's okay I guess. Very fruity aroma. Light sour, strong sweet taste. Fruity.",
-                            CreatedOn = new DateTime(2020, 10, 11, 21, 21, 32, 181, DateTimeKind.Local).AddTicks(8581),
+                            CreatedOn = new DateTime(2020, 10, 11, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4949),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 22
@@ -477,7 +477,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("766d9e58-68da-479c-ab97-dc9d1de06bbc"),
                             BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
                             Content = "Absolutely amazing!. One of the best Bulgarian beers.",
-                            CreatedOn = new DateTime(2020, 10, 11, 21, 21, 32, 181, DateTimeKind.Local).AddTicks(8593),
+                            CreatedOn = new DateTime(2020, 10, 11, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4960),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 0

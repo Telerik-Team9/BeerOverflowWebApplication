@@ -245,10 +245,10 @@ namespace BeerOverflow.Database.Migrations
                 columns: new[] { "Id", "BeerId", "Content", "CreatedOn", "DeletedOn", "IsDeleted", "IsFlagged", "Likes", "ModifiedOn", "UserId" },
                 values: new object[,]
                 {
-                    { new Guid("bc9fa1aa-d58a-4f37-a81d-7a7ca81f27bb"), new Guid("f13cdf0f-9f3c-4435-a107-e265e016b7d3"), "It's okay I guess. Very fruity aroma. Light sour, strong sweet taste. Fruity.", new DateTime(2020, 10, 11, 21, 21, 32, 181, DateTimeKind.Local).AddTicks(8581), null, false, false, 22, null, null },
-                    { new Guid("03461e43-1ebb-4035-8fa4-e5acf5c923f1"), new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"), "This is exellent beer!", new DateTime(2020, 10, 11, 21, 21, 32, 178, DateTimeKind.Local).AddTicks(2334), null, false, false, 120, null, null },
-                    { new Guid("766d9e58-68da-479c-ab97-dc9d1de06bbc"), new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"), "Absolutely amazing!. One of the best Bulgarian beers.", new DateTime(2020, 10, 11, 21, 21, 32, 181, DateTimeKind.Local).AddTicks(8593), null, false, false, 0, null, null },
-                    { new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"), new Guid("1855d14b-ccb6-43b8-a7b3-3936b5010293"), "I didn't really like it. Poor colour, bad taste.", new DateTime(2020, 10, 11, 21, 21, 32, 181, DateTimeKind.Local).AddTicks(8360), null, false, false, 8, new DateTime(2020, 10, 12, 21, 21, 32, 181, DateTimeKind.Local).AddTicks(8427), null }
+                    { new Guid("bc9fa1aa-d58a-4f37-a81d-7a7ca81f27bb"), new Guid("f13cdf0f-9f3c-4435-a107-e265e016b7d3"), "It's okay I guess. Very fruity aroma. Light sour, strong sweet taste. Fruity.", new DateTime(2020, 10, 11, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4949), null, false, false, 22, null, null },
+                    { new Guid("03461e43-1ebb-4035-8fa4-e5acf5c923f1"), new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"), "This is exellent beer!", new DateTime(2020, 10, 11, 21, 24, 11, 251, DateTimeKind.Local).AddTicks(7153), null, false, false, 120, null, null },
+                    { new Guid("766d9e58-68da-479c-ab97-dc9d1de06bbc"), new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"), "Absolutely amazing!. One of the best Bulgarian beers.", new DateTime(2020, 10, 11, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4960), null, false, false, 0, null, null },
+                    { new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"), new Guid("1855d14b-ccb6-43b8-a7b3-3936b5010293"), "I didn't really like it. Poor colour, bad taste.", new DateTime(2020, 10, 11, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4731), null, false, false, 8, new DateTime(2020, 10, 12, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4794), null }
                 });
 
             migrationBuilder.CreateIndex(
