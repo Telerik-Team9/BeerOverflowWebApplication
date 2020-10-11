@@ -70,7 +70,7 @@ namespace BeerOverflow.Services.Services
             brewery.ModifiedOn = DateTime.Now;
             this.context.SaveChanges();
 
-            return brewery.GetDTO();
+            return DTO;
         }
 
         public bool Delete(Guid id)

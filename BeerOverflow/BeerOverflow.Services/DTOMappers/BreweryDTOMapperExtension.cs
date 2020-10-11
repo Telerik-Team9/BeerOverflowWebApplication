@@ -4,9 +4,9 @@ using BeerOverflow.Services.DTOs;
 
 namespace BeerOverflow.Services.DTOMappers
 {
-    internal static class BreweryDTOMapperExtension
+    public static class BreweryDTOMapperExtension
     {
-        internal static BreweryDTO GetDTO(this Brewery item)
+        public static BreweryDTO GetDTO(this Brewery item)
            => item == null ? null : new BreweryDTO
            {
                Id = item.Id,
@@ -18,7 +18,7 @@ namespace BeerOverflow.Services.DTOMappers
                    .ToList()
            };
 
-        internal static Brewery GetModel(this BreweryDTO item)
+        public static Brewery GetModel(this BreweryDTO item)
            => item == null ? null : new Brewery
            {
                Id = item.Id,
@@ -28,5 +28,17 @@ namespace BeerOverflow.Services.DTOMappers
                       .Select(b => b.GetModel())
                       .ToList()
            };
+
+        public static object GetModelAsObject(this BreweryDTO item)
+            => item == null ? null : new
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Country = item.CountryName,
+                Beers = item.Beers.Select(b => new
+                {
+                    Beer = b.Name
+                })
+            };
     }
 }

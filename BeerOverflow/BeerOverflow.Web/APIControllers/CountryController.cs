@@ -5,6 +5,7 @@ using System;
 using BeerOverflow.Web.Models;
 using BeerOverflow.Services.DTOs;
 using System.Collections.Generic;
+using BeerOverflow.Services.DTOMappers;
 
 namespace BeerOverflow.Web.APIControllers
 {
@@ -30,7 +31,8 @@ namespace BeerOverflow.Web.APIControllers
                 return NoContent();
             }
 
-            return Ok(countries);
+            var result = countries.Select(c => c.GetModelAsObject());
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
@@ -43,7 +45,7 @@ namespace BeerOverflow.Web.APIControllers
                 return NotFound();
             }
 
-            return Ok(country);
+            return Ok(country.GetModelAsObject());
         }
 
         [HttpDelete("{id}")]
@@ -99,7 +101,14 @@ namespace BeerOverflow.Web.APIControllers
 
             var updatedCountryDTO = this.service.Update(id, country);
 
-            return Ok(updatedCountryDTO);
+            var result = new
+            {
+                Id = updatedCountryDTO.Id,
+                Name = updatedCountryDTO.Name,
+                ISO = updatedCountryDTO.ISO,
+            };
+
+            return Ok(result);
         }
     }
 }

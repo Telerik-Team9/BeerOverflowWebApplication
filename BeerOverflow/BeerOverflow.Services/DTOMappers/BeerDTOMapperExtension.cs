@@ -1,12 +1,13 @@
 ﻿using BeerOverflow.Models;
 using BeerOverflow.Services.DTOs;
+using System;
 using System.Linq;
 
 namespace BeerOverflow.Services.DTOMappers
 {
-    internal static class BeerDTOMapperExtension
+    public static class BeerDTOMapperExtension
     {
-        internal static BeerDTO GetDTO(this Beer item)
+        public static BeerDTO GetDTO(this Beer item)
             => item == null ? null : new BeerDTO
             {
                 Id = item.Id,
@@ -28,7 +29,7 @@ namespace BeerOverflow.Services.DTOMappers
                               .ToList()
             };
 
-        internal static Beer GetModel(this BeerDTO item)
+        public static Beer GetModel(this BeerDTO item)
             => item == null ? null : new Beer
             {
                 Id = item.Id,
@@ -47,5 +48,32 @@ namespace BeerOverflow.Services.DTOMappers
                               .Select(r => r.GetModel())
                               .ToList()
             };
+
+        public static object GetModelAsObject(this BeerDTO item)
+            => item == null ? null :
+                new
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    ABV = item.ABV,
+                    Price = Math.Round(item.Price, 2),
+                    Description = item.Description,
+                    ImageURL = item.ImageURL,
+                    Mililiters = item.Mililiters,
+                    IsBeerOfTheMonth = item.IsBeerOfTheMonth,
+                    StyleName = item.StyleName,
+                    BreweryName = item.BreweryName,
+                    Reviews = item.Reviews.Select(r => new
+                    {
+                        Content = r.Content,
+                        Likes = r.Likes,
+                        CreatedOn = r.CreatedOn
+                    }),
+                    Ratings = item.Ratings.Select(r => new
+                    {
+                        User = r.UserName,
+                        RatingGiven = r.RatingGiven
+                    })
+                };
     }
 }

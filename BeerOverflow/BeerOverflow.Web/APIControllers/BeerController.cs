@@ -1,10 +1,12 @@
-﻿using BeerOverflow.Services.Contracts;
+﻿using BeerOverflow.Models;
+using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOs;
 using BeerOverflow.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BeerOverflow.Services.DTOMappers;
 
 namespace BeerOverflow.Web.APIControllers
 {
@@ -29,7 +31,7 @@ namespace BeerOverflow.Web.APIControllers
                 return BadRequest();
             }
 
-            return Ok(orderedBeers);
+            return Ok(orderedBeers.Select(beer => beer.GetModelAsObject()));
         }
 
         [HttpGet("{id}")]
@@ -43,7 +45,7 @@ namespace BeerOverflow.Web.APIControllers
                 return NotFound();
             }
 
-            return Ok(beer);
+            return Ok(beer.GetModelAsObject());
         }
 
         [HttpDelete("{id}")]
@@ -76,21 +78,21 @@ namespace BeerOverflow.Web.APIControllers
                 Description = model.Description,
                 ImageURL = model.ImageURL,
                 Mililiters = model.Mililiters,
-                IsUnlisted = model.IsUnlisted,
-                IsDeleted = model.IsDeleted,
+                IsUnlisted = model.IsUnlisted,//is this necessary
+                IsDeleted = model.IsDeleted,  //is this necessary
                 IsBeerOfTheMonth = model.IsBeerOfTheMonth,
-                StyleId = model.StyleId,
+                StyleId = model.StyleId, // is this necessary
                 StyleName = model.StyleName,
-                BreweryId = model.BreweryId,
+                BreweryId = model.BreweryId, // is this necessary
                 BreweryName = model.BreweryName,
-                Reviews = new List<ReviewDTO>()
+                Reviews = new List<ReviewDTO>() // add rating 
             };
             var beer = this.service.Create(beerDTO);
 
-            return Created("post", beer);
+            return Created("post", beer.GetModelAsObject());
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:Guid}")]
         public IActionResult Put(Guid id, [FromBody] BeerViewModel model)
         {
             if (model == null)
@@ -114,52 +116,49 @@ namespace BeerOverflow.Web.APIControllers
                 StyleName = model.StyleName,
                 BreweryId = model.BreweryId,
                 BreweryName = model.BreweryName,
-                Reviews = new List<ReviewDTO>()
+                Reviews = new List<ReviewDTO>() // is this necessary here
             };
-            
-            var updatedBeer = this.service.Update(id, beerDTO);
-            return Ok(updatedBeer);
+
+            var beer = this.service.Update(id, beerDTO);
+            return Ok(beer.GetModelAsObject());
         }
 
-        // [HttpGet]
-        // [Route("")]
-        // public IActionResult Get(string criteria, [FromQuery] string name)
-        // {
-        //     throw new NotImplementedException();
-        //     //
-        //     // if (criteria != "country" || criteria != "style")
-        //     // {
-        //     //     return BadRequest();
-        //     // }
-        //     //
-        //     // var filteredCollection = this.service.FilterByCriteria(criteria, name);
-        //     //
-        //     // if (filteredCollection == null)
-        //     // {
-        //     //     return NotFound();
-        //     // }
-        //     //
-        //     // return Ok(filteredCollection);
-        // }
+        [HttpGet("filter")]
+        public IActionResult Get([FromQuery] string criteria, [FromQuery] string name)
+        {
+            IEnumerable<BeerDTO> filteredCollection = null;
 
-       // [HttpPut("{name:alpha}")]
-       // public IActionResult Put(string name, [FromBody] RatingViewModel model)
-       // {
-       //     var ratingDTO = new RatingDTO
-       //     {
-       //         Id = Guid.NewGuid(),
-       //         BeerName = model.BeerName,
-       //         UserName = model.UserName,
-       //         RatingGiven = model.RatingGiven
-       //     };
-       //
-       //     var beer = this.service.Rate(name, ratingDTO);
-       //     if (beer == null)
-       //     {
-       //         return NotFound();
-       //     }
-       //
-       //     return Ok(beer);
-       // }
-    }  
+            if (criteria.Equals("country") || criteria.Equals("style"))
+            {
+                filteredCollection = this.service.FilterByCriteria(criteria, name);
+            }
+
+            if (filteredCollection == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(filteredCollection);
+        }
+
+        [HttpPut("rate/{id}")] // Put it in a separate controller?
+        public IActionResult Put(string name, [FromBody] RatingViewModel model)
+        {
+            var ratingDTO = new RatingDTO
+            {
+                Id = Guid.NewGuid(),
+                BeerName = model.BeerName,
+                UserName = model.UserName,
+                RatingGiven = model.RatingGiven
+            };
+
+            var beer = this.service.Rate(name, ratingDTO);
+            if (beer == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(beer);
+        }
+    }
 }

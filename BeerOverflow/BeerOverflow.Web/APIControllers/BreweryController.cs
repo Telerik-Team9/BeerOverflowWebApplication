@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
 using BeerOverflow.Web.Models;
 using Microsoft.AspNetCore.Http;
@@ -32,7 +33,10 @@ namespace BeerOverflow.Web.APIControllers
                 return NoContent();
             }
 
-            return Ok(breweries);
+            var result = breweries
+                .Select(brewery => brewery.GetModelAsObject());
+
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
@@ -46,7 +50,7 @@ namespace BeerOverflow.Web.APIControllers
                 return NotFound();
             }
 
-            return Ok(brewery);
+            return Ok(brewery.GetModelAsObject());
         }
 
         [HttpDelete("{id}")]
@@ -55,7 +59,9 @@ namespace BeerOverflow.Web.APIControllers
             var result = this.service.Delete(id);
 
             if (result)
+            {
                 return Ok();
+            }
 
             return BadRequest();
         }
@@ -72,8 +78,7 @@ namespace BeerOverflow.Web.APIControllers
             {
                 Id = Guid.NewGuid(),
                 Name = model.Name,
-                CountryName = model.CountryName,
-                Beers = new List<BeerDTO>()
+                CountryName = model.CountryName
             };
 
             var brewery = this.service.Create(breweryDTO);
@@ -88,18 +93,24 @@ namespace BeerOverflow.Web.APIControllers
             {
                 return BadRequest();
             }
-
+                
+           
             var breweryDTO = new BreweryDTO
-            {                
+            {
+                Id = model.Id, // TODO: Tva go nqmashe i bez nego ne raboti
                 Name = model.Name,
                 CountryName = model.CountryName,
-                Beers = new List<BeerDTO>()
-                // Beers = map to viewmodel
             };
 
             var updatedBrewery = this.service.Update(id, breweryDTO); // Should we validate / where
 
-            return Ok(updatedBrewery);
+            var result = new
+            {
+                Name = updatedBrewery.Name,
+                Country = updatedBrewery.CountryName
+            };
+
+            return Ok(result);
         }
     }
 }
