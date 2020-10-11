@@ -7,7 +7,9 @@ namespace BeerOverflow.Services.Contracts
 {
     public interface IBeerService : ICRUDSupportive<BeerDTO>
     {
+        BeerDTO RetrieveByName(string name);
+        BeerDTO Rate(string name, RatingDTO model);
         IEnumerable<BeerDTO> OrderByName(string order);
-        IEnumerable<BeerDTO> FilterByCriteria(string criteria, string obj);
+        IEnumerable<BeerDTO> FilterByCriteria(string criteria, string name);
     }
 }
