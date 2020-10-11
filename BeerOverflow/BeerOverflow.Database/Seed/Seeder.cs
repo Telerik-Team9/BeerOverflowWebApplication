@@ -27,7 +27,7 @@ namespace BeerOverflow.Database.Seed
                     ImageURL = "https://www.kamenitza.bg/-/media/kamenitza/products/images/kamtnitza-1881.ashx",
                     Mililiters = 330,
                     StyleId = Guid.Parse("f32de916-9ea8-4f93-96d2-732d1b01fe8e"),
-                    BreweryId = Guid.Parse("3d046341-8215-453d-8647-cc5a63d039fb")
+                    BreweryId = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622")
                 },
                 new Beer
                 {
@@ -39,7 +39,7 @@ namespace BeerOverflow.Database.Seed
                     ImageURL = "https://www.kamenitza.bg/-/media/kamenitza/products/images/kamenitza-fresh-grapefruit.ashx",
                     Mililiters = 330,
                     StyleId = Guid.Parse("b06a5dbd-f993-4379-af3e-6339377503fc"),
-                    BreweryId = Guid.Parse("3d046341-8215-453d-8647-cc5a63d039fb")
+                    BreweryId = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622")
                 },
                 new Beer
                 {
@@ -67,7 +67,7 @@ namespace BeerOverflow.Database.Seed
                 },
                 new Beer
                 {
-                    Id = Guid.Parse("8f6e6776-1f1e-441e-99db-3cd3d81be650"),
+                    Id = Guid.Parse("6210036f-3e9e-4e90-81d3-aaafd0251391"),
                     Name = "Guinness Original",
                     ABV = float.Parse("4.2"),
                     Price = float.Parse("3.1"),
@@ -75,7 +75,7 @@ namespace BeerOverflow.Database.Seed
                     ImageURL = "https://carlsbergukraine.com/media/9616/guinness_ophoto_shot_02_1_go_sr.png",
                     Mililiters = 500,
                     StyleId = Guid.Parse("ec61fe34-c639-433d-acac-98f092392099"),
-                    BreweryId = Guid.Parse("b35ef87f-d03a-4777-a900-3c5e2af3c4e")
+                    BreweryId = Guid.Parse("b35ef87f-d03a-4777-a900-3c5e2af3c4e9")
                 },
                 new Beer
                 {
