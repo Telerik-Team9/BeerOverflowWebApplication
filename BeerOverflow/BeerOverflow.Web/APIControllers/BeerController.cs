@@ -138,7 +138,10 @@ namespace BeerOverflow.Web.APIControllers
                 return NotFound();
             }
 
-            return Ok(filteredCollection);
+            var result = filteredCollection
+                        .Select(x => x.GetModelAsObject());
+
+            return Ok(result);
         }
 
         [HttpPut("{name}")] // Put it in a separate controller?

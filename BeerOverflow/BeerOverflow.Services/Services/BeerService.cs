@@ -132,6 +132,8 @@ namespace BeerOverflow.Services.Services
             if (criteria.Contains("country"))
             {
                 return this.context.Beers
+                            .Include(b => b.Reviews)
+                            .Include(b => b.Ratings)
                             .Include(b => b.Brewery)
                             .Include(b => b.Style)
                             .Where(b => !b.IsDeleted && b.Brewery.Country.Name == name)
@@ -141,6 +143,8 @@ namespace BeerOverflow.Services.Services
             else if (criteria.Contains("style"))
             {
                 return this.context.Beers
+                           .Include(b => b.Reviews)
+                           .Include(b => b.Ratings)
                            .Include(b => b.Brewery)
                            .Include(b => b.Style)
                            .Where(b => !b.IsDeleted && b.Style.Name == name)
