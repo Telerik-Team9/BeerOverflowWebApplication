@@ -262,6 +262,7 @@ namespace BeerOverflow.Database.Seed
                     DeletedOn = null,
                     ModifiedOn = null,
                     BeerId = Guid.Parse("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619")
                 },
                 new Review
                 {
@@ -274,6 +275,7 @@ namespace BeerOverflow.Database.Seed
                     DeletedOn = null,
                     ModifiedOn = DateTime.Now.Add(TimeSpan.FromDays(1)),
                     BeerId = Guid.Parse("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
+                    UserId = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5")
                 },                
                 new Review
                 {
@@ -286,6 +288,7 @@ namespace BeerOverflow.Database.Seed
                     DeletedOn = null,
                     ModifiedOn = null,
                     BeerId = Guid.Parse("f13cdf0f-9f3c-4435-a107-e265e016b7d3"),
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619")
                 },
                 new Review
                 {
@@ -298,9 +301,74 @@ namespace BeerOverflow.Database.Seed
                     DeletedOn = null,
                     ModifiedOn = null,
                     BeerId = Guid.Parse("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270")
                 }
             };
             builder.Entity<Review>().HasData(reviews);
+
+            var users = new List<User>
+            {
+                new User
+                {
+                    Id = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                    Name = "Maggie",
+                    Username = "MaggieUser",
+                    Email = "maggieemail@gmail.com",
+                    Password = "MaggiePass",
+                    Birthday = DateTime.Now,
+                    IsBanned = false,
+                    IsAdmin = true
+                },
+                new User
+                {
+                    Id = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5"),
+                    Name = "Ali",
+                    Username = "AliUser",
+                    Email = "aliemail@gmail.com",
+                    Password = "AliPass",
+                    Birthday = DateTime.Now,
+                    IsBanned = false,
+                    IsAdmin = true
+                },
+                new User
+                {
+                    Id = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                    Name = "Telerik",
+                    Username = "TelerikUser",
+                    Email = "telerikemail@gmail.com",
+                    Password = "TelerikPass",
+                    Birthday = DateTime.Now,
+                    IsBanned = false,
+                    IsAdmin = false
+                }
+            };
+            builder.Entity<User>().HasData(users);
+
+            var ratings = new List<Rating>()
+            {
+                new Rating
+                {
+                    Id = Guid.Parse("8361b282-628c-4a5f-85c0-7ff31b62f8ce"),
+                    RatingGiven = 3,
+                    BeerId = Guid.Parse("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
+                    UserId = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5"),
+                },
+                new Rating
+                {
+                    Id = Guid.Parse("c5f9dde1-b7c4-4e82-8a25-56e4bd80f529"),
+                    RatingGiven = 1,
+                    BeerId = Guid.Parse("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                },
+                new Rating
+                {
+                    Id = Guid.Parse("20d56571-b75b-4786-8ed0-8ea0f0d52b30"),
+                    RatingGiven = 5,
+                    BeerId = Guid.Parse("6210036f-3e9e-4e90-81d3-aaafd0251391"),
+                    UserId = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5"),
+                }
+            };
+            builder.Entity<Rating>().HasData(ratings);
         }
         //TODO: Map
     }

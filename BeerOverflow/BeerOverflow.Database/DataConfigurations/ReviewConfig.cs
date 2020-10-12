@@ -18,6 +18,11 @@ namespace BeerOverflow.Database.DataConfigurations
                 .HasOne(r => r.Beer)
                 .WithMany(b => b.Reviews)
                 .HasForeignKey(r => r.BeerId);
+
+            builder
+                .HasOne(r => r.User)
+                .WithMany(b => b.Reviews)
+                .HasForeignKey(r => r.UserId);
         }
     }
 }

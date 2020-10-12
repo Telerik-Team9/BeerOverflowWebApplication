@@ -10,14 +10,16 @@ namespace BeerOverflow.Database
     public class BeerOverflowDbContext : DbContext
     {
         public BeerOverflowDbContext(DbContextOptions options)
-             : base(options) { }
+             : base(options) 
+        {
+        }   
 
         public DbSet<Beer> Beers { get; set; }
         public DbSet<Brewery> Breweries { get; set; }
         public DbSet<Country> Countries { get; set; }
-        public DbSet<Review> Reviews { get; set; }
         public DbSet<Style> Styles { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         //TODO: Add User/Role DbSet
 

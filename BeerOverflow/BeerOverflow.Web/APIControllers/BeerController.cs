@@ -48,6 +48,27 @@ namespace BeerOverflow.Web.APIControllers
             return Ok(beer.GetModelAsObject());
         }
 
+        [HttpGet("filter")]
+        public IActionResult Get([FromQuery] string criteria, [FromQuery] string name)
+        {
+            IEnumerable<BeerDTO> filteredCollection = null;
+
+            if (criteria.Equals("country") || criteria.Equals("style"))
+            {
+                filteredCollection = this.service.FilterByCriteria(criteria, name);
+            }
+
+            if (filteredCollection == null)
+            {
+                return NotFound();
+            }
+
+            var result = filteredCollection
+                        .Select(x => x.GetModelAsObject());
+
+            return Ok(result);
+        }
+        
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
@@ -121,27 +142,6 @@ namespace BeerOverflow.Web.APIControllers
 
             var beer = this.service.Update(id, beerDTO);
             return Ok(beer.GetModelAsObject());
-        }
-
-        [HttpGet("filter")]
-        public IActionResult Get([FromQuery] string criteria, [FromQuery] string name)
-        {
-            IEnumerable<BeerDTO> filteredCollection = null;
-
-            if (criteria.Equals("country") || criteria.Equals("style"))
-            {
-                filteredCollection = this.service.FilterByCriteria(criteria, name);
-            }
-
-            if (filteredCollection == null)
-            {
-                return NotFound();
-            }
-
-            var result = filteredCollection
-                        .Select(x => x.GetModelAsObject());
-
-            return Ok(result);
         }
 
         [HttpPut("{name}")] // Put it in a separate controller?

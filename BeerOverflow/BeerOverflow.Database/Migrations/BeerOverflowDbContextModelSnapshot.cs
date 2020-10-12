@@ -393,6 +393,35 @@ namespace BeerOverflow.Database.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Ratings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("8361b282-628c-4a5f-85c0-7ff31b62f8ce"),
+                            BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 3,
+                            UserId = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5")
+                        },
+                        new
+                        {
+                            Id = new Guid("c5f9dde1-b7c4-4e82-8a25-56e4bd80f529"),
+                            BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 1,
+                            UserId = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270")
+                        },
+                        new
+                        {
+                            Id = new Guid("20d56571-b75b-4786-8ed0-8ea0f0d52b30"),
+                            BeerId = new Guid("6210036f-3e9e-4e90-81d3-aaafd0251391"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 5,
+                            UserId = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5")
+                        });
                 });
 
             modelBuilder.Entity("BeerOverflow.Models.Review", b =>
@@ -427,7 +456,7 @@ namespace BeerOverflow.Database.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -444,41 +473,45 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("03461e43-1ebb-4035-8fa4-e5acf5c923f1"),
                             BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
                             Content = "This is exellent beer!",
-                            CreatedOn = new DateTime(2020, 10, 11, 21, 24, 11, 251, DateTimeKind.Local).AddTicks(7153),
+                            CreatedOn = new DateTime(2020, 10, 12, 0, 37, 13, 205, DateTimeKind.Local).AddTicks(178),
                             IsDeleted = false,
                             IsFlagged = false,
-                            Likes = 120
+                            Likes = 120,
+                            UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619")
                         },
                         new
                         {
                             Id = new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
                             BeerId = new Guid("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
                             Content = "I didn't really like it. Poor colour, bad taste.",
-                            CreatedOn = new DateTime(2020, 10, 11, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4731),
+                            CreatedOn = new DateTime(2020, 10, 12, 0, 37, 13, 208, DateTimeKind.Local).AddTicks(4003),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 8,
-                            ModifiedOn = new DateTime(2020, 10, 12, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4794)
+                            ModifiedOn = new DateTime(2020, 10, 13, 0, 37, 13, 208, DateTimeKind.Local).AddTicks(4086),
+                            UserId = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5")
                         },
                         new
                         {
                             Id = new Guid("bc9fa1aa-d58a-4f37-a81d-7a7ca81f27bb"),
                             BeerId = new Guid("f13cdf0f-9f3c-4435-a107-e265e016b7d3"),
                             Content = "It's okay I guess. Very fruity aroma. Light sour, strong sweet taste. Fruity.",
-                            CreatedOn = new DateTime(2020, 10, 11, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4949),
+                            CreatedOn = new DateTime(2020, 10, 12, 0, 37, 13, 208, DateTimeKind.Local).AddTicks(4715),
                             IsDeleted = false,
                             IsFlagged = false,
-                            Likes = 22
+                            Likes = 22,
+                            UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619")
                         },
                         new
                         {
                             Id = new Guid("766d9e58-68da-479c-ab97-dc9d1de06bbc"),
                             BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
                             Content = "Absolutely amazing!. One of the best Bulgarian beers.",
-                            CreatedOn = new DateTime(2020, 10, 11, 21, 24, 11, 255, DateTimeKind.Local).AddTicks(4960),
+                            CreatedOn = new DateTime(2020, 10, 12, 0, 37, 13, 208, DateTimeKind.Local).AddTicks(4730),
                             IsDeleted = false,
                             IsFlagged = false,
-                            Likes = 0
+                            Likes = 0,
+                            UserId = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270")
                         });
                 });
 
@@ -630,6 +663,47 @@ namespace BeerOverflow.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                            Birthday = new DateTime(2020, 10, 12, 0, 37, 13, 209, DateTimeKind.Local).AddTicks(3931),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "maggieemail@gmail.com",
+                            IsAdmin = true,
+                            IsBanned = false,
+                            IsDeleted = false,
+                            Name = "Maggie",
+                            Password = "MaggiePass",
+                            Username = "MaggieUser"
+                        },
+                        new
+                        {
+                            Id = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5"),
+                            Birthday = new DateTime(2020, 10, 12, 0, 37, 13, 209, DateTimeKind.Local).AddTicks(6724),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "aliemail@gmail.com",
+                            IsAdmin = true,
+                            IsBanned = false,
+                            IsDeleted = false,
+                            Name = "Ali",
+                            Password = "AliPass",
+                            Username = "AliUser"
+                        },
+                        new
+                        {
+                            Id = new Guid("3753d26b-5a35-491f-ae82-5238d243b619"),
+                            Birthday = new DateTime(2020, 10, 12, 0, 37, 13, 209, DateTimeKind.Local).AddTicks(6784),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "telerikemail@gmail.com",
+                            IsAdmin = false,
+                            IsBanned = false,
+                            IsDeleted = false,
+                            Name = "Telerik",
+                            Password = "TelerikPass",
+                            Username = "TelerikUser"
+                        });
                 });
 
             modelBuilder.Entity("BeerOverflow.Models.Beer", b =>
@@ -679,9 +753,11 @@ namespace BeerOverflow.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BeerOverflow.Models.User", null)
+                    b.HasOne("BeerOverflow.Models.User", "User")
                         .WithMany("Reviews")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

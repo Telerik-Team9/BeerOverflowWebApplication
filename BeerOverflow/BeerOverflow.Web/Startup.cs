@@ -30,11 +30,11 @@ namespace BeerOverflow.Web
         {
             services.AddControllersWithViews();
             services.AddDbContext<BeerOverflowDbContext>
-                (
-                     options => options
-                            .UseSqlServer(Configuration
-                            .GetConnectionString("DefaultConnection"))
-                );
+            (
+                 options => options
+                        .UseSqlServer(Configuration
+                        .GetConnectionString("DefaultConnection"))
+            );
 
             services.AddScoped<IBeerService, BeerService>();
             services.AddScoped<IBreweryService, BreweryService>();
