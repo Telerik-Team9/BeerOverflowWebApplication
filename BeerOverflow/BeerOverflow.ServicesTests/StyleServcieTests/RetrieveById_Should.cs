@@ -65,6 +65,5 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
                 Assert.IsNull(actual);
             }
         }
-
     }
 }
