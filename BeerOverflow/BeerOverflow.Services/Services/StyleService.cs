@@ -1,5 +1,4 @@
 ﻿using BeerOverflow.Database;
-using BeerOverflow.Database.Seed;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
@@ -13,6 +12,7 @@ namespace BeerOverflow.Services.Services
     public class StyleService : IStyleService
     {
         private readonly BeerOverflowDbContext context;
+
         public StyleService(BeerOverflowDbContext context)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));

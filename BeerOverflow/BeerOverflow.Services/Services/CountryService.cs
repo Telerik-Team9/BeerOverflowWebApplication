@@ -15,7 +15,7 @@ namespace BeerOverflow.Services.Services
 
         public CountryService(BeerOverflowDbContext context)
         {
-            this.context = context;
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public CountryDTO Create(CountryDTO countryDTO)
@@ -64,7 +64,9 @@ namespace BeerOverflow.Services.Services
                 .FirstOrDefault(c => c.Id == Id);
 
             if (country == null)
+            {
                 throw new ArgumentException();      //TODO: ex
+            }
 
             country.Name = countryDTO.Name;
             country.ISO = countryDTO.ISO;// Extension method for country = countryDTo

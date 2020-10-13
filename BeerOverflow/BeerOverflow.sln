@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerOverflow.Models", "Beer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerOverflow.Database", "BeerOverflow.Database\BeerOverflow.Database.csproj", "{9F627EAF-7371-4CC8-B16D-E48978DB12E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerOverflow.Web", "BeerOverflow.Web\BeerOverflow.Web.csproj", "{E656B5D2-7319-476F-B351-A76D9EAB0BFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerOverflow.Web", "BeerOverflow.Web\BeerOverflow.Web.csproj", "{E656B5D2-7319-476F-B351-A76D9EAB0BFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerOverflow.Services", "BeerOverflow.Services\BeerOverflow.Services.csproj", "{CC055CCB-DBEB-4F23-B2F0-C97C3E127DC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerOverflow.Services", "BeerOverflow.Services\BeerOverflow.Services.csproj", "{CC055CCB-DBEB-4F23-B2F0-C97C3E127DC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerOverflow.ServicesTests", "BeerOverflow.ServicesTests\BeerOverflow.ServicesTests.csproj", "{7D2E6E2E-F969-410F-BE58-3F5617730984}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{CC055CCB-DBEB-4F23-B2F0-C97C3E127DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC055CCB-DBEB-4F23-B2F0-C97C3E127DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC055CCB-DBEB-4F23-B2F0-C97C3E127DC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D2E6E2E-F969-410F-BE58-3F5617730984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D2E6E2E-F969-410F-BE58-3F5617730984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D2E6E2E-F969-410F-BE58-3F5617730984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D2E6E2E-F969-410F-BE58-3F5617730984}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

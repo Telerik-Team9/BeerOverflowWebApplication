@@ -15,7 +15,7 @@ namespace BeerOverflow.Services.Services
 
         public ReviewService(BeerOverflowDbContext context)
         {
-            this.context = context;
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public ReviewDTO Create(ReviewDTO DTO)
