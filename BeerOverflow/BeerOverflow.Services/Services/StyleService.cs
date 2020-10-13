@@ -64,7 +64,7 @@ namespace BeerOverflow.Services.Services
 
             if (style == null)
             {
-                return null;
+                throw new ArgumentNullException();
             }
 
             style.Name = DTO.Name; // Extension method for country = countryDTo
