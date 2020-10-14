@@ -1,6 +1,7 @@
 ﻿using BeerOverflow.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BeerOverflow.Services.DTOs
@@ -17,6 +18,18 @@ namespace BeerOverflow.Services.DTOs
         public bool IsUnlisted { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsBeerOfTheMonth { get; set; }
+        public double AvgRating
+        {
+            get
+            {
+                if (this.Ratings.Count != 0)
+                {
+                    return this.Ratings.Average(x => x.RatingGiven);
+                }
+
+                return 0;
+            }
+        }
 
         public Guid StyleId { get; set; }
         public string StyleName { get; set; } // Porter, Ale, Lager etc.

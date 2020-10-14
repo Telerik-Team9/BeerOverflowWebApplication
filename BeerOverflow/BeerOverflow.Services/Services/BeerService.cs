@@ -45,37 +45,6 @@ namespace BeerOverflow.Services.Services
             return DTO;
         }
 
-        public bool Delete(Guid id)
-        {
-            try
-            {
-                var beerToDelete = this.context.Beers
-                    .FirstOrDefault(b => b.Id == id);
-
-                beerToDelete.IsDeleted = true;
-                beerToDelete.DeletedOn = DateTime.Now; // TODO: Should we use provider here?
-                this.context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public IEnumerable<BeerDTO> RetrieveAll()
-            => this.context.Beers
-                     .Include(b => b.Brewery)
-                     .Include(b => b.Style)
-                     .Include(b => b.Reviews)
-                     .Include(b => b.Ratings)
-                     .Where(b => !b.IsDeleted)
-                     .Select(b => b.GetDTO());
-
-        public IEnumerable<BeerDTO> OrderByName(string order)
-            => order == "desc" ? this.RetrieveAll().OrderByDescending(b => b.Name)
-                               : this.RetrieveAll().OrderBy(b => b.Name);
-
         public BeerDTO RetrieveById(Guid id)
             => this.context.Beers
                      .Include(b => b.Brewery)
@@ -127,31 +96,22 @@ namespace BeerOverflow.Services.Services
             return DTO;
         }
 
-        public IEnumerable<BeerDTO> FilterByCriteria(string criteria, string name)
+        public bool Delete(Guid id)
         {
-            if (criteria.Contains("country"))
+            try
             {
-                return this.context.Beers
-                            .Include(b => b.Reviews)
-                            .Include(b => b.Ratings)
-                            .Include(b => b.Brewery)
-                            .Include(b => b.Style)
-                            .Where(b => !b.IsDeleted && b.Brewery.Country.Name == name)
-                            .Select(b => b.GetDTO());
+                var beerToDelete = this.context.Beers
+                    .FirstOrDefault(b => b.Id == id);
 
+                beerToDelete.IsDeleted = true;
+                beerToDelete.DeletedOn = DateTime.Now; // TODO: Should we use provider here?
+                this.context.SaveChanges();
+                return true;
             }
-            else if (criteria.Contains("style"))
+            catch
             {
-                return this.context.Beers
-                           .Include(b => b.Reviews)
-                           .Include(b => b.Ratings)
-                           .Include(b => b.Brewery)
-                           .Include(b => b.Style)
-                           .Where(b => !b.IsDeleted && b.Style.Name == name)
-                           .Select(b => b.GetDTO());
+                return false;
             }
-
-            throw new ArgumentException();
         }
 
         public BeerDTO RetrieveByName(string name)
@@ -189,5 +149,57 @@ namespace BeerOverflow.Services.Services
 
             return beer.GetDTO();
         }
+
+        public IEnumerable<BeerDTO> RetrieveAll()
+            => this.context.Beers
+                     .Include(b => b.Brewery)
+                     .Include(b => b.Style)
+                     .Include(b => b.Reviews)
+                     .Include(b => b.Ratings)
+                     .Where(b => !b.IsDeleted)
+                     .Select(b => b.GetDTO());
+
+        public IEnumerable<BeerDTO> FilterByCriteria(string criteria, string name)
+        {
+            if (criteria.Contains("country"))
+            {
+                return this.context.Beers
+                            .Include(b => b.Reviews)
+                            .Include(b => b.Ratings)
+                            .Include(b => b.Brewery)
+                            .Include(b => b.Style)
+                            .Where(b => !b.IsDeleted && b.Brewery.Country.Name == name)
+                            .Select(b => b.GetDTO());
+
+            }
+            else if (criteria.Contains("style"))
+            {
+                return this.context.Beers
+                           .Include(b => b.Reviews)
+                           .Include(b => b.Ratings)
+                           .Include(b => b.Brewery)
+                           .Include(b => b.Style)
+                           .Where(b => !b.IsDeleted && b.Style.Name == name)
+                           .Select(b => b.GetDTO());
+            }
+
+            throw new ArgumentException();
+        }
+
+        public IEnumerable<BeerDTO> OrderByABV(char order)
+            => order == 'd' ? this.RetrieveAll()
+                                  .OrderByDescending(x => x.ABV)
+                            : this.RetrieveAll()
+                                  .OrderBy(x => x.ABV);
+
+        public IEnumerable<BeerDTO> OrderByRating(char order)
+             => order == 'd' ? this.RetrieveAll()
+                                   .OrderByDescending(x => x.AvgRating)
+                             : this.RetrieveAll()
+                                   .OrderBy(x => x.AvgRating);
+
+        public IEnumerable<BeerDTO> OrderByName(char order)
+        => order == 'd' ? this.RetrieveAll().OrderByDescending(b => b.Name)
+                        : this.RetrieveAll().OrderBy(b => b.Name);
     }
 }

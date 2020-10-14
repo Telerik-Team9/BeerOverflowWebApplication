@@ -79,7 +79,8 @@ namespace BeerOverflow.Services.DTOMappers
                     {
                         UserId = r.UserId, //TODO: Maybe UserName?
                         RatingGiven = r.RatingGiven
-                    })
+                    }),
+                    AverageRating = item.AvgRating
                 };
     }
 }
