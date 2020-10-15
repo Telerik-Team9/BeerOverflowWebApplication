@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BeerOverflow.Services.Contracts;
+﻿using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
 using BeerOverflow.Web.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.Web.APIControllers
 {
@@ -22,13 +20,12 @@ namespace BeerOverflow.Web.APIControllers
             this.service = service;
         }
 
-        [HttpGet("")] //Add sort?
-        public IActionResult Get()
+        [HttpGet] //Add sort?
+        public async Task<IActionResult> Get()
         {
-            var breweries = this.service.RetrieveAll()
-                                        .ToList();
+            var breweries = await this.service.RetrieveAllAsync();
 
-            if (breweries.Count == 0)
+            if (!breweries.Any())
             {
                 return NoContent();
             }
@@ -40,10 +37,10 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
             //TODO: Remove Exception handling for nulls in the layers below
-            var brewery = this.service.RetrieveById(id);
+            var brewery = await this.service.RetrieveByIdAsync(id);
 
             if (brewery == null)
             {
@@ -54,9 +51,9 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            var result = this.service.Delete(id);
+            var result = await this.service.DeleteAsync(id);
 
             if (result)
             {
@@ -66,8 +63,8 @@ namespace BeerOverflow.Web.APIControllers
             return BadRequest();
         }
 
-        [HttpPost("")]
-        public IActionResult Post([FromBody] BreweryViewModel model)
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] BreweryViewModel model)
         {
             if (model == null)
             {
@@ -81,20 +78,19 @@ namespace BeerOverflow.Web.APIControllers
                 CountryName = model.CountryName
             };
 
-            var brewery = this.service.Create(breweryDTO);
+            var brewery = await this.service.CreateAsync(breweryDTO);
 
             return Created("post", brewery);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody] BreweryViewModel model)
+        public async Task<IActionResult> Put(Guid id, [FromBody] BreweryViewModel model)
         {
             if (model == null)
             {
                 return BadRequest();
             }
-                
-           
+
             var breweryDTO = new BreweryDTO
             {
                 Id = model.Id, // TODO: Tva go nqmashe i bez nego ne raboti
@@ -102,7 +98,7 @@ namespace BeerOverflow.Web.APIControllers
                 CountryName = model.CountryName,
             };
 
-            var updatedBrewery = this.service.Update(id, breweryDTO); // Should we validate / where
+            var updatedBrewery = await this.service.UpdateAsync(id, breweryDTO); // Should we validate / where
 
             var result = new
             {

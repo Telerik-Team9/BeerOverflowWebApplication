@@ -1,10 +1,8 @@
 ﻿using BeerOverflow.Database;
-using BeerOverflow.Models;
 using BeerOverflow.Services.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.StyleServcieTests
@@ -17,37 +15,23 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
-            var id = Guid.NewGuid();
-
-            var style1 = new Style()
-            {
-                Id = Guid.Empty,
-                Name = "Pale Ale",
-                Description = "Pale ale is a kind of ale, atop-fermented beer made with predominantly pale malt."
-            };
-            var style2 = new Style()
-            {
-                Id = id,
-                Name = "IPA - BRUT",
-                Description = "The style was originally brewed in San Francisco’s Social Kitchen & Brewing, and was named ‘brut’ for its extreme dryness, as a reference to brut champagne. In fact, brut champagne contains up to 12g/l of sugar and isn’t the driest sparkling wine out there, but we’ll let that go."
-            };
+            var style = Utils.GetStyles().First();
 
             using (var arrangeContext = new BeerOverflowDbContext(options))
             {
-                arrangeContext.Styles.Add(style1);
-                arrangeContext.Styles.Add(style2);
+                arrangeContext.Add(style);
                 arrangeContext.SaveChanges();
             }
 
             //Act & Assert
-            using(var assertContext = new BeerOverflowDbContext(options))
+            using (var assertContext = new BeerOverflowDbContext(options))
             {
                 var sut = new StyleService(assertContext);
-                var actual = await sut.RetrieveByIdAsync(id);
+                var actual = await sut.RetrieveByIdAsync(style.Id);
 
-                Assert.AreEqual(style2.Id, actual.Id);
-                Assert.AreEqual(style2.Name, actual.Name);
-                Assert.AreEqual(style2.Description, actual.Description);
+                Assert.AreEqual(style.Id, actual.Id);
+                Assert.AreEqual(style.Name, actual.Name);
+                Assert.AreEqual(style.Description, actual.Description);
             }
         }
 
