@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.Services.Services
 {
@@ -161,6 +162,17 @@ namespace BeerOverflow.Services.Services
                    .Where(b => !b.IsDeleted)
                    .FirstOrDefault(b => b.Name == name)
                    .GetDTO();
+
+/*        public async Task<BeerDTO> RetrieveByNameAsync(string name)
+        {
+            var result = await this.context.Beers
+                   .Include(b => b.Brewery)
+                   .Include(b => b.Style)
+                   .Where(b => !b.IsDeleted)
+                   .FirstOrDefaultAsync(b => b.Name == name);
+
+            return result.GetDTO();
+        }*/
 
         public BeerDTO Rate(string name, RatingDTO ratingDTO)
         {
