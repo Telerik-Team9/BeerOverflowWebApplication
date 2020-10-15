@@ -22,9 +22,23 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] string order = "asc")
+        public IActionResult Get([FromQuery] string criteria = "", [FromQuery] char order = 'a')
         {
-            var orderedBeers = this.service.OrderByName(order);
+            //  var orderedBeers = this.service.OrderByName(order);
+            IEnumerable<BeerDTO> orderedBeers = null;
+
+            if (criteria.Contains("abv"))
+            {
+                orderedBeers = this.service.OrderByABV(order);
+            }
+            else if (criteria.Contains("name"))
+            {
+                orderedBeers = this.service.OrderByName(order);
+            }
+            else
+            {
+                orderedBeers = this.service.OrderByRating(order);
+            }
 
             if (orderedBeers == null)
             {
@@ -68,7 +82,7 @@ namespace BeerOverflow.Web.APIControllers
 
             return Ok(result);
         }
-        
+
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
