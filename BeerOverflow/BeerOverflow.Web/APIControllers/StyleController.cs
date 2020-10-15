@@ -21,13 +21,12 @@ namespace BeerOverflow.Web.APIControllers
             this.service = service;
         }
 
-        [HttpGet("")] //Add sort?
-        public IActionResult Get()
+        [HttpGet] //Add sort?
+        public async Task<IActionResult> Get()
         {
-            var styles = this.service.RetrieveAll()
-                         .ToList();
+            var styles = await this.service.RetrieveAllAsync();
 
-            if (styles.Count == 0) // null validation as well?
+            if (!styles.Any()) // null validation as well?
             {
                 return NoContent();
             }
@@ -36,30 +35,34 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
             //TODO: Remove Exception handling for nulls in the layers below
-            var style = this.service.RetrieveById(id);
+            var style = await this.service.RetrieveByIdAsync(id);
 
             if (style == null)
+            {
                 return NotFound();
+            }
 
             return Ok(style);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            var result = this.service.Delete(id);
+            var result = await this.service.DeleteAsync(id);
 
             if (result)
+            {
                 return Ok();
+            }
 
             return BadRequest();
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] StyleViewModel model)
+        public async Task<IActionResult> Post([FromBody] StyleViewModel model)
         {
             if(model == null)
             {
@@ -74,13 +77,13 @@ namespace BeerOverflow.Web.APIControllers
                 Beers = new List<BeerDTO>()
             };
 
-            var style = this.service.Create(styleDTO);
+            var style = await this.service.CreateAsync(styleDTO);
 
             return Created("post", style);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody] StyleViewModel model)
+        public async Task<IActionResult> Put(Guid id, [FromBody] StyleViewModel model)
         {
             if (model == null)
             {
@@ -93,7 +96,7 @@ namespace BeerOverflow.Web.APIControllers
                 Description = model.Description,
             };
 
-            var updatedStyleDTO = this.service.Update(id, style);
+            var updatedStyleDTO = await this.service.UpdateAsync(id, style);
 
             return Ok(updatedStyleDTO);
         }

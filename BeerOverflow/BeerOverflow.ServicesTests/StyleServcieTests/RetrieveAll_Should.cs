@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.StyleServcieTests
 {
@@ -13,34 +14,15 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
     public class RetrieveAll_Should
     {
         [TestMethod]
-        public void ReturnAllStylesWhen_ValidParams()
+        public async Task ReturnAllStylesWhen_ValidParams()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
-            var style1 = new Style()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Pale Ale",
-                Description = "Pale ale is a kind of ale, atop-fermented beer made with predominantly pale malt."
-            };
-            var style2 = new Style()
-            {
-                Id = Guid.NewGuid(),
-                Name = "IPA - BRUT",
-                Description = "The style was originally brewed in San Francisco’s Social Kitchen & Brewing, and was named ‘brut’ for its extreme dryness, as a reference to brut champagne. In fact, brut champagne contains up to 12g/l of sugar and isn’t the driest sparkling wine out there, but we’ll let that go."
-            };
-            var style3 = new Style()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Unknown",
-                Description = "Unknown"
-            };
+            var styles = Utils.GetStyles().ToList();
 
             using(var arrangeContext = new BeerOverflowDbContext(options))
             {
-                arrangeContext.Styles.Add(style1);
-                arrangeContext.Styles.Add(style2);
-                arrangeContext.Styles.Add(style3);
+                arrangeContext.Styles.AddRange(styles);
                 arrangeContext.SaveChanges();
             }
 
@@ -48,22 +30,31 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
             using(var assertContext = new BeerOverflowDbContext(options))
             {
                 var sut = new StyleService(assertContext);
-                var actual = sut.RetrieveAll().ToList();
+                var result = await sut.RetrieveAllAsync();
+                var actual = result.ToList();
 
-                Assert.AreEqual(style1.Id, actual[0].Id);
-                Assert.AreEqual(style1.Name, actual[0].Name);
-                Assert.AreEqual(style1.Description, actual[0].Description);
+                Assert.AreEqual(styles[0].Id, actual[0].Id);
+                Assert.AreEqual(styles[0].Name, actual[0].Name);
+                Assert.AreEqual(styles[0].Description, actual[0].Description);
 
-                Assert.AreEqual(style2.Id, actual[1].Id);
-                Assert.AreEqual(style2.Name, actual[1].Name);
-                Assert.AreEqual(style2.Description, actual[1].Description);
+                Assert.AreEqual(styles[1].Id, actual[1].Id);
+                Assert.AreEqual(styles[1].Name, actual[1].Name);
+                Assert.AreEqual(styles[1].Description, actual[1].Description);
 
-                Assert.AreEqual(3, actual.Count);
+                Assert.AreEqual(styles[2].Id, actual[2].Id);
+                Assert.AreEqual(styles[2].Name, actual[2].Name);
+                Assert.AreEqual(styles[2].Description, actual[2].Description);
+
+                Assert.AreEqual(styles[3].Id, actual[3].Id);
+                Assert.AreEqual(styles[3].Name, actual[3].Name);
+                Assert.AreEqual(styles[3].Description, actual[3].Description);
+
+                Assert.AreEqual(4, actual.Count);
             }
         }
 
         [TestMethod]
-        public void ReturnNullWhen_NoCountries()
+        public async Task ReturnNullWhen_NoCountries()
         {
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
 
@@ -71,9 +62,9 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new StyleService(actContext);
-                var actual = sut.RetrieveAll().ToList();
+                var actual = await sut.RetrieveAllAsync();
 
-                Assert.AreEqual(0, actual.Count);
+                Assert.AreEqual(0, actual.Count());
             }
         }
     }

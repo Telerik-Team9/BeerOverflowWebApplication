@@ -1,8 +1,9 @@
 ﻿using BeerOverflow.Database;
-using BeerOverflow.Models;
 using BeerOverflow.Services.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.CountryServiceTests
 {
@@ -10,18 +11,11 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
     public class RetrieveById_Should
     {
         [TestMethod]
-        public void ReturnCorrectCountryDTOWhen_ValidParams()
+        public async Task ReturnCorrectCountryDTOWhen_ValidParams()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString()); // Can also use Utils.GetOptions(nameof(ReturnCorrectCountryDTOWhen_ValidParams));
-            var id = Guid.NewGuid();
-
-            var country = new Country()
-            {
-                Id = id,
-                Name = "Bulgaria",
-                ISO = "BG"
-            };
+            var country = Utils.GetCountries().First();
 
             using (var arrangeContext = new BeerOverflowDbContext(options))
             {
@@ -34,7 +28,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
             {
                 var sut = new CountryService(actContext);
 
-                var actual = sut.RetrieveById(id);
+                var actual = await sut.RetrieveByIdAsync(country.Id);
 
                 Assert.AreEqual(country.Id, actual.Id);
                 Assert.AreEqual(country.Name, actual.Name);
@@ -43,7 +37,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
         }
 
         [TestMethod]
-        public void ReturnNullWhen_NoSuchCountry()
+        public async Task ReturnNullWhen_NoSuchCountry()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -52,7 +46,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new CountryService(actContext);
-                var actual = sut.RetrieveById(Guid.NewGuid());
+                var actual = await sut.RetrieveByIdAsync(Guid.NewGuid());
 
                 Assert.IsNull(actual);
             }

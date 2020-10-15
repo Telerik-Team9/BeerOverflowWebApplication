@@ -5,6 +5,7 @@ using BeerOverflow.Services.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.StyleServcieTests
 {
@@ -12,7 +13,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
     public class Create_Should
     {
         [TestMethod]
-        public void CreateStyleWhen_ValidParams()
+        public async Task CreateStyleWhen_ValidParams()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -28,7 +29,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new StyleService(actContext);
-                var actual = sut.Create(styleDTO);
+                var actual = await sut.CreateAsync(styleDTO);
 
                 Assert.AreEqual(styleDTO.Id, actual.Id);
                 Assert.AreEqual(styleDTO.Name, actual.Name);

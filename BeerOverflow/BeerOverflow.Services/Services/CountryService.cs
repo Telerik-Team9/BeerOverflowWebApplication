@@ -130,7 +130,7 @@ namespace BeerOverflow.Services.Services
             country.ISO = countryDTO.ISO;// Extension method for country = countryDTo
             country.ModifiedOn = DateTime.Now;
 
-            this.context.SaveChanges();
+            await this.context.SaveChangesAsync();
             return country.GetDTO();
         }
 
@@ -143,7 +143,7 @@ namespace BeerOverflow.Services.Services
 
                 countryToDelete.IsDeleted = true;
                 countryToDelete.DeletedOn = DateTime.Now; // TODO: Should we use provider here?
-                this.context.SaveChanges();
+                await this.context.SaveChangesAsync();
                 return true;
             }
             catch

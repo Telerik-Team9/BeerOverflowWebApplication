@@ -157,7 +157,7 @@ namespace BeerOverflow.ServicesTests
                     IsDeleted = false,
                     DeletedOn = null,
                     ModifiedOn = DateTime.Now.Add(TimeSpan.FromDays(1)),
-                    BeerId = Guid.Parse("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
+                    BeerId = Guid.Parse("1855d14b-ccb6-43b8-a7b3-3936b5010293"),        //Stella Artois
                     UserId = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5")
                 },
                 new Review
@@ -170,8 +170,21 @@ namespace BeerOverflow.ServicesTests
                     IsDeleted = false,
                     DeletedOn = null,
                     ModifiedOn = null,
-                    BeerId = Guid.Parse("f13cdf0f-9f3c-4435-a107-e265e016b7d3"),
+                    BeerId = Guid.Parse("f13cdf0f-9f3c-4435-a107-e265e016b7d3"),    //Kamenitza Lemon Fresh
                     UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619")
+                },
+                new Review
+                {
+                    Id = Guid.Parse("ea4c9558-3832-403c-b70e-7ad0ef13b0a9"),
+                    Content = "50/50. Sometimes win, sometimes lun.",
+                    Likes = 14,
+                    IsFlagged = false,
+                    CreatedOn = DateTime.Now,
+                    IsDeleted = false,
+                    DeletedOn = null,
+                    ModifiedOn = null,
+                    BeerId = Guid.Parse("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),     //Heineken
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270")
                 }
             };
 
@@ -184,7 +197,13 @@ namespace BeerOverflow.ServicesTests
         public static IEnumerable<Rating> GetRatings() // TODO: Utils: Ratings
             => new Rating[]
             {
-
+                new Rating
+                {
+                    Id = Guid.Parse("288283ac-3bc8-478e-9dbf-15f02a26b6c9"),
+                    RatingGiven = 4,
+                    BeerId = Guid.Parse("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),    //Heineken
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                }
             };
     }
 }

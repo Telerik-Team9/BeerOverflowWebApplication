@@ -100,6 +100,30 @@ namespace BeerOverflow.Database.Seed
                     Mililiters = 1000,
                     StyleId = Guid.Parse("f32de916-9ea8-4f93-96d2-732d1b01fe8e"),
                     BreweryId = Guid.Parse("0d56076c-82cb-469d-80db-afb64c7516f7")
+                },
+                new Beer
+                {
+                    Id = Guid.Parse("14af2a6c-5376-459e-91de-b6078c5435ac"),
+                    Name = "Corona",
+                    ABV = float.Parse("4.5"),
+                    Price = float.Parse("3.0"),
+                    Description = "Corona Extra is a pale lager produced by Mexican brewery Cervecería Modelo and owned by Belgian company AB InBev. It is commonly served with a wedge of lime or lemon in the neck of the bottle to add tartness and flavour.",
+                    ImageURL = "https://www.teamcone.net/wp-content/uploads/2017/06/CORONA_12oz_NR.png",
+                    Mililiters = 330,
+                    StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),
+                    BreweryId = Guid.Parse("8582b4e3-3e97-47f6-a1c9-358252ddaf43")
+                },
+                new Beer
+                {
+                    Id = Guid.Parse("365ed501-0156-4d62-aef4-1e04c68b8ed6"),
+                    Name = "London's Pride",
+                    ABV = float.Parse("4.7"),
+                    Price = float.Parse("3.0"),
+                    Description = "London Pride is the flagship beer of Fuller's Brewery. It is sold both cask-conditioned and bottled. London Pride has been brewed at the Griffin Brewery since 1958.",
+                    ImageURL = "https://www.saq.com/media/catalog/product/1/0/10322388-1_1580595910.png?quality=80&fit=bounds&height=&width=",
+                    Mililiters = 550,
+                    StyleId = Guid.Parse("ae339a73-e8cb-47f3-b250-a3d25c4cdedb"),
+                    BreweryId = Guid.Parse("2b2ee52d-89e3-4229-a704-bbfb3724cc11")
                 }
             };
             builder.Entity<Beer>().HasData(beers);
@@ -141,6 +165,18 @@ namespace BeerOverflow.Database.Seed
                     Id = Guid.Parse("0d56076c-82cb-469d-80db-afb64c7516f7"),
                     Name = "Zagorka AD",
                     CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")
+                },
+                new Brewery
+                {
+                    Id = Guid.Parse("8582b4e3-3e97-47f6-a1c9-358252ddaf43"),
+                    Name = "Grupo Modelo",
+                    CountryId = Guid.Parse("0305d3f1-56ad-4ada-a854-30640b17120a")
+                },
+                new Brewery
+                {
+                    Id = Guid.Parse("2b2ee52d-89e3-4229-a704-bbfb3724cc11"),
+                    Name = "Fuller's Brewery",
+                    CountryId = Guid.Parse("71c1e52c-2f50-4ef6-99c8-451483d3df09")
                 }
             };
             builder.Entity<Brewery>().HasData(breweries);
@@ -170,6 +206,18 @@ namespace BeerOverflow.Database.Seed
                     Id = Guid.Parse("d60e1413-fac0-45a5-a020-c1b7e5221a67"),
                     Name = "Ireland",
                     ISO = "IE"
+                },
+                new Country
+                {
+                    Id = Guid.Parse("0305d3f1-56ad-4ada-a854-30640b17120a"),
+                    Name = "Mexico",
+                    ISO = "MX"
+                },
+                new Country
+                {
+                    Id = Guid.Parse("71c1e52c-2f50-4ef6-99c8-451483d3df09"),
+                    Name = "United Kingdom",
+                    ISO = "UK"
                 },
                 
                 // No breweries with the next countries
@@ -220,6 +268,12 @@ namespace BeerOverflow.Database.Seed
                     Name = "Stout",
                     Description = "Stout is a dark, top-fermented beer with a number of variations, including dry stout, oatmeal stout, milk stout, and imperial stout. The first known use of the word stout for beer was in a document dated 1677 found in the Egerton Manuscripts, the sense being that a \"stout beer\" was a strong beer, not a dark beer."
                 },
+                new Style
+                {
+                    Id = Guid.Parse("ae339a73-e8cb-47f3-b250-a3d25c4cdedb"),
+                    Name = "Old Ale",
+                    Description = "The Old Ale is an light amber to very dark reddish-brown colored English ale of moderate to fairly significant alcoholic strength, bigger than standard beers, though usually not as strong or rich as barleywine and often tilted towards a maltier balance. The predominant defining quality for this style is the impression of age, which can manifest itself in different ways (complexity, lactic, Brett, oxidation, leather, vinous qualities are some recurring examples). Roughly overlapping the British Strong Ale and the lower end of the English Barley Wine styles, but always having an aged quality. Barley Wines tend to develop more of an overall mature quality, while Old Ales can show more of the barrel qualities. Old Peculier are also considered as an Old Ale."
+                },
 
                 // No beers with the next styles
                 new Style
@@ -239,12 +293,6 @@ namespace BeerOverflow.Database.Seed
                     Id = Guid.Parse("bad58025-7855-482b-8f96-e74c4c122a9b"),
                     Name = "IPA - English",
                     Description = "The English India Pale Ale (IPA) is a hoppy, moderately-strong, very well-attenuated pale golden to deep amber British ale with a dry finish and a hoppy aroma and flavor. Generally will have more finish hops and less fruitiness and/or caramel than British pale ales and bitter and has less hop intensity and a more pronounced malt flavor than typical American versions. The modern IPA style generally refers to American IPA and its derivatives but this does not imply that English IPA isn't a proper IPA. Originally, the attributes of IPA that were important to its arrival in good condition from England to India by ship were that it was very well-attenuated, and heavily hopped."
-                },
-                new Style
-                {
-                    Id = Guid.Parse("ae339a73-e8cb-47f3-b250-a3d25c4cdedb"),
-                    Name = "Old Ale",
-                    Description = "The Old Ale is an light amber to very dark reddish-brown colored English ale of moderate to fairly significant alcoholic strength, bigger than standard beers, though usually not as strong or rich as barleywine and often tilted towards a maltier balance. The predominant defining quality for this style is the impression of age, which can manifest itself in different ways (complexity, lactic, Brett, oxidation, leather, vinous qualities are some recurring examples). Roughly overlapping the British Strong Ale and the lower end of the English Barley Wine styles, but always having an aged quality. Barley Wines tend to develop more of an overall mature quality, while Old Ales can show more of the barrel qualities. Old Peculier are also considered as an Old Ale."
                 }
             };
             builder.Entity<Style>().HasData(styles);
@@ -261,7 +309,7 @@ namespace BeerOverflow.Database.Seed
                     IsDeleted = false,
                     DeletedOn = null,
                     ModifiedOn = null,
-                    BeerId = Guid.Parse("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
+                    BeerId = Guid.Parse("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),    //Zagorka
                     UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619")
                 },
                 new Review
@@ -274,7 +322,7 @@ namespace BeerOverflow.Database.Seed
                     IsDeleted = false,
                     DeletedOn = null,
                     ModifiedOn = DateTime.Now.Add(TimeSpan.FromDays(1)),
-                    BeerId = Guid.Parse("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
+                    BeerId = Guid.Parse("1855d14b-ccb6-43b8-a7b3-3936b5010293"),    //Stella Artois
                     UserId = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5")
                 },                
                 new Review
@@ -287,7 +335,7 @@ namespace BeerOverflow.Database.Seed
                     IsDeleted = false,
                     DeletedOn = null,
                     ModifiedOn = null,
-                    BeerId = Guid.Parse("f13cdf0f-9f3c-4435-a107-e265e016b7d3"),
+                    BeerId = Guid.Parse("f13cdf0f-9f3c-4435-a107-e265e016b7d3"),    //Kamenitza Lemon Fresh
                     UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619")
                 },
                 new Review
@@ -300,7 +348,20 @@ namespace BeerOverflow.Database.Seed
                     IsDeleted = false,
                     DeletedOn = null,
                     ModifiedOn = null,
-                    BeerId = Guid.Parse("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
+                    BeerId = Guid.Parse("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),    //Zagorka
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270")
+                },
+                new Review
+                {
+                    Id = Guid.Parse("ea4c9558-3832-403c-b70e-7ad0ef13b0a9"),
+                    Content = "50/50. Sometimes win, sometimes lun.",
+                    Likes = 14,
+                    IsFlagged = false,
+                    CreatedOn = DateTime.Now,
+                    IsDeleted = false,
+                    DeletedOn = null,
+                    ModifiedOn = null,
+                    BeerId = Guid.Parse("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),     //Heineken
                     UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270")
                 }
             };
@@ -366,6 +427,13 @@ namespace BeerOverflow.Database.Seed
                     RatingGiven = 5,
                     BeerId = Guid.Parse("6210036f-3e9e-4e90-81d3-aaafd0251391"),
                     UserId = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5"),
+                },
+                new Rating
+                {
+                    Id = Guid.Parse("288283ac-3bc8-478e-9dbf-15f02a26b6c9"),
+                    RatingGiven = 4,
+                    BeerId = Guid.Parse("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),    //Heineken
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
                 }
             };
             builder.Entity<Rating>().HasData(ratings);

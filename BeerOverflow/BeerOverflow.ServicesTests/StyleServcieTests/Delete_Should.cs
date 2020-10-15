@@ -4,7 +4,9 @@ using BeerOverflow.Services.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.StyleServcieTests
 {
@@ -12,16 +14,11 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
     public class Delete_Should
     {
         [TestMethod]
-        public void DeleteStyleWhen_ValidParams()
+        public async Task DeleteStyleWhen_ValidParams()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
-            var style = new Style()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Pale Ale",
-                Description = "Pale ale is a kind of ale, atop-fermented beer made with predominantly pale malt."
-            };
+            var style = Utils.GetStyles().First();
 
             using(var arrangeContext = new BeerOverflowDbContext(options))
             {
@@ -33,7 +30,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
             using(var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new StyleService(actContext);
-                var actual = sut.Delete(style.Id);
+                var actual = await sut.DeleteAsync(style.Id);
 
                 Assert.IsTrue(actual);
             }
@@ -49,9 +46,9 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new StyleService(actContext);
-                var actual = sut.Delete(Guid.NewGuid());
+                var actual = sut.DeleteAsync(Guid.NewGuid());
 
-                Assert.IsFalse(actual);
+                Assert.IsFalse(actual.Result);
             }
         }
     }

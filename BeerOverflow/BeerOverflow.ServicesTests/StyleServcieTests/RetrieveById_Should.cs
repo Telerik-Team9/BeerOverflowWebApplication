@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.StyleServcieTests
 {
@@ -12,7 +13,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
     public class RetrieveById_Should
     {
         [TestMethod]
-        public void ReturnCorrectStyleDTOWhen_ValidParams()
+        public async Task ReturnCorrectStyleDTOWhen_ValidParams()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -42,7 +43,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
             using(var assertContext = new BeerOverflowDbContext(options))
             {
                 var sut = new StyleService(assertContext);
-                var actual = sut.RetrieveById(id);
+                var actual = await sut.RetrieveByIdAsync(id);
 
                 Assert.AreEqual(style2.Id, actual.Id);
                 Assert.AreEqual(style2.Name, actual.Name);
@@ -51,7 +52,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
         }
 
         [TestMethod]
-        public void ReturnNullWhen_NoSuchStyle()
+        public async Task ReturnNullWhen_NoSuchStyle()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -60,7 +61,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new StyleService(actContext);
-                var actual = sut.RetrieveById(Guid.NewGuid());
+                var actual = await sut.RetrieveByIdAsync(Guid.NewGuid());
 
                 Assert.IsNull(actual);
             }

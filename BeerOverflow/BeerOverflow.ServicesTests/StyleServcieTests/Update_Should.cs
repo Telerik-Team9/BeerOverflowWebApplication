@@ -6,7 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.StyleServcieTests
 {
@@ -14,21 +16,16 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
     public class Update_Should
     {
         [TestMethod]
-        public void UpdateStyleWhen_ValidParams()
+        public async Task UpdateStyleWhen_ValidParams()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
-            var style = new Style()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Pale Ale",
-                Description = "Pale ale is a kind of ale, atop-fermented beer made with predominantly pale malt."
-                
-            };
+            var style = Utils.GetStyles().First();
+
             var styleDTO = new StyleDTO()
             {
-                Name = "Pale Ale",
-                Description = "Pale ale is a kind of ale, atop-fermented beer made with predominantly pale malt.",
+                Name = "Lager",
+                Description = "Lager is a type of beer conditioned at low temperature. Lagers can be pale, amber, or dark.",
                 Beers = new List<BeerDTO>()
             };
 
@@ -42,7 +39,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
             using(var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new StyleService(actContext);
-                var actual = sut.Update(style.Id, styleDTO);
+                var actual = await sut.UpdateAsync(style.Id, styleDTO);
 
                 Assert.AreEqual(style.Id, actual.Id);
                 Assert.AreEqual(styleDTO.Name, actual.Name);
@@ -51,7 +48,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
         }
 
         [TestMethod]
-        public void ThrowWhen_NoSuchStyle()
+        public async Task ThrowWhen_NoSuchStyle()
         {
             // Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -60,7 +57,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new StyleService(actContext);
-                Assert.ThrowsException<ArgumentNullException>(() => sut.Update(Guid.NewGuid(), null));
+                await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => sut.UpdateAsync(Guid.NewGuid(), null));
             }
         }
     }
