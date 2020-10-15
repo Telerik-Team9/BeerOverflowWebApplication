@@ -6,6 +6,7 @@ using BeerOverflow.Web.Models;
 using BeerOverflow.Services.DTOs;
 using System.Collections.Generic;
 using BeerOverflow.Services.DTOMappers;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.Web.APIControllers
 {
@@ -21,12 +22,11 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var countries = this.service.RetrieveAll()
-                            .ToList();
+            var countries = await this.service.RetrieveAllAsync();
 
-            if (countries.Count == 0)
+            if (!countries.Any())
             {
                 return NoContent();
             }
@@ -36,22 +36,35 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            var country = this.service.RetrieveById(id);
+            var country = await this.service.RetrieveByIdAsync(id);
 
             if (country == null)
             {
                 return NotFound();
             }
 
-            return Ok(country.GetModelAsObject());
+            return Ok(country.GetModelAsObject()); //TODO 
+        }
+
+        [HttpGet("{name:alpha}")]
+        public async Task<IActionResult> Get(string name)
+        {
+            var country = await this.service.RetrieveByNameAsync(name);
+
+            if (country == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(country.GetModelAsObject()); //TODO 
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            var country = this.service.Delete(id);
+            var country = await this.service.DeleteAsync(id);
 
             if (country)
             {
@@ -62,7 +75,7 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         [HttpPost("")]
-        public IActionResult Post([FromBody] CountryViewModel model)
+        public async Task<IActionResult> Post([FromBody] CountryViewModel model)
         {
             if (model == null)
             {
@@ -77,13 +90,13 @@ namespace BeerOverflow.Web.APIControllers
                 Breweries = new List<BreweryDTO>()
             };
 
-            var country = this.service.Create(countryDTO);
+            var country = await this.service.CreateAsync(countryDTO);
 
             return Created("post", country);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody] CountryViewModel model)
+        public async Task<IActionResult> Put(Guid id, [FromBody] CountryViewModel model)
         {
             if (model == null)
             {
@@ -99,7 +112,7 @@ namespace BeerOverflow.Web.APIControllers
                // Breweries = model.Breweries // map to viewmodel
             };
 
-            var updatedCountryDTO = this.service.Update(id, country);
+            var updatedCountryDTO = await this.service.UpdateAsync(id, country);
 
             var result = new
             {

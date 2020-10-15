@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.Services.Services
 {
@@ -18,6 +19,8 @@ namespace BeerOverflow.Services.Services
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
+
+
         public CountryDTO Create(CountryDTO countryDTO)
         {
             var countryToAdd = countryDTO.GetModel();
@@ -25,38 +28,20 @@ namespace BeerOverflow.Services.Services
             this.context.Countries.Add(countryToAdd);
             this.context.SaveChanges();
             return countryDTO;
-        }
+        } // DONE
 
         public IEnumerable<CountryDTO> RetrieveAll()
             => this.context.Countries
                      .Include(c => c.Breweries)
                      .Where(c => !c.IsDeleted)
-                     .Select(c => c.GetDTO());
+                     .Select(c => c.GetDTO()); // DONE
 
         public CountryDTO RetrieveById(Guid Id)
              => this.context.Countries
                       .Include(c => c.Breweries)
                       .Where(c => !c.IsDeleted)
                       .FirstOrDefault(c => c.Id == Id)
-                      .GetDTO();
-
-        /*        public CountryDTO RetrieveByName(string name)
-                {
-                    var country = Seeder.Countries
-                        .Where(c => !c.IsDeleted)
-                        .FirstOrDefault(c => c.Name == name);
-
-                    if (country == null)
-                        throw new ArgumentException();      //TODO: ex
-
-                    var countryDTO = new CountryDTO
-                    {
-                        Id = country.Id,
-                        Name = country.Name
-                    };
-
-                    return countryDTO;
-                }*/
+                      .GetDTO(); // DONE
 
         public CountryDTO Update(Guid Id, CountryDTO countryDTO)
         {
@@ -74,7 +59,7 @@ namespace BeerOverflow.Services.Services
 
             this.context.SaveChanges();
             return country.GetDTO();
-        }
+        } // DONE
 
         public bool Delete(Guid Id)
         {
@@ -92,6 +77,86 @@ namespace BeerOverflow.Services.Services
             {
                 return false;
             }
+        } //DONE
+
+
+
+        // Async methods
+        public async Task<CountryDTO> RetrieveByIdAsync(Guid id)
+        {
+            var country = await this.context.Countries
+                      .Include(c => c.Breweries)
+                      .Where(c => !c.IsDeleted)
+                      .FirstOrDefaultAsync(c => c.Id == id);
+
+            return country.GetDTO();
         }
+
+        public async Task<CountryDTO> RetrieveByNameAsync(string name)
+        {
+            var country = await this.context.Countries
+                .Include(c => c.Breweries)
+                .Where(c => !c.IsDeleted)
+                .FirstOrDefaultAsync(c => c.Name == name);
+
+            if (country == null)
+            {
+                throw new ArgumentException();      //TODO: ex
+            }
+
+            return country.GetDTO();
+        }
+
+        public async Task<CountryDTO> CreateAsync(CountryDTO countryDTO)
+        {
+            var countryToAdd = countryDTO.GetModel();
+
+            await this.context.Countries.AddAsync(countryToAdd);
+            await this.context.SaveChangesAsync();
+            return countryDTO;
+        }
+
+        public async Task<CountryDTO> UpdateAsync(Guid Id, CountryDTO countryDTO)
+        {
+            var country = await this.context.Countries
+                .FirstOrDefaultAsync(c => c.Id == Id);
+
+            if (country == null)
+            {
+                throw new ArgumentException();      //TODO: ex
+            }
+
+            country.Name = countryDTO.Name;
+            country.ISO = countryDTO.ISO;// Extension method for country = countryDTo
+            country.ModifiedOn = DateTime.Now;
+
+            this.context.SaveChanges();
+            return country.GetDTO();
+        }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            try
+            {
+                var countryToDelete = await this.context.Countries
+                    .FirstOrDefaultAsync(c => c.Id == id);
+
+                countryToDelete.IsDeleted = true;
+                countryToDelete.DeletedOn = DateTime.Now; // TODO: Should we use provider here?
+                this.context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<IEnumerable<CountryDTO>> RetrieveAllAsync()
+            => await this.context.Countries
+                     .Include(c => c.Breweries)
+                     .Where(c => !c.IsDeleted)
+                     .Select(c => c.GetDTO())
+                     .ToListAsync();
     }
 }
