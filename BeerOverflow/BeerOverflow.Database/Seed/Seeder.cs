@@ -27,7 +27,7 @@ namespace BeerOverflow.Database.Seed
                     ImageURL = "https://www.kamenitza.bg/-/media/kamenitza/products/images/kamtnitza-1881.ashx",
                     Mililiters = 330,
                     StyleId = Guid.Parse("f32de916-9ea8-4f93-96d2-732d1b01fe8e"),
-                    BreweryId = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622")
+                    BreweryId = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622")  //Kamenitza AD
                 },
                 new Beer
                 {
@@ -39,7 +39,7 @@ namespace BeerOverflow.Database.Seed
                     ImageURL = "https://www.kamenitza.bg/-/media/kamenitza/products/images/kamenitza-fresh-grapefruit.ashx",
                     Mililiters = 330,
                     StyleId = Guid.Parse("b06a5dbd-f993-4379-af3e-6339377503fc"),
-                    BreweryId = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622")
+                    BreweryId = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622")  //Kamenitza AD
                 },
                 new Beer
                 {
@@ -123,7 +123,31 @@ namespace BeerOverflow.Database.Seed
                     ImageURL = "https://www.saq.com/media/catalog/product/1/0/10322388-1_1580595910.png?quality=80&fit=bounds&height=&width=",
                     Mililiters = 550,
                     StyleId = Guid.Parse("ae339a73-e8cb-47f3-b250-a3d25c4cdedb"),
-                    BreweryId = Guid.Parse("2b2ee52d-89e3-4229-a704-bbfb3724cc11")
+                    BreweryId = Guid.Parse("2b2ee52d-89e3-4229-a704-bbfb3724cc11")  //Fuller's Brewery
+                },
+                new Beer
+                {
+                    Id = Guid.Parse("0e2cff6f-b42a-414b-8e3c-81c157909a2a"),
+                    Name = "Honey Dew",
+                    ABV = float.Parse("5.0"),
+                    Price = float.Parse("2.7"),
+                    Description = "The UK’s best-selling organic beer, Fuller’s Organic Honey Dew buzzes with a zesty edge and subtle sweetness. Approved by the Soil Association, it’s a thing of natural beauty – pure, golden sunshine in a glass.",
+                    ImageURL = "https://www.saq.com/media/catalog/product/1/1/11113490-1_1580613021.png?quality=80&fit=bounds&height=&width=",
+                    Mililiters = 350,
+                    StyleId = Guid.Parse("b06a5dbd-f993-4379-af3e-6339377503fc"),   //Fruit
+                    BreweryId = Guid.Parse("2b2ee52d-89e3-4229-a704-bbfb3724cc11")  //Fuller's Brewery
+                },
+                new Beer
+                {
+                    Id = Guid.Parse("f0e83b17-1a70-4b1a-9d77-05822eb6ca44"),
+                    Name = "Basi Kefa",
+                    ABV = float.Parse("6.7"),
+                    Price = float.Parse("4.9"),
+                    Description = "This beer really is BASI KEFA! White IPA with added wheat and tons of aromatic hops. Intense aroma of citrus and tropical fruits, and the taste is memorable, you can feel grapefruit, tangerine, mango. medium sweet, medium bitter fruit finish. Extremely easy to drink despite the alcohol content - 6.7!",
+                    ImageURL = "https://www.saq.com/media/catalog/product/1/1/11113490-1_1580613021.png?quality=80&fit=bounds&height=&width=",
+                    Mililiters = 330,
+                    StyleId = Guid.Parse("e662a6bf-b3e4-4c18-8e77-efd31e587b2c"),   //IPA - White
+                    BreweryId = Guid.Parse("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0")  //Beer Bastards
                 }
             };
             builder.Entity<Beer>().HasData(beers);
@@ -177,6 +201,12 @@ namespace BeerOverflow.Database.Seed
                     Id = Guid.Parse("2b2ee52d-89e3-4229-a704-bbfb3724cc11"),
                     Name = "Fuller's Brewery",
                     CountryId = Guid.Parse("71c1e52c-2f50-4ef6-99c8-451483d3df09")
+                },
+                new Brewery
+                {
+                    Id = Guid.Parse("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0"),
+                    Name = "Beer Bastards",
+                    CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")  //Bulgaria
                 }
             };
             builder.Entity<Brewery>().HasData(breweries);
@@ -273,6 +303,12 @@ namespace BeerOverflow.Database.Seed
                     Id = Guid.Parse("ae339a73-e8cb-47f3-b250-a3d25c4cdedb"),
                     Name = "Old Ale",
                     Description = "The Old Ale is an light amber to very dark reddish-brown colored English ale of moderate to fairly significant alcoholic strength, bigger than standard beers, though usually not as strong or rich as barleywine and often tilted towards a maltier balance. The predominant defining quality for this style is the impression of age, which can manifest itself in different ways (complexity, lactic, Brett, oxidation, leather, vinous qualities are some recurring examples). Roughly overlapping the British Strong Ale and the lower end of the English Barley Wine styles, but always having an aged quality. Barley Wines tend to develop more of an overall mature quality, while Old Ales can show more of the barrel qualities. Old Peculier are also considered as an Old Ale."
+                },
+                new Style
+                {
+                    Id = Guid.Parse("e662a6bf-b3e4-4c18-8e77-efd31e587b2c"),
+                    Name = "IPA - White",
+                    Description = "White IPAs are clear or hazy, golden-colored beers that are a hybrid of the hop-forward American India pale ale style and the traditional Belgian wit style."
                 },
 
                 // No beers with the next styles
