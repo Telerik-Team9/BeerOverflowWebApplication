@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BeerOverflow.Database;
+using BeerOverflow.Models;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.Services;
 using Microsoft.AspNetCore.Builder;
@@ -41,7 +42,13 @@ namespace BeerOverflow.Web
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IStyleService, StyleService>();
-        }   
+
+           // services.AddDefaultIdentity<User>
+           //     (
+           //         options => options.Password.RequireDigit = false
+           //
+           //     );
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,6 +59,8 @@ namespace BeerOverflow.Web
             }
 
             app.UseRouting();
+           //app.UseAuthentication();
+           //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

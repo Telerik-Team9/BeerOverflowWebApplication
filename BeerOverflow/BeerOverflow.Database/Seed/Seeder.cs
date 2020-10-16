@@ -408,35 +408,35 @@ namespace BeerOverflow.Database.Seed
                 new User
                 {
                     Id = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
-                    Name = "Maggie",
-                    Username = "MaggieUser",
+                    //Name = "Maggie",
+                    UserName = "Maggie",
                     Email = "maggieemail@gmail.com",
-                    Password = "MaggiePass",
-                    Birthday = DateTime.Now,
-                    IsBanned = false,
-                    IsAdmin = true
+                    //Password = "MaggiePass",
+                    //Birthday = DateTime.Now,
+                    //IsBanned = false,
+                    //IsAdmin = true
                 },
                 new User
                 {
                     Id = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5"),
-                    Name = "Ali",
-                    Username = "AliUser",
+                    //Name = "Ali",
+                    UserName = "Ali",
                     Email = "aliemail@gmail.com",
-                    Password = "AliPass",
-                    Birthday = DateTime.Now,
-                    IsBanned = false,
-                    IsAdmin = true
+                    //Password = "AliPass",
+                    //Birthday = DateTime.Now,
+                    //IsBanned = false,
+                    //IsAdmin = true
                 },
                 new User
                 {
                     Id = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
-                    Name = "Telerik",
-                    Username = "TelerikUser",
+                    //Name = "Telerik",
+                    UserName = "Telerik",
                     Email = "telerikemail@gmail.com",
-                    Password = "TelerikPass",
-                    Birthday = DateTime.Now,
-                    IsBanned = false,
-                    IsAdmin = false
+                    //Password = "TelerikPass",
+                    //Birthday = DateTime.Now,
+                    //IsBanned = false,
+                    //IsAdmin = false
                 }
             };
             builder.Entity<User>().HasData(users);

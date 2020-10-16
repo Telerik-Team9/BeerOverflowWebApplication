@@ -15,7 +15,7 @@ namespace BeerOverflow.Database.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -189,6 +189,70 @@ namespace BeerOverflow.Database.Migrations
                             Name = "Zagorka",
                             Price = 1.8999999761581421,
                             StyleId = new Guid("f32de916-9ea8-4f93-96d2-732d1b01fe8e")
+                        },
+                        new
+                        {
+                            Id = new Guid("14af2a6c-5376-459e-91de-b6078c5435ac"),
+                            ABV = 4.5f,
+                            BreweryId = new Guid("8582b4e3-3e97-47f6-a1c9-358252ddaf43"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Corona Extra is a pale lager produced by Mexican brewery Cervecería Modelo and owned by Belgian company AB InBev. It is commonly served with a wedge of lime or lemon in the neck of the bottle to add tartness and flavour.",
+                            ImageURL = "https://www.teamcone.net/wp-content/uploads/2017/06/CORONA_12oz_NR.png",
+                            IsBeerOfTheMonth = false,
+                            IsDeleted = false,
+                            IsUnlisted = false,
+                            Mililiters = 330,
+                            Name = "Corona",
+                            Price = 3.0,
+                            StyleId = new Guid("77f9496e-0475-4165-ac5e-ee57039f108c")
+                        },
+                        new
+                        {
+                            Id = new Guid("365ed501-0156-4d62-aef4-1e04c68b8ed6"),
+                            ABV = 4.7f,
+                            BreweryId = new Guid("2b2ee52d-89e3-4229-a704-bbfb3724cc11"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "London Pride is the flagship beer of Fuller's Brewery. It is sold both cask-conditioned and bottled. London Pride has been brewed at the Griffin Brewery since 1958.",
+                            ImageURL = "https://www.saq.com/media/catalog/product/1/0/10322388-1_1580595910.png?quality=80&fit=bounds&height=&width=",
+                            IsBeerOfTheMonth = false,
+                            IsDeleted = false,
+                            IsUnlisted = false,
+                            Mililiters = 550,
+                            Name = "London's Pride",
+                            Price = 3.0,
+                            StyleId = new Guid("ae339a73-e8cb-47f3-b250-a3d25c4cdedb")
+                        },
+                        new
+                        {
+                            Id = new Guid("0e2cff6f-b42a-414b-8e3c-81c157909a2a"),
+                            ABV = 5f,
+                            BreweryId = new Guid("2b2ee52d-89e3-4229-a704-bbfb3724cc11"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The UK’s best-selling organic beer, Fuller’s Organic Honey Dew buzzes with a zesty edge and subtle sweetness. Approved by the Soil Association, it’s a thing of natural beauty – pure, golden sunshine in a glass.",
+                            ImageURL = "https://www.saq.com/media/catalog/product/1/1/11113490-1_1580613021.png?quality=80&fit=bounds&height=&width=",
+                            IsBeerOfTheMonth = false,
+                            IsDeleted = false,
+                            IsUnlisted = false,
+                            Mililiters = 350,
+                            Name = "Honey Dew",
+                            Price = 2.7000000476837158,
+                            StyleId = new Guid("b06a5dbd-f993-4379-af3e-6339377503fc")
+                        },
+                        new
+                        {
+                            Id = new Guid("f0e83b17-1a70-4b1a-9d77-05822eb6ca44"),
+                            ABV = 6.7f,
+                            BreweryId = new Guid("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "This beer really is BASI KEFA! White IPA with added wheat and tons of aromatic hops. Intense aroma of citrus and tropical fruits, and the taste is memorable, you can feel grapefruit, tangerine, mango. medium sweet, medium bitter fruit finish. Extremely easy to drink despite the alcohol content - 6.7!",
+                            ImageURL = "https://www.saq.com/media/catalog/product/1/1/11113490-1_1580613021.png?quality=80&fit=bounds&height=&width=",
+                            IsBeerOfTheMonth = false,
+                            IsDeleted = false,
+                            IsUnlisted = false,
+                            Mililiters = 330,
+                            Name = "Basi Kefa",
+                            Price = 4.9000000953674316,
+                            StyleId = new Guid("e662a6bf-b3e4-4c18-8e77-efd31e587b2c")
                         });
                 });
 
@@ -275,6 +339,30 @@ namespace BeerOverflow.Database.Migrations
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Zagorka AD"
+                        },
+                        new
+                        {
+                            Id = new Guid("8582b4e3-3e97-47f6-a1c9-358252ddaf43"),
+                            CountryId = new Guid("0305d3f1-56ad-4ada-a854-30640b17120a"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Grupo Modelo"
+                        },
+                        new
+                        {
+                            Id = new Guid("2b2ee52d-89e3-4229-a704-bbfb3724cc11"),
+                            CountryId = new Guid("71c1e52c-2f50-4ef6-99c8-451483d3df09"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Fuller's Brewery"
+                        },
+                        new
+                        {
+                            Id = new Guid("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0"),
+                            CountryId = new Guid("eee1a9ab-c409-42c4-ae07-f622a959bb0b"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Beer Bastards"
                         });
                 });
 
@@ -346,6 +434,22 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
+                            Id = new Guid("0305d3f1-56ad-4ada-a854-30640b17120a"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ISO = "MX",
+                            IsDeleted = false,
+                            Name = "Mexico"
+                        },
+                        new
+                        {
+                            Id = new Guid("71c1e52c-2f50-4ef6-99c8-451483d3df09"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ISO = "UK",
+                            IsDeleted = false,
+                            Name = "United Kingdom"
+                        },
+                        new
+                        {
                             Id = new Guid("f444594e-5626-4c1e-b285-571f33930022"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ISO = "RS",
@@ -360,6 +464,27 @@ namespace BeerOverflow.Database.Migrations
                             IsDeleted = false,
                             Name = "Germany"
                         });
+                });
+
+            modelBuilder.Entity("BeerOverflow.Models.DrankList", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BeerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BeerId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("DrankList");
                 });
 
             modelBuilder.Entity("BeerOverflow.Models.Rating", b =>
@@ -421,6 +546,15 @@ namespace BeerOverflow.Database.Migrations
                             IsDeleted = false,
                             RatingGiven = 5,
                             UserId = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5")
+                        },
+                        new
+                        {
+                            Id = new Guid("288283ac-3bc8-478e-9dbf-15f02a26b6c9"),
+                            BeerId = new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 4,
+                            UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619")
                         });
                 });
 
@@ -473,7 +607,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("03461e43-1ebb-4035-8fa4-e5acf5c923f1"),
                             BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
                             Content = "This is exellent beer!",
-                            CreatedOn = new DateTime(2020, 10, 12, 0, 37, 13, 205, DateTimeKind.Local).AddTicks(178),
+                            CreatedOn = new DateTime(2020, 10, 16, 20, 53, 8, 140, DateTimeKind.Local).AddTicks(8671),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 120,
@@ -484,11 +618,11 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
                             BeerId = new Guid("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
                             Content = "I didn't really like it. Poor colour, bad taste.",
-                            CreatedOn = new DateTime(2020, 10, 12, 0, 37, 13, 208, DateTimeKind.Local).AddTicks(4003),
+                            CreatedOn = new DateTime(2020, 10, 16, 20, 53, 8, 147, DateTimeKind.Local).AddTicks(5474),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 8,
-                            ModifiedOn = new DateTime(2020, 10, 13, 0, 37, 13, 208, DateTimeKind.Local).AddTicks(4086),
+                            ModifiedOn = new DateTime(2020, 10, 17, 20, 53, 8, 147, DateTimeKind.Local).AddTicks(5619),
                             UserId = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5")
                         },
                         new
@@ -496,7 +630,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("bc9fa1aa-d58a-4f37-a81d-7a7ca81f27bb"),
                             BeerId = new Guid("f13cdf0f-9f3c-4435-a107-e265e016b7d3"),
                             Content = "It's okay I guess. Very fruity aroma. Light sour, strong sweet taste. Fruity.",
-                            CreatedOn = new DateTime(2020, 10, 12, 0, 37, 13, 208, DateTimeKind.Local).AddTicks(4715),
+                            CreatedOn = new DateTime(2020, 10, 16, 20, 53, 8, 147, DateTimeKind.Local).AddTicks(6043),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 22,
@@ -507,12 +641,51 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("766d9e58-68da-479c-ab97-dc9d1de06bbc"),
                             BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
                             Content = "Absolutely amazing!. One of the best Bulgarian beers.",
-                            CreatedOn = new DateTime(2020, 10, 12, 0, 37, 13, 208, DateTimeKind.Local).AddTicks(4730),
+                            CreatedOn = new DateTime(2020, 10, 16, 20, 53, 8, 147, DateTimeKind.Local).AddTicks(6088),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 0,
                             UserId = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270")
+                        },
+                        new
+                        {
+                            Id = new Guid("ea4c9558-3832-403c-b70e-7ad0ef13b0a9"),
+                            BeerId = new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
+                            Content = "50/50. Sometimes win, sometimes lun.",
+                            CreatedOn = new DateTime(2020, 10, 16, 20, 53, 8, 147, DateTimeKind.Local).AddTicks(6118),
+                            IsDeleted = false,
+                            IsFlagged = false,
+                            Likes = 14,
+                            UserId = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270")
                         });
+                });
+
+            modelBuilder.Entity("BeerOverflow.Models.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
                 });
 
             modelBuilder.Entity("BeerOverflow.Models.Style", b =>
@@ -589,6 +762,22 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
+                            Id = new Guid("ae339a73-e8cb-47f3-b250-a3d25c4cdedb"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The Old Ale is an light amber to very dark reddish-brown colored English ale of moderate to fairly significant alcoholic strength, bigger than standard beers, though usually not as strong or rich as barleywine and often tilted towards a maltier balance. The predominant defining quality for this style is the impression of age, which can manifest itself in different ways (complexity, lactic, Brett, oxidation, leather, vinous qualities are some recurring examples). Roughly overlapping the British Strong Ale and the lower end of the English Barley Wine styles, but always having an aged quality. Barley Wines tend to develop more of an overall mature quality, while Old Ales can show more of the barrel qualities. Old Peculier are also considered as an Old Ale.",
+                            IsDeleted = false,
+                            Name = "Old Ale"
+                        },
+                        new
+                        {
+                            Id = new Guid("e662a6bf-b3e4-4c18-8e77-efd31e587b2c"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "White IPAs are clear or hazy, golden-colored beers that are a hybrid of the hop-forward American India pale ale style and the traditional Belgian wit style.",
+                            IsDeleted = false,
+                            Name = "IPA - White"
+                        },
+                        new
+                        {
                             Id = new Guid("49657e0d-b39c-48ed-92ea-839e0f33afd7"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "The classic Pale Ale is generally a deep-golden to copper colored, hop-forward ale with a balanced malt profile. This style specifically represents all generic Pale Ales (sometime called International Pale Ale) which are marketed as such and which cannot be defined as a specific regional Pale Ale style such as the American Pale Ale. This also includes beers marketed as Extra Pale Ale (XPA), a non-defined style that usually sits between an American Pale Ale and an India Pale Ale, a hop forward beer and generally more intense than an APA but not as hop-forward as an IPA. Sometimes, the XPA also refers to a session-strength or simply paler Pale Ale.",
@@ -610,14 +799,6 @@ namespace BeerOverflow.Database.Migrations
                             Description = "The English India Pale Ale (IPA) is a hoppy, moderately-strong, very well-attenuated pale golden to deep amber British ale with a dry finish and a hoppy aroma and flavor. Generally will have more finish hops and less fruitiness and/or caramel than British pale ales and bitter and has less hop intensity and a more pronounced malt flavor than typical American versions. The modern IPA style generally refers to American IPA and its derivatives but this does not imply that English IPA isn't a proper IPA. Originally, the attributes of IPA that were important to its arrival in good condition from England to India by ship were that it was very well-attenuated, and heavily hopped.",
                             IsDeleted = false,
                             Name = "IPA - English"
-                        },
-                        new
-                        {
-                            Id = new Guid("ae339a73-e8cb-47f3-b250-a3d25c4cdedb"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Old Ale is an light amber to very dark reddish-brown colored English ale of moderate to fairly significant alcoholic strength, bigger than standard beers, though usually not as strong or rich as barleywine and often tilted towards a maltier balance. The predominant defining quality for this style is the impression of age, which can manifest itself in different ways (complexity, lactic, Brett, oxidation, leather, vinous qualities are some recurring examples). Roughly overlapping the British Strong Ale and the lower end of the English Barley Wine styles, but always having an aged quality. Barley Wines tend to develop more of an overall mature quality, while Old Ales can show more of the barrel qualities. Old Peculier are also considered as an Old Ale.",
-                            IsDeleted = false,
-                            Name = "Old Ale"
                         });
                 });
 
@@ -627,8 +808,15 @@ namespace BeerOverflow.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -637,9 +825,10 @@ namespace BeerOverflow.Database.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
-                    b.Property<bool>("IsAdmin")
+                    b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsBanned")
@@ -648,62 +837,229 @@ namespace BeerOverflow.Database.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
-                            Birthday = new DateTime(2020, 10, 12, 0, 37, 13, 209, DateTimeKind.Local).AddTicks(3931),
+                            AccessFailedCount = 0,
+                            BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ConcurrencyStamp = "fe803e3b-012c-45e0-b9c2-a06877156fa3",
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "maggieemail@gmail.com",
-                            IsAdmin = true,
+                            EmailConfirmed = false,
                             IsBanned = false,
                             IsDeleted = false,
-                            Name = "Maggie",
-                            Password = "MaggiePass",
-                            Username = "MaggieUser"
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "Maggie"
                         },
                         new
                         {
                             Id = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5"),
-                            Birthday = new DateTime(2020, 10, 12, 0, 37, 13, 209, DateTimeKind.Local).AddTicks(6724),
+                            AccessFailedCount = 0,
+                            BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ConcurrencyStamp = "8d19c241-945a-4b0b-8b8d-93291f5734f0",
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "aliemail@gmail.com",
-                            IsAdmin = true,
+                            EmailConfirmed = false,
                             IsBanned = false,
                             IsDeleted = false,
-                            Name = "Ali",
-                            Password = "AliPass",
-                            Username = "AliUser"
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "Ali"
                         },
                         new
                         {
                             Id = new Guid("3753d26b-5a35-491f-ae82-5238d243b619"),
-                            Birthday = new DateTime(2020, 10, 12, 0, 37, 13, 209, DateTimeKind.Local).AddTicks(6784),
+                            AccessFailedCount = 0,
+                            BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ConcurrencyStamp = "100170b5-5561-432f-b74f-41cadd821a7a",
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "telerikemail@gmail.com",
-                            IsAdmin = false,
+                            EmailConfirmed = false,
                             IsBanned = false,
                             IsDeleted = false,
-                            Name = "Telerik",
-                            Password = "TelerikPass",
-                            Username = "TelerikUser"
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "Telerik"
                         });
+                });
+
+            modelBuilder.Entity("BeerOverflow.Models.WishList", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BeerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BeerId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("WishList");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
                 });
 
             modelBuilder.Entity("BeerOverflow.Models.Beer", b =>
@@ -726,6 +1082,21 @@ namespace BeerOverflow.Database.Migrations
                     b.HasOne("BeerOverflow.Models.Country", "Country")
                         .WithMany("Breweries")
                         .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BeerOverflow.Models.DrankList", b =>
+                {
+                    b.HasOne("BeerOverflow.Models.Beer", "Beer")
+                        .WithMany("DrankList")
+                        .HasForeignKey("BeerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeerOverflow.Models.User", "User")
+                        .WithMany("DrankList")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -755,6 +1126,72 @@ namespace BeerOverflow.Database.Migrations
 
                     b.HasOne("BeerOverflow.Models.User", "User")
                         .WithMany("Reviews")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BeerOverflow.Models.WishList", b =>
+                {
+                    b.HasOne("BeerOverflow.Models.Beer", "Beer")
+                        .WithMany("Wishlists")
+                        .HasForeignKey("BeerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeerOverflow.Models.User", "User")
+                        .WithMany("Wishlists")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.HasOne("BeerOverflow.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.HasOne("BeerOverflow.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.HasOne("BeerOverflow.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.HasOne("BeerOverflow.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BeerOverflow.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.HasOne("BeerOverflow.Models.User", null)
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

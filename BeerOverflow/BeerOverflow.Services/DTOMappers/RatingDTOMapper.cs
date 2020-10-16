@@ -12,7 +12,7 @@ namespace BeerOverflow.Services.DTOMappers
                 BeerId = item.BeerId,
                 BeerName = item.Beer?.Name,
                 UserId = item.UserId,
-                UserName = item.User?.Name,
+                UserName = item.User?.UserName,
                 RatingGiven = item.RatingGiven
             };
 

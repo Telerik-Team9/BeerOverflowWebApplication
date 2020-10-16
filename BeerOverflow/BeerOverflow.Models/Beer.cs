@@ -26,7 +26,7 @@ namespace BeerOverflow.Models
         public Brewery Brewery { get; set; }
         public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
-        // Yo added a collecion of Wishlist ?
-
+        public ICollection<WishList> Wishlists { get; set; } = new List<WishList>();
+        public ICollection<DrankList> DrankList { get; set; } = new List<DrankList>();
     }
 }

@@ -141,7 +141,7 @@ namespace BeerOverflow.Services.Services
                 .FirstOrDefault(b => b.Name == beer.Name).Id;
             ratingDTO.UserId = this.context
                 .Users
-                .FirstOrDefault(u => u.Username == ratingDTO.UserName).Id;
+                .FirstOrDefault(u => u.UserName == ratingDTO.UserName).Id;
 
             await this.context.Ratings.AddAsync(ratingDTO.GetModel());
             await this.context.SaveChangesAsync();
