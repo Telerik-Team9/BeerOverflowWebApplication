@@ -19,69 +19,6 @@ namespace BeerOverflow.Services.Services
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-
-
-        public CountryDTO Create(CountryDTO countryDTO)
-        {
-            var countryToAdd = countryDTO.GetModel();
-
-            this.context.Countries.Add(countryToAdd);
-            this.context.SaveChanges();
-            return countryDTO;
-        } // DONE
-
-        public IEnumerable<CountryDTO> RetrieveAll()
-            => this.context.Countries
-                     .Include(c => c.Breweries)
-                     .Where(c => !c.IsDeleted)
-                     .Select(c => c.GetDTO()); // DONE
-
-        public CountryDTO RetrieveById(Guid Id)
-             => this.context.Countries
-                      .Include(c => c.Breweries)
-                      .Where(c => !c.IsDeleted)
-                      .FirstOrDefault(c => c.Id == Id)
-                      .GetDTO(); // DONE
-
-        public CountryDTO Update(Guid Id, CountryDTO countryDTO)
-        {
-            var country = this.context.Countries
-                .FirstOrDefault(c => c.Id == Id);
-
-            if (country == null)
-            {
-                throw new ArgumentException();      //TODO: ex
-            }
-
-            country.Name = countryDTO.Name;
-            country.ISO = countryDTO.ISO;// Extension method for country = countryDTo
-            country.ModifiedOn = DateTime.Now;
-
-            this.context.SaveChanges();
-            return country.GetDTO();
-        } // DONE
-
-        public bool Delete(Guid Id)
-        {
-            try
-            {
-                var countryToDelete = this.context.Countries
-                    .FirstOrDefault(c => c.Id == Id);
-
-                countryToDelete.IsDeleted = true;
-                countryToDelete.DeletedOn = DateTime.Now; // TODO: Should we use provider here?
-                this.context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        } //DONE
-
-
-
-        // Async methods
         public async Task<CountryDTO> RetrieveByIdAsync(Guid id)
         {
             var country = await this.context.Countries
