@@ -4,6 +4,7 @@ using BeerOverflow.Services.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.CountryServiceTests
 {
@@ -11,27 +12,14 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
     public class RetrieveAll_Should
     {
         [TestMethod]
-        public void ReturnAllCountriesWhen_ValidParams()
+        public async Task ReturnAllCountriesWhen_ValidParams()
         {
-            var options = Utils.GetOptions(Guid.NewGuid().ToString()); // Can also use Utils.GetOptions(nameof(ReturnAllCountriesWhen_ValidParams));
-
-            var country = new Country()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Bulgaria",
-                ISO = "BG"
-            };
-            var country2 = new Country()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Germany",
-                ISO = "BG"
-            };
+            var options = Utils.GetOptions(Guid.NewGuid().ToString());
+            var countries = Utils.GetCountries().ToList();
 
             using (var arrangeContext = new BeerOverflowDbContext(options))
             {
-                arrangeContext.Countries.Add(country);
-                arrangeContext.Countries.Add(country2);
+                arrangeContext.Countries.AddRange(countries);
                 arrangeContext.SaveChanges();
             }
 
@@ -40,20 +28,27 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
             {
                 var sut = new CountryService(actContext);
 
-                var actual = sut.RetrieveAll().ToList();
+                var result = await sut.RetrieveAllAsync();
+                var actual = result.ToList();
 
-                Assert.AreEqual(country.Id, actual[0].Id);
-                Assert.AreEqual(country.Name, actual[0].Name);
-                Assert.AreEqual(country.ISO, actual[0].ISO);
+                Assert.AreEqual(countries[0].Id, actual[0].Id);
+                Assert.AreEqual(countries[0].Name, actual[0].Name);
+                Assert.AreEqual(countries[0].ISO, actual[0].ISO);
 
-                Assert.AreEqual(country2.Id, actual[1].Id);
-                Assert.AreEqual(country2.Name, actual[1].Name);
-                Assert.AreEqual(country2.ISO, actual[1].ISO);
+                Assert.AreEqual(countries[1].Id, actual[1].Id);
+                Assert.AreEqual(countries[1].Name, actual[1].Name);
+                Assert.AreEqual(countries[1].ISO, actual[1].ISO);
+
+                Assert.AreEqual(countries[2].Id, actual[2].Id);
+                Assert.AreEqual(countries[2].Name, actual[2].Name);
+                Assert.AreEqual(countries[2].ISO, actual[2].ISO);
+
+                Assert.AreEqual(3, actual.Count);
             }
         }
 
         [TestMethod]
-        public void ReturnNullWhen_NoCountries()
+        public async Task ReturnNullWhen_NoCountries()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -62,7 +57,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new CountryService(actContext);
-                var actual = sut.RetrieveAll().ToList();
+                var actual = await sut.RetrieveAllAsync();
 
                 Assert.IsFalse(actual.Any());
             }

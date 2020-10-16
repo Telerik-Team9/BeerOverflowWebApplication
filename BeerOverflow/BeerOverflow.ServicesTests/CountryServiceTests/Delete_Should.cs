@@ -3,9 +3,8 @@ using BeerOverflow.Models;
 using BeerOverflow.Services.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.CountryServiceTests
 {
@@ -13,17 +12,11 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
     public class Delete_Should
     {
         [TestMethod]
-        public void DeleteCountryWhen_ValidParams()
+        public async Task DeleteCountryWhen_ValidParams()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
-
-            var country = new Country()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Bulgaria",
-                ISO = "BG"
-            };
+            var country = Utils.GetCountries().First();
 
             using (var arrangeContext = new BeerOverflowDbContext(options))
             {
@@ -35,7 +28,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new CountryService(actContext);
-                var actual = sut.Delete(country.Id);
+                var actual = await sut.DeleteAsync(country.Id);
 
                 Assert.IsTrue(actual);
                 Assert.IsTrue(actContext.Countries.Any());
@@ -43,7 +36,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
         }
 
         [TestMethod]
-        public void ReturnFalseWhen_NoSuchCountry()
+        public async Task ReturnFalseWhen_NoSuchCountry()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -52,7 +45,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new CountryService(actContext);
-                var actual = sut.Delete(Guid.NewGuid());
+                var actual = await sut.DeleteAsync(Guid.NewGuid());
 
                 Assert.IsFalse(actual);
             }

@@ -2,8 +2,12 @@
 using BeerOverflow.Models;
 using BeerOverflow.Services.DTOs;
 using BeerOverflow.Services.Services;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.CountryServiceTests
 {
@@ -11,21 +15,17 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
     public class Update_Should
     {
         [TestMethod]
-        public void UpdateCountryWhen_ValidParams()
+        public async Task UpdateCountryWhen_ValidParams()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
+            var country = Utils.GetCountries().First();
 
-            var country = new Country()
+            var countryDTO = new CountryDTO()
             {
                 Id = Guid.NewGuid(),
                 Name = "Bulgaria",
                 ISO = "BG"
-            };
-            var countryDTO = new CountryDTO()
-            {
-                Name = "Germany",
-                ISO = "DE"
             };
 
             using (var arrangeContext = new BeerOverflowDbContext(options))
@@ -38,7 +38,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new CountryService(actContext);
-                var actual = sut.Update(country.Id, countryDTO);
+                var actual = await sut.UpdateAsync(country.Id, countryDTO);
 
                 Assert.AreEqual(country.Id, actual.Id);
                 Assert.AreEqual(countryDTO.Name, actual.Name);
@@ -47,7 +47,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
         }
 
         [TestMethod]
-        public void ThrowWhen_NoSuchCountry()
+        public async Task ThrowWhen_NoSuchCountry()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -56,8 +56,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new CountryService(actContext);
-
-                Assert.ThrowsException<ArgumentException>(() => sut.Update(Guid.NewGuid(), null));
+                await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await sut.UpdateAsync(Guid.NewGuid(), null));
             }
         }
     }

@@ -38,7 +38,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
         }
 
         [TestMethod]
-        public void ThrowWhen_StyleIsNull()
+        public async Task ThrowWhen_StyleIsNull()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -47,7 +47,7 @@ namespace BeerOverflow.ServicesTests.StyleServcieTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new StyleService(actContext);
-                Assert.ThrowsException<ArgumentNullException>(() => sut.Create(null));
+                await Assert.ThrowsExceptionAsync<ArgumentNullException>(async () => await sut.CreateAsync(null));
             }
         }
     }

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BeerOverflow.Services.DTOMappers;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.Web.APIControllers
 {
@@ -21,83 +22,9 @@ namespace BeerOverflow.Web.APIControllers
             this.service = service;
         }
 
-        [HttpGet]
-        public IActionResult Get([FromQuery] string criteria = "", [FromQuery] char order = 'a')
-        {
-            //  var orderedBeers = this.service.OrderByName(order);
-            IEnumerable<BeerDTO> orderedBeers = null;
-
-            if (criteria.Contains("abv"))
-            {
-                orderedBeers = this.service.OrderByABV(order);
-            }
-            else if (criteria.Contains("name"))
-            {
-                orderedBeers = this.service.OrderByName(order);
-            }
-            else
-            {
-                orderedBeers = this.service.OrderByRating(order);
-            }
-
-            if (orderedBeers == null)
-            {
-                return BadRequest();
-            }
-
-            return Ok(orderedBeers.Select(beer => beer.GetModelAsObject()));
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
-        {
-            //TODO: Remove Exception handling for nulls in the layers below
-            var beer = this.service.RetrieveById(id);
-
-            if (beer == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(beer.GetModelAsObject());
-        }
-
-        [HttpGet("filter")]
-        public IActionResult Get([FromQuery] string criteria, [FromQuery] string name)
-        {
-            IEnumerable<BeerDTO> filteredCollection = null;
-
-            if (criteria.Equals("country") || criteria.Equals("style"))
-            {
-                filteredCollection = this.service.FilterByCriteria(criteria, name);
-            }
-
-            if (filteredCollection == null)
-            {
-                return NotFound();
-            }
-
-            var result = filteredCollection
-                        .Select(x => x.GetModelAsObject());
-
-            return Ok(result);
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
-        {
-            var result = this.service.Delete(id);
-
-            if (result)
-            {
-                return Ok();
-            }
-
-            return BadRequest();
-        }
 
         [HttpPost]
-        public IActionResult Post([FromBody] BeerViewModel model)
+        public async Task<IActionResult> Post([FromBody] BeerViewModel model)
         {
             if (model == null)
             {
@@ -122,13 +49,108 @@ namespace BeerOverflow.Web.APIControllers
                 BreweryName = model.BreweryName,
                 Reviews = new List<ReviewDTO>() // add rating 
             };
-            var beer = this.service.Create(beerDTO);
+            var beer = await this.service.CreateAsync(beerDTO);
 
             return Created("post", beer.GetModelAsObject());
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery] string criteria = "", [FromQuery] char order = 'a')
+        {
+            //  var orderedBeers = this.service.OrderByName(order);
+            IEnumerable<BeerDTO> orderedBeers = null;
+
+            if (criteria.Contains("abv"))
+            {
+                orderedBeers = await this.service.OrderByABVAsync(order);
+            }
+            else if (criteria.Contains("name"))
+            {
+                orderedBeers = await this.service.OrderByNameAsync(order);
+            }
+            else
+            {
+                orderedBeers = await this.service.OrderByRatingAsync(order);
+            }
+
+            if (orderedBeers == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(orderedBeers.Select(beer => beer.GetModelAsObject()));
+        }
+
+        [HttpGet("{id:Guid}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            //TODO: Remove Exception handling for nulls in the layers below
+            var beer = await this.service.RetrieveByIdAsync(id);
+
+            if (beer == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(beer.GetModelAsObject());
+        }
+
+        [HttpGet("{name:alpha}")]
+        public async Task<IActionResult> Get(string name)
+        {
+            var beer = await this.service.RetrieveByNameAsync(name);
+
+            if (beer == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(beer.GetModelAsObject());
+        }
+
+        [HttpGet("filter")]
+        public async Task<IActionResult> Get([FromQuery] string criteria, [FromQuery] string name)
+        {
+            IEnumerable<BeerDTO> filteredCollection = null;
+
+            if (criteria.Equals("country") || criteria.Equals("style"))
+            {
+                filteredCollection = await this.service.FilterByCriteriaAsync(criteria, name);
+            }
+
+            if (filteredCollection == null)
+            {
+                return NotFound();
+            }
+
+            var result = filteredCollection
+                        .Select(x => x.GetModelAsObject());
+
+            return Ok(result);
+        }
+
+        [HttpPut("{name}")]
+        public async Task<IActionResult> Put(string name, [FromBody] RatingViewModel model)
+        {
+            var ratingDTO = new RatingDTO
+            {
+                Id = Guid.NewGuid(),
+                BeerName = name,
+                UserName = model.UserName, //FIX WHEN IDENTITY IS ADDED
+                RatingGiven = model.RatingGiven
+            };
+
+            var beer = await this.service.RateAsync(name, ratingDTO);
+            if (beer == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(beer.GetModelAsObject());
+        }
+
         [HttpPut("{id:Guid}")]
-        public IActionResult Put(Guid id, [FromBody] BeerViewModel model)
+        public async Task<IActionResult> Put(Guid id, [FromBody] BeerViewModel model)
         {
             if (model == null)
             {
@@ -154,28 +176,21 @@ namespace BeerOverflow.Web.APIControllers
                 Reviews = new List<ReviewDTO>() // is this necessary here
             };
 
-            var beer = this.service.Update(id, beerDTO);
+            var beer = await this.service.UpdateAsync(id, beerDTO);
             return Ok(beer.GetModelAsObject());
         }
-
-        [HttpPut("{name}")] // Put it in a separate controller?
-        public IActionResult Put(string name, [FromBody] RatingViewModel model)
+        
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
         {
-            var ratingDTO = new RatingDTO
-            {
-                Id = Guid.NewGuid(),
-                BeerName = name,
-                UserName = model.UserName, //FIX WHEN IDENTITY IS ADDED
-                RatingGiven = model.RatingGiven
-            };
+            var result = await this.service.DeleteAsync(id);
 
-            var beer = this.service.Rate(name, ratingDTO);
-            if (beer == null)
+            if (result)
             {
-                return NotFound();
+                return Ok();
             }
 
-            return Ok(beer.GetModelAsObject());
+            return BadRequest();
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.CountryServiceTests
 {
@@ -12,7 +13,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
     public class Create_Should
     {
         [TestMethod]
-        public void CreateCountryWhen_ValidParams()
+        public async Task CreateCountryWhen_ValidParams()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -28,7 +29,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new CountryService(actContext);
-                var actual = sut.Create(countryDTO);
+                var actual = await sut.CreateAsync(countryDTO);
 
                 Assert.AreEqual(countryDTO.Id, actual.Id);
                 Assert.AreEqual(countryDTO.Name, actual.Name);
@@ -37,7 +38,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
         }
 
         [TestMethod]
-        public void ThrowWhen_CountryIsNull()
+        public async Task ThrowWhen_CountryIsNull()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -46,8 +47,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new CountryService(actContext);
-
-                Assert.ThrowsException<ArgumentNullException>(() => sut.Create(null));
+                await Assert.ThrowsExceptionAsync<ArgumentNullException>(async () => await sut.CreateAsync(null));
             }
         }
     }
