@@ -44,6 +44,7 @@ namespace BeerOverflow.Web
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IStyleService, StyleService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddDefaultIdentity<User>(options =>
             {
