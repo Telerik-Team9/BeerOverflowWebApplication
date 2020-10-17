@@ -29,7 +29,9 @@ namespace BeerOverflow.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                    .AddRazorRuntimeCompilation();
+
             services.AddDbContext<BeerOverflowDbContext>
             (
                  options => options
@@ -43,11 +45,18 @@ namespace BeerOverflow.Web
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IStyleService, StyleService>();
 
-           // services.AddDefaultIdentity<User>
-           //     (
-           //         options => options.Password.RequireDigit = false
-           //
-           //     );
+            services.AddDefaultIdentity<User>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireUppercase = false;
+            })
+            .AddRoles<Role>()
+            .AddEntityFrameworkStores<BeerOverflowDbContext>();
+
+            services.AddHttpContextAccessor();
+            services.AddSession();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,15 +67,21 @@ namespace BeerOverflow.Web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseSession();
+
             app.UseRouting();
-           //app.UseAuthentication();
-           //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }

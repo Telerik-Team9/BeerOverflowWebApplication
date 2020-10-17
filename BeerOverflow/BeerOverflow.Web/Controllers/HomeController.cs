@@ -10,6 +10,7 @@ namespace BeerOverflow.Web.Controllers
     {
         public IActionResult Index()
         {
+            ViewData["Title"] = "Home Page";
             return View();
         }
     }
