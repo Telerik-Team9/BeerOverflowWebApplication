@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BeerOverflow.Database;
 using BeerOverflow.Models;
 using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOs;
 
 namespace BeerOverflow.Web.APIControllers
 {
@@ -24,7 +25,7 @@ namespace BeerOverflow.Web.APIControllers
 
         // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetUsers()
         {
             var users = await this.service.RetrieveAllAsync();
             if (!users.Any())
@@ -35,83 +36,87 @@ namespace BeerOverflow.Web.APIControllers
             return Ok(users);
         }
 
-      // // GET: api/User/5
-      // [HttpGet("{id}")]
-      // public async Task<ActionResult<User>> GetUser(Guid id)
-      //{
-      //    var user = await service.Users.FindAsync(id);
-      //
-      //    if (user == null)
-      //    {
-      //        return NotFound();
-      //    }
-      //
-      //    return user;
-      //}
-      //
-      // // PUT: api/User/5
-      // // To protect from overposting attacks, enable the specific properties you want to bind to, for
-      // // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-      // [HttpPut("{id}")]
-      // public async Task<IActionResult> PutUser(Guid id, [FromBody] User user)
-      //{
-      //    if (id != user.Id)
-      //    {
-      //        return BadRequest();
-      //    }
-      //
-      //    service.Entry(user).State = EntityState.Modified;
-      //
-      //    try
-      //    {
-      //        await service.SaveChangesAsync();
-      //    }
-      //    catch (DbUpdateConcurrencyException)
-      //    {
-      //        if (!UserExists(id))
-      //        {
-      //            return NotFound();
-      //        }
-      //        else
-      //        {
-      //            throw;
-      //        }
-      //    }
-      //
-      //    return NoContent();
-      //}
-      //
-      // // POST: api/User
-      // // To protect from overposting attacks, enable the specific properties you want to bind to, for
-      // // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-      // [HttpPost]
-      // public async Task<ActionResult<User>> PostUser(User user)
-      //{
-      //    service.Users.Add(user);
-      //    await service.SaveChangesAsync();
-      //
-      //    return CreatedAtAction("GetUser", new { id = user.Id }, user);
-      //}
-      //
-      // // DELETE: api/User/5
-      // [HttpDelete("{id}")]
-      // public async Task<ActionResult<User>> DeleteUser(Guid id)
-      //{
-      //    var user = await service.Users.FindAsync(id);
-      //    if (user == null)
-      //    {
-      //        return NotFound();
-      //    }
-      //
-      //    service.Users.Remove(user);
-      //    await service.SaveChangesAsync();
-      //
-      //    return user;
-      //}
-      //
-      // private bool UserExists(Guid id)
-       // {
-       //     return service.Users.Any(e => e.Id == id);
-       // }
+        // GET: api/User/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserDTO>> GetUser(Guid id)
+        {
+            if(id == Guid.Empty)
+            {
+                return BadRequest();
+            }
+            var user = await this.service.RetrieveByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        // // PUT: api/User/5
+        // // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> PutUser(Guid id, [FromBody] User user)
+        //{
+        //    if (id != user.Id)
+        //    {
+        //        return BadRequest();
+        //    }
+        //
+        //    service.Entry(user).State = EntityState.Modified;
+        //
+        //    try
+        //    {
+        //        await service.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!UserExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //
+        //    return NoContent();
+        //}
+        //
+        // // POST: api/User
+        // // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // [HttpPost]
+        // public async Task<ActionResult<User>> PostUser(User user)
+        //{
+        //    service.Users.Add(user);
+        //    await service.SaveChangesAsync();
+        //
+        //    return CreatedAtAction("GetUser", new { id = user.Id }, user);
+        //}
+        //
+        // // DELETE: api/User/5
+        // [HttpDelete("{id}")]
+        // public async Task<ActionResult<User>> DeleteUser(Guid id)
+        //{
+        //    var user = await service.Users.FindAsync(id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //
+        //    service.Users.Remove(user);
+        //    await service.SaveChangesAsync();
+        //
+        //    return user;
+        //}
+        //
+        // private bool UserExists(Guid id)
+        // {
+        //     return service.Users.Any(e => e.Id == id);
+        // }
     }
 }

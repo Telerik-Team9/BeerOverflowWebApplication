@@ -69,9 +69,21 @@ namespace BeerOverflow.Services.Services
             return result;
         }
         //Ali
-        public Task<UserDTO> RetrieveByIdAsync(Guid id)
+        public async Task<UserDTO> RetrieveByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var user = await this.context.Users
+                            .Include(u => u.Wishlists)
+                            .Include(u => u.DrankList)
+                            .Include(u => u.Ratings)
+                            .Include(u => u.Reviews)
+                            .FirstOrDefaultAsync(u => u.Id == id && !u.IsDeleted);
+
+            if(user == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return user.GetDTO();
         }
         //Maggie
         public Task<UserDTO> UpdateAsync(Guid Id, UserDTO DTO)
