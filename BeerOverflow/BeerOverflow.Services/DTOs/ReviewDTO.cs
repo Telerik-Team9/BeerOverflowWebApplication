@@ -12,6 +12,7 @@ namespace BeerOverflow.Services.DTOs
         public DateTime CreatedOn { get; set; } // Is this necessary?
         public Guid BeerId { get; set; }
         public string BeerName { get; set; }
-        //  public UserDTO UserDTO
+        public Guid UserId { get; set; }
+        public string UserName { get; set; }
     }
 }

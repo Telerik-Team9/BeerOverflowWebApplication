@@ -14,7 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace BeerOverflow.Web
+namespace BeerOverflow.Web2
 {
     public class Startup
     {

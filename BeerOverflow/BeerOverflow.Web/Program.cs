@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace BeerOverflow.Web
+namespace BeerOverflow.Web2
 {
     public class Program
     {

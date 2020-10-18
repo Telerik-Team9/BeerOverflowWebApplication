@@ -3,9 +3,9 @@ using BeerOverflow.Services.DTOs;
 
 namespace BeerOverflow.Services.DTOMappers
 {
-    internal static class RatingDTOMapper
+    public static class RatingDTOMapper
     {
-        internal static RatingDTO GetDTO(this Rating item)
+        public static RatingDTO GetDTO(this Rating item)
             => item == null ? null : new RatingDTO
             {
                 Id = item.Id,
@@ -16,7 +16,7 @@ namespace BeerOverflow.Services.DTOMappers
                 RatingGiven = item.RatingGiven
             };
 
-        internal static Rating GetModel(this RatingDTO item)
+        public static Rating GetModel(this RatingDTO item)
             => item == null ? null : new Rating
             {
                 Id = item.Id,
