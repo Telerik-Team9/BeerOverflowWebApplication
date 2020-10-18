@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model BeerOverflow.Web.Models.HomeIndexViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+THIS IS INDEX!
+
+
+<div class="row">
+    @foreach (var beer in Model.TopRatedBeers)
+    {
+        <p class="card-text">@beer.Name</p>
+        <img src="@beer.ImageURL" width="100">
+    }
+</div>
