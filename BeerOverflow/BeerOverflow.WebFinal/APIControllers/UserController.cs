@@ -36,14 +36,10 @@ namespace BeerOverflow.Web.APIControllers
             return Ok(users);
         }
 
-        // GET: api/User/5
+        // GET: api/User/id
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDTO>> GetUser(Guid id)
         {
-            if(id == Guid.Empty)
-            {
-                return BadRequest();
-            }
             var user = await this.service.RetrieveByIdAsync(id);
 
             if (user == null)
@@ -98,21 +94,17 @@ namespace BeerOverflow.Web.APIControllers
         //    return CreatedAtAction("GetUser", new { id = user.Id }, user);
         //}
         //
-        // // DELETE: api/User/5
-        // [HttpDelete("{id}")]
-        // public async Task<ActionResult<User>> DeleteUser(Guid id)
-        //{
-        //    var user = await service.Users.FindAsync(id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //
-        //    service.Users.Remove(user);
-        //    await service.SaveChangesAsync();
-        //
-        //    return user;
-        //}
+        // DELETE: api/User/id
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteUser(Guid id)
+        {
+            var user = await service.DeleteAsync(id);
+            if (user)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
         //
         // private bool UserExists(Guid id)
         // {

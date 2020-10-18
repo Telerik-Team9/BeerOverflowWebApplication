@@ -36,9 +36,20 @@ namespace BeerOverflow.Services.Services
             throw new NotImplementedException();
         }
         //Ali
-        public Task<bool> DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var user = await this.context.Users
+                .FirstOrDefaultAsync(u => u.Id == id);
+            try
+            {
+                user.IsDeleted = true;
+                await this.context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         //Maggie
         public Task<IEnumerable<BeerDTO>> GetDrankListBeers(Guid userId, Guid drankListId)
@@ -68,7 +79,7 @@ namespace BeerOverflow.Services.Services
             var result = users.Select(u => u.GetDTO());
             return result;
         }
-        //Ali
+        //Redy
         public async Task<UserDTO> RetrieveByIdAsync(Guid id)
         {
             var user = await this.context.Users
@@ -78,7 +89,7 @@ namespace BeerOverflow.Services.Services
                             .Include(u => u.Reviews)
                             .FirstOrDefaultAsync(u => u.Id == id && !u.IsDeleted);
 
-            if(user == null)
+            if (user == null)
             {
                 throw new ArgumentNullException();
             }
