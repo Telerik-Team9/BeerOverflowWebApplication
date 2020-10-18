@@ -59,9 +59,12 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  background-image: url("../images/2536284.png");
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-image: url("../images/darkmoodybackground.jpg");
+    repeat fixed;
+    background-size: cover;
+    overflow: scroll;
 }
 .footer {
   position: absolute;

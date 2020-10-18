@@ -12,15 +12,10 @@ namespace BeerOverflow.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;   //TODO: REMOVE?
-
         private readonly IBeerService beerService;
 
-
-        public HomeController(ILogger<HomeController> logger, IBeerService beerService)
+        public HomeController(IBeerService beerService)
         {
-            _logger = logger;
-
             this.beerService = beerService ?? throw new ArgumentNullException(nameof(beerService));
         }
 
