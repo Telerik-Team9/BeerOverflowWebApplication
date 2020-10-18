@@ -9,6 +9,9 @@ using BeerOverflow.Database;
 using BeerOverflow.Models;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOs;
+using System.Text.Json;
+using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Server.IIS.Core;
 
 namespace BeerOverflow.Web.APIControllers
 {
@@ -37,8 +40,8 @@ namespace BeerOverflow.Web.APIControllers
         }
 
         // GET: api/User/id
-        [HttpGet("{id}")]
-        public async Task<ActionResult<UserDTO>> GetUser(Guid id)
+        [HttpGet("{id:Guid}")]
+        public async Task<ActionResult> GetUser(Guid id)
         {
             var user = await this.service.RetrieveByIdAsync(id);
 
@@ -48,6 +51,53 @@ namespace BeerOverflow.Web.APIControllers
             }
 
             return Ok(user);
+        }
+
+        [HttpPut("{userId:Guid}")]
+        public async Task<IActionResult> PutUser(JsonElement beerIdAsJSONObj, Guid userId)
+        {
+            var beerId = Guid.Parse(beerIdAsJSONObj.GetProperty("beerid").GetString());
+            var result = await this.service
+                        .AddBeerToDrankList(beerId, userId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
+        [HttpPut("userId:alpha")] // TODO: Ne vliza v tozi metod, a samo v gorniq/ FIX parameter TYPES
+        public async Task<IActionResult> PutUser(JsonElement wishListInfo, string userId) // Хвърлям се през джама, честно
+        {
+            var id = Guid.Parse(userId);
+            var wishListName = wishListInfo.GetProperty("wishlistname").GetString();
+            var beerId = Guid.Parse(wishListInfo.GetProperty("beerid").GetString());
+            var result = await this.service.AddBeerToWishList(beerId, id, wishListName);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
+
+
+        [HttpGet("{userId}")]
+        public async Task<ActionResult> GetUser(string userId, JsonElement wishListInfo)
+        {
+            var id = Guid.Parse(userId);
+            var wishListName = wishListInfo.GetProperty("wishlistname").GetString();
+            var result = await this.service.GetWishListBeers(id, wishListName);
+
+            if (!result.Any())
+            {
+                return NoContent();
+            }
+
+            return Ok(result);
         }
 
         // // PUT: api/User/5

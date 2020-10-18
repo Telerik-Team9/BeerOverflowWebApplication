@@ -1,4 +1,5 @@
 ﻿using BeerOverflow.Database;
+using BeerOverflow.Models;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.DTOs;
@@ -21,21 +22,73 @@ namespace BeerOverflow.Services.Services
         }
 
         //Ali
-        public Task<BeerDTO> AddBeerToDrankList(Guid beerId, Guid userId, Guid drankListId)
+        public async Task<BeerDTO> AddBeerToDrankList(Guid beerId, Guid userId)
         {
-            throw new NotImplementedException();
+            var user = await this.context.Users
+                        .FirstOrDefaultAsync(u => u.Id == userId && !u.IsDeleted);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var beer = await this.context.Beers
+                        .FirstOrDefaultAsync(b => b.Id == beerId && !b.IsDeleted);
+
+            if (beer == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var dl = new DrankList
+            {
+                Id = Guid.NewGuid(),
+                BeerId = beerId,
+                UserId = userId,
+            };
+
+            await this.context.DrankList.AddAsync(dl);
+            await this.context.SaveChangesAsync();
+
+            return beer.GetDTO();
         }
-        //Maggie
-        public Task<WishListDTO> AddBeerToWishList(Guid beerId, Guid userId, string wishListName)
+        //Maggie - 
+        public async Task<WishListDTO> AddBeerToWishList(Guid beerId, Guid userId, string wishListName)
         {
-            throw new NotImplementedException();
+            var user = await this.context.Users
+                        .FirstOrDefaultAsync(u => u.Id == userId && !u.IsDeleted);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var beer = await this.context.Beers
+                        .FirstOrDefaultAsync(b => b.Id == beerId && !b.IsDeleted);
+
+            if (beer == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var wl = new WishList
+            {
+                Id = Guid.NewGuid(),
+                Name = wishListName,
+                BeerId = beerId,
+                UserId = userId
+            };
+
+            await this.context.WishList.AddAsync(wl);
+            await this.context.SaveChangesAsync();
+            return wl.GetDTO();
         }
-        //Maggie
+        //Maggie 
         public Task<UserDTO> CreateAsync(UserDTO DTO)
         {
             throw new NotImplementedException();
         }
-        //Ali
+        //Redy
         public async Task<bool> DeleteAsync(Guid id)
         {
             var user = await this.context.Users
@@ -52,23 +105,40 @@ namespace BeerOverflow.Services.Services
             }
         }
         //Maggie
-        public Task<IEnumerable<BeerDTO>> GetDrankListBeers(Guid userId, Guid drankListId)
+        public Task<IEnumerable<BeerDTO>> GetDrankListBeers(Guid userId)
         {
             throw new NotImplementedException();
         }
-        //Ali
-        public Task<IEnumerable<BeerDTO>> GetWishListBeers(Guid userId, string wishListName)
+        //Ali - Redy
+        public async Task<IEnumerable<BeerDTO>> GetWishListBeers(Guid userId, string wishListName)
         {
-            throw new NotImplementedException();
+            var user = await this.context.Users
+               .FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var wishList = user.Wishlist
+                .Where(x => x.Name == wishListName);
+
+            if (wishList == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return wishList.Select(w => w.Beer.GetDTO());
         }
         //Redy
         public async Task<IEnumerable<UserDTO>> RetrieveAllAsync()
         {
             var users = await this.context.Users
-                            .Include(u => u.Wishlists)
                             .Include(u => u.DrankList)
+                            .Include(u => u.Wishlist)
                             .Include(u => u.Ratings)
                             .Include(u => u.Reviews)
+                            .Where(u => !u.IsDeleted)
                             .ToListAsync();
 
             if (!users.Any())
@@ -83,7 +153,7 @@ namespace BeerOverflow.Services.Services
         public async Task<UserDTO> RetrieveByIdAsync(Guid id)
         {
             var user = await this.context.Users
-                            .Include(u => u.Wishlists)
+                            .Include(u => u.Wishlist)
                             .Include(u => u.DrankList)
                             .Include(u => u.Ratings)
                             .Include(u => u.Reviews)

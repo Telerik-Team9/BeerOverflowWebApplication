@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using BeerOverflow.Models;
-using BeerOverflow.Database.DataConfigurations;
 using System.Reflection;
 using BeerOverflow.Database.Seed;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,9 +10,7 @@ namespace BeerOverflow.Database
     public class BeerOverflowDbContext : IdentityDbContext<User, Role, Guid>
     {
         public BeerOverflowDbContext(DbContextOptions options)
-             : base(options)
-        {
-        }
+             : base(options) { }
 
         public DbSet<Beer> Beers { get; set; }
         public DbSet<Brewery> Breweries { get; set; }
@@ -21,7 +18,8 @@ namespace BeerOverflow.Database
         public DbSet<Style> Styles { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Rating> Ratings { get; set; }
-        //TODO: Add User/Role DbSet
+        public DbSet<WishList> WishList { get; set; }
+        public DbSet<DrankList> DrankList { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,7 +27,7 @@ namespace BeerOverflow.Database
             //Reflection that replaces this
             //modelBuilder.ApplyConfiguration(new BeerConfig());
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); 
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             modelBuilder.Seed();
         }
     }

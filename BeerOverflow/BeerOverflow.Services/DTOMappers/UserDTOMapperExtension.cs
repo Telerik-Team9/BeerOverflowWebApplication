@@ -24,7 +24,7 @@ namespace BeerOverflow.Services.DTOMappers
                 Reviews = item.Reviews
                               .Select(r => r.GetDTO())
                               .ToList(),
-                Wishlists = item.Wishlists
+                Wishlist = item.Wishlist
                               .Select(w => w.GetDTO())
                               .ToList(),
                 DrankList = item.DrankList

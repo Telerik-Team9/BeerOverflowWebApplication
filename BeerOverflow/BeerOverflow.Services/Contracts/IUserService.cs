@@ -9,8 +9,8 @@ namespace BeerOverflow.Services.Contracts
                    : ICRUDSupportive<UserDTO>
     {
         Task<WishListDTO> AddBeerToWishList(Guid beerId, Guid userId, string wishListName);
-        Task<BeerDTO> AddBeerToDrankList(Guid beerId, Guid userId, Guid drankListId);
+        Task<BeerDTO> AddBeerToDrankList(Guid beerId, Guid userId);
         Task<IEnumerable<BeerDTO>> GetWishListBeers(Guid userId, string wishListName);
-        Task<IEnumerable<BeerDTO>> GetDrankListBeers(Guid userId, Guid drankListId);
+        Task<IEnumerable<BeerDTO>> GetDrankListBeers(Guid userId);
     }
 }

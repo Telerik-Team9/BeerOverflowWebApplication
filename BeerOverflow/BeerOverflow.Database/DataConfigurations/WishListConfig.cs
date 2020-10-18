@@ -14,11 +14,11 @@ namespace BeerOverflow.Database.DataConfigurations
                 .IsRequired(true);
 
             builder.HasOne(w => w.Beer)
-                .WithMany(w => w.Wishlists)
+                .WithMany(w => w.Wishlist)
                 .HasForeignKey(w => w.BeerId);
 
             builder.HasOne(w => w.User)
-                .WithMany(w => w.Wishlists)
+                .WithMany(w => w.Wishlist)
                 .HasForeignKey(w => w.UserId);
         }
     }

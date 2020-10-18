@@ -34,7 +34,7 @@ namespace BeerOverflow.Services.DTOs
         public ICollection<RatingDTO> Ratings { get; set; } = new List<RatingDTO>();
         public ICollection<ReviewDTO> Reviews { get; set; } = new List<ReviewDTO>();
 
-        public ICollection<WishListDTO> Wishlists { get; set; } = new List<WishListDTO>();
+        public ICollection<WishListDTO> Wishlist { get; set; } = new List<WishListDTO>();
         public ICollection<DrankListDTO> DrankList { get; set; } = new List<DrankListDTO>();
     }
 }
