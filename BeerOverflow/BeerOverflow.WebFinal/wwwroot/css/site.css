@@ -61,10 +61,10 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-image: url("../images/darkmoodybackground.jpg");
-    repeat fixed;
     background-size: cover;
-    overflow: scroll;
+    background: url("../images/darkmoodybackground.jpg") no-repeat center center fixed;
+    height: 100%;
+    overflow: hidden;
 }
 .footer {
   position: absolute;

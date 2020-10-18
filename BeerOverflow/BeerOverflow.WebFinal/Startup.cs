@@ -33,8 +33,8 @@ namespace BeerOverflow.Web
             services.AddDbContext<BeerOverflowDbContext>
             (
                  options => options
-                        .UseSqlServer(Configuration
-                        .GetConnectionString("DefaultConnection"))
+                           .UseSqlServer(Configuration
+                           .GetConnectionString("DefaultConnection"))
             );
 
             services.AddScoped<IBeerService, BeerService>();
@@ -42,6 +42,7 @@ namespace BeerOverflow.Web
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IStyleService, StyleService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddDefaultIdentity<User>(options =>
             {
@@ -49,8 +50,8 @@ namespace BeerOverflow.Web
                 options.Password.RequiredUniqueChars = 0;
                 options.Password.RequireUppercase = false;
             })
-            .AddRoles<Role>()
-            .AddEntityFrameworkStores<BeerOverflowDbContext>();
+                    .AddRoles<Role>()
+                    .AddEntityFrameworkStores<BeerOverflowDbContext>();
 
             services.AddHttpContextAccessor();
             services.AddSession();
