@@ -52,7 +52,7 @@ namespace BeerOverflow.Services.Services
             var brewery = await this.context.Breweries
                 .Include(br => br.Beers)
                 .Include(br => br.Country)
-                .FirstOrDefaultAsync(c => c.Id == Id);
+                .FirstOrDefaultAsync(br => br.Id == Id);
 
             if (brewery == null)
             {
