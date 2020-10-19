@@ -22,7 +22,6 @@ namespace BeerOverflow.Web2.APIControllers
             this.service = service;
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] BeerViewModel model)
         {

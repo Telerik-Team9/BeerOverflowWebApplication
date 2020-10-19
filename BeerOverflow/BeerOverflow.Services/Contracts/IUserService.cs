@@ -11,6 +11,6 @@ namespace BeerOverflow.Services.Contracts
         Task<WishListDTO> AddBeerToWishList(Guid beerId, Guid userId, string wishListName);
         Task<BeerDTO> AddBeerToDrankList(Guid beerId, Guid userId);
         Task<IEnumerable<BeerDTO>> GetWishListBeers(Guid userId, string wishListName);
-        Task<IEnumerable<BeerDTO>> GetDrankListBeers(Guid userId);
+        Task<IEnumerable<BeerDTO>> GetDrankListAsync(Guid userId);
     }
 }

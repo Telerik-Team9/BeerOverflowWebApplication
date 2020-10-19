@@ -1,17 +1,11 @@
-﻿using System;
+﻿using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOs;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using BeerOverflow.Database;
-using BeerOverflow.Models;
-using BeerOverflow.Services.Contracts;
-using BeerOverflow.Services.DTOs;
 using System.Text.Json;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.AspNetCore.Server.IIS.Core;
+using System.Threading.Tasks;
 
 namespace BeerOverflow.Web.APIControllers
 {
@@ -37,7 +31,7 @@ namespace BeerOverflow.Web.APIControllers
             }
 
             return Ok(users);
-        }
+        }   //DONE!
 
         // GET: api/User/id
         [HttpGet("{id:Guid}")]
@@ -51,9 +45,37 @@ namespace BeerOverflow.Web.APIControllers
             }
 
             return Ok(user);
-        }
+        }   //DONE!
 
-        [HttpPut("{userId:Guid}")]
+        [HttpGet("getwishlist/{userId}")]   // Get Wishlist beers
+        public async Task<ActionResult> GetUser(Guid userId, [FromQuery] string wishListName)
+        {
+            //var id = Guid.Parse(userId);
+            //var wishListName = wishListInfo.GetProperty("wishlistname").GetString();
+            var result = await this.service.GetWishListBeers(userId, wishListName);
+
+            if (!result.Any())
+            {
+                return NoContent();
+            }
+
+            return Ok(result);
+        }   //DONE!
+
+        [HttpGet("getdranklist/{userId}")]   // Get Dranklist beers
+        public async Task<ActionResult> GetUserDrankList(Guid userId)
+        {
+            var result = await this.service.GetDrankListAsync(userId);
+
+            if (!result.Any())
+            {
+                return NoContent();
+            }
+
+            return Ok(result);
+        }   //DONE!
+
+        [HttpPut("{userId:Guid}")]  // Add beer to DrankList    //DONE!
         public async Task<IActionResult> PutUser(JsonElement beerIdAsJSONObj, Guid userId)
         {
             var beerId = Guid.Parse(beerIdAsJSONObj.GetProperty("beerid").GetString());
@@ -68,33 +90,20 @@ namespace BeerOverflow.Web.APIControllers
             return Ok(result);
         }
 
-        [HttpPut("userId:alpha")] // TODO: Ne vliza v tozi metod, a samo v gorniq/ FIX parameter TYPES
+        [HttpPut("addtowishlist/{userId}")]     // Add beer to Wishlist    DONE!
         public async Task<IActionResult> PutUser(JsonElement wishListInfo, string userId) // Хвърлям се през джама, честно
         {
             var id = Guid.Parse(userId);
             var wishListName = wishListInfo.GetProperty("wishlistname").GetString();
-            var beerId = Guid.Parse(wishListInfo.GetProperty("beerid").GetString());
+
+            var asd = wishListInfo.GetProperty("beerid").GetString();
+
+            var beerId = Guid.Parse(asd);
             var result = await this.service.AddBeerToWishList(beerId, id, wishListName);
 
             if (result == null)
             {
                 return BadRequest();
-            }
-
-            return Ok(result);
-        }
-
-
-        [HttpGet("{userId}")]
-        public async Task<ActionResult> GetUser(string userId, JsonElement wishListInfo)
-        {
-            var id = Guid.Parse(userId);
-            var wishListName = wishListInfo.GetProperty("wishlistname").GetString();
-            var result = await this.service.GetWishListBeers(id, wishListName);
-
-            if (!result.Any())
-            {
-                return NoContent();
             }
 
             return Ok(result);
@@ -145,6 +154,24 @@ namespace BeerOverflow.Web.APIControllers
         //}
         //
         // DELETE: api/User/id
+
+        [HttpPut("banuser/{userId:Guid}")]  // Ban user
+        public async Task<IActionResult> BanUser(Guid userId)
+        {
+            var result = await this.service
+                        .UpdateAsync(userId, new UserDTO
+                        {
+                            IsBanned = true
+                        });
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(Guid id)
         {
@@ -154,7 +181,7 @@ namespace BeerOverflow.Web.APIControllers
                 return Ok();
             }
             return BadRequest();
-        }
+        }   //DONE
         //
         // private bool UserExists(Guid id)
         // {
