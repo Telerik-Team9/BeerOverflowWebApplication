@@ -4,72 +4,31 @@
 
 @model BeerOverflow.Web.Models.HomeIndexViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container" id="homeView">
+
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
 
 
-    THIS IS INDEX!
+        THIS IS INDEX!
 
 
-    <div class="row">
-        @foreach (var beer in Model.TopRatedBeers)
-        {
-            <p class="card-text">@beer.Name</p>
-            <img src="@beer.ImageURL" width="100">
-        }
+        <div class="row" align="center">
+            @foreach (var beer in Model.TopRatedBeers)
+            {
+                <div class="col">
+                    <div class="card" width="100px" heigth="400px">
+                        <img class="card-img" src="@beer.ImageURL" alt="Card image">
+                        <div class="card-img-overlay">
+                            <p class="card-text">@beer.Name</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
     </div>
-
-    <div class="row">
-        @foreach (var beer in Model.TopRatedBeers)
-        {
-            <p class="card-text">@beer.Name</p>
-            <img src="@beer.ImageURL" width="100">
-        }
-    </div>
-
-    <div class="row">
-        @foreach (var beer in Model.TopRatedBeers)
-        {
-            <p class="card-text">@beer.Name</p>
-            <img src="@beer.ImageURL" width="100">
-        }
-    </div>
-
-    <div class="row">
-        @foreach (var beer in Model.TopRatedBeers)
-        {
-            <p class="card-text">@beer.Name</p>
-            <img src="@beer.ImageURL" width="100">
-        }
-    </div>
-
-    <div class="row">
-        @foreach (var beer in Model.TopRatedBeers)
-        {
-            <p class="card-text">@beer.Name</p>
-            <img src="@beer.ImageURL" width="100">
-        }
-    </div>
-
-    <div class="row">
-        @foreach (var beer in Model.TopRatedBeers)
-        {
-            <p class="card-text">@beer.Name</p>
-            <img src="@beer.ImageURL" width="100">
-        }
-    </div>
-
-    <div class="row">
-        @foreach (var beer in Model.TopRatedBeers)
-        {
-            <p class="card-text">@beer.Name</p>
-            <img src="@beer.ImageURL" width="100">
-        }
-    </div>
-
-
 </div>
-
-asdasdasd

@@ -1,6 +1,7 @@
 ﻿using BeerOverflow.Services.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BeerOverflow.Web.Models
 {
@@ -11,7 +12,7 @@ namespace BeerOverflow.Web.Models
             this.Id = item.Id;
             this.Name = item.Name;
             this.ABV = item.ABV;
-            this.Price = item.Price;
+            this.Price = Math.Round(item.Price, 2);
             this.Description = item.Description;
             this.ImageURL = item.ImageURL;
             this.Mililiters = item.Mililiters;
@@ -21,7 +22,7 @@ namespace BeerOverflow.Web.Models
             this.StyleId = item.StyleId;
             this.BreweryId = item.BreweryId;
             this.AvgRating = item.AvgRating;
-            // this.Ratings = item.Ratings.Select(r =>r.ge) TODO:
+            this.Reviews = item.Reviews.Select(r => new ReviewViewModel(r)).ToList();
         }
 
         public Guid Id { get; set; }
