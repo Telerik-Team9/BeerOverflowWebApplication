@@ -1,6 +1,9 @@
 ﻿using BeerOverflow.Database;
+using BeerOverflow.Models;
 using BeerOverflow.Services.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +13,19 @@ using System.Threading.Tasks;
 namespace BeerOverflow.ServicesTests.BreweryServiceTests
 {
     [TestClass]
-    public class RetrieveAllAsync_Sholud
+    public class RetrieveById_Should
     {
         [TestMethod]
-        public async Task ReturnAllBreweriesWhen_ValidParams()
+        public async Task ReturnCorrectBreweryDTOWhen_ValidParams()
         {
+            //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
-            var breweries = Utils.GetBreweries().ToList();
+            var brewery = Utils.GetBreweries().First();
 
             using (var arrangeContext = new BeerOverflowDbContext(options))
             {
-              await arrangeContext.Breweries.AddRangeAsync(breweries);
-              await arrangeContext.SaveChangesAsync();
+                arrangeContext.Breweries.Add(brewery);
+                arrangeContext.SaveChanges();
             }
 
             //Act & Assert
@@ -29,24 +33,14 @@ namespace BeerOverflow.ServicesTests.BreweryServiceTests
             {
                 var sut = new BreweryService(actContext);
 
-                var result = await sut.RetrieveAllAsync();
-                var actual = result.ToList();
+                var actual = await sut.RetrieveByIdAsync(brewery.Id);
 
-                Assert.AreEqual(breweries[0].Id, actual[0].Id);
-                Assert.AreEqual(breweries[0].Name, actual[0].Name);
-
-                Assert.AreEqual(breweries[1].Id, actual[1].Id);
-                Assert.AreEqual(breweries[1].Name, actual[1].Name);
-
-                Assert.AreEqual(breweries[2].Id, actual[2].Id);
-                Assert.AreEqual(breweries[2].Name, actual[2].Name);
-
-                Assert.AreEqual(3, actual.Count);
+                Assert.AreEqual(brewery.Id, actual.Id);
+                Assert.AreEqual(brewery.Name, actual.Name);
             }
         }
-
         [TestMethod]
-        public async Task ReturnNullWhen_NoBrewweries()
+        public async Task ReturnNullWhen_NoSuchCountry()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
@@ -55,9 +49,9 @@ namespace BeerOverflow.ServicesTests.BreweryServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new BreweryService(actContext);
-                var actual = await sut.RetrieveAllAsync();
+                var actual = await sut.RetrieveByIdAsync(Guid.NewGuid());
 
-                Assert.IsFalse(actual.Any());
+                Assert.IsNull(actual);
             }
         }
     }
