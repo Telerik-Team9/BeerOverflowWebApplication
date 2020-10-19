@@ -50,9 +50,7 @@ namespace BeerOverflow.Web.APIControllers
         [HttpGet("getwishlist/{userId}")]   // Get Wishlist beers
         public async Task<ActionResult> GetUser(Guid userId, [FromQuery] string wishListName)
         {
-            //var id = Guid.Parse(userId);
-            //var wishListName = wishListInfo.GetProperty("wishlistname").GetString();
-            var result = await this.service.GetWishListBeers(userId, wishListName);
+            var result = await this.service.GetWishListAsync(userId, wishListName);
 
             if (!result.Any())
             {

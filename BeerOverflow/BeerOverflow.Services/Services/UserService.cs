@@ -129,10 +129,10 @@ namespace BeerOverflow.Services.Services
             return dranklist.Select(d => d.GetDTO());
         }
         //Ali - Redy
-        public async Task<IEnumerable<BeerDTO>> GetWishListBeers(Guid userId, string wishListName)
+        public async Task<IEnumerable<BeerDTO>> GetWishListAsync(Guid userId, string wishListName)
         {
             var user = await this.context.Users
-               .Include(u => u.Wishlist)
+               .Include(u => u.Wishlist).ThenInclude(wl => wl.Beer)
                .FirstOrDefaultAsync(u => u.Id == userId && !u.IsDeleted);
 
             if (user == null)
@@ -148,13 +148,7 @@ namespace BeerOverflow.Services.Services
                 throw new ArgumentNullException();
             }
 
-            //var dsa = wishList.Select(async w => (w.Beer = await this.context.Beers.FirstOrDefaultAsync(b => b.Id == w.BeerId)).GetDTO()); //TODO - the ugliest method alive
-            // return dsa?
-
-
-            var asd = wishList.Select(w => w.Beer = this.context.Beers.First(b => b.Id == w.BeerId)); // not having await?
-
-            return asd.Select(w => w.GetDTO());
+            return wishList.Select(w => w.Beer.GetDTO());
         }
         //Redy
         public async Task<IEnumerable<UserDTO>> RetrieveAllAsync()

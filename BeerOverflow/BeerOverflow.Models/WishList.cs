@@ -11,6 +11,6 @@ namespace BeerOverflow.Models
         public User User { get; set; }
 
         public Guid BeerId { get; set; }
-        public Beer Beer { get; set; }
+        public Beer Beer { get; set; } 
     }
 }
