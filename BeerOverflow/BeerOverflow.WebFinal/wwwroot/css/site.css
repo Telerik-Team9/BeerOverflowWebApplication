@@ -2,88 +2,97 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
+
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-size: cover;
     background: url("../images/darkmoodybackground.jpg") no-repeat center center fixed;
-    height: 100%;
+    background-color: antiquewhite;
+    background-repeat: no-repeat;
+    background-size: cover;
     overflow: scroll;
+
+        /*    margin-bottom: 60px;
+    background: url("../images/full-beer-jar.jpg") no-repeat center center fixed;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
+    overflow: scroll;*/
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
 }
 
 
 /* Personal styles
 -------------------------------------------------- */
-.navbar {
-    background-color: rgba(255, 255, 255, 0.5) !important;
-}
-
 #homeLogo {
-    height: 200px;
+    height: 150px;
     width: auto;
+    border-style:dotted;
 }
 
 .center {
@@ -93,10 +102,6 @@ body {
     width: 50%;
 }
 
-#homeView {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
 .beer-carousel {
     height: 10%;
 }
@@ -104,8 +109,10 @@ body {
 .card {
     width: 200px;
     height: 318px;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.6);
     border: none;
+    margin: 50px;
+    border-radius: 25px;
 }
 
 .card-img {
@@ -119,6 +126,47 @@ body {
     box-shadow: 0 1px 0 0 #FF8C00 !important;
 }
 
-#beer-index {
+/*.container {
     background-color: rgba(255, 255, 255, 0.5);
+}*/
+
+
+
+/* Experimental styles
+-------------------------------------------------- */
+/* Container holding the image and the text */
+/*.navbar {
+    background-color: rgba(42, 5, 0, 0.8) !important;
+    border-color: rgba(255, 154, 39, 0.8);
+    border-style: solid none solid none !important;
+    font-family: 'Courier New';
+    font-weight: 900;
+}
+
+    .navbar li a {
+        color: white !important;
+    }
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}*/
+
+/* Centered text */
+/*.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#testm {
+    background-image: url(../images/full-beer-jar.jpg) !important;
+}*/
+
+.card :hover {
+    background-color: rgba(255, 154, 39, 0.4);
+    cursor: crosshair;
+    border-radius: 25px;
 }
