@@ -24,8 +24,12 @@ namespace BeerOverflow.Web.Controllers
             var result = await this.beerService.RetrieveAllAsync();
 
             var beers = result.Select(b => new BeerViewModel(b));
+            var beerSearchModel = new BeerSearchViewModel()
+            {
+                Beers = beers.ToList()
+            };
 
-            return View(beers);
+            return View(beerSearchModel);
         }
 
         // GET: BeersController/Details/5
@@ -97,7 +101,7 @@ namespace BeerOverflow.Web.Controllers
             }
         }
 
-        public async Task<ActionResult> Search()
+        public async Task<ActionResult> Search(BeerSearchViewModel model)
         {
             Console.WriteLine("VLEZNA");
             return View();
