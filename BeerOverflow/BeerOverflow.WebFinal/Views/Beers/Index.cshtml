@@ -9,7 +9,7 @@
 <div class="container">
 
     <div>
-        <form class="form-inline d-flex justify-content-center md-form form-sm active-orange" asp-controller="Beers" asp-action="Search" method="post">
+        <form class="form-inline d-flex justify-content-center md-form form-sm active-orange" asp-controller="Beers" asp-action="Index" method="post">
             <div class="form-group">
                 <label asp-for="@Model.Name"></label>
                 <input asp-for="@Model.Name" class="form-control form-control-sm ml-3 w-75 active-orange" />
@@ -21,7 +21,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <input asp-for="@Model.SortBy" type="radio" name="sortby" value="name">
+                <input asp-for="@Model.SortBy" type="radio" name="sortby" value="name" checked>
                 <label for="name">Name</label><br>
                 <input asp-for="@Model.SortBy" type="radio" name="sortby" value="abv">
                 <label for="abv">Alcohol %</label><br>
@@ -48,96 +48,107 @@
     <p>
         <a asp-action="Create">Create New</a>
     </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].ImageURL)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].ABV)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].Mililiters)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].IsBeerOfTheMonth)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].AvgRating)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].StyleId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].StyleName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].BreweryId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => beers[0].BreweryName)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Beers)
-            {
+
+
+    @if (Model.Beers.Count == 0)
+    {
+        @Html.DisplayName("NO BEERS FOUND MATCHING YOUR CRITERIAS!");
+    }
+    else
+    {
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        <img src="@Html.DisplayFor(modelItem => item.ImageURL)" width="100px">
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ABV)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Mililiters)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsBeerOfTheMonth)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AvgRating)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StyleId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StyleName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BreweryId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BreweryName)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].ImageURL)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].ABV)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].Mililiters)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].IsBeerOfTheMonth)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].AvgRating)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].StyleId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].StyleName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].BreweryId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => beers[0].BreweryName)
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Beers)
+                {
+                    <tr>
+                        <td>
+                            <img src="@Html.DisplayFor(modelItem => item.ImageURL)" width="100px">
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ABV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mililiters)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsBeerOfTheMonth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AvgRating)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StyleId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StyleName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BreweryId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BreweryName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+
 
 </div>

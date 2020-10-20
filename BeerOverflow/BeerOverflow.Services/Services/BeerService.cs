@@ -67,10 +67,23 @@ namespace BeerOverflow.Services.Services
                   .Include(b => b.Reviews)
                   .Include(b => b.Ratings)
                   .Where(b => !b.IsDeleted)
-                  .FirstOrDefaultAsync(b => b.Name.Contains(name));
+                  .FirstOrDefaultAsync(b => b.Name == name);
 
             return result.GetDTO();
         }
+
+        public async Task<IEnumerable<BeerDTO>> RetrieveAllByNameAsync(string name)
+        {
+            var result = await this.context.Beers
+                  .Include(b => b.Brewery)
+                  .Include(b => b.Style)
+                  .Include(b => b.Reviews)
+                  .Include(b => b.Ratings)
+                  .Where(b => !b.IsDeleted && b.Name.Contains(name))
+                  .ToListAsync();
+
+            return result.Select(b => b.GetDTO());
+        }   //TODO no controller
 
         public async Task<BeerDTO> UpdateAsync(Guid id, BeerDTO DTO)
         {
@@ -226,5 +239,36 @@ namespace BeerOverflow.Services.Services
 
             throw new ArgumentException();
         }
+
+        public async Task<IEnumerable<BeerDTO>> SearchAsync(string name, string styleFilter, string sortBy)
+        {
+            IEnumerable<BeerDTO> beers;
+
+            if(name != null)
+            {
+                var nameBeers = await this.RetrieveAllByNameAsync(name);
+                beers = nameBeers;
+            }
+            else
+            {
+                var allBeers = await this.RetrieveAllAsync();
+                beers = allBeers;
+            }
+
+            if (styleFilter != null)
+            {
+                var styleFilterBeers = beers.Where(b => b.StyleName == styleFilter);
+                beers = styleFilterBeers;
+            }
+
+            return sortBy switch
+            {
+                "name" => beers.OrderBy(b => b.Name),
+                "abv" => beers.OrderByDescending(b => b.ABV),
+                "rating" => beers.OrderByDescending(b => b.AvgRating),
+                _ => throw new ArgumentException(),
+            };
+        }
+
     }
 }

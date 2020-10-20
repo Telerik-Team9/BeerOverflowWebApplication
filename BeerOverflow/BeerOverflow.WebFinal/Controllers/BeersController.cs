@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOs;
 using BeerOverflow.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,11 +22,23 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: BeersController
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(BeerSearchViewModel model)
         {
-            var result = await this.beerService.RetrieveAllAsync();
+            // Get all beers
+            var beers = new List<BeerViewModel>();
 
-            var beers = result.Select(b => new BeerViewModel(b));
+            if(model.Name == null && model.SortBy == null && model.StyleName == null)
+            {
+                var allBeers = await this.beerService.RetrieveAllAsync();
+                beers = allBeers.Select(b => new BeerViewModel(b)).ToList();
+            }
+            else
+            {
+                var filteredBeers = await this.beerService.SearchAsync(model.Name, model.StyleName, model.SortBy);
+                beers = filteredBeers.Select(b => new BeerViewModel(b)).ToList();
+            }
+
+            // Load data into Search Form
             var beerSearchModel = new BeerSearchViewModel()
             {
                 Beers = beers.ToList()
@@ -110,8 +123,9 @@ namespace BeerOverflow.Web.Controllers
 
         public async Task<ActionResult> Search(BeerSearchViewModel model)
         {
-            Console.WriteLine("VLEZNA");
-            return View();
+            var beers = await this.beerService.SearchAsync(model.Name, model.StyleName, model.SortBy);
+            
+            return View(beers);
         }
     }
 }

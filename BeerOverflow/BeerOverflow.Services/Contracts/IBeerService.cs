@@ -13,5 +13,7 @@ namespace BeerOverflow.Services.Contracts
         Task<IEnumerable<BeerDTO>> OrderByNameAsync(char order);
         Task<IEnumerable<BeerDTO>> OrderByRatingAsync(char order);
         Task<IEnumerable<BeerDTO>> FilterByCriteriaAsync(string criteria, string name);
+        Task<IEnumerable<BeerDTO>> SearchAsync(string name, string styleFilter, string sortBy);
+
     }
 }
