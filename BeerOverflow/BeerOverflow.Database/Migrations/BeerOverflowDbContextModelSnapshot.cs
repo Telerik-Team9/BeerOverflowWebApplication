@@ -85,7 +85,7 @@ namespace BeerOverflow.Database.Migrations
                             BreweryId = new Guid("89e0215e-2726-489b-8d63-b851b997f622"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Light beer with an extract content of 10.2 ° P.",
-                            ImageURL = "https://www.kamenitza.bg/-/media/kamenitza/products/images/kamtnitza-1881.ashx",
+                            ImageURL = "kamenitza.png",
                             IsBeerOfTheMonth = false,
                             IsDeleted = false,
                             IsUnlisted = false,
@@ -101,7 +101,7 @@ namespace BeerOverflow.Database.Migrations
                             BreweryId = new Guid("89e0215e-2726-489b-8d63-b851b997f622"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Light seasonal fruit beer with an extract content of 8.3 ° P.",
-                            ImageURL = "https://www.kamenitza.bg/-/media/kamenitza/products/images/kamenitza-fresh-grapefruit.ashx",
+                            ImageURL = "kamenitza-fresh-grapefruit.png",
                             IsBeerOfTheMonth = false,
                             IsDeleted = false,
                             IsUnlisted = false,
@@ -112,12 +112,44 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
+                            Id = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
+                            ABV = 6f,
+                            BreweryId = new Guid("0d56076c-82cb-469d-80db-afb64c7516f7"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A high-quality lager beer, the main ingredients of which are barley malt, water, hops and yeast. It is characterized by light golden color, moderate carbonation, fresh taste, with a slight aroma of malt and hops. Available on the market in glass bottles of 0.5 liters, as well as in PET bottles of 1 and 2 liters.",
+                            ImageURL = "zagorka.png",
+                            IsBeerOfTheMonth = false,
+                            IsDeleted = false,
+                            IsUnlisted = false,
+                            Mililiters = 1000,
+                            Name = "Zagorka",
+                            Price = 1.8999999761581421,
+                            StyleId = new Guid("f32de916-9ea8-4f93-96d2-732d1b01fe8e")
+                        },
+                        new
+                        {
+                            Id = new Guid("f0e83b17-1a70-4b1a-9d77-05822eb6ca44"),
+                            ABV = 6.7f,
+                            BreweryId = new Guid("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "This beer really is BASI KEFA! White IPA with added wheat and tons of aromatic hops. Intense aroma of citrus and tropical fruits, and the taste is memorable, you can feel grapefruit, tangerine, mango. medium sweet, medium bitter fruit finish. Extremely easy to drink despite the alcohol content - 6.7!",
+                            ImageURL = "basi-kefa.png",
+                            IsBeerOfTheMonth = true,
+                            IsDeleted = false,
+                            IsUnlisted = false,
+                            Mililiters = 330,
+                            Name = "Basi Kefa",
+                            Price = 4.9000000953674316,
+                            StyleId = new Guid("e662a6bf-b3e4-4c18-8e77-efd31e587b2c")
+                        },
+                        new
+                        {
                             Id = new Guid("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
                             ABV = 5.2f,
                             BreweryId = new Guid("411a38dd-0600-4eac-b991-305f1031257c"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "A Belgian pilsner of between 4.8 and 5.2 percent ABV which was first brewed by Brouwerij Artois (the Artois Brewery) in Leuven, Belgium, in 1926. Since 2008, a 4.8 percent ABV version has also been sold in Britain, Ireland, Canada and Australia. Stella Artois is now owned by Interbrew International B.V. which is a subsidiary of the world's largest brewer, Anheuser-Busch InBev SA/NV.",
-                            ImageURL = "https://shortysliquor.com.au/media/catalog/product/cache/2fcc3329aef4183c8e06230d7e06f8f3/1/1/11760.1_4.png",
+                            ImageURL = "stella-artois.png",
                             IsBeerOfTheMonth = false,
                             IsDeleted = false,
                             IsUnlisted = false,
@@ -128,12 +160,76 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
+                            Id = new Guid("629bff51-3e11-4996-ac98-365a8d8a7a66"),
+                            ABV = 4.3f,
+                            BreweryId = new Guid("411a38dd-0600-4eac-b991-305f1031257c"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Busch Beer is made with the finest ingredients, including a blend of premium hops, exceptional barley malt, fine grains and crisp water. This recipe delivers a refreshingly smooth taste & easy finish.",
+                            ImageURL = "busch.png",
+                            IsBeerOfTheMonth = false,
+                            IsDeleted = false,
+                            IsUnlisted = false,
+                            Mililiters = 550,
+                            Name = "Busch",
+                            Price = 4.0,
+                            StyleId = new Guid("77f9496e-0475-4165-ac5e-ee57039f108c")
+                        },
+                        new
+                        {
+                            Id = new Guid("d71a9d9d-706f-412d-adce-30c6af6a6af1"),
+                            ABV = 5f,
+                            BreweryId = new Guid("411a38dd-0600-4eac-b991-305f1031257c"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Budweiser is brewed with only the finest two-row and six-row barley malt, hand-selected from regional growers all across America.",
+                            ImageURL = "budweiser-light.png",
+                            IsBeerOfTheMonth = true,
+                            IsDeleted = false,
+                            IsUnlisted = false,
+                            Mililiters = 550,
+                            Name = "Budweiser Light",
+                            Price = 4.9000000953674316,
+                            StyleId = new Guid("77f9496e-0475-4165-ac5e-ee57039f108c")
+                        },
+                        new
+                        {
+                            Id = new Guid("3c40cffd-1cda-4b0b-bc8e-bd117407a98d"),
+                            ABV = 8.5f,
+                            BreweryId = new Guid("9e2c5791-92a4-4593-add9-6530391572f9"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Duvel is a natural beer with a subtle bitterness, a refined flavour and a distinctive hop character. The unique brewing process, which takes about 90 days, guarantees a pure character, delicate effervescence and a pleasant sweet taste of alcohol.",
+                            ImageURL = "duvel.png",
+                            IsBeerOfTheMonth = false,
+                            IsDeleted = false,
+                            IsUnlisted = false,
+                            Mililiters = 100,
+                            Name = "Duvel",
+                            Price = 3.0,
+                            StyleId = new Guid("ec61fe34-c639-433d-acac-98f092392099")
+                        },
+                        new
+                        {
+                            Id = new Guid("c9d64fcf-9e82-46f5-90d4-00e7871bc93d"),
+                            ABV = 4.5f,
+                            BreweryId = new Guid("9e2c5791-92a4-4593-add9-6530391572f9"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Ever since 2007 the brewers at Duvel have been busy innovating with a third hop variety to give Duvel a surprising twist and some extra bitterness. Each spring this results in the launch of a unique Tripel Hop, which complements the rest of the Duvel range.",
+                            ImageURL = "duvel-tripel-hop.png",
+                            IsBeerOfTheMonth = false,
+                            IsDeleted = false,
+                            IsUnlisted = false,
+                            Mililiters = 100,
+                            Name = "Duvel Tripel Hop",
+                            Price = 3.5,
+                            StyleId = new Guid("b06a5dbd-f993-4379-af3e-6339377503fc")
+                        },
+                        new
+                        {
                             Id = new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
                             ABV = 5f,
                             BreweryId = new Guid("2a281f97-d2d4-4cde-93d3-92f8aac15b9a"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "A pale lager beer with 5% alcohol by volume produced by the Dutch brewing company Heineken International. Heineken beer is sold in a green bottle with a red star.",
-                            ImageURL = "https://www.heineken.com/media-us/01pfxdqq/heineken-original-bottle.png?quality=85",
+                            ImageURL = "heineken.png",
                             IsBeerOfTheMonth = false,
                             IsDeleted = false,
                             IsUnlisted = false,
@@ -149,7 +245,7 @@ namespace BeerOverflow.Database.Migrations
                             BreweryId = new Guid("b35ef87f-d03a-4777-a900-3c5e2af3c4e9"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "4.2 to 5.6% in the United States. 5% in Canada, and most of Europe; 4.2 or 4.3% ABV in Ireland and some European countries, 4.1% in Germany, 4.8% in Namibia and South Africa, and 6% in Australia and Japan.",
-                            ImageURL = "https://carlsbergukraine.com/media/9616/guinness_ophoto_shot_02_1_go_sr.png",
+                            ImageURL = "guinness.png",
                             IsBeerOfTheMonth = false,
                             IsDeleted = false,
                             IsUnlisted = false,
@@ -165,7 +261,7 @@ namespace BeerOverflow.Database.Migrations
                             BreweryId = new Guid("f51b60cc-33fb-4ad2-afb5-6248c0a2b6ab"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "According to the Amstel website, Amstel beer is pure - filtered which creates a full-strength beer without the calories and carbohydrates.",
-                            ImageURL = "https://grocerytrader.co.uk/wp-content/uploads/2016/05/Amstel-650ml-btl5.jpg",
+                            ImageURL = "amstel.png",
                             IsBeerOfTheMonth = false,
                             IsDeleted = false,
                             IsUnlisted = false,
@@ -176,29 +272,13 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
-                            ABV = 6f,
-                            BreweryId = new Guid("0d56076c-82cb-469d-80db-afb64c7516f7"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A high-quality lager beer, the main ingredients of which are barley malt, water, hops and yeast. It is characterized by light golden color, moderate carbonation, fresh taste, with a slight aroma of malt and hops. Available on the market in glass bottles of 0.5 liters, as well as in PET bottles of 1 and 2 liters.",
-                            ImageURL = "https://www.zagorka.bg/img/product/specialno/img-1l.png",
-                            IsBeerOfTheMonth = false,
-                            IsDeleted = false,
-                            IsUnlisted = false,
-                            Mililiters = 1000,
-                            Name = "Zagorka",
-                            Price = 1.8999999761581421,
-                            StyleId = new Guid("f32de916-9ea8-4f93-96d2-732d1b01fe8e")
-                        },
-                        new
-                        {
                             Id = new Guid("14af2a6c-5376-459e-91de-b6078c5435ac"),
                             ABV = 4.5f,
                             BreweryId = new Guid("8582b4e3-3e97-47f6-a1c9-358252ddaf43"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Corona Extra is a pale lager produced by Mexican brewery Cervecería Modelo and owned by Belgian company AB InBev. It is commonly served with a wedge of lime or lemon in the neck of the bottle to add tartness and flavour.",
-                            ImageURL = "https://www.teamcone.net/wp-content/uploads/2017/06/CORONA_12oz_NR.png",
-                            IsBeerOfTheMonth = false,
+                            ImageURL = "corona.png",
+                            IsBeerOfTheMonth = true,
                             IsDeleted = false,
                             IsUnlisted = false,
                             Mililiters = 330,
@@ -213,7 +293,7 @@ namespace BeerOverflow.Database.Migrations
                             BreweryId = new Guid("2b2ee52d-89e3-4229-a704-bbfb3724cc11"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "London Pride is the flagship beer of Fuller's Brewery. It is sold both cask-conditioned and bottled. London Pride has been brewed at the Griffin Brewery since 1958.",
-                            ImageURL = "https://www.saq.com/media/catalog/product/1/0/10322388-1_1580595910.png?quality=80&fit=bounds&height=&width=",
+                            ImageURL = "londons-pride.png",
                             IsBeerOfTheMonth = false,
                             IsDeleted = false,
                             IsUnlisted = false,
@@ -229,7 +309,7 @@ namespace BeerOverflow.Database.Migrations
                             BreweryId = new Guid("2b2ee52d-89e3-4229-a704-bbfb3724cc11"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "The UK’s best-selling organic beer, Fuller’s Organic Honey Dew buzzes with a zesty edge and subtle sweetness. Approved by the Soil Association, it’s a thing of natural beauty – pure, golden sunshine in a glass.",
-                            ImageURL = "https://www.saq.com/media/catalog/product/1/1/11113490-1_1580613021.png?quality=80&fit=bounds&height=&width=",
+                            ImageURL = "honey-dew.png",
                             IsBeerOfTheMonth = false,
                             IsDeleted = false,
                             IsUnlisted = false,
@@ -237,22 +317,6 @@ namespace BeerOverflow.Database.Migrations
                             Name = "Honey Dew",
                             Price = 2.7000000476837158,
                             StyleId = new Guid("b06a5dbd-f993-4379-af3e-6339377503fc")
-                        },
-                        new
-                        {
-                            Id = new Guid("f0e83b17-1a70-4b1a-9d77-05822eb6ca44"),
-                            ABV = 6.7f,
-                            BreweryId = new Guid("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "This beer really is BASI KEFA! White IPA with added wheat and tons of aromatic hops. Intense aroma of citrus and tropical fruits, and the taste is memorable, you can feel grapefruit, tangerine, mango. medium sweet, medium bitter fruit finish. Extremely easy to drink despite the alcohol content - 6.7!",
-                            ImageURL = "https://www.saq.com/media/catalog/product/1/1/11113490-1_1580613021.png?quality=80&fit=bounds&height=&width=",
-                            IsBeerOfTheMonth = false,
-                            IsDeleted = false,
-                            IsUnlisted = false,
-                            Mililiters = 330,
-                            Name = "Basi Kefa",
-                            Price = 4.9000000953674316,
-                            StyleId = new Guid("e662a6bf-b3e4-4c18-8e77-efd31e587b2c")
                         });
                 });
 
@@ -302,11 +366,35 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
+                            Id = new Guid("0d56076c-82cb-469d-80db-afb64c7516f7"),
+                            CountryId = new Guid("eee1a9ab-c409-42c4-ae07-f622a959bb0b"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Zagorka AD"
+                        },
+                        new
+                        {
+                            Id = new Guid("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0"),
+                            CountryId = new Guid("eee1a9ab-c409-42c4-ae07-f622a959bb0b"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Beer Bastards"
+                        },
+                        new
+                        {
                             Id = new Guid("411a38dd-0600-4eac-b991-305f1031257c"),
                             CountryId = new Guid("e1d02d9a-263f-4871-b685-bf63de6508c4"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
-                            Name = "Anheuser–Busch InBev"
+                            Name = "Anheuser–Busch"
+                        },
+                        new
+                        {
+                            Id = new Guid("9e2c5791-92a4-4593-add9-6530391572f9"),
+                            CountryId = new Guid("e1d02d9a-263f-4871-b685-bf63de6508c4"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Duvel Moortgat"
                         },
                         new
                         {
@@ -318,14 +406,6 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b35ef87f-d03a-4777-a900-3c5e2af3c4e9"),
-                            CountryId = new Guid("d60e1413-fac0-45a5-a020-c1b7e5221a67"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "Diageo"
-                        },
-                        new
-                        {
                             Id = new Guid("f51b60cc-33fb-4ad2-afb5-6248c0a2b6ab"),
                             CountryId = new Guid("ec10c1a9-eafe-4ddc-8474-cb5fec82d186"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -334,11 +414,11 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0d56076c-82cb-469d-80db-afb64c7516f7"),
-                            CountryId = new Guid("eee1a9ab-c409-42c4-ae07-f622a959bb0b"),
+                            Id = new Guid("b35ef87f-d03a-4777-a900-3c5e2af3c4e9"),
+                            CountryId = new Guid("d60e1413-fac0-45a5-a020-c1b7e5221a67"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
-                            Name = "Zagorka AD"
+                            Name = "Diageo"
                         },
                         new
                         {
@@ -355,14 +435,6 @@ namespace BeerOverflow.Database.Migrations
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Fuller's Brewery"
-                        },
-                        new
-                        {
-                            Id = new Guid("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0"),
-                            CountryId = new Guid("eee1a9ab-c409-42c4-ae07-f622a959bb0b"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "Beer Bastards"
                         });
                 });
 
@@ -484,7 +556,7 @@ namespace BeerOverflow.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("DrankLists");
+                    b.ToTable("DrankList");
                 });
 
             modelBuilder.Entity("BeerOverflow.Models.Rating", b =>
@@ -555,6 +627,24 @@ namespace BeerOverflow.Database.Migrations
                             IsDeleted = false,
                             RatingGiven = 4,
                             UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619")
+                        },
+                        new
+                        {
+                            Id = new Guid("e0abf438-1977-44d9-b2c6-67dc12d589e7"),
+                            BeerId = new Guid("14af2a6c-5376-459e-91de-b6078c5435ac"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 2,
+                            UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619")
+                        },
+                        new
+                        {
+                            Id = new Guid("11d42d94-5526-4a32-bb14-622d5ee84fa5"),
+                            BeerId = new Guid("14af2a6c-5376-459e-91de-b6078c5435ac"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 5,
+                            UserId = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270")
                         });
                 });
 
@@ -607,7 +697,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("03461e43-1ebb-4035-8fa4-e5acf5c923f1"),
                             BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
                             Content = "This is exellent beer!",
-                            CreatedOn = new DateTime(2020, 10, 18, 22, 0, 58, 605, DateTimeKind.Local).AddTicks(649),
+                            CreatedOn = new DateTime(2020, 10, 20, 20, 13, 10, 177, DateTimeKind.Local).AddTicks(8971),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 120,
@@ -618,11 +708,11 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
                             BeerId = new Guid("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
                             Content = "I didn't really like it. Poor colour, bad taste.",
-                            CreatedOn = new DateTime(2020, 10, 18, 22, 0, 58, 609, DateTimeKind.Local).AddTicks(4248),
+                            CreatedOn = new DateTime(2020, 10, 20, 20, 13, 10, 183, DateTimeKind.Local).AddTicks(4126),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 8,
-                            ModifiedOn = new DateTime(2020, 10, 19, 22, 0, 58, 609, DateTimeKind.Local).AddTicks(4352),
+                            ModifiedOn = new DateTime(2020, 10, 21, 20, 13, 10, 183, DateTimeKind.Local).AddTicks(4229),
                             UserId = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5")
                         },
                         new
@@ -630,7 +720,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("bc9fa1aa-d58a-4f37-a81d-7a7ca81f27bb"),
                             BeerId = new Guid("f13cdf0f-9f3c-4435-a107-e265e016b7d3"),
                             Content = "It's okay I guess. Very fruity aroma. Light sour, strong sweet taste. Fruity.",
-                            CreatedOn = new DateTime(2020, 10, 18, 22, 0, 58, 609, DateTimeKind.Local).AddTicks(7480),
+                            CreatedOn = new DateTime(2020, 10, 20, 20, 13, 10, 183, DateTimeKind.Local).AddTicks(4509),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 22,
@@ -641,7 +731,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("766d9e58-68da-479c-ab97-dc9d1de06bbc"),
                             BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
                             Content = "Absolutely amazing!. One of the best Bulgarian beers.",
-                            CreatedOn = new DateTime(2020, 10, 18, 22, 0, 58, 609, DateTimeKind.Local).AddTicks(7541),
+                            CreatedOn = new DateTime(2020, 10, 20, 20, 13, 10, 183, DateTimeKind.Local).AddTicks(4537),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 0,
@@ -652,11 +742,33 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("ea4c9558-3832-403c-b70e-7ad0ef13b0a9"),
                             BeerId = new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
                             Content = "50/50. Sometimes win, sometimes lun.",
-                            CreatedOn = new DateTime(2020, 10, 18, 22, 0, 58, 609, DateTimeKind.Local).AddTicks(7558),
+                            CreatedOn = new DateTime(2020, 10, 20, 20, 13, 10, 183, DateTimeKind.Local).AddTicks(4553),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 14,
                             UserId = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270")
+                        },
+                        new
+                        {
+                            Id = new Guid("ad9f46e6-5bcf-44f7-89cc-0325be7c20de"),
+                            BeerId = new Guid("14af2a6c-5376-459e-91de-b6078c5435ac"),
+                            Content = "Very unexpected. Be careful around it!",
+                            CreatedOn = new DateTime(2020, 10, 20, 20, 13, 10, 183, DateTimeKind.Local).AddTicks(4580),
+                            IsDeleted = false,
+                            IsFlagged = false,
+                            Likes = 19,
+                            UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619")
+                        },
+                        new
+                        {
+                            Id = new Guid("f404463b-440d-4a45-ae57-6a00df49212e"),
+                            BeerId = new Guid("14af2a6c-5376-459e-91de-b6078c5435ac"),
+                            Content = "I am scared of that beer.",
+                            CreatedOn = new DateTime(2020, 10, 20, 20, 13, 10, 183, DateTimeKind.Local).AddTicks(4596),
+                            IsDeleted = false,
+                            IsFlagged = false,
+                            Likes = 200,
+                            UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619")
                         });
                 });
 
@@ -891,7 +1003,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "55f37402-233e-40fd-acfc-dc9150b8fd99",
+                            ConcurrencyStamp = "f98f5a91-d6fa-4c20-ad02-bc576ba43a2e",
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "maggieemail@gmail.com",
                             EmailConfirmed = false,
@@ -907,7 +1019,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5"),
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "b4489018-4cd6-4798-911c-f064867f3c04",
+                            ConcurrencyStamp = "297f1412-c4d9-4a9e-8b84-9fd5b4b0277d",
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "aliemail@gmail.com",
                             EmailConfirmed = false,
@@ -923,7 +1035,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("3753d26b-5a35-491f-ae82-5238d243b619"),
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "928bcabd-009e-4921-bddc-8f9996db5e5f",
+                            ConcurrencyStamp = "cfc1fbe0-0122-432f-a025-2e466ee4a419",
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "telerikemail@gmail.com",
                             EmailConfirmed = false,
@@ -958,7 +1070,7 @@ namespace BeerOverflow.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("WishLists");
+                    b.ToTable("WishList");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -1138,13 +1250,13 @@ namespace BeerOverflow.Database.Migrations
             modelBuilder.Entity("BeerOverflow.Models.WishList", b =>
                 {
                     b.HasOne("BeerOverflow.Models.Beer", "Beer")
-                        .WithMany("Wishlists")
+                        .WithMany("Wishlist")
                         .HasForeignKey("BeerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BeerOverflow.Models.User", "User")
-                        .WithMany("Wishlists")
+                        .WithMany("Wishlist")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

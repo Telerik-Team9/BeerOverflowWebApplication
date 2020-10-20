@@ -170,3 +170,9 @@ body {
     cursor: crosshair;
     border-radius: 25px;
 }
+
+.card-bestbeer {
+    height: 318px;
+    width: auto;
+    position:center;
+}

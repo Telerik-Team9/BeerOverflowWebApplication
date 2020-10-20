@@ -16,12 +16,13 @@
         THIS IS INDEX!
 
 
+
         <div class="row" align="center">
             @foreach (var beer in Model.TopRatedBeers)
             {
                 <div class="col">
-                    <div class="card" width="100px" heigth="400px">
-                        <img class="card-img" src="@beer.ImageURL" alt="Card image">
+                    <div class="card">
+                        <img class="card-img card-bestbeer" src="~/images/beers/@beer.ImageURL" alt="Card image">
                         <div class="card-img-overlay">
                             <p class="card-text"><kbd>@beer.Name</kbd></p>
                         </div>

@@ -7,11 +7,11 @@ namespace BeerOverflow.Database.Seed
 {
     public static class Seeder // Should we name it DataExtensions?
     {
-/*        public static ICollection<Beer> Beers { get; set; } = new List<Beer>();
-        public static ICollection<Brewery> Breweries { get; set; } = new List<Brewery>();
-        public static ICollection<Country> Countries { get; set; } = new List<Country>();
-        public static ICollection<Style> Styles { get; set; } = new List<Style>();
-        public static ICollection<Review> Reviews { get; set; } = new List<Review>();*/
+        /*        public static ICollection<Beer> Beers { get; set; } = new List<Beer>();
+                public static ICollection<Brewery> Breweries { get; set; } = new List<Brewery>();
+                public static ICollection<Country> Countries { get; set; } = new List<Country>();
+                public static ICollection<Style> Styles { get; set; } = new List<Style>();
+                public static ICollection<Review> Reviews { get; set; } = new List<Review>();*/
 
         public static void Seed(this ModelBuilder builder)
         {
@@ -25,7 +25,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("4.4"),
                     Price = float.Parse("1.6"),
                     Description = "Light beer with an extract content of 10.2 ° P.",
-                    ImageURL = "https://www.kamenitza.bg/-/media/kamenitza/products/images/kamtnitza-1881.ashx",
+                    ImageURL = "kamenitza.png",
                     Mililiters = 330,
                     StyleId = Guid.Parse("f32de916-9ea8-4f93-96d2-732d1b01fe8e"),   //Lager
                     BreweryId = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622")  //Kamenitza AD
@@ -37,7 +37,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("3.0"),
                     Price = float.Parse("1.8"),
                     Description = "Light seasonal fruit beer with an extract content of 8.3 ° P.",
-                    ImageURL = "https://www.kamenitza.bg/-/media/kamenitza/products/images/kamenitza-fresh-grapefruit.ashx",
+                    ImageURL = "kamenitza-fresh-grapefruit.png",
                     Mililiters = 330,
                     StyleId = Guid.Parse("b06a5dbd-f993-4379-af3e-6339377503fc"),   //Fruit
                     BreweryId = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622")  //Kamenitza AD
@@ -49,7 +49,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("6.0"),
                     Price = float.Parse("1.9"),
                     Description = "A high-quality lager beer, the main ingredients of which are barley malt, water, hops and yeast. It is characterized by light golden color, moderate carbonation, fresh taste, with a slight aroma of malt and hops. Available on the market in glass bottles of 0.5 liters, as well as in PET bottles of 1 and 2 liters.",
-                    ImageURL = "https://www.zagorka.bg/img/product/specialno/img-1l.png",
+                    ImageURL = "zagorka.png",
                     Mililiters = 1000,
                     StyleId = Guid.Parse("f32de916-9ea8-4f93-96d2-732d1b01fe8e"),   //Lager
                     BreweryId = Guid.Parse("0d56076c-82cb-469d-80db-afb64c7516f7")  //Zagorka AD
@@ -61,8 +61,9 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("6.7"),
                     Price = float.Parse("4.9"),
                     Description = "This beer really is BASI KEFA! White IPA with added wheat and tons of aromatic hops. Intense aroma of citrus and tropical fruits, and the taste is memorable, you can feel grapefruit, tangerine, mango. medium sweet, medium bitter fruit finish. Extremely easy to drink despite the alcohol content - 6.7!",
-                    ImageURL = "https://www.saq.com/media/catalog/product/1/1/11113490-1_1580613021.png?quality=80&fit=bounds&height=&width=",
+                    ImageURL = "basi-kefa.png",
                     Mililiters = 330,
+                    IsBeerOfTheMonth = true,
                     StyleId = Guid.Parse("e662a6bf-b3e4-4c18-8e77-efd31e587b2c"),   //IPA - White
                     BreweryId = Guid.Parse("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0")  //Beer Bastards
                 },
@@ -75,7 +76,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("5.2"),
                     Price = float.Parse("2.9"),
                     Description = "A Belgian pilsner of between 4.8 and 5.2 percent ABV which was first brewed by Brouwerij Artois (the Artois Brewery) in Leuven, Belgium, in 1926. Since 2008, a 4.8 percent ABV version has also been sold in Britain, Ireland, Canada and Australia. Stella Artois is now owned by Interbrew International B.V. which is a subsidiary of the world's largest brewer, Anheuser-Busch InBev SA/NV.",
-                    ImageURL = "https://shortysliquor.com.au/media/catalog/product/cache/2fcc3329aef4183c8e06230d7e06f8f3/1/1/11760.1_4.png",
+                    ImageURL = "stella-artois.png",
                     Mililiters = 500,
                     StyleId = Guid.Parse("1c7f6d85-2301-411b-a5c5-dae9fcf347a3"),   //Pilsner
                     BreweryId = Guid.Parse("411a38dd-0600-4eac-b991-305f1031257c")  //Anheuser–Busch
@@ -87,7 +88,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("4.3"),
                     Price = float.Parse("4.0"),
                     Description = "Busch Beer is made with the finest ingredients, including a blend of premium hops, exceptional barley malt, fine grains and crisp water. This recipe delivers a refreshingly smooth taste & easy finish.",
-                    ImageURL = "",
+                    ImageURL = "busch.png",
                     Mililiters = 550,
                     StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),   //Pale Lager
                     BreweryId = Guid.Parse("411a38dd-0600-4eac-b991-305f1031257c")  //Anheuser–Busch
@@ -99,8 +100,9 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("5.0"),
                     Price = float.Parse("4.9"),
                     Description = "Budweiser is brewed with only the finest two-row and six-row barley malt, hand-selected from regional growers all across America.",
-                    ImageURL = "",
+                    ImageURL = "budweiser-light.png",
                     Mililiters = 550,
+                    IsBeerOfTheMonth = true,
                     StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),   //Pale Lager
                     BreweryId = Guid.Parse("411a38dd-0600-4eac-b991-305f1031257c")  //Anheuser–Busch
                 },
@@ -111,7 +113,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("8.5"),
                     Price = float.Parse("3.0"),
                     Description = "Duvel is a natural beer with a subtle bitterness, a refined flavour and a distinctive hop character. The unique brewing process, which takes about 90 days, guarantees a pure character, delicate effervescence and a pleasant sweet taste of alcohol.",
-                    ImageURL = "",
+                    ImageURL = "duvel.png",
                     Mililiters = 100,
                     StyleId = Guid.Parse("ec61fe34-c639-433d-acac-98f092392099"),   //Stout
                     BreweryId = Guid.Parse("9e2c5791-92a4-4593-add9-6530391572f9")  //Duvel Moortgat
@@ -123,7 +125,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("4.5"),
                     Price = float.Parse("3.5"),
                     Description = "Ever since 2007 the brewers at Duvel have been busy innovating with a third hop variety to give Duvel a surprising twist and some extra bitterness. Each spring this results in the launch of a unique Tripel Hop, which complements the rest of the Duvel range.",
-                    ImageURL = "",
+                    ImageURL = "duvel-tripel-hop.png",
                     Mililiters = 100,
                     StyleId = Guid.Parse("b06a5dbd-f993-4379-af3e-6339377503fc"),   //Fruit
                     BreweryId = Guid.Parse("9e2c5791-92a4-4593-add9-6530391572f9")  //Duvel Moortgat
@@ -137,7 +139,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("5.0"),
                     Price = float.Parse("2.0"),
                     Description = "A pale lager beer with 5% alcohol by volume produced by the Dutch brewing company Heineken International. Heineken beer is sold in a green bottle with a red star.",
-                    ImageURL = "https://www.heineken.com/media-us/01pfxdqq/heineken-original-bottle.png?quality=85",
+                    ImageURL = "heineken.png",
                     Mililiters = 450,
                     StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),   //Pale Lager
                     BreweryId = Guid.Parse("2a281f97-d2d4-4cde-93d3-92f8aac15b9a")  //Heineken International
@@ -149,7 +151,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("4.2"),
                     Price = float.Parse("3.1"),
                     Description = "4.2 to 5.6% in the United States. 5% in Canada, and most of Europe; 4.2 or 4.3% ABV in Ireland and some European countries, 4.1% in Germany, 4.8% in Namibia and South Africa, and 6% in Australia and Japan.",
-                    ImageURL = "https://carlsbergukraine.com/media/9616/guinness_ophoto_shot_02_1_go_sr.png",
+                    ImageURL = "guinness.png",
                     Mililiters = 500,
                     StyleId = Guid.Parse("ec61fe34-c639-433d-acac-98f092392099"),   //Stout
                     BreweryId = Guid.Parse("b35ef87f-d03a-4777-a900-3c5e2af3c4e9")  //Diageo
@@ -161,7 +163,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("3.5"),
                     Price = float.Parse("2.1"),
                     Description = "According to the Amstel website, Amstel beer is pure - filtered which creates a full-strength beer without the calories and carbohydrates.",
-                    ImageURL = "https://grocerytrader.co.uk/wp-content/uploads/2016/05/Amstel-650ml-btl5.jpg",
+                    ImageURL = "amstel.png",
                     Mililiters = 660,
                     StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),   //Pale Lager
                     BreweryId = Guid.Parse("f51b60cc-33fb-4ad2-afb5-6248c0a2b6ab")  //Amstel Brouwerij
@@ -173,8 +175,9 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("4.5"),
                     Price = float.Parse("3.0"),
                     Description = "Corona Extra is a pale lager produced by Mexican brewery Cervecería Modelo and owned by Belgian company AB InBev. It is commonly served with a wedge of lime or lemon in the neck of the bottle to add tartness and flavour.",
-                    ImageURL = "https://www.teamcone.net/wp-content/uploads/2017/06/CORONA_12oz_NR.png",
+                    ImageURL = "corona.png",
                     Mililiters = 330,
+                    IsBeerOfTheMonth = true,
                     StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),   //Pale Lager
                     BreweryId = Guid.Parse("8582b4e3-3e97-47f6-a1c9-358252ddaf43")  //Grupo Modelo
                 },
@@ -185,7 +188,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("4.7"),
                     Price = float.Parse("3.0"),
                     Description = "London Pride is the flagship beer of Fuller's Brewery. It is sold both cask-conditioned and bottled. London Pride has been brewed at the Griffin Brewery since 1958.",
-                    ImageURL = "https://www.saq.com/media/catalog/product/1/0/10322388-1_1580595910.png?quality=80&fit=bounds&height=&width=",
+                    ImageURL = "londons-pride.png",
                     Mililiters = 550,
                     StyleId = Guid.Parse("ae339a73-e8cb-47f3-b250-a3d25c4cdedb"),   //Old Ale
                     BreweryId = Guid.Parse("2b2ee52d-89e3-4229-a704-bbfb3724cc11")  //Fuller's Brewery
@@ -197,7 +200,7 @@ namespace BeerOverflow.Database.Seed
                     ABV = float.Parse("5.0"),
                     Price = float.Parse("2.7"),
                     Description = "The UK’s best-selling organic beer, Fuller’s Organic Honey Dew buzzes with a zesty edge and subtle sweetness. Approved by the Soil Association, it’s a thing of natural beauty – pure, golden sunshine in a glass.",
-                    ImageURL = "https://www.saq.com/media/catalog/product/1/1/11113490-1_1580613021.png?quality=80&fit=bounds&height=&width=",
+                    ImageURL = "honey-dew.png",
                     Mililiters = 350,
                     StyleId = Guid.Parse("b06a5dbd-f993-4379-af3e-6339377503fc"),   //Fruit
                     BreweryId = Guid.Parse("2b2ee52d-89e3-4229-a704-bbfb3724cc11")  //Fuller's Brewery
