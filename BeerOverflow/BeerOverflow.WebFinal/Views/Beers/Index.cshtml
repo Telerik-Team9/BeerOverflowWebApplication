@@ -8,17 +8,31 @@
 
 <div class="container">
 
-    <form class="form-inline d-flex justify-content-center md-form form-sm active-orange" asp-controller="Beers" asp-action="Search" method="post">
-        <div class="form-group">
-            <label asp-for="@Model.Name"></label>
-            <input asp-for="@Model.Name" class="form-control form-control-sm ml-3 w-75 active-orange" />
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-outline-warning">Search</button>
-        </div>
-    </form>
-
-
+    <div>
+        <form class="form-inline d-flex justify-content-center md-form form-sm active-orange" asp-controller="Beers" asp-action="Search" method="post">
+            <div class="form-group">
+                <label asp-for="@Model.Name"></label>
+                <input asp-for="@Model.Name" class="form-control form-control-sm ml-3 w-75 active-orange" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.StyleName"></label>
+                <select asp-for="@Model.StyleName" asp-items="@(new SelectList(ViewBag.message))">
+                    <option selected="selected"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input asp-for="@Model.SortBy" type="radio" name="sortby" value="name">
+                <label for="name">Name</label><br>
+                <input asp-for="@Model.SortBy" type="radio" name="sortby" value="abv">
+                <label for="abv">Alcohol %</label><br>
+                <input asp-for="@Model.SortBy" type="radio" name="sortby" value="rating">
+                <label for="rating">Rating</label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-warning">Search</button>
+            </div>
+        </form>
+    </div>
 
     <div>
         <a asp-controller="Home" asp-action="Index">Back to List</a>

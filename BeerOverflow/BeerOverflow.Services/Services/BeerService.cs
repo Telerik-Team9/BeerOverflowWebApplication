@@ -67,7 +67,7 @@ namespace BeerOverflow.Services.Services
                   .Include(b => b.Reviews)
                   .Include(b => b.Ratings)
                   .Where(b => !b.IsDeleted)
-                  .FirstOrDefaultAsync(b => b.Name == name);
+                  .FirstOrDefaultAsync(b => b.Name.Contains(name));
 
             return result.GetDTO();
         }

@@ -12,10 +12,12 @@ namespace BeerOverflow.Web.Controllers
     public class BeersController : Controller
     {
         private readonly IBeerService beerService;
+        private readonly IStyleService styleService;
 
-        public BeersController(IBeerService beerService)
+        public BeersController(IBeerService beerService, IStyleService styleService)
         {
             this.beerService = beerService ?? throw new ArgumentNullException(nameof(beerService));
+            this.styleService = styleService ?? throw new ArgumentNullException(nameof(styleService));
         }
 
         // GET: BeersController
@@ -28,6 +30,11 @@ namespace BeerOverflow.Web.Controllers
             {
                 Beers = beers.ToList()
             };
+
+            var styles = await this.styleService.RetrieveAllAsync();
+            var styleNames = styles.Select(s => s.Name).ToHashSet();
+
+            ViewBag.message = styleNames;
 
             return View(beerSearchModel);
         }
