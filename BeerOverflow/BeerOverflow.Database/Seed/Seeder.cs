@@ -17,6 +17,7 @@ namespace BeerOverflow.Database.Seed
         {
             var beers = new List<Beer>
             {
+                // Bulgarian
                 new Beer
                 {
                     Id = Guid.Parse("133e0d92-cedc-40a7-b8fd-e5669611b3dc"),
@@ -26,7 +27,7 @@ namespace BeerOverflow.Database.Seed
                     Description = "Light beer with an extract content of 10.2 ° P.",
                     ImageURL = "https://www.kamenitza.bg/-/media/kamenitza/products/images/kamtnitza-1881.ashx",
                     Mililiters = 330,
-                    StyleId = Guid.Parse("f32de916-9ea8-4f93-96d2-732d1b01fe8e"),
+                    StyleId = Guid.Parse("f32de916-9ea8-4f93-96d2-732d1b01fe8e"),   //Lager
                     BreweryId = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622")  //Kamenitza AD
                 },
                 new Beer
@@ -38,56 +39,8 @@ namespace BeerOverflow.Database.Seed
                     Description = "Light seasonal fruit beer with an extract content of 8.3 ° P.",
                     ImageURL = "https://www.kamenitza.bg/-/media/kamenitza/products/images/kamenitza-fresh-grapefruit.ashx",
                     Mililiters = 330,
-                    StyleId = Guid.Parse("b06a5dbd-f993-4379-af3e-6339377503fc"),
+                    StyleId = Guid.Parse("b06a5dbd-f993-4379-af3e-6339377503fc"),   //Fruit
                     BreweryId = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622")  //Kamenitza AD
-                },
-                new Beer
-                {
-                    Id = Guid.Parse("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
-                    Name = "Stella Artois",
-                    ABV = float.Parse("5.2"),
-                    Price = float.Parse("2.9"),
-                    Description = "A Belgian pilsner of between 4.8 and 5.2 percent ABV which was first brewed by Brouwerij Artois (the Artois Brewery) in Leuven, Belgium, in 1926. Since 2008, a 4.8 percent ABV version has also been sold in Britain, Ireland, Canada and Australia. Stella Artois is now owned by Interbrew International B.V. which is a subsidiary of the world's largest brewer, Anheuser-Busch InBev SA/NV.",
-                    ImageURL = "https://shortysliquor.com.au/media/catalog/product/cache/2fcc3329aef4183c8e06230d7e06f8f3/1/1/11760.1_4.png",
-                    Mililiters = 500,
-                    StyleId = Guid.Parse("1c7f6d85-2301-411b-a5c5-dae9fcf347a3"),
-                    BreweryId = Guid.Parse("411a38dd-0600-4eac-b991-305f1031257c")
-                },
-                new Beer
-                {
-                    Id = Guid.Parse("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
-                    Name = "Heineken",
-                    ABV = float.Parse("5.0"),
-                    Price = float.Parse("2.0"),
-                    Description = "A pale lager beer with 5% alcohol by volume produced by the Dutch brewing company Heineken International. Heineken beer is sold in a green bottle with a red star.",
-                    ImageURL = "https://www.heineken.com/media-us/01pfxdqq/heineken-original-bottle.png?quality=85",
-                    Mililiters = 450,
-                    StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),
-                    BreweryId = Guid.Parse("2a281f97-d2d4-4cde-93d3-92f8aac15b9a")
-                },
-                new Beer
-                {
-                    Id = Guid.Parse("6210036f-3e9e-4e90-81d3-aaafd0251391"),
-                    Name = "Guinness Original",
-                    ABV = float.Parse("4.2"),
-                    Price = float.Parse("3.1"),
-                    Description = "4.2 to 5.6% in the United States. 5% in Canada, and most of Europe; 4.2 or 4.3% ABV in Ireland and some European countries, 4.1% in Germany, 4.8% in Namibia and South Africa, and 6% in Australia and Japan.",
-                    ImageURL = "https://carlsbergukraine.com/media/9616/guinness_ophoto_shot_02_1_go_sr.png",
-                    Mililiters = 500,
-                    StyleId = Guid.Parse("ec61fe34-c639-433d-acac-98f092392099"),
-                    BreweryId = Guid.Parse("b35ef87f-d03a-4777-a900-3c5e2af3c4e9")
-                },
-                new Beer
-                {
-                    Id = Guid.Parse("aac55056-ef0a-4ffc-8c98-bd686dd5ba86"),
-                    Name = "Amstel",
-                    ABV = float.Parse("3.5"),
-                    Price = float.Parse("2.1"),
-                    Description = "According to the Amstel website, Amstel beer is pure - filtered which creates a full-strength beer without the calories and carbohydrates.",
-                    ImageURL = "https://grocerytrader.co.uk/wp-content/uploads/2016/05/Amstel-650ml-btl5.jpg",
-                    Mililiters = 660,
-                    StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),
-                    BreweryId = Guid.Parse("f51b60cc-33fb-4ad2-afb5-6248c0a2b6ab")
                 },
                 new Beer
                 {
@@ -98,8 +51,120 @@ namespace BeerOverflow.Database.Seed
                     Description = "A high-quality lager beer, the main ingredients of which are barley malt, water, hops and yeast. It is characterized by light golden color, moderate carbonation, fresh taste, with a slight aroma of malt and hops. Available on the market in glass bottles of 0.5 liters, as well as in PET bottles of 1 and 2 liters.",
                     ImageURL = "https://www.zagorka.bg/img/product/specialno/img-1l.png",
                     Mililiters = 1000,
-                    StyleId = Guid.Parse("f32de916-9ea8-4f93-96d2-732d1b01fe8e"),
-                    BreweryId = Guid.Parse("0d56076c-82cb-469d-80db-afb64c7516f7")
+                    StyleId = Guid.Parse("f32de916-9ea8-4f93-96d2-732d1b01fe8e"),   //Lager
+                    BreweryId = Guid.Parse("0d56076c-82cb-469d-80db-afb64c7516f7")  //Zagorka AD
+                },
+                new Beer
+                {
+                    Id = Guid.Parse("f0e83b17-1a70-4b1a-9d77-05822eb6ca44"),
+                    Name = "Basi Kefa",
+                    ABV = float.Parse("6.7"),
+                    Price = float.Parse("4.9"),
+                    Description = "This beer really is BASI KEFA! White IPA with added wheat and tons of aromatic hops. Intense aroma of citrus and tropical fruits, and the taste is memorable, you can feel grapefruit, tangerine, mango. medium sweet, medium bitter fruit finish. Extremely easy to drink despite the alcohol content - 6.7!",
+                    ImageURL = "https://www.saq.com/media/catalog/product/1/1/11113490-1_1580613021.png?quality=80&fit=bounds&height=&width=",
+                    Mililiters = 330,
+                    StyleId = Guid.Parse("e662a6bf-b3e4-4c18-8e77-efd31e587b2c"),   //IPA - White
+                    BreweryId = Guid.Parse("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0")  //Beer Bastards
+                },
+
+                // Belgium
+                new Beer
+                {
+                    Id = Guid.Parse("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
+                    Name = "Stella Artois",
+                    ABV = float.Parse("5.2"),
+                    Price = float.Parse("2.9"),
+                    Description = "A Belgian pilsner of between 4.8 and 5.2 percent ABV which was first brewed by Brouwerij Artois (the Artois Brewery) in Leuven, Belgium, in 1926. Since 2008, a 4.8 percent ABV version has also been sold in Britain, Ireland, Canada and Australia. Stella Artois is now owned by Interbrew International B.V. which is a subsidiary of the world's largest brewer, Anheuser-Busch InBev SA/NV.",
+                    ImageURL = "https://shortysliquor.com.au/media/catalog/product/cache/2fcc3329aef4183c8e06230d7e06f8f3/1/1/11760.1_4.png",
+                    Mililiters = 500,
+                    StyleId = Guid.Parse("1c7f6d85-2301-411b-a5c5-dae9fcf347a3"),   //Pilsner
+                    BreweryId = Guid.Parse("411a38dd-0600-4eac-b991-305f1031257c")  //Anheuser–Busch
+                },
+                new Beer
+                {
+                    Id = Guid.Parse("629bff51-3e11-4996-ac98-365a8d8a7a66"),
+                    Name = "Busch",
+                    ABV = float.Parse("4.3"),
+                    Price = float.Parse("4.0"),
+                    Description = "Busch Beer is made with the finest ingredients, including a blend of premium hops, exceptional barley malt, fine grains and crisp water. This recipe delivers a refreshingly smooth taste & easy finish.",
+                    ImageURL = "",
+                    Mililiters = 550,
+                    StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),   //Pale Lager
+                    BreweryId = Guid.Parse("411a38dd-0600-4eac-b991-305f1031257c")  //Anheuser–Busch
+                },
+                new Beer
+                {
+                    Id = Guid.Parse("d71a9d9d-706f-412d-adce-30c6af6a6af1"),
+                    Name = "Budweiser Light",
+                    ABV = float.Parse("5.0"),
+                    Price = float.Parse("4.9"),
+                    Description = "Budweiser is brewed with only the finest two-row and six-row barley malt, hand-selected from regional growers all across America.",
+                    ImageURL = "",
+                    Mililiters = 550,
+                    StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),   //Pale Lager
+                    BreweryId = Guid.Parse("411a38dd-0600-4eac-b991-305f1031257c")  //Anheuser–Busch
+                },
+                new Beer
+                {
+                    Id = Guid.Parse("3c40cffd-1cda-4b0b-bc8e-bd117407a98d"),
+                    Name = "Duvel",
+                    ABV = float.Parse("8.5"),
+                    Price = float.Parse("3.0"),
+                    Description = "Duvel is a natural beer with a subtle bitterness, a refined flavour and a distinctive hop character. The unique brewing process, which takes about 90 days, guarantees a pure character, delicate effervescence and a pleasant sweet taste of alcohol.",
+                    ImageURL = "",
+                    Mililiters = 100,
+                    StyleId = Guid.Parse("ec61fe34-c639-433d-acac-98f092392099"),   //Stout
+                    BreweryId = Guid.Parse("9e2c5791-92a4-4593-add9-6530391572f9")  //Duvel Moortgat
+                },
+                new Beer
+                {
+                    Id = Guid.Parse("c9d64fcf-9e82-46f5-90d4-00e7871bc93d"),
+                    Name = "Duvel Tripel Hop",
+                    ABV = float.Parse("4.5"),
+                    Price = float.Parse("3.5"),
+                    Description = "Ever since 2007 the brewers at Duvel have been busy innovating with a third hop variety to give Duvel a surprising twist and some extra bitterness. Each spring this results in the launch of a unique Tripel Hop, which complements the rest of the Duvel range.",
+                    ImageURL = "",
+                    Mililiters = 100,
+                    StyleId = Guid.Parse("b06a5dbd-f993-4379-af3e-6339377503fc"),   //Fruit
+                    BreweryId = Guid.Parse("9e2c5791-92a4-4593-add9-6530391572f9")  //Duvel Moortgat
+                },
+
+                // Other
+                new Beer
+                {
+                    Id = Guid.Parse("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
+                    Name = "Heineken",
+                    ABV = float.Parse("5.0"),
+                    Price = float.Parse("2.0"),
+                    Description = "A pale lager beer with 5% alcohol by volume produced by the Dutch brewing company Heineken International. Heineken beer is sold in a green bottle with a red star.",
+                    ImageURL = "https://www.heineken.com/media-us/01pfxdqq/heineken-original-bottle.png?quality=85",
+                    Mililiters = 450,
+                    StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),   //Pale Lager
+                    BreweryId = Guid.Parse("2a281f97-d2d4-4cde-93d3-92f8aac15b9a")  //Heineken International
+                },
+                new Beer
+                {
+                    Id = Guid.Parse("6210036f-3e9e-4e90-81d3-aaafd0251391"),
+                    Name = "Guinness Original",
+                    ABV = float.Parse("4.2"),
+                    Price = float.Parse("3.1"),
+                    Description = "4.2 to 5.6% in the United States. 5% in Canada, and most of Europe; 4.2 or 4.3% ABV in Ireland and some European countries, 4.1% in Germany, 4.8% in Namibia and South Africa, and 6% in Australia and Japan.",
+                    ImageURL = "https://carlsbergukraine.com/media/9616/guinness_ophoto_shot_02_1_go_sr.png",
+                    Mililiters = 500,
+                    StyleId = Guid.Parse("ec61fe34-c639-433d-acac-98f092392099"),   //Stout
+                    BreweryId = Guid.Parse("b35ef87f-d03a-4777-a900-3c5e2af3c4e9")  //Diageo
+                },
+                new Beer
+                {
+                    Id = Guid.Parse("aac55056-ef0a-4ffc-8c98-bd686dd5ba86"),
+                    Name = "Amstel",
+                    ABV = float.Parse("3.5"),
+                    Price = float.Parse("2.1"),
+                    Description = "According to the Amstel website, Amstel beer is pure - filtered which creates a full-strength beer without the calories and carbohydrates.",
+                    ImageURL = "https://grocerytrader.co.uk/wp-content/uploads/2016/05/Amstel-650ml-btl5.jpg",
+                    Mililiters = 660,
+                    StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),   //Pale Lager
+                    BreweryId = Guid.Parse("f51b60cc-33fb-4ad2-afb5-6248c0a2b6ab")  //Amstel Brouwerij
                 },
                 new Beer
                 {
@@ -110,8 +175,8 @@ namespace BeerOverflow.Database.Seed
                     Description = "Corona Extra is a pale lager produced by Mexican brewery Cervecería Modelo and owned by Belgian company AB InBev. It is commonly served with a wedge of lime or lemon in the neck of the bottle to add tartness and flavour.",
                     ImageURL = "https://www.teamcone.net/wp-content/uploads/2017/06/CORONA_12oz_NR.png",
                     Mililiters = 330,
-                    StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),
-                    BreweryId = Guid.Parse("8582b4e3-3e97-47f6-a1c9-358252ddaf43")
+                    StyleId = Guid.Parse("77f9496e-0475-4165-ac5e-ee57039f108c"),   //Pale Lager
+                    BreweryId = Guid.Parse("8582b4e3-3e97-47f6-a1c9-358252ddaf43")  //Grupo Modelo
                 },
                 new Beer
                 {
@@ -122,7 +187,7 @@ namespace BeerOverflow.Database.Seed
                     Description = "London Pride is the flagship beer of Fuller's Brewery. It is sold both cask-conditioned and bottled. London Pride has been brewed at the Griffin Brewery since 1958.",
                     ImageURL = "https://www.saq.com/media/catalog/product/1/0/10322388-1_1580595910.png?quality=80&fit=bounds&height=&width=",
                     Mililiters = 550,
-                    StyleId = Guid.Parse("ae339a73-e8cb-47f3-b250-a3d25c4cdedb"),
+                    StyleId = Guid.Parse("ae339a73-e8cb-47f3-b250-a3d25c4cdedb"),   //Old Ale
                     BreweryId = Guid.Parse("2b2ee52d-89e3-4229-a704-bbfb3724cc11")  //Fuller's Brewery
                 },
                 new Beer
@@ -136,59 +201,66 @@ namespace BeerOverflow.Database.Seed
                     Mililiters = 350,
                     StyleId = Guid.Parse("b06a5dbd-f993-4379-af3e-6339377503fc"),   //Fruit
                     BreweryId = Guid.Parse("2b2ee52d-89e3-4229-a704-bbfb3724cc11")  //Fuller's Brewery
-                },
-                new Beer
-                {
-                    Id = Guid.Parse("f0e83b17-1a70-4b1a-9d77-05822eb6ca44"),
-                    Name = "Basi Kefa",
-                    ABV = float.Parse("6.7"),
-                    Price = float.Parse("4.9"),
-                    Description = "This beer really is BASI KEFA! White IPA with added wheat and tons of aromatic hops. Intense aroma of citrus and tropical fruits, and the taste is memorable, you can feel grapefruit, tangerine, mango. medium sweet, medium bitter fruit finish. Extremely easy to drink despite the alcohol content - 6.7!",
-                    ImageURL = "https://www.saq.com/media/catalog/product/1/1/11113490-1_1580613021.png?quality=80&fit=bounds&height=&width=",
-                    Mililiters = 330,
-                    StyleId = Guid.Parse("e662a6bf-b3e4-4c18-8e77-efd31e587b2c"),   //IPA - White
-                    BreweryId = Guid.Parse("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0")  //Beer Bastards
                 }
             };
             builder.Entity<Beer>().HasData(beers);
 
             var breweries = new List<Brewery>
             {
+                // Bulgaria
                 new Brewery
                 {
                     Id = Guid.Parse("89e0215e-2726-489b-8d63-b851b997f622"),
                     Name = "Kamenitza AD",
-                    CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")
-                },
-                new Brewery
-                {
-                    Id = Guid.Parse("411a38dd-0600-4eac-b991-305f1031257c"),
-                    Name = "Anheuser–Busch InBev",
-                    CountryId = Guid.Parse("e1d02d9a-263f-4871-b685-bf63de6508c4")
-                },
-                new Brewery
-                {
-                    Id = Guid.Parse("2a281f97-d2d4-4cde-93d3-92f8aac15b9a"),
-                    Name = "Heineken International",
-                    CountryId = Guid.Parse("ec10c1a9-eafe-4ddc-8474-cb5fec82d186")
-                },
-                new Brewery
-                {
-                    Id = Guid.Parse("b35ef87f-d03a-4777-a900-3c5e2af3c4e9"),
-                    Name = "Diageo",
-                    CountryId = Guid.Parse("d60e1413-fac0-45a5-a020-c1b7e5221a67")
-                },
-                new Brewery
-                {
-                    Id = Guid.Parse("f51b60cc-33fb-4ad2-afb5-6248c0a2b6ab"),
-                    Name = "Amstel Brouwerij",
-                    CountryId = Guid.Parse("ec10c1a9-eafe-4ddc-8474-cb5fec82d186")
+                    CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")  //Bulgaria
                 },
                 new Brewery
                 {
                     Id = Guid.Parse("0d56076c-82cb-469d-80db-afb64c7516f7"),
                     Name = "Zagorka AD",
-                    CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")
+                    CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")  //Bulgaria
+                },
+                new Brewery
+                {
+                    Id = Guid.Parse("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0"),
+                    Name = "Beer Bastards",
+                    CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")  //Bulgaria
+                },
+
+                // Belgium
+                new Brewery
+                {
+                    Id = Guid.Parse("411a38dd-0600-4eac-b991-305f1031257c"),
+                    Name = "Anheuser–Busch",
+                    CountryId = Guid.Parse("e1d02d9a-263f-4871-b685-bf63de6508c4")  //Belgium
+                },
+                new Brewery
+                {
+                    Id = Guid.Parse("9e2c5791-92a4-4593-add9-6530391572f9"),
+                    Name = "Duvel Moortgat",
+                    CountryId = Guid.Parse("e1d02d9a-263f-4871-b685-bf63de6508c4")  //Belgium
+                },
+
+                // Netherlands
+                new Brewery
+                {
+                    Id = Guid.Parse("2a281f97-d2d4-4cde-93d3-92f8aac15b9a"),
+                    Name = "Heineken International",
+                    CountryId = Guid.Parse("ec10c1a9-eafe-4ddc-8474-cb5fec82d186")  //Netherlands
+                },
+                new Brewery
+                {
+                    Id = Guid.Parse("f51b60cc-33fb-4ad2-afb5-6248c0a2b6ab"),
+                    Name = "Amstel Brouwerij",
+                    CountryId = Guid.Parse("ec10c1a9-eafe-4ddc-8474-cb5fec82d186")  //Netherlands
+                },
+
+                // Other
+                new Brewery
+                {
+                    Id = Guid.Parse("b35ef87f-d03a-4777-a900-3c5e2af3c4e9"),
+                    Name = "Diageo",
+                    CountryId = Guid.Parse("d60e1413-fac0-45a5-a020-c1b7e5221a67")
                 },
                 new Brewery
                 {
@@ -201,12 +273,6 @@ namespace BeerOverflow.Database.Seed
                     Id = Guid.Parse("2b2ee52d-89e3-4229-a704-bbfb3724cc11"),
                     Name = "Fuller's Brewery",
                     CountryId = Guid.Parse("71c1e52c-2f50-4ef6-99c8-451483d3df09")
-                },
-                new Brewery
-                {
-                    Id = Guid.Parse("59aeb9e3-a5e9-432e-bae7-b2f5b1e45fc0"),
-                    Name = "Beer Bastards",
-                    CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")  //Bulgaria
                 }
             };
             builder.Entity<Brewery>().HasData(breweries);
@@ -399,6 +465,32 @@ namespace BeerOverflow.Database.Seed
                     ModifiedOn = null,
                     BeerId = Guid.Parse("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),     //Heineken
                     UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270")
+                },
+                new Review
+                {
+                    Id = Guid.Parse("ad9f46e6-5bcf-44f7-89cc-0325be7c20de"),
+                    Content = "Very unexpected. Be careful around it!",
+                    Likes = 19,
+                    IsFlagged = false,
+                    CreatedOn = DateTime.Now,
+                    IsDeleted = false,
+                    DeletedOn = null,
+                    ModifiedOn = null,
+                    BeerId = Guid.Parse("14af2a6c-5376-459e-91de-b6078c5435ac"),    //Corona
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619")
+                },
+                new Review
+                {
+                    Id = Guid.Parse("f404463b-440d-4a45-ae57-6a00df49212e"),
+                    Content = "I am scared of that beer.",
+                    Likes = 200,
+                    IsFlagged = false,
+                    CreatedOn = DateTime.Now,
+                    IsDeleted = false,
+                    DeletedOn = null,
+                    ModifiedOn = null,
+                    BeerId = Guid.Parse("14af2a6c-5376-459e-91de-b6078c5435ac"),    //Corona
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619")
                 }
             };
             builder.Entity<Review>().HasData(reviews);
@@ -470,6 +562,20 @@ namespace BeerOverflow.Database.Seed
                     RatingGiven = 4,
                     BeerId = Guid.Parse("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),    //Heineken
                     UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                },
+                new Rating
+                {
+                    Id = Guid.Parse("e0abf438-1977-44d9-b2c6-67dc12d589e7"),
+                    RatingGiven = 2,
+                    BeerId = Guid.Parse("14af2a6c-5376-459e-91de-b6078c5435ac"),    //Corona
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                },
+                new Rating
+                {
+                    Id = Guid.Parse("11d42d94-5526-4a32-bb14-622d5ee84fa5"),
+                    RatingGiven = 5,
+                    BeerId = Guid.Parse("14af2a6c-5376-459e-91de-b6078c5435ac"),    //Corona
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),    // TODO: There shouldn't be more then one raiting from a user!
                 }
             };
             builder.Entity<Rating>().HasData(ratings);
