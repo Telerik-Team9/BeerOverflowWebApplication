@@ -14,22 +14,24 @@ namespace BeerOverflow.ServicesTests.BreweryServiceTests
     public class UpdateAsync_Should
     {
         [TestMethod]
-        public async Task UpdateCountryWhen_ValidParams()
+        public async Task UpdateBreweryWhen_ValidParams()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
             var brewery = Utils.GetBreweries().First();
+            var country = Utils.GetCountries().First();
 
-            var brewweryDTO = new BreweryDTO()
+            var breweryDTO = new BreweryDTO()
             {
                 Id = Guid.NewGuid(),
                 Name = "BeerBox",
                 CountryName = "Bulgaria",
-                CountryId = Guid.Parse("eee1a9ab-c409-42c4-ae07-f622a959bb0b")
+                CountryId = country.Id
             };
 
             using (var arrangeContext = new BeerOverflowDbContext(options))
             {
+                arrangeContext.Countries.Add(country);
                 arrangeContext.Breweries.Add(brewery);
                 arrangeContext.SaveChanges();
             }
@@ -38,10 +40,10 @@ namespace BeerOverflow.ServicesTests.BreweryServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new BreweryService(actContext);
-                var actual = await sut.UpdateAsync(brewery.Id, brewweryDTO);
+                var actual = await sut.UpdateAsync(brewery.Id, breweryDTO);
 
-                Assert.AreEqual(brewery.Id, actual.Id);
-                Assert.AreEqual(brewweryDTO.Name, actual.Name);
+                Assert.AreEqual(breweryDTO.Id, actual.Id);
+                Assert.AreEqual(breweryDTO.Name, actual.Name);
             }
         }
 

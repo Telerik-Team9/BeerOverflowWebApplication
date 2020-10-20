@@ -17,10 +17,12 @@ namespace BeerOverflow.ServicesTests.BreweryServiceTests
         {
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
             var breweries = Utils.GetBreweries().ToList();
+            var countries = Utils.GetCountries().ToList();
 
             using (var arrangeContext = new BeerOverflowDbContext(options))
             {
               await arrangeContext.Breweries.AddRangeAsync(breweries);
+              await arrangeContext.Countries.AddRangeAsync(countries);
               await arrangeContext.SaveChangesAsync();
             }
 
@@ -46,7 +48,7 @@ namespace BeerOverflow.ServicesTests.BreweryServiceTests
         }
 
         [TestMethod]
-        public async Task ReturnNullWhen_NoBrewweries()
+        public async Task ReturnNullWhen_NoBreweries()
         {
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());

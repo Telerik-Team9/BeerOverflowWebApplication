@@ -21,9 +21,11 @@ namespace BeerOverflow.ServicesTests.BreweryServiceTests
             //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
             var brewery = Utils.GetBreweries().First();
+            var country = Utils.GetCountries().First();
 
             using (var arrangeContext = new BeerOverflowDbContext(options))
             {
+                arrangeContext.Countries.Add(country);
                 arrangeContext.Breweries.Add(brewery);
                 arrangeContext.SaveChanges();
             }
