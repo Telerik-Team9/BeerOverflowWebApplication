@@ -14,6 +14,7 @@ namespace BeerOverflow.ServicesTests.CountryServiceTests
         [TestMethod]
         public async Task ReturnAllCountriesWhen_ValidParams()
         {
+            //Arrange
             var options = Utils.GetOptions(Guid.NewGuid().ToString());
             var countries = Utils.GetCountries().ToList();
 
