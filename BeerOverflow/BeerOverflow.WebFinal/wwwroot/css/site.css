@@ -63,7 +63,23 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    /*background: url("../images/darkmoodybackground.jpg") no-repeat center center fixed;*/
+    background-color: #1E1920;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: scroll;
+    /*    margin-bottom: 60px;
+    background: url("../images/full-beer-jar.jpg") no-repeat center center fixed;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
+    overflow: scroll;*/
+}
+
+#body-home{
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background: url("../images/beerhome.jpg") no-repeat center center fixed !important;
     background-color: rgb(253, 253, 253);
     background-repeat: no-repeat;
     background-size: cover;
@@ -190,10 +206,23 @@ body {
 }
 
 .navbar {
-    background-color: rgba(40, 0, 0, 0.8) !important;
-    border-color: rgba(255, 154, 39, 0.8);
+    background-color: #1E1920 !important;
+    border-color: rgb(253, 253, 253);
     border-style: solid none solid none !important;
     font-family: 'Courier New';
     font-weight: 900;
     padding: 15px;
+    color: white !important;
+}
+
+beer-index {
+    color: black !important;
+}
+
+.table, h1, h2, h3, h4, h5, p, label{
+    color:white;
+}
+
+.table :hover{
+    color:white;
 }

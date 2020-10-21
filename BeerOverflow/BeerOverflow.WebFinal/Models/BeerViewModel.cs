@@ -1,12 +1,17 @@
 ﻿using BeerOverflow.Services.DTOs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace BeerOverflow.Web.Models
 {
     public class BeerViewModel
     {
+        public BeerViewModel()
+        {
+        }
+
         public BeerViewModel(BeerDTO item)
         {
             this.Id = item.Id;
@@ -20,12 +25,15 @@ namespace BeerOverflow.Web.Models
             this.IsDeleted = item.IsDeleted;
             this.IsBeerOfTheMonth = item.IsBeerOfTheMonth;
             this.StyleId = item.StyleId;
+            this.StyleName = item.StyleName;
             this.BreweryId = item.BreweryId;
+            this.BreweryName = item.BreweryName;
             this.AvgRating = item.AvgRating;
             this.Reviews = item.Reviews.Select(r => new ReviewViewModel(r)).ToList();
         }
 
         public Guid Id { get; set; }
+        [Required]
         public string Name { get; set; }
         public float ABV { get; set; }
         public double Price { get; set; }

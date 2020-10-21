@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOs;
 using BeerOverflow.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,11 +15,14 @@ namespace BeerOverflow.Web.Controllers
     {
         private readonly IBeerService beerService;
         private readonly IStyleService styleService;
+        private readonly IBreweryService breweryService;
+        private readonly ICountryService countryService;
 
-        public BeersController(IBeerService beerService, IStyleService styleService)
+        public BeersController(IBeerService beerService, IStyleService styleService, IBreweryService breweryService)
         {
             this.beerService = beerService ?? throw new ArgumentNullException(nameof(beerService));
             this.styleService = styleService ?? throw new ArgumentNullException(nameof(styleService));
+            this.breweryService = breweryService ?? throw new ArgumentNullException(nameof(breweryService));
         }
 
         // GET: BeersController
@@ -59,18 +63,41 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: BeersController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            var breweries = await this.breweryService.RetrieveAllAsync();
+            ViewBag.Breweries = breweries.Select(br => new BreweryViewModel(br));
+
+            var styles = await this.styleService.RetrieveAllAsync();
+            ViewBag.Styles = styles.Select(s => new StyleViewModel(s));
+
             return View();
         }
 
         // POST: BeersController/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(BeerViewModel item)
         {
             try
             {
+                var beer = await this.beerService.CreateAsync(new BeerDTO
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    ABV = item.ABV,
+                    Price = item.Price,
+                    Description = item.Description,
+                    ImageURL = item.ImageURL,
+                    Mililiters = item.Mililiters,
+                    IsUnlisted = item.IsUnlisted,
+                    IsDeleted = item.IsDeleted,
+                    IsBeerOfTheMonth = item.IsBeerOfTheMonth,
+                    StyleName = item.StyleName,
+                    BreweryName = item.BreweryName
+                });
+
                 return RedirectToAction(nameof(Index));
             }
             catch
