@@ -35,6 +35,7 @@ namespace BeerOverflow.Web.Models
         public Guid Id { get; set; }
         [Required]
         public string Name { get; set; }
+        [Required]
         public float ABV { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
@@ -47,8 +48,10 @@ namespace BeerOverflow.Web.Models
 
 
         public Guid StyleId { get; set; }
+        [Required]
         public string StyleName { get; set; } // Porter, Ale, Lager etc.
         public Guid BreweryId { get; set; }
+        [Required]
         public string BreweryName { get; set; }
         public ICollection<ReviewViewModel> Reviews { get; set; } = new List<ReviewViewModel>();
         public ICollection<RatingViewModel> Ratings { get; set; } = new List<RatingViewModel>();

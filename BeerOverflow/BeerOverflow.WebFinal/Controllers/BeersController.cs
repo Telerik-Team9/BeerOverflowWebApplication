@@ -25,7 +25,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: BeersController
-        public async Task<ActionResult> Index(BeerSearchViewModel model)
+        public async Task<ActionResult> Search(BeerSearchViewModel model)
         {
             // Get all beers
             var beers = new List<BeerViewModel>();
@@ -33,12 +33,17 @@ namespace BeerOverflow.Web.Controllers
             if (model.Name == null && model.SortBy == null && model.StyleName == null)
             {
                 var allBeers = await this.beerService.RetrieveAllAsync();
-                beers = allBeers.Select(b => new BeerViewModel(b)).OrderBy(b => b.Name).ToList();
+                beers = allBeers
+                    .Select(b => new BeerViewModel(b))
+                    .OrderBy(b => b.Name)
+                    .ToList();
             }
             else
             {
                 var filteredBeers = await this.beerService.SearchAsync(model.Name, model.StyleName, model.SortBy);
-                beers = filteredBeers.Select(b => new BeerViewModel(b)).ToList();
+                beers = filteredBeers
+                    .Select(b => new BeerViewModel(b))
+                    .ToList();
             }
 
             // Load data into Search Form
@@ -48,7 +53,9 @@ namespace BeerOverflow.Web.Controllers
             };
 
             var styles = await this.styleService.RetrieveAllAsync();
-            var styleNames = styles.Select(s => s.Name).ToHashSet();
+            var styleNames = styles
+                .Select(s => s.Name)
+                .ToHashSet();
 
             ViewBag.message = styleNames;
 
@@ -56,6 +63,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: BeersController/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
             return View();
@@ -65,10 +73,12 @@ namespace BeerOverflow.Web.Controllers
         public async Task<ActionResult> Create()
         {
             var breweries = await this.breweryService.RetrieveAllAsync();
-            ViewBag.Breweries = breweries.Select(br => new BreweryViewModel(br));
+            ViewBag.Breweries = breweries
+                .Select(br => new BreweryViewModel(br));
 
             var styles = await this.styleService.RetrieveAllAsync();
-            ViewBag.Styles = styles.Select(s => new StyleViewModel(s));
+            ViewBag.Styles = styles
+                .Select(s => new StyleViewModel(s));
 
             return View();
         }
@@ -97,7 +107,7 @@ namespace BeerOverflow.Web.Controllers
                     BreweryName = item.BreweryName
                 });
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Search));
             }
             catch
             {
@@ -106,6 +116,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: BeersController/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             return View();
@@ -118,7 +129,7 @@ namespace BeerOverflow.Web.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Search));
             }
             catch
             {
@@ -127,19 +138,14 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: BeersController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: BeersController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        // [Authorize]
+        [HttpGet]
+        public async Task<ActionResult> Delete(Guid id)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var result = await this.beerService.DeleteAsync(id);
+                return RedirectToAction(nameof(Search));
             }
             catch
             {
@@ -147,11 +153,20 @@ namespace BeerOverflow.Web.Controllers
             }
         }
 
-        public async Task<ActionResult> Search(BeerSearchViewModel model)
-        {
-            var beers = await this.beerService.SearchAsync(model.Name, model.StyleName, model.SortBy);
-
-            return View(beers);
-        }
+        // POST: BeersController/Delete/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Delete(Guid id, BeerViewModel model)
+        //{
+        //    try
+        //    {
+        //        var result = await this.beerService.DeleteAsync(id);
+        //        return RedirectToAction(nameof(Search));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

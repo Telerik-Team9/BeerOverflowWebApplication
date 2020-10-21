@@ -1,10 +1,5 @@
 ﻿@model BeerOverflow.Web.Models.BeerViewModel
 
-@{
-    var slist = ViewBag.Sdata; @* UNNESSESSARY? *@
-}
-
-
 <h1>Create</h1>
 
 <h4>BeerViewModel</h4>
@@ -46,12 +41,14 @@
             <div class="form-group">
                 <label asp-for="StyleName" class="control-label"></label>
                 @Html.DropDownListFor(model => model.StyleName, new SelectList(ViewBag.Styles, "Name", "Name"), "")<br>
+                <span asp-validation-for="StyleName" class="text-danger"></span>
                 @*Do not see the brewery you need?<a style="color:#b58900" asp-controller="Style" asp-action="CreateStyle"><br>Click to create</a>*@
             </div>
             <div class="form-group">
                 <label asp-for="BreweryName" class="control-label"></label>
                 @Html.DropDownListFor(model => model.BreweryName, new SelectList(ViewBag.Breweries, "Name", "Name"), "")<br>
-               @* Do not see the brewery you need? <a style="color:#b58900" asp-controller="Brewery" asp-action="CreateBrewery"><br>Click to create</a>*@
+                <span asp-validation-for="BreweryName" class="text-danger"></span>
+                @* Do not see the brewery you need? <a style="color:#b58900" asp-controller="Brewery" asp-action="CreateBrewery"><br>Click to create</a>*@
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

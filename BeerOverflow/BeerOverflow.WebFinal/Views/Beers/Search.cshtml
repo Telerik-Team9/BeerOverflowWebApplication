@@ -10,7 +10,7 @@
     <div class="container-fluid" id="beer-index">
 
         <div>
-            <form class="form-inline d-flex justify-content-center md-form form-sm active-orange" asp-controller="Beers" asp-action="Index" method="post">
+            <form class="form-inline d-flex justify-content-center md-form form-sm active-orange" asp-controller="Beers" asp-action="Search" method="post">
                 <div class="form-group">
                     <label asp-for="@Model.Name"></label>
                     <input asp-for="@Model.Name" class="form-control form-control-sm ml-3 w-75 active-orange" />
@@ -36,14 +36,8 @@
         </div>
 
         <div>
-            <a asp-controller="Home" asp-action="Index">Back to List</a>
-
-
+            <a asp-controller="Home" asp-action="Index">Back to the Home page</a>
         </div>
-
-
-
-
         <h1>Index</h1>
 
         @if (User.Identity.IsAuthenticated)
@@ -52,9 +46,6 @@
                 <a asp-action="Create">Create New</a>
             </p>
         }
-
-
-
         @if (Model.Beers.Count == 0)
         {
             @Html.DisplayName("NO BEERS FOUND MATCHING YOUR CRITERIAS!");
@@ -122,14 +113,11 @@
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-
         }
-
-
     </div>
