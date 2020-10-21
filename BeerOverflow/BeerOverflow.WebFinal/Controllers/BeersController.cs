@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOs;
 using BeerOverflow.Web.Models;
+using BeerOverflow.Web.ViewModelMappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -117,18 +118,27 @@ namespace BeerOverflow.Web.Controllers
 
         // GET: BeersController/Edit/5
         [HttpGet]
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(Guid id)
         {
+            var breweries = await this.breweryService.RetrieveAllAsync();
+            ViewBag.Breweries = breweries
+                .Select(br => new BreweryViewModel(br));
+
+            var styles = await this.styleService.RetrieveAllAsync();
+            ViewBag.Styles = styles
+                .Select(s => new StyleViewModel(s));
+
             return View();
         }
 
         // POST: BeersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(Guid id, BeerViewModel model)
         {
             try
             {
+                var result = await this.beerService.UpdateAsync(id, model.GetDTO());
                 return RedirectToAction(nameof(Search));
             }
             catch
