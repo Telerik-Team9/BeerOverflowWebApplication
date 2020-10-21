@@ -63,13 +63,12 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background: url("../images/darkmoodybackground.jpg") no-repeat center center fixed;
-    background-color: antiquewhite;
+    /*background: url("../images/darkmoodybackground.jpg") no-repeat center center fixed;*/
+    background-color: rgb(253, 253, 253);
     background-repeat: no-repeat;
     background-size: cover;
     overflow: scroll;
-
-        /*    margin-bottom: 60px;
+    /*    margin-bottom: 60px;
     background: url("../images/full-beer-jar.jpg") no-repeat center center fixed;
     background-color: black;
     background-repeat: no-repeat;
@@ -84,13 +83,14 @@ body {
     width: 100%;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
+    background-color: rgba(230, 230, 230, 0.8);
 }
 
 
 /* Personal styles
 -------------------------------------------------- */
 #homeLogo {
-    height: 150px;
+    height: 120px;
     width: auto;
     border-style:dotted;
 }
@@ -109,7 +109,7 @@ body {
 .card {
     width: 200px;
     height: 318px;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(230, 230, 230, 0.8);
     border: none;
     margin: 50px;
     border-radius: 25px;
@@ -125,10 +125,6 @@ body {
     border-bottom: 1px solid #FF8C00 !important;
     box-shadow: 0 1px 0 0 #FF8C00 !important;
 }
-
-/*.container {
-    background-color: rgba(255, 255, 255, 0.5);
-}*/
 
 
 
@@ -175,4 +171,29 @@ body {
     height: 318px;
     width: auto;
     position:center;
+}
+
+#navbar-bg {
+    background: url("../images/background.jpg") no-repeat center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 10px; /*Adds blank space*/
+    padding-bottom: 350px;
+    border-bottom: 10px solid;
+    border-color: rgba(230, 230, 230, 0.8);
+    color: white !important;
+    margin-bottom: 30px;
+}
+
+.container-main {
+    /*background-color: rgba(255, 154, 39, 0.5);*/
+}
+
+.navbar {
+    background-color: rgba(40, 0, 0, 0.8) !important;
+    border-color: rgba(255, 154, 39, 0.8);
+    border-style: solid none solid none !important;
+    font-family: 'Courier New';
+    font-weight: 900;
+    padding: 15px;
 }
