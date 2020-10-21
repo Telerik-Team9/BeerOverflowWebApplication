@@ -429,7 +429,7 @@ namespace BeerOverflow.Database.Seed
                     ModifiedOn = DateTime.Now.Add(TimeSpan.FromDays(1)),
                     BeerId = Guid.Parse("1855d14b-ccb6-43b8-a7b3-3936b5010293"),    //Stella Artois
                     UserId = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5")
-                },                
+                },
                 new Review
                 {
                     Id = Guid.Parse("bc9fa1aa-d58a-4f37-a81d-7a7ca81f27bb"),
@@ -559,26 +559,152 @@ namespace BeerOverflow.Database.Seed
                     BeerId = Guid.Parse("6210036f-3e9e-4e90-81d3-aaafd0251391"),
                     UserId = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5"),
                 },
-                new Rating
+                new Rating //Heineken
                 {
                     Id = Guid.Parse("288283ac-3bc8-478e-9dbf-15f02a26b6c9"),
                     RatingGiven = 4,
-                    BeerId = Guid.Parse("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),    //Heineken
+                    BeerId = Guid.Parse("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
                     UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
                 },
-                new Rating
+                new Rating //Corona
                 {
                     Id = Guid.Parse("e0abf438-1977-44d9-b2c6-67dc12d589e7"),
                     RatingGiven = 2,
-                    BeerId = Guid.Parse("14af2a6c-5376-459e-91de-b6078c5435ac"),    //Corona
+                    BeerId = Guid.Parse("14af2a6c-5376-459e-91de-b6078c5435ac"),
                     UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
                 },
-                new Rating
+                new Rating //Corona
                 {
                     Id = Guid.Parse("11d42d94-5526-4a32-bb14-622d5ee84fa5"),
                     RatingGiven = 5,
-                    BeerId = Guid.Parse("14af2a6c-5376-459e-91de-b6078c5435ac"),    //Corona
-                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),    // TODO: There shouldn't be more then one raiting from a user!
+                    BeerId = Guid.Parse("14af2a6c-5376-459e-91de-b6078c5435ac"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                },
+                new Rating //Duvel
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 2,
+                    BeerId = Guid.Parse("c9d64fcf-9e82-46f5-90d4-00e7871bc93d"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                },
+                new Rating //Duvel
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 3,
+                    BeerId = Guid.Parse("c9d64fcf-9e82-46f5-90d4-00e7871bc93d"),
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                },
+                new Rating //Amstel
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 3,
+                    BeerId = Guid.Parse("aac55056-ef0a-4ffc-8c98-bd686dd5ba86"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                },
+                new Rating //Amstel
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 3,
+                    BeerId = Guid.Parse("aac55056-ef0a-4ffc-8c98-bd686dd5ba86"),
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                },
+                new Rating //Honey Dew
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 4,
+                    BeerId = Guid.Parse("0e2cff6f-b42a-414b-8e3c-81c157909a2a"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                },
+                new Rating //Honey Dew
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 5,
+                    BeerId = Guid.Parse("0e2cff6f-b42a-414b-8e3c-81c157909a2a"),
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                },
+                new Rating //London's pride
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 2,
+                    BeerId = Guid.Parse("365ed501-0156-4d62-aef4-1e04c68b8ed6"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                },
+                new Rating //London's pride
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 5,
+                    BeerId = Guid.Parse("365ed501-0156-4d62-aef4-1e04c68b8ed6"),
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                },
+                new Rating //Duvel Tripel Hop
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 1,
+                    BeerId = Guid.Parse("c9d64fcf-9e82-46f5-90d4-00e7871bc93d"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                },
+                new Rating //Duvel Tripel Hop
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 3,
+                    BeerId = Guid.Parse("c9d64fcf-9e82-46f5-90d4-00e7871bc93d"),
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                },
+                new Rating //Budweiser Light
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 4,
+                    BeerId = Guid.Parse("d71a9d9d-706f-412d-adce-30c6af6a6af1"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                },
+                new Rating //Budweiser Light
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 3,
+                    BeerId = Guid.Parse("d71a9d9d-706f-412d-adce-30c6af6a6af1"),
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                },
+                 new Rating //Busch
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 1,
+                    BeerId = Guid.Parse("629bff51-3e11-4996-ac98-365a8d8a7a66"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                },
+                new Rating //Busch
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 3,
+                    BeerId = Guid.Parse("629bff51-3e11-4996-ac98-365a8d8a7a66"),
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                },
+                new Rating //Stella
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 2,
+                    BeerId = Guid.Parse("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                },
+                new Rating //Stella
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 3,
+                    BeerId = Guid.Parse("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                },
+                new Rating //
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 2,
+                    BeerId = Guid.Parse("f0e83b17-1a70-4b1a-9d77-05822eb6ca44"),
+                    UserId = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                },
+                new Rating //
+                {
+                    Id = Guid.NewGuid(),
+                    RatingGiven = 4,
+                    BeerId = Guid.Parse("f0e83b17-1a70-4b1a-9d77-05822eb6ca44"),
+                    UserId = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
                 }
             };
             builder.Entity<Rating>().HasData(ratings);
