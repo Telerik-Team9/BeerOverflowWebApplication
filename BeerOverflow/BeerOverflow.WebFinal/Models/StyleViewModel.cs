@@ -7,6 +7,10 @@ namespace BeerOverflow.Web.Models
 {
     public class StyleViewModel
     {
+        public StyleViewModel()
+        {
+
+        }
         public StyleViewModel(StyleDTO item)
         {
             this.Id = item.Id;

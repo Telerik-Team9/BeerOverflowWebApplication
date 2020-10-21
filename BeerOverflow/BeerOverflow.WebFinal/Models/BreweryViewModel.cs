@@ -7,6 +7,10 @@ namespace BeerOverflow.Web.Models
 {
     public class BreweryViewModel
     {
+        public BreweryViewModel()
+        {
+
+        }
         public BreweryViewModel(BreweryDTO item)
         {
             this.Id = item.Id;

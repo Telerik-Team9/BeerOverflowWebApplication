@@ -16,7 +16,6 @@ namespace BeerOverflow.Web.Controllers
         private readonly IBeerService beerService;
         private readonly IStyleService styleService;
         private readonly IBreweryService breweryService;
-        private readonly ICountryService countryService;
 
         public BeersController(IBeerService beerService, IStyleService styleService, IBreweryService breweryService)
         {
@@ -31,10 +30,10 @@ namespace BeerOverflow.Web.Controllers
             // Get all beers
             var beers = new List<BeerViewModel>();
 
-            if(model.Name == null && model.SortBy == null && model.StyleName == null)
+            if (model.Name == null && model.SortBy == null && model.StyleName == null)
             {
                 var allBeers = await this.beerService.RetrieveAllAsync();
-                beers = allBeers.Select(b => new BeerViewModel(b)).ToList();
+                beers = allBeers.Select(b => new BeerViewModel(b)).OrderBy(b => b.Name).ToList();
             }
             else
             {
@@ -151,7 +150,7 @@ namespace BeerOverflow.Web.Controllers
         public async Task<ActionResult> Search(BeerSearchViewModel model)
         {
             var beers = await this.beerService.SearchAsync(model.Name, model.StyleName, model.SortBy);
-            
+
             return View(beers);
         }
     }
