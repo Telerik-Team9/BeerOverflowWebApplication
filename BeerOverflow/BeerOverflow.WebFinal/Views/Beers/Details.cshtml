@@ -1,0 +1,72 @@
+﻿@model BeerViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Beer</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ABV)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ABV)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/images/beers/@Model.ImageURL" alt="Alternate Text" width="50px" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mililiters)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mililiters)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsBeerOfTheMonth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IsBeerOfTheMonth)
+        </dd>
+        <dd class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StyleName)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StyleName)
+        </dd>
+        <dd class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BreweryName)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BreweryName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Search">Back to List</a>
+</div>
