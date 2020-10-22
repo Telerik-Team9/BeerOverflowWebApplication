@@ -1,16 +1,14 @@
 ﻿using BeerOverflow.Services.DTOs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace BeerOverflow.Web.Models
 {
     public class StyleViewModel
     {
-        public StyleViewModel()
-        {
-
-        }
+        public StyleViewModel() { }
         public StyleViewModel(StyleDTO item)
         {
             this.Id = item.Id;
@@ -22,9 +20,11 @@ namespace BeerOverflow.Web.Models
         }
 
         public Guid Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
+        [StringLength(255)]
         public string Description { get; set; }
         public ICollection<BeerViewModel> Beers { get; set; }
-
     }
 }
