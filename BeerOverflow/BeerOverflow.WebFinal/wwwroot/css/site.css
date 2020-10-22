@@ -63,27 +63,12 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-color: #1E1920;
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: scroll;
-    /*    margin-bottom: 60px;
-    background: url("../images/full-beer-jar.jpg") no-repeat center center fixed;
-    background-color: black;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size:cover;
-    overflow: scroll;*/
-}
-
-#body-home{
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
     background: url("../images/beerhome.jpg") no-repeat center center fixed !important;
     background-color: rgb(253, 253, 253);
     background-repeat: no-repeat;
     background-size: cover;
     overflow: scroll;
+    overflow-x: hidden !important;
     /*    margin-bottom: 60px;
     background: url("../images/full-beer-jar.jpg") no-repeat center center fixed;
     background-color: black;
@@ -206,21 +191,30 @@ body {
 }
 
 .navbar {
-    background-color: #1E1920 !important;
-    border-color: rgb(253, 253, 253);
-    border-style: solid none solid none !important;
-    font-family: 'Courier New';
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    border-top: 2px solid rgb(197,160,89) !important;
+    border-bottom: 5px solid rgb(197,160,89) !important;
+    font-family: MMTimes;
+    letter-spacing: 2px;
+    /*font-family: 'Brush Script Std';*/
     font-weight: 900;
     padding: 15px;
+    margin-top: 30px;
     color: white !important;
+}
+
+.nav-link :hover {
+    color: rgb(197,160,89) !important;
 }
 
 beer-index {
     color: black !important;
 }
 
-.table, h1, h2, h3, h4, h5, p, label{
-    color:white;
+.table, h1, h2, h3, h4, h5, p, label, a {
+    color: white !important;
+    /*font-family: MMTimes;*/   /*REMOVE if we want regular font*/
+    /*letter-spacing: 2px;*/
 }
 
 .table :hover{
