@@ -25,6 +25,6 @@ namespace BeerOverflow.Web.Models
         [Required]
         [StringLength(255)]
         public string Description { get; set; }
-        public ICollection<BeerViewModel> Beers { get; set; }
+        public ICollection<BeerViewModel> Beers { get; set; } = new List<BeerViewModel>();
     }
 }

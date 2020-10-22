@@ -1,6 +1,6 @@
 ﻿using BeerOverflow.Services.DTOs;
 using BeerOverflow.Web.Models;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace BeerOverflow.Web.ViewModelMappers
 {
@@ -12,7 +12,9 @@ namespace BeerOverflow.Web.ViewModelMappers
                 Id = item.Id,
                 Name = item.Name,
                 Description = item.Description,
-                Beers = new List<BeerDTO>()
+                Beers = item.Beers
+                            .Select(x => x.GetDTO())
+                            .ToList()
             };
     }
 }
