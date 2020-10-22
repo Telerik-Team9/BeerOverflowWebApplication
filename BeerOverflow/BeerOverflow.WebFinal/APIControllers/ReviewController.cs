@@ -71,7 +71,7 @@ namespace BeerOverflow.Web2.APIControllers
                 Id = model.Id,
                 Content = model.Content,
                 Likes = model.Likes,
-                Rating = model.Rating,
+                //Rating = model.Rating,
                 BeerId = model.BeerId,
                 BeerName = model.BeerName
             };
@@ -93,7 +93,7 @@ namespace BeerOverflow.Web2.APIControllers
                 Id = model.Id,
                 Content = model.Content,
                 Likes = model.Likes,
-                Rating = model.Rating,
+                //Rating = model.Rating,
                 BeerId = model.BeerId,
                 BeerName = model.BeerName
             };

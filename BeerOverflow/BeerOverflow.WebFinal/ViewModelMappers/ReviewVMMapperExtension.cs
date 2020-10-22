@@ -9,7 +9,7 @@ namespace BeerOverflow.Web.ViewModelMappers
             {
                 Id = item.Id,
                 Content = item.Content,
-                Rating = item.Rating,
+                //Rating = item.Rating,
                 Likes = item.Likes,
                 BeerId = item.BeerId,
                 BeerName = item.BeerName,
