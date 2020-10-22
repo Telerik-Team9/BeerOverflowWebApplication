@@ -16,6 +16,7 @@ namespace BeerOverflow.Web.Controllers
         {
             this.user = user;
         }
+
         public IActionResult Index()
         {
             return View();

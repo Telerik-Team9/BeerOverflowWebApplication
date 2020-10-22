@@ -61,7 +61,7 @@ namespace BeerOverflow.Web.Controllers
             ViewBag.message = styleNames;
 
             return View(beerSearchModel);
-        }
+        }   //How does it work without post
 
         // GET: BeersController/Details/5
         [HttpGet]
@@ -92,22 +92,7 @@ namespace BeerOverflow.Web.Controllers
         {
             try
             {
-                var beer = await this.beerService.CreateAsync(new BeerDTO
-                {
-                    Id = item.Id,
-                    Name = item.Name,
-                    ABV = item.ABV,
-                    Price = item.Price,
-                    Description = item.Description,
-                    ImageURL = item.ImageURL,
-                    Mililiters = item.Mililiters,
-                    IsUnlisted = item.IsUnlisted,
-                    IsDeleted = item.IsDeleted,
-                    IsBeerOfTheMonth = item.IsBeerOfTheMonth,
-                    StyleName = item.StyleName,
-                    BreweryName = item.BreweryName
-                });
-
+                var beer = await this.beerService.CreateAsync(item.GetDTO());
                 return RedirectToAction(nameof(Search));
             }
             catch

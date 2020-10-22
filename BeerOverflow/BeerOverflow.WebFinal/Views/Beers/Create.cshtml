@@ -48,7 +48,8 @@
                 <label asp-for="BreweryName" class="control-label"></label>
                 @Html.DropDownListFor(model => model.BreweryName, new SelectList(ViewBag.Breweries, "Name", "Name"), "")<br>
                 <span asp-validation-for="BreweryName" class="text-danger"></span>
-                @* Do not see the brewery you need? <a style="color:#b58900" asp-controller="Brewery" asp-action="CreateBrewery"><br>Click to create</a>*@
+                 Do not see the brewery you need?
+                <a style="color:#b58900" asp-controller="Breweries" asp-action="Create"><br>Click to create</a>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

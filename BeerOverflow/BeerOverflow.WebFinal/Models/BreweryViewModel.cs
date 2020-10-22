@@ -11,6 +11,7 @@ namespace BeerOverflow.Web.Models
         {
 
         }
+
         public BreweryViewModel(BreweryDTO item)
         {
             this.Id = item.Id;
@@ -26,6 +27,6 @@ namespace BeerOverflow.Web.Models
         public string Name { get; set; }
         public Guid CountryId { get; set; }
         public string CountryName { get; set; }
-        public ICollection<BeerViewModel> Beers{ get; set; }
+        public ICollection<BeerViewModel> Beers{ get; set; } = new List<BeerViewModel>();
     }
 }
