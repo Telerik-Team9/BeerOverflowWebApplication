@@ -107,21 +107,6 @@ body {
     height: 10%;
 }
 
-.card {
-    width: 200px;
-    height: 318px;
-    background-color: rgba(230, 230, 230, 0.8);
-    border: none;
-    margin: 50px;
-    border-radius: 25px;
-}
-
-.card-img {
-    width: 200px;
-    height: 318px;
-}
-
-
 .active-orange :focus {
     border-bottom: 1px solid #FF8C00 !important;
     box-shadow: 0 1px 0 0 #FF8C00 !important;
@@ -161,18 +146,6 @@ body {
 #testm {
     background-image: url(../images/full-beer-jar.jpg) !important;
 }*/
-
-.card :hover {
-    background-color: rgba(255, 154, 39, 0.4);
-    cursor: crosshair;
-    border-radius: 25px;
-}
-
-.card-bestbeer {
-    height: 318px;
-    width: auto;
-    position:center;
-}
 
 #navbar-bg {
     background: url("../images/background.jpg") no-repeat center center;
@@ -219,4 +192,37 @@ beer-index {
 
 .table :hover{
     color:white;
+}
+
+
+
+
+
+
+.card {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 25px;
+    padding: 11px;
+}
+
+.card-link {
+    color: rgb(197,160,89) !important;
+}
+
+.card-img {
+    width: 100px;
+    height: auto;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.card-img-overlay {
+    background-color: rgba(0, 0, 0, 0.0);
+}
+
+.card :hover {
+    background-color: rgba(197,160,89, 0.4);
+    /*    cursor: crosshair;*/
+    border-radius: 25px;
 }
