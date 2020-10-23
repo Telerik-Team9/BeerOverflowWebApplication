@@ -46,6 +46,7 @@ namespace BeerOverflow.Web
                 options.Password.RequireDigit = false;
                 options.Password.RequiredUniqueChars = 0;
                 options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
             })
                     .AddRoles<Role>()
                     .AddEntityFrameworkStores<BeerOverflowDbContext>();
