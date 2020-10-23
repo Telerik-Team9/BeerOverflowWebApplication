@@ -1,20 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
 using BeerOverflow.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BeerOverflow.Database.Seed
 {
-    public static class Seeder // Should we name it DataExtensions?
+    public static class Seeder // DataExtensions?
     {
-        /*        public static ICollection<Beer> Beers { get; set; } = new List<Beer>();
-                public static ICollection<Brewery> Breweries { get; set; } = new List<Brewery>();
-                public static ICollection<Country> Countries { get; set; } = new List<Country>();
-                public static ICollection<Style> Styles { get; set; } = new List<Style>();
-                public static ICollection<Review> Reviews { get; set; } = new List<Review>();*/
-
         public static void Seed(this ModelBuilder builder)
         {
+            var roles = new List<Role>()
+            {
+                new Role
+                {
+                    Id = Guid.Parse("943b692d-330e-405d-a019-c3d728442143"),
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                },
+                new Role
+                {
+                    Id = Guid.Parse("07cc27fe-9ca9-4953-9a79-2c79c1e32aff"),
+                    Name = "User",
+                    NormalizedName = "USER"
+                }
+            };
+            builder.Entity<Role>().HasData(roles);
+
+            var hasher = new PasswordHasher<User>();
+            var users = new List<User>()
+            {
+                new User()  // Admin
+                {
+                    Id = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                    UserName = "scooby@doo.com",
+                    NormalizedUserName = "SCOOBY@DOO.COM",
+                    Email = "scooby@doo.com",
+                    NormalizedEmail = "SCOOBY@DOO.COM",
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                },
+                new User()  // Admin
+                {
+                    Id = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5"),
+                    UserName = "johnny@bravo.com",
+                    NormalizedUserName = "JOHNNY@BRAVO.COM",
+                    Email = "johnny@bravo.com",
+                    NormalizedEmail = "JOHNNY@BRAVO.COM",
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                },
+                new User()
+                {
+                    Id = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
+                    UserName = "telerik@academy.com",
+                    NormalizedUserName = "TELERIK@ACADEMY.COM",
+                    Email = "telerik@academy.com",
+                    NormalizedEmail = "TELERIK@ACADEMY.COM",
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                },
+            };
+            users[0].PasswordHash = hasher.HashPassword(users[0], "scooby123");
+            users[1].PasswordHash = hasher.HashPassword(users[1], "sibusiso*");
+            users[2].PasswordHash = hasher.HashPassword(users[2], "telerik123");
+            builder.Entity<User>().HasData(users);
+
+            var userRoles = new List<IdentityUserRole<Guid>>()
+            {
+                new IdentityUserRole<Guid>()
+                {
+                    RoleId = Guid.Parse("943b692d-330e-405d-a019-c3d728442143"),    // Admin
+                    UserId = users[0].Id
+                },
+                new IdentityUserRole<Guid>()
+                {
+                    RoleId = Guid.Parse("943b692d-330e-405d-a019-c3d728442143"),    // Admin
+                    UserId = users[1].Id
+                },
+                new IdentityUserRole<Guid>()
+                {
+                    RoleId = Guid.Parse("07cc27fe-9ca9-4953-9a79-2c79c1e32aff"),    // User
+                    UserId = users[2].Id
+                },
+            };
+            builder.Entity<IdentityUserRole<Guid>>().HasData(userRoles);
+
             var beers = new List<Beer>
             {
                 // Bulgarian
@@ -498,44 +566,6 @@ namespace BeerOverflow.Database.Seed
             };
             builder.Entity<Review>().HasData(reviews);
 
-            var users = new List<User>
-            {
-                new User
-                {
-                    Id = Guid.Parse("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
-                    //Name = "Maggie",
-                    UserName = "Maggie",
-                    Email = "maggieemail@gmail.com",
-                    //Password = "MaggiePass",
-                    //Birthday = DateTime.Now,
-                    //IsBanned = false,
-                    //IsAdmin = true
-                },
-                new User
-                {
-                    Id = Guid.Parse("3be6b2ff-021d-4da5-8639-31973b594cc5"),
-                    //Name = "Ali",
-                    UserName = "Ali",
-                    Email = "aliemail@gmail.com",
-                    //Password = "AliPass",
-                    //Birthday = DateTime.Now,
-                    //IsBanned = false,
-                    //IsAdmin = true
-                },
-                new User
-                {
-                    Id = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
-                    //Name = "Telerik",
-                    UserName = "Telerik",
-                    Email = "telerikemail@gmail.com",
-                    //Password = "TelerikPass",
-                    //Birthday = DateTime.Now,
-                    //IsBanned = false,
-                    //IsAdmin = false
-                }
-            };
-            builder.Entity<User>().HasData(users);
-
             var ratings = new List<Rating>()
             {
                 new Rating
@@ -709,6 +739,5 @@ namespace BeerOverflow.Database.Seed
             };
             builder.Entity<Rating>().HasData(ratings);
         }
-        //TODO: Map
     }
 }
