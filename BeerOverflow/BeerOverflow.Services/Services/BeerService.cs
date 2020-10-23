@@ -48,7 +48,6 @@ namespace BeerOverflow.Services.Services
 
         public async Task<BeerDTO> RetrieveByIdAsync(Guid id)
         {
-            //TODO: Map UserName to UserId
             var beer = await this.context.Beers
                      .Include(b => b.Brewery)
                      .Include(b => b.Style)
@@ -59,7 +58,8 @@ namespace BeerOverflow.Services.Services
                      .Where(b => !b.IsDeleted)
                      .FirstOrDefaultAsync(b => b.Id == id);
 
-            return beer.GetDTO();
+            var result = beer.GetDTO();
+            return result;
         }
 
         public async Task<BeerDTO> RetrieveByNameAsync(string name)

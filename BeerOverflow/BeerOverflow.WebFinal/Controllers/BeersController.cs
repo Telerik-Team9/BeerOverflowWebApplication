@@ -26,6 +26,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: BeersController
+        [HttpGet]
         public async Task<ActionResult> Search(BeerSearchViewModel model)
         {
             // Get all beers

@@ -14,7 +14,9 @@ namespace BeerOverflow.Services.DTOMappers
                  IsFlagged = item.IsFlagged,
                  CreatedOn = item.CreatedOn,
                  BeerId = item.BeerId,
-                 BeerName = item.Beer?.Name
+                 BeerName = item.Beer?.Name,
+                 UserId = item.UserId,
+                 UserName = item.User?.UserName
              };
 
         public static Review GetModel(this ReviewDTO item)
