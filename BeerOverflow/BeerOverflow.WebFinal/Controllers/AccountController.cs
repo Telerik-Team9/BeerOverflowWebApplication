@@ -4,6 +4,7 @@ using BeerOverflow.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BeerOverflow.Web.Controllers
@@ -64,7 +65,14 @@ namespace BeerOverflow.Web.Controllers
             try
             {
                 var user = await this.userManager.GetUserAsync(User);
-                var beer = await this.userService.AddBeerToDrankList(id, user.Id);
+
+                var dranklist = await this.userService.GetDrankListAsync(user.Id);
+                
+                if(!dranklist.Any(dl => dl.Id == id))
+                {
+                    var beer = await this.userService.AddBeerToDrankList(id, user.Id);
+                }
+
                 return RedirectToAction("DrankList", "Account");
             }
             catch

@@ -40,6 +40,11 @@ namespace BeerOverflow.Services.Services
                 throw new ArgumentNullException();
             }
 
+            if (user.DrankList.FirstOrDefault(d => d.UserId == userId && d.BeerId == beerId) != null)
+            {
+                return beer.GetDTO();
+            }
+
             var dl = new DrankList
             {
                 Id = Guid.NewGuid(),
