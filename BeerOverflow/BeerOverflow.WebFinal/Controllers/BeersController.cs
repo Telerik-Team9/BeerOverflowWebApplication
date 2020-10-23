@@ -75,6 +75,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: BeersController/Create
+        [Authorize]
         public async Task<ActionResult> Create()
         {
             var breweries = await this.breweryService.RetrieveAllAsync();

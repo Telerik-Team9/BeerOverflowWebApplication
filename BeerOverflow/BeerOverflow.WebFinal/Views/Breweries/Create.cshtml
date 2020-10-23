@@ -18,7 +18,7 @@
                 @Html.DropDownListFor(model => model.CountryName, new SelectList(ViewBag.Countries, "Name", "Name"), "")<br>
                 <span asp-validation-for="CountryName" class="text-danger"></span>
                 Do not see the country you need?
-                <a style="color:#b58900" asp-controller="Country" asp-action="Create"><br>Click to create</a>
+                <a style="color:#b58900" asp-controller="Countries" asp-action="Create"><br>Click to create</a>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
