@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BeerOverflow.Services.DTOs.BeerDTO>
+
+@{
+    ViewData["Title"] = "ListStyles";
+}
+<div class="container">
+
+    <h1>DrankList</h1>
+    @if (Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h3>There are currently no beers in your dranklist</h3>
+    }
+</div>
+<div>
+    <a asp-controller="Account" asp-action="Manage">Back to profile</a>
+</div>
