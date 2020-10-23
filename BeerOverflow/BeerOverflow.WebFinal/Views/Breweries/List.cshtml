@@ -26,9 +26,15 @@ THIS IS LIST BREWERIES!
                     @Html.DisplayFor(modelItem => item.CountryName)
                 </td>
                 <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div>
+                            <p>
+                                @*<a asp-action="Create">Create New</a>*@
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </p>
+                        </div>
+                    }
                 </td>
             </tr>
         }

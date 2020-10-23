@@ -30,11 +30,11 @@ namespace BeerOverflow.Web.Controllers
             return View(breweries);
         }
 
-/*        // GET: BreweriesController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }*/
+        /*        // GET: BreweriesController/Details/5
+                public ActionResult Details(int id)
+                {
+                    return View();
+                }*/
 
         // GET: BreweriesController/Create
         public async Task<ActionResult> Create()
@@ -63,46 +63,61 @@ namespace BeerOverflow.Web.Controllers
             }
         }
 
-/*        // GET: BreweriesController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: BreweriesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // GET: BreweriesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: BreweriesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        // [Authorize]
+        [HttpGet]
+        public async Task<ActionResult> Delete(Guid id)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var result = await this.breweryService.DeleteAsync(id);
+                return RedirectToAction(nameof(List));
             }
             catch
             {
                 return View();
             }
-        }*/
+        }
+        /*        // GET: BreweriesController/Edit/5
+                public ActionResult Edit(int id)
+                {
+                    return View();
+                }
+
+                // POST: BreweriesController/Edit/5
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public ActionResult Edit(int id, IFormCollection collection)
+                {
+                    try
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch
+                    {
+                        return View();
+                    }
+                }
+
+                // GET: BreweriesController/Delete/5
+                public ActionResult Delete(int id)
+                {
+                    return View();
+                }
+
+                // POST: BreweriesController/Delete/5
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public ActionResult Delete(int id, IFormCollection collection)
+                {
+                    try
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch
+                    {
+                        return View();
+                    }
+                }*/
     }
 }
