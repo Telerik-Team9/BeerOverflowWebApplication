@@ -58,5 +58,19 @@ namespace BeerOverflow.Web.Controllers
 
             return View(drankList);
         }
+
+        public async Task<IActionResult> AddToDrankList(Guid id) // TODO: Why doesnt work wth POST?
+        {
+            try
+            {
+                var user = await this.userManager.GetUserAsync(User);
+                var beer = await this.userService.AddBeerToDrankList(id, user.Id);
+                return RedirectToAction("DrankList", "Account");
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
+        }
     }
 }
