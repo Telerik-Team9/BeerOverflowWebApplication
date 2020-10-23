@@ -1,6 +1,7 @@
 ﻿using BeerOverflow.Services.DTOs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace BeerOverflow.Web.Models
@@ -20,8 +21,9 @@ namespace BeerOverflow.Web.Models
         }
 
         public Guid Id { get; set; }
+        [Required]
         public string Name { get; set; }
         public string ISO { get; set; }
-        public ICollection<BreweryViewModel> Breweries { get; set; }
+        public ICollection<BreweryViewModel> Breweries { get; set; } = new List<BreweryViewModel>();
     }
 }
