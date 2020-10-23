@@ -1,5 +1,4 @@
 ﻿@model BeerViewModel
-
 <h1>Edit</h1>
 
 <h4>BeerViewModel</h4>
@@ -9,43 +8,43 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Name</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ABV" class="control-label"></label>
+                <label asp-for="ABV" class="control-label">Alcohol %</label>
                 <input asp-for="ABV" class="form-control" />
                 <span asp-validation-for="ABV" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
+                <label asp-for="Price" class="control-label">Price </label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageURL" class="control-label"></label>
+                <label asp-for="ImageURL" class="control-label">Image</label>
                 <input asp-for="ImageURL" class="form-control" />
                 <span asp-validation-for="ImageURL" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Mililiters" class="control-label"></label>
+                <label asp-for="Mililiters" class="control-label">Mililiters</label>
                 <input asp-for="Mililiters" class="form-control" />
                 <span asp-validation-for="Mililiters" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StyleName" class="control-label"></label>
+                <label iasp-for="Description" class="control-label">Description</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StyleName" class="control-label">Style</label>
                 @Html.DropDownListFor(model => model.StyleName, new SelectList(ViewBag.Styles, "Name", "Name"), "")<br>
                 <span asp-validation-for="StyleName" class="text-danger"></span>
                 @*Do not see the brewery you need?<a style="color:#b58900" asp-controller="Style" asp-action="CreateStyle"><br>Click to create</a>*@
             </div>
             <div class="form-group">
-                <label asp-for="BreweryName" class="control-label"></label>
+                <label asp-for="BreweryName" class="control-label">Brewery</label>
                 @Html.DropDownListFor(model => model.BreweryName, new SelectList(ViewBag.Breweries, "Name", "Name"), "")<br>
                 <span asp-validation-for="BreweryName" class="text-danger"></span>
                 @* Do not see the brewery you need? <a style="color:#b58900" asp-controller="Brewery" asp-action="CreateBrewery"><br>Click to create</a>*@
