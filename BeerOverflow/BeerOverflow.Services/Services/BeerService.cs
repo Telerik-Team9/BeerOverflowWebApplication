@@ -41,6 +41,11 @@ namespace BeerOverflow.Services.Services
                 .Styles
                 .FirstOrDefault(s => s.Name == DTO.StyleName).Id;
 
+            if(DTO.ImageURL == null || DTO.ImageURL == "")
+            {
+                DTO.ImageURL = "no-beer-preview.png";
+            }
+
             await this.context.Beers.AddAsync(DTO.GetModel());
             await this.context.SaveChangesAsync();
             return DTO;
