@@ -52,7 +52,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> DrankList(string id)
+        public async Task<IActionResult> DrankList()
         {
             var user = await this.userManager.GetUserAsync(User);
             var drankList = await this.userService.GetDrankListAsync(user.Id);
@@ -79,6 +79,33 @@ namespace BeerOverflow.Web.Controllers
             {
                 return RedirectToAction("Error", "Home");
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> WishLists()
+        {
+            /*            var user = await this.userManager.GetUserAsync(User);
+
+                        var wishListNames = await this.userService.GetWishListNamesAsync(user.Id);
+
+                        ViewBag.WishListNames = wishListNames;
+
+                        if (!wishListNames.Any())
+                        {
+                            return View(new WishListSearchViewModel());
+                        }
+
+                        var result = await this.userService.GetWishListAsync(user.Id, wishListNames.First());
+                        var wishList = result.Select(b => new BeerViewModel(b));
+
+                        var wlSearchViewModel = new WishListSearchViewModel();
+                        wlSearchViewModel.Name = wishListNames.First();
+                        wlSearchViewModel.WishList = wishList.ToList();
+
+                        return View(wlSearchViewModel);*/
+
+            return View(new WishListSearchViewModel()); //TODO!
+
         }
     }
 }

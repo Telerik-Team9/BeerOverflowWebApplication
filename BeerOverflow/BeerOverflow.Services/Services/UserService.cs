@@ -155,6 +155,28 @@ namespace BeerOverflow.Services.Services
 
             return wishList.Select(w => w.Beer.GetDTO());
         }
+
+        public async Task<IEnumerable<string>> GetWishListNamesAsync(Guid userId)
+        {
+            var user = await this.context.Users
+              .Include(u => u.Wishlist).ThenInclude(wl => wl.Beer)
+              .FirstOrDefaultAsync(u => u.Id == userId && !u.IsDeleted);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var wishList = user.Wishlist.Select(wl => wl.Name).ToHashSet<string>();
+
+            if (wishList == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return wishList;
+        }
+
         //Redy
         public async Task<IEnumerable<UserDTO>> RetrieveAllAsync()
         {
