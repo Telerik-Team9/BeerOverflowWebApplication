@@ -1,17 +1,18 @@
 ﻿using BeerOverflow.Database;
 using BeerOverflow.Models;
-using BeerOverflow.Services.DTOMappers;
 using BeerOverflow.Services.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BeerOverflow.ServicesTests.BeerServiceTests
 {
     [TestClass]
-    public class RetrieveBiIdAsynnc_Should
+    public class RetrieveByNameAsync_Should
     {
         [TestMethod]
         public async Task ReturnCorrectBeerDTOWhen_ValidParams()
@@ -30,11 +31,11 @@ namespace BeerOverflow.ServicesTests.BeerServiceTests
             }
 
             //Act & Assert
-            using(var actContext = new BeerOverflowDbContext(options))
+            using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new BeerService(actContext);
-                var result = await sut.RetrieveByIdAsync(beers.First().Id);
-                
+                var result = await sut.RetrieveByNameAsync(beers.First().Name);
+
                 Assert.AreEqual(beer.Id, result.Id);
                 Assert.AreEqual(beer.Name, result.Name);
             }
@@ -57,7 +58,7 @@ namespace BeerOverflow.ServicesTests.BeerServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new BeerService(actContext);
-                var result = await sut.RetrieveByIdAsync(Guid.Empty);
+                var result = await sut.RetrieveByNameAsync("");
                 Assert.IsNull(result);
             }
         }
