@@ -84,6 +84,11 @@ namespace BeerOverflow.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> WishLists()
         {
+            var user = await this.userManager.GetUserAsync(User);
+            var wishList = await this.userService.GetWishListAsync(user.Id, "default");
+
+            return View(wishList); //TODO!
+
             /*            var user = await this.userManager.GetUserAsync(User);
 
                         var wishListNames = await this.userService.GetWishListNamesAsync(user.Id);
@@ -103,9 +108,28 @@ namespace BeerOverflow.Web.Controllers
                         wlSearchViewModel.WishList = wishList.ToList();
 
                         return View(wlSearchViewModel);*/
+        }
 
-            return View(new WishListSearchViewModel()); //TODO!
+        [HttpGet]
+        public async Task<IActionResult> AddToWishList(Guid id) // TODO: Why doesnt work wth POST?
+        {
+            try
+            {
+                var user = await this.userManager.GetUserAsync(User);
 
+                var wishList = await this.userService.GetWishListAsync(user.Id, "default");
+
+                if (!wishList.Any(w => w.Id == id))
+                {
+                    var beer = await this.userService.AddBeerToWishList(id, user.Id, "default");
+                }
+
+                return RedirectToAction("WishLists", "Account");
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
     }
 }

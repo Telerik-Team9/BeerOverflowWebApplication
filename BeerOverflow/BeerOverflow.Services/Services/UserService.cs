@@ -134,7 +134,7 @@ namespace BeerOverflow.Services.Services
             return dranklist.Select(d => d.GetDTO());
         }
         //Ali - Redy
-        public async Task<IEnumerable<BeerDTO>> GetWishListAsync(Guid userId, string wishListName)
+        public async Task<IEnumerable<BeerDTO>> GetWishListAsync(Guid userId, string wishListName = "default")
         {
             var user = await this.context.Users
                .Include(u => u.Wishlist).ThenInclude(wl => wl.Beer)
@@ -156,7 +156,7 @@ namespace BeerOverflow.Services.Services
             return wishList.Select(w => w.Beer.GetDTO());
         }
 
-        public async Task<IEnumerable<string>> GetWishListNamesAsync(Guid userId)
+        public async Task<IEnumerable<string>> GetWishListNamesAsync(Guid userId)   // TODO: Added functionality for later updates
         {
             var user = await this.context.Users
               .Include(u => u.Wishlist).ThenInclude(wl => wl.Beer)
