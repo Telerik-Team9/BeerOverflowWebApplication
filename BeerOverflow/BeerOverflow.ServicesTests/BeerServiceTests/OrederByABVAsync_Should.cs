@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace BeerOverflow.ServicesTests.BeerServiceTests
 {
     [TestClass]
-    public class OrderByNameAsync_Should
+    public class OrederByABVAsync_Should
     {
         [TestMethod]
         public async Task CorrectlyOrderBeersAsc()
@@ -34,17 +34,17 @@ namespace BeerOverflow.ServicesTests.BeerServiceTests
             }
 
             //Act & Assert
-            using(var actContext = new BeerOverflowDbContext(options))
+            using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new BeerService(actContext);
-                var result = await sut.OrderByNameAsync('a');
+                var result = await sut.OrderByABVAsync('a');
                 var actual = result.ToList();
-                var expected = beers.OrderBy(x => x.Name).ToList();
+                var expected = beers.OrderBy(x => x.ABV).ToList();
 
-                Assert.AreEqual(expected[0].Name, actual[0].Name);
-                Assert.AreEqual(expected[1].Name, actual[1].Name);
-                Assert.AreEqual(expected[2].Name, actual[2].Name);
-                Assert.AreEqual(expected[3].Name, actual[3].Name);
+                Assert.AreEqual(expected[0].ABV, actual[0].ABV);
+                Assert.AreEqual(expected[1].ABV, actual[1].ABV);
+                Assert.AreEqual(expected[2].ABV, actual[2].ABV);
+                Assert.AreEqual(expected[3].ABV, actual[3].ABV);
             }
         }
         [TestMethod]
@@ -70,14 +70,14 @@ namespace BeerOverflow.ServicesTests.BeerServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new BeerService(actContext);
-                var result = await sut.OrderByNameAsync('d');
+                var result = await sut.OrderByABVAsync('d');
                 var actual = result.ToList();
-                var expected = beers.OrderByDescending(x => x.Name).ToList();
+                var expected = beers.OrderByDescending(x => x.ABV).ToList();
 
-                Assert.AreEqual(expected[0].Name, actual[0].Name);
-                Assert.AreEqual(expected[1].Name, actual[1].Name);
-                Assert.AreEqual(expected[2].Name, actual[2].Name);
-                Assert.AreEqual(expected[3].Name, actual[3].Name);
+                Assert.AreEqual(expected[0].ABV, actual[0].ABV);
+                Assert.AreEqual(expected[1].ABV, actual[1].ABV);
+                Assert.AreEqual(expected[2].ABV, actual[2].ABV);
+                Assert.AreEqual(expected[3].ABV, actual[3].ABV);
             }
         }
     }
