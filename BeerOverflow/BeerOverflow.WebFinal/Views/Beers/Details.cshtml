@@ -1,4 +1,4 @@
-﻿@model BeerViewModel
+﻿@model BeerDetailsViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -11,82 +11,85 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Beer.Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Beer.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ABV)
+            @Html.DisplayNameFor(model => model.Beer.ABV)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ABV)
+            @Html.DisplayFor(model => model.Beer.ABV)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.Beer.Price)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
+            @Html.DisplayFor(model => model.Beer.Price)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Beer.Description)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Beer.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageURL)
+            @Html.DisplayNameFor(model => model.Beer.ImageURL)
         </dt>
         <dd class="col-sm-10">
-            <img src="~/images/beers/@Model.ImageURL" alt="Alternate Text" width="50px" />
+            <img src="~/images/beers/@Model.Beer.ImageURL" alt="Alternate Text" width="50px" />
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Mililiters)
+            @Html.DisplayNameFor(model => model.Beer.Mililiters)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Mililiters)
+            @Html.DisplayFor(model => model.Beer.Mililiters)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IsBeerOfTheMonth)
+            @Html.DisplayNameFor(model => model.Beer.IsBeerOfTheMonth)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IsBeerOfTheMonth)
+            @Html.DisplayFor(model => model.Beer.IsBeerOfTheMonth)
         </dd>
         <dd class="col-sm-2">
-            @Html.DisplayNameFor(model => model.StyleName)
+            @Html.DisplayNameFor(model => model.Beer.StyleName)
         </dd>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.StyleName)
+            @Html.DisplayFor(model => model.Beer.StyleName)
         </dd>
         <dd class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BreweryName)
+            @Html.DisplayNameFor(model => model.Beer.BreweryName)
         </dd>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BreweryName)
+            @Html.DisplayFor(model => model.Beer.BreweryName)
         </dd>
     </dl>
 </div>
-
-<a asp-controller="Account" asp-action="AddToDrankList" asp-route-id="@Model.Id" method="post">Add to Dranklist</a> |
-<a asp-controller="Account" asp-action="AddToWishList" asp-route-id="@Model.Id" method="post">Add to WishList</a>
+<div>
+    <a asp-controller="Account" asp-action="AddToDrankList" asp-route-id="@Model.Beer.Id" method="post">Add to Dranklist</a> |
+    <a asp-controller="Account" asp-action="AddToWishList" asp-route-id="@Model.Beer.Id" method="post">Add to WishList</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Beer.Id">Edit</a> |
+    <a asp-action="Search">Back to List</a>
+</div>
 
 <table class="table table-hover container-fluid">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Reviews.First().UserName)
+                @Html.DisplayNameFor(model => model.Beer.Reviews.First().UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Reviews.First().Content)
+                @Html.DisplayNameFor(model => model.Beer.Reviews.First().Content)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Reviews.First().Likes)
+                @Html.DisplayNameFor(model => model.Beer.Reviews.First().Likes)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Reviews)
+        @foreach (var item in Model.Beer.Reviews)
         {
             <tr>
                 <td>
@@ -108,8 +111,13 @@
     </tbody>
 </table>
 
-
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Search">Back to List</a>
-</div>
+<form asp-controller="Account" asp-action="AddReview" asp-route-beerId="@Model.Beer.Id" method="post">
+    <div class="form-group">
+        @*<input asp-for="@Model.Beer.Id" style="display: none" class="form-control" value="@Model.Beer.Id" />*@
+        <label asp-for="@Model.Review.Content" class="control-label">Review Content</label>
+        <textarea asp-for="@Model.Review.Content" class="form-control"></textarea>
+        <div class="form-group">
+            <input type="submit" value="Add review" class="btn btn-primary" />
+        </div>
+    </div>
+</form>

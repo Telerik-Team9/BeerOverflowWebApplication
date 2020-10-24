@@ -5,6 +5,7 @@ namespace BeerOverflow.Web.Models
 {
     public class ReviewViewModel
     {
+        public ReviewViewModel() { }
         public ReviewViewModel(ReviewDTO DTO)
         {
             this.Id = DTO.Id;

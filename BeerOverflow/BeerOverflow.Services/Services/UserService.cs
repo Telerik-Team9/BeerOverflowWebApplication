@@ -88,6 +88,41 @@ namespace BeerOverflow.Services.Services
             await this.context.SaveChangesAsync();
             return wl.GetDTO();
         }
+
+        public async Task<BeerDTO> AddReviewToBeer(Guid beerId, Guid userId, string content)
+        {
+            var user = await this.context.Users
+                        .FirstOrDefaultAsync(u => u.Id == userId && !u.IsDeleted);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var beer = await this.context.Beers
+                        .FirstOrDefaultAsync(b => b.Id == beerId && !b.IsDeleted);
+
+            if (beer == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var review = new Review
+            {
+                Id = Guid.NewGuid(),
+                Content = content,
+                BeerId = beerId,
+                UserId = userId,
+                CreatedOn = DateTime.UtcNow
+            };
+
+            await this.context.Reviews.AddAsync(review);
+            //await this.context.Update(beer);
+            await this.context.SaveChangesAsync();
+
+            return beer.GetDTO();
+        }
+
         //Maggie 
         public Task<UserDTO> CreateAsync(UserDTO DTO)
         {
@@ -121,8 +156,8 @@ namespace BeerOverflow.Services.Services
                 throw new ArgumentNullException();
             }
 
-           /* var dranklist = user.DrankList
-                .Where(x => x.Name.ToLower() == dranklist.ToLower());*/
+            /* var dranklist = user.DrankList
+                 .Where(x => x.Name.ToLower() == dranklist.ToLower());*/
 
             if (user.DrankList == null)
             {

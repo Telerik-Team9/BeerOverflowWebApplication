@@ -67,8 +67,8 @@ namespace BeerOverflow.Web.Controllers
                 var user = await this.userManager.GetUserAsync(User);
 
                 var dranklist = await this.userService.GetDrankListAsync(user.Id);
-                
-                if(!dranklist.Any(dl => dl.Id == id))
+
+                if (!dranklist.Any(dl => dl.Id == id))
                 {
                     var beer = await this.userService.AddBeerToDrankList(id, user.Id);
                 }
@@ -130,6 +130,15 @@ namespace BeerOverflow.Web.Controllers
             {
                 return RedirectToAction("Error", "Home");
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddReview(Guid beerId, BeerDetailsViewModel model)
+        {
+            var user = await this.userManager.GetUserAsync(User);
+            await this.userService.AddReviewToBeer(beerId, user.Id, model.Review.Content);
+
+            return RedirectToAction("Details", "Beers", new { id = beerId });
         }
     }
 }

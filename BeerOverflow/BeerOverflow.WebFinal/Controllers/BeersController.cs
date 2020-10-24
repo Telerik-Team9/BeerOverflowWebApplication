@@ -63,9 +63,13 @@ namespace BeerOverflow.Web.Controllers
         public async Task<ActionResult> Details(Guid id)
         {
             var beer = await this.beerService.RetrieveByIdAsync(id);
-            var result = new BeerViewModel(beer);
 
-            return View(result);
+            var bdvm = new BeerDetailsViewModel
+            {
+                Beer = new BeerViewModel(beer)
+            };
+
+            return View(bdvm);
         }
 
         // GET: BeersController/Create
