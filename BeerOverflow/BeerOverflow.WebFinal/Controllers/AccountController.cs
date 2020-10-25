@@ -22,7 +22,6 @@ namespace BeerOverflow.Web.Controllers
             this.userService = userService;
         }
 
-
         [HttpGet]
         public IActionResult Login()
         {

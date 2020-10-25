@@ -269,5 +269,45 @@ namespace BeerOverflow.Services.Services
 
             return DTO;
         }
+
+        public async Task<Dictionary<string, List<UserDTO>>> RetrieveAllByRolesAsync()
+        {
+            var roles = await this.context.Roles.ToListAsync();
+
+            var users = await this.context.Users
+                            .Include(u => u.DrankList)
+                            .Include(u => u.Wishlist)
+                            .Include(u => u.Ratings)
+                            .Include(u => u.Reviews)
+                            .Where(u => !u.IsDeleted)
+                            .ToListAsync();
+
+            var userRoles = await this.context.UserRoles.ToListAsync();
+
+            var dict = new Dictionary<string, List<UserDTO>>();
+
+            foreach (var currUserRole in userRoles)
+            {
+                var user = users.FirstOrDefault(u => u.Id == currUserRole.UserId);
+                var role = roles.FirstOrDefault(r => r.Id == currUserRole.RoleId);
+
+                if (user == null || role == null)
+                {
+                    throw new ArgumentException();
+                }
+
+                if (!dict.ContainsKey(role.Name))
+                {
+                    dict.Add(role.Name, new List<UserDTO>() { user.GetDTO() });
+                    continue;
+                }
+
+                dict[role.Name].Add(user.GetDTO());
+            }
+
+            return dict;
+        }
     }
 }
+
+

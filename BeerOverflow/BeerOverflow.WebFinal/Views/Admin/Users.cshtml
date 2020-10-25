@@ -1,0 +1,36 @@
+﻿@model ListUsersViewModel
+
+
+@foreach (var kpv in Model.Users)
+{
+    <h1>@kpv.Key</h1>
+
+    <table class="table table-hover container-fluid">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => kpv.Value.First().UserName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in kpv.Value)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => user.UserName)
+                    </td>
+                    <td>
+                        <div>
+                            <p>
+                                @Html.ActionLink("Ban", "BanUser", new { id = user.Id })
+                                @Html.ActionLink("Delete", "DeleteUser", new { id = user.Id })
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

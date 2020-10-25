@@ -14,5 +14,6 @@ namespace BeerOverflow.Services.Contracts
         Task<IEnumerable<BeerDTO>> GetDrankListAsync(Guid userId);
         Task<IEnumerable<string>> GetWishListNamesAsync(Guid userId);
         Task<BeerDTO> AddReviewToBeer(Guid beerId, Guid userId, string content);
+        Task<Dictionary<string, List<UserDTO>>> RetrieveAllByRolesAsync();
     }
 }
