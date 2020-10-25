@@ -33,6 +33,10 @@
                 <span asp-validation-for="Mililiters" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="IsBeerOfTheMonth" class="control-label">Beer of the month?</label>
+                @Html.CheckBoxFor(x => x.IsBeerOfTheMonth, new { onclick = "return false" })
+            </div>
+            <div class="form-group">
                 <label iasp-for="Description" class="control-label">Description</label>
                 <textarea asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
@@ -57,7 +61,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Search">Back to List</a>
 </div>
 
 @section Scripts {

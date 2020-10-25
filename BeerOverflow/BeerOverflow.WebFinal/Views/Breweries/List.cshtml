@@ -4,6 +4,16 @@
 THIS IS LIST BREWERIES!
 
 
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to the Home page</a>
+</div><br/>
+
 <table class="table table-hover container-fluid">
     <thead>
         <tr>

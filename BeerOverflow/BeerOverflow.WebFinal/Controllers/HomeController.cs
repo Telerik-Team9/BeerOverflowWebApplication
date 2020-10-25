@@ -23,7 +23,7 @@ namespace BeerOverflow.Web.Controllers
         {
             ViewData["Title"] = "Home Page";
             var beers = await this.beerService.RetrieveAllAsync();
-            var result = beers.Where(b => b.IsBeerOfTheMonth).Take(3); // TODO make sure they are 3
+            var result = beers.Where(b => b.IsBeerOfTheMonth).OrderByDescending(x => x.AvgRating).Take(3); // TODO make sure they are 3
 
             var model = new HomeIndexViewModel()
             {

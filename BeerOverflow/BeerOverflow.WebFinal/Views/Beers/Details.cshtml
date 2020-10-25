@@ -67,10 +67,27 @@
     </dl>
 </div>
 <div>
-    <a asp-controller="Account" asp-action="AddToDrankList" asp-route-id="@Model.Beer.Id" method="post">Add to Dranklist</a> |
-    <a asp-controller="Account" asp-action="AddToWishList" asp-route-id="@Model.Beer.Id" method="post">Add to WishList</a> |
-    <a asp-action="Edit" asp-route-id="@Model.Beer.Id">Edit</a> |
-    <a asp-action="Search">Back to List</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+    <p>
+        <a asp-controller="Account" asp-action="AddToDrankList" asp-route-id="@Model.Beer.Id" method="post">Add to Dranklist</a> |
+        <a asp-controller="Account" asp-action="AddToWishList" asp-route-id="@Model.Beer.Id" method="post">Add to WishList</a> |
+        <a asp-action="Edit" asp-route-id="@Model.Beer.Id">Edit</a> 
+    </p>
+
+        <form asp-controller="Account" asp-action="AddReview" asp-route-beerId="@Model.Beer.Id" method="post">
+            <div class="form-group">
+                @*<input asp-for="@Model.Beer.Id" style="display: none" class="form-control" value="@Model.Beer.Id" />*@
+                <label asp-for="@Model.Review.Content" class="control-label">Review Content</label>
+                <textarea asp-for="@Model.Review.Content" class="form-control"></textarea>
+                <div class="form-group">
+                    <input type="submit" value="Add review" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+
+    }
+    <a asp-controller="Beers" asp-action="Search">Back to List</a>
 </div>
 
 <table class="table table-hover container-fluid">
@@ -110,14 +127,3 @@
         }
     </tbody>
 </table>
-
-<form asp-controller="Account" asp-action="AddReview" asp-route-beerId="@Model.Beer.Id" method="post">
-    <div class="form-group">
-        @*<input asp-for="@Model.Beer.Id" style="display: none" class="form-control" value="@Model.Beer.Id" />*@
-        <label asp-for="@Model.Review.Content" class="control-label">Review Content</label>
-        <textarea asp-for="@Model.Review.Content" class="form-control"></textarea>
-        <div class="form-group">
-            <input type="submit" value="Add review" class="btn btn-primary" />
-        </div>
-    </div>
-</form>

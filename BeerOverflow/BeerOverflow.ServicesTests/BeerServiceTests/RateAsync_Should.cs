@@ -55,7 +55,7 @@ namespace BeerOverflow.ServicesTests.BeerServiceTests
             using (var actContext = new BeerOverflowDbContext(options))
             {
                 var sut = new BeerService(actContext);
-                await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await sut.UpdateAsync(Guid.Empty, null));
+                await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await sut.RateAsync("", null));
             }
         }
     }

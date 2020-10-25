@@ -77,7 +77,7 @@ namespace BeerOverflow.Web.Controllers
             }
             catch
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Login", "Account");
             }
         }
 
@@ -128,17 +128,24 @@ namespace BeerOverflow.Web.Controllers
             }
             catch
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Login", "Account");
             }
         }
 
         [HttpPost]
         public async Task<IActionResult> AddReview(Guid beerId, BeerDetailsViewModel model)
         {
-            var user = await this.userManager.GetUserAsync(User);
-            await this.userService.AddReviewToBeer(beerId, user.Id, model.Review.Content);
+            try
+            {
+                var user = await this.userManager.GetUserAsync(User);
+                await this.userService.AddReviewToBeer(beerId, user.Id, model.Review.Content);
 
-            return RedirectToAction("Details", "Beers", new { id = beerId });
+                return RedirectToAction("Details", "Beers", new { id = beerId });
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
     }
 }

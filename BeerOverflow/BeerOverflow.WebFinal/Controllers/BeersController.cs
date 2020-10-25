@@ -105,6 +105,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: BeersController/Edit/5
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
         {
@@ -123,6 +124,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // POST: BeersController/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Guid id, BeerViewModel model)
