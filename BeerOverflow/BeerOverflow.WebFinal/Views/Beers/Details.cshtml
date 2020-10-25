@@ -69,15 +69,22 @@
 <div>
     @if (User.Identity.IsAuthenticated)
     {
-        <p>
-            <a asp-controller="Account" asp-action="AddToDrankList" asp-route-id="@Model.Beer.Id" method="post">Add to Dranklist</a> |
-            <a asp-controller="Account" asp-action="AddToWishList" asp-route-id="@Model.Beer.Id" method="post">Add to WishList</a> |
-            <a asp-controller="Beers" asp-action="Edit" asp-route-id="@Model.Beer.Id" >Edit</a>  |
-            @if (User.IsInRole("Admin"))
+    <p>
+        <a asp-controller="Account" asp-action="AddToDrankList" asp-route-id="@Model.Beer.Id" method="post">Add to Dranklist</a> |
+        <a asp-controller="Account" asp-action="AddToWishList" asp-route-id="@Model.Beer.Id" method="post">Add to WishList</a> |
+        <a asp-controller="Beers" asp-action="Edit" asp-route-id="@Model.Beer.Id">Edit</a>  |
+        @if (User.IsInRole("Admin"))
+        {
+            if (!Model.Beer.IsUnlisted)
             {
                 <a asp-controller="Admin" asp-action="UnlistBeer" asp-route-beerId="@Model.Beer.Id">Unlist</a>
             }
-        </p>
+            else
+            {
+                <a asp-controller="Admin" asp-action="RelistBeer" asp-route-beerId="@Model.Beer.Id">Relist</a>
+            }
+        }
+    </p>
 
         <form asp-controller="Account" asp-action="AddReview" asp-route-beerId="@Model.Beer.Id" method="post">
             <div class="form-group">

@@ -9,6 +9,7 @@ using BeerOverflow.Web.ViewModelMappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGeneration.Templating.Compilation;
 
 namespace BeerOverflow.Web.Controllers
 {
@@ -26,6 +27,26 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: BeersController
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public async Task<ActionResult> ListUnlisted()
+        {
+            // Get all beers
+            var beers = new List<BeerViewModel>();
+
+            var allBeers = await this.beerService.RetrieveAllAsync();
+            beers = allBeers
+                .Where(b => b.IsUnlisted)
+                .Select(b => new BeerViewModel(b))
+                .OrderBy(b => b.Name)
+                .ToList();
+
+            var beerSearchModel = await LoadBeersInViewModel(beers);
+
+            return View(beerSearchModel);
+        }
+
+
         [HttpGet]
         public async Task<ActionResult> Search()
         {
@@ -172,7 +193,7 @@ namespace BeerOverflow.Web.Controllers
         //        return View();
         //    }
         //}
-        
+
         private async Task<BeerSearchViewModel> LoadBeersInViewModel(IEnumerable<BeerViewModel> beers)
         {
             // Load data into Search Form

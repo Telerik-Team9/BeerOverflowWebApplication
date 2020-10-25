@@ -67,5 +67,19 @@ namespace BeerOverflow.Web.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> RelistBeer(Guid beerId)
+        {
+            try
+            {
+                var isUnlisted = await this.beerService.RelistBeer(beerId);
+                return RedirectToAction("Search", "Beers");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+        }
     }
 }

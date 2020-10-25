@@ -15,6 +15,6 @@ namespace BeerOverflow.Services.Contracts
         Task<IEnumerable<BeerDTO>> FilterByCriteriaAsync(string criteria, string name);
         Task<IEnumerable<BeerDTO>> SearchAsync(string name, string styleFilter, string sortBy);
         Task<bool> UnlistBeer(Guid id);
-
+        Task<bool> RelistBeer(Guid id);
     }
 }

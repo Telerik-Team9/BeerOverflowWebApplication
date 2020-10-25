@@ -46,6 +46,12 @@
             <a asp-action="Create">Create New</a>
         </p>
     }
+    @if (User.IsInRole("Admin"))
+    {
+        <div>
+            <a asp-controller="Beers" asp-action="ListUnlisted">See Unlisted beers</a>
+        </div>
+    }
     @if (Model.Beers.Count == 0)
     {
         @Html.DisplayName("NO BEERS FOUND MATCHING YOUR CRITERIAS!");
