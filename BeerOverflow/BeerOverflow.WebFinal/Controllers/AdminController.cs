@@ -18,15 +18,15 @@ namespace BeerOverflow.Web.Controllers
             this.beerService = beerService ?? throw new ArgumentNullException(nameof(beerService));
         }
 
-        // GET: AdminController/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> ListUsers()
         {
             var users = await this.userService.RetrieveAllByRolesAsync();
             return View(new ListUsersViewModel(users));
         }
 
-        // GET: AdminController/useriId
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> BanUser(Guid userId)
         {
             try
@@ -39,7 +39,8 @@ namespace BeerOverflow.Web.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
-        [HttpGet]
+
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteUser(Guid userId)
         {
             try
@@ -53,16 +54,13 @@ namespace BeerOverflow.Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> UnlistBeer(Guid beerId)
         {
             try
             {
-                if (User.IsInRole("Admin")){
-                    var isUnlisted = await this.beerService.UnlistBeer(beerId);
-                    return RedirectToAction("Search", "Beers");
-                }
-
-                return RedirectToAction("Error", "Home");
+                var isUnlisted = await this.beerService.UnlistBeer(beerId);
+                return RedirectToAction("Search", "Beers");
             }
             catch (Exception)
             {

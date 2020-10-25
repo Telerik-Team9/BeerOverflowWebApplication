@@ -72,7 +72,8 @@
     <p>
         <a asp-controller="Account" asp-action="AddToDrankList" asp-route-id="@Model.Beer.Id" method="post">Add to Dranklist</a> |
         <a asp-controller="Account" asp-action="AddToWishList" asp-route-id="@Model.Beer.Id" method="post">Add to WishList</a> |
-        <a asp-action="Edit" asp-route-id="@Model.Beer.Id">Edit</a>  |
+        <a asp-controller="Account" asp-action="Edit" asp-route-id="@Model.Beer.Id">Edit</a>  |
+        <a asp-controller="Account" asp-action="Rate" asp-route-id="@Model.Beer.Id">Rate</a>  |
         @if (User.IsInRole("Admin"))
         {
             <a asp-controller="Admin" asp-action="UnlistBeer" asp-route-beerId="@Model.Beer.Id">Unlist</a>
