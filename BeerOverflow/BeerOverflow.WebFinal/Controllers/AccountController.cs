@@ -1,6 +1,8 @@
 ﻿using BeerOverflow.Models;
 using BeerOverflow.Services.Contracts;
+using BeerOverflow.Services.DTOs;
 using BeerOverflow.Web.Models;
+using BeerOverflow.Web.ViewModelMappers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,12 +16,14 @@ namespace BeerOverflow.Web.Controllers
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
         private readonly IUserService userService;
+        private readonly IBeerService beerService;
 
-        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager, IUserService userService)
+        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager, IUserService userService, IBeerService beerService)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.userService = userService;
+            this.beerService = beerService;
         }
 
         [HttpGet]
@@ -35,7 +39,7 @@ namespace BeerOverflow.Web.Controllers
             {
                 (bool isBanned, bool isDeleted) = await this.userService.IsLegitAsync(item.Email);
 
-                if(isBanned)
+                if (isBanned)
                 {
                     return RedirectToAction(nameof(BannedUser));
                 }
@@ -70,7 +74,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Manage()
+        public IActionResult Manage()
         {
             return View();
         }
@@ -84,6 +88,7 @@ namespace BeerOverflow.Web.Controllers
             return View(drankList);
         }
 
+        [HttpGet]
         public async Task<IActionResult> AddToDrankList(Guid id) // TODO: Why doesnt work wth POST?
         {
             try
@@ -168,7 +173,23 @@ namespace BeerOverflow.Web.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddRating(string beerName, BeerDetailsViewModel model)
+        {
+            try
+            {
+                var user = await this.userManager.GetUserAsync(User);
+                model.Rating.UserName = user.UserName;
+                var ratedBeer = await this.beerService.RateAsync(beerName, model.Rating.GetDTO());
+                return RedirectToAction("Details", "Beers", new { id = ratedBeer.Id });
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Error", "Home");
             }
         }
     }

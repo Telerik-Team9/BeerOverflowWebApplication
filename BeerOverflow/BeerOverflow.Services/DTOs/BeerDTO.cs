@@ -24,9 +24,8 @@ namespace BeerOverflow.Services.DTOs
             {
                 if (this.Ratings.Count != 0)
                 {
-                    return this.Ratings.Average(x => x.RatingGiven);
+                    return Math.Round(this.Ratings.Average(x => x.RatingGiven), 2);
                 }
-
                 return 0;
             }
         }
