@@ -34,6 +34,7 @@ namespace BeerOverflow.Web.Controllers
 
             var allBeers = await this.beerService.RetrieveAllAsync();
             beers = allBeers
+                .Where(b => !b.IsUnlisted)
                 .Select(b => new BeerViewModel(b))
                 .OrderBy(b => b.Name)
                 .ToList();
@@ -50,6 +51,7 @@ namespace BeerOverflow.Web.Controllers
             var beers = new List<BeerViewModel>();
             var filteredBeers = await this.beerService.SearchAsync(model.Name, model.StyleName, model.SortBy);
             beers = filteredBeers
+                .Where(b => !b.IsUnlisted)
                 .Select(b => new BeerViewModel(b))
                 .ToList();
 

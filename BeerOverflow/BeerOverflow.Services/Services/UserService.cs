@@ -21,7 +21,6 @@ namespace BeerOverflow.Services.Services
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        //Ali
         public async Task<BeerDTO> AddBeerToDrankList(Guid beerId, Guid userId)
         {
             var user = await this.context.Users
@@ -57,7 +56,7 @@ namespace BeerOverflow.Services.Services
 
             return beer.GetDTO();
         }
-        //Maggie - 
+       
         public async Task<WishListDTO> AddBeerToWishList(Guid beerId, Guid userId, string wishListName)
         {
             var user = await this.context.Users
@@ -123,12 +122,11 @@ namespace BeerOverflow.Services.Services
             return beer.GetDTO();
         }
 
-        //Maggie 
         public Task<UserDTO> CreateAsync(UserDTO DTO)
         {
             throw new NotImplementedException();
         }
-        //Redy
+        
         public async Task<bool> DeleteAsync(Guid id)
         {
             var user = await this.context.Users
@@ -144,7 +142,7 @@ namespace BeerOverflow.Services.Services
                 return false;
             }
         }
-        //Maggie
+        
         public async Task<IEnumerable<BeerDTO>> GetDrankListAsync(Guid userId)
         {
             var user = await this.context.Users
@@ -168,7 +166,7 @@ namespace BeerOverflow.Services.Services
 
             return dranklist.Select(d => d.GetDTO());
         }
-        //Ali - Redy
+        
         public async Task<IEnumerable<BeerDTO>> GetWishListAsync(Guid userId, string wishListName = "default")
         {
             var user = await this.context.Users
@@ -212,7 +210,6 @@ namespace BeerOverflow.Services.Services
             return wishList;
         }
 
-        //Redy
         public async Task<IEnumerable<UserDTO>> RetrieveAllAsync()
         {
             var users = await this.context.Users
@@ -231,7 +228,7 @@ namespace BeerOverflow.Services.Services
             var result = users.Select(u => u.GetDTO());
             return result;
         }
-        //Redy
+        
         public async Task<UserDTO> RetrieveByIdAsync(Guid id)
         {
             var user = await this.context.Users
@@ -248,7 +245,7 @@ namespace BeerOverflow.Services.Services
 
             return user.GetDTO();
         }
-        //Maggie
+        
         public async Task<UserDTO> UpdateAsync(Guid id, UserDTO DTO)
         {
             var user = await this.context.Users
@@ -311,7 +308,7 @@ namespace BeerOverflow.Services.Services
         public async Task<bool> BanAsync(Guid userId)
         {
             var user = await this.context.Users
-                                 .FirstOrDefaultAsync(beer => beer.Id == userId);
+                                 .FirstOrDefaultAsync(u => u.Id == userId);
 
             if (user == null)
             {
@@ -321,6 +318,19 @@ namespace BeerOverflow.Services.Services
             user.IsBanned = true;
             await this.context.SaveChangesAsync();
             return user.IsBanned;
+        }
+
+        public async Task<(bool, bool)> IsLegitAsync(string userEmail)
+        {
+            var user = await this.context.Users
+                                 .FirstOrDefaultAsync(u => u.Email == userEmail);
+
+            if (user == null)
+            {
+                throw new ArgumentException();      //TODO: ex
+            }
+
+            return (user.IsBanned, user.IsDeleted);
         }
     }
 }

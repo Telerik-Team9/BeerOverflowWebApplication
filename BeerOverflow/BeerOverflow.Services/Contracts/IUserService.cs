@@ -16,5 +16,6 @@ namespace BeerOverflow.Services.Contracts
         Task<BeerDTO> AddReviewToBeer(Guid beerId, Guid userId, string content);
         Task<Dictionary<string, List<UserDTO>>> RetrieveAllByRolesAsync();
         Task<bool> BanAsync(Guid userId);
+        Task<(bool, bool)> IsLegitAsync(string userEmail);
     }
 }

@@ -278,5 +278,20 @@ namespace BeerOverflow.Services.Services
             };
         }
 
+        public async Task<bool> UnlistBeer(Guid id)
+        {
+            var beer = await this.context.Beers
+                                 .FirstOrDefaultAsync(b => b.Id == id);
+
+            if (beer == null)
+            {
+                throw new ArgumentException();      //TODO: ex
+            }
+
+            beer.IsUnlisted = true;
+            await this.context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

@@ -33,8 +33,21 @@ namespace BeerOverflow.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                (bool isBanned, bool isDeleted) = await this.userService.IsLegitAsync(item.Email);
+
+                if(isBanned)
+                {
+                    return RedirectToAction(nameof(BannedUser));
+                }
+
+                if (isDeleted)
+                {
+                    return RedirectToAction(nameof(DeletedUser));
+                }
+
                 var result = await this.signInManager
                     .PasswordSignInAsync(item.Email, item.Password, isPersistent: true, lockoutOnFailure: false);
+
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
@@ -42,6 +55,18 @@ namespace BeerOverflow.Web.Controllers
             }
 
             return RedirectToAction("Error", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult BannedUser()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DeletedUser()
+        {
+            return View();
         }
 
         [HttpGet]
