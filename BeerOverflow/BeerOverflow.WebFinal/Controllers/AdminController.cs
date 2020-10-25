@@ -19,21 +19,38 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: AdminController/Details/5
-        public async Task<ActionResult> Users()
+        public async Task<ActionResult> ListUsers()
         {
             var users = await this.userService.RetrieveAllByRolesAsync();
             return View(new ListUsersViewModel(users));
         }
 
-        // GET: AdminController/Create
-        public ActionResult BanUser()
+        // GET: AdminController/useriId
+        [HttpGet]
+        public async Task<ActionResult> BanUser(Guid userId)
         {
-            return RedirectToAction("Users");
+            try
+            {
+                var banned = await this.userService.BanAsync(userId);
+                return RedirectToAction(nameof(ListUsers));
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
-
-        public ActionResult DeleteUser()
+        [HttpGet]
+        public async Task<ActionResult> DeleteUser(Guid userId)
         {
-            return RedirectToAction("Users");
+            try
+            {
+                var deleted = await this.userService.DeleteAsync(userId);
+                return RedirectToAction(nameof(ListUsers));
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
     }
 }

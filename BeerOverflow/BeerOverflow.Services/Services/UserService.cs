@@ -268,7 +268,7 @@ namespace BeerOverflow.Services.Services
             await this.context.SaveChangesAsync();
 
             return DTO;
-        }
+        } //TODO
 
         public async Task<Dictionary<string, List<UserDTO>>> RetrieveAllByRolesAsync()
         {
@@ -293,7 +293,7 @@ namespace BeerOverflow.Services.Services
 
                 if (user == null || role == null)
                 {
-                    throw new ArgumentException();
+                    continue;
                 }
 
                 if (!dict.ContainsKey(role.Name))
@@ -306,6 +306,21 @@ namespace BeerOverflow.Services.Services
             }
 
             return dict;
+        }
+
+        public async Task<bool> BanAsync(Guid userId)
+        {
+            var user = await this.context.Users
+                                 .FirstOrDefaultAsync(beer => beer.Id == userId);
+
+            if (user == null)
+            {
+                throw new ArgumentException();      //TODO: ex
+            }
+
+            user.IsBanned = true;
+            await this.context.SaveChangesAsync();
+            return user.IsBanned;
         }
     }
 }
