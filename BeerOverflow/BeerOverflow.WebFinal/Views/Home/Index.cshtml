@@ -5,36 +5,67 @@
 @model BeerOverflow.Web.Models.HomeIndexViewModel
 
 
-<body data-new-gr-c-s-check-loaded="14.980.0">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+<body>
 
-        <main role="main" class="inner cover">
-            <h1 class="cover-heading" style="color:white">Beer Overflow</h1>
-            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-            <p class="lead">
-                <a class="btn btn-lg btn-secondary" asp-controller="Beers" asp-action="Index">Learn more</a>
-            </p>
-        </main>
+    <div class="ali">
+        CAROUSEL HERE
 
     </div>
+
+    <div class="light-section">
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+        <p>SOMETHING HERE</p>
+    </div>
+
+
+    <div class="dark-section">
+        <div class="row container cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <h1 class="cover-heading cursive-h1">Browse our</h1>
+            <h2 class="cover-heading straight-h2">Best beers</h2>
+            <p class="lead">
+                William Shakespeare
+                <br />“For a quart of Ale is a dish for a king.”
+            </p>
+            @*            <p class="lead">
+                    <a class="btn btn-lg btn-secondary" asp-controller="Beers" asp-action="Index">Learn more</a>
+                </p>*@
+        </div>
+
+        @*ADD CARDS HERE*@
+
+        <div class="container">
+            <div class="row">
+                @foreach (var beer in Model.TopRatedBeers)
+                {
+                    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                        <div class="card">
+                            <img class="card-img" src="~/images/beers/@beer.ImageURL" alt="@beer.Name">
+                            <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                                <h4 class="card-title">@beer.Name</h4>
+                                <div class="link d-flex">
+                                    <a class="card-link text-warning" asp-controller="Beers" asp-action="Details" asp-route-id="@beer.Id">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <br /><br />
+        </div>
+    </div>
+
 </body>
 
-@*ADD CARDS HERE*@
-<div class="container">
-    <div class="row">
-        @foreach (var beer in Model.TopRatedBeers)
-        {
-        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-            <div class="card">
-                <img class="card-img" src="~/images/beers/@beer.ImageURL" alt="@beer.Name">
-                <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
-                    <h4 class="card-title">@beer.Name</h4>
-                    <div class="link d-flex">
-                        <a class="card-link text-warning" asp-controller="Beers" asp-action="Details" asp-route-id="@beer.Id">Details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        }
-    </div>
-</div>

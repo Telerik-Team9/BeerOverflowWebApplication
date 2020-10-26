@@ -63,8 +63,8 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background: url("../images/beerhome.jpg") no-repeat center center fixed !important;
-    background-color: rgb(253, 253, 253);
+    /*background: url("../images/darkmoodybackground.jpg") no-repeat center center fixed !important;*/
+    background-color: rgb(0, 0, 0);
     background-repeat: no-repeat;
     background-size: cover;
     overflow: scroll;
@@ -84,7 +84,7 @@ body {
     width: 100%;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
-    background-color: rgba(230, 230, 230, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 
@@ -93,7 +93,7 @@ body {
 #homeLogo {
     height: 120px;
     width: auto;
-    border-style:dotted;
+    border-style: dotted;
 }
 
 .center {
@@ -165,19 +165,23 @@ body {
 
 .navbar {
     background-color: rgba(0, 0, 0, 0.8) !important;
-    border-top: 2px solid rgb(197,160,89) !important;
-    border-bottom: 5px solid rgb(197,160,89) !important;
-    font-family: MMTimes;
+    border-top: 2px solid rgb(203, 178, 125) !important;
+    border-bottom: 5px solid rgb(197, 160, 89) !important;
+    /*font-family: MMTimes;*/
     letter-spacing: 2px;
     /*font-family: 'Brush Script Std';*/
-    font-weight: 900;
-    padding: 15px;
+    /*font-weight: 900;*/
     margin-top: 30px;
     color: white !important;
 }
 
-.nav-link :hover {
-    color: rgb(197,160,89) !important;
+.nav-link {
+    margin: 0 0 0 25px; /*space between menu items*/
+}
+
+.nav-item :hover {
+    color: rgb(197, 160, 89) !important;
+    transform: scale(1.2);
 }
 
 beer-index {
@@ -186,13 +190,19 @@ beer-index {
 
 .table, h1, h2, h3, h4, h5, p, label, a {
     color: white !important;
-    /*font-family: MMTimes;*/   /*REMOVE if we want regular font*/
+    /*font-family: MMTimes;*/ /*REMOVE if we want regular font*/
     /*letter-spacing: 2px;*/
 }
 
-.table :hover{
-    color:white;
-}
+/*h1 {
+    color: rgb(203, 178, 125) !important;*/
+    /*font-family: MMTimes;*/ /*REMOVE if we want regular font*/
+    /*letter-spacing: 2px;*/
+/*}*/
+
+    .table :hover {
+        color: white;
+    }
 
 
 
@@ -200,14 +210,14 @@ beer-index {
 
 
 .card {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.2);
     border: none;
     border-radius: 25px;
     padding: 11px;
 }
 
 .card-link {
-    color: rgb(197,160,89) !important;
+    color: rgb(197, 160, 89) !important;
 }
 
 .card-img {
@@ -225,4 +235,35 @@ beer-index {
     background-color: rgba(197,160,89, 0.4);
     /*    cursor: crosshair;*/
     border-radius: 25px;
+}
+
+
+
+.ali {
+    background-image: url("../images/beerhome.jpg");
+    padding: 22%;
+}
+
+.light-section {
+    background-color: rgba(252, 252, 252, 0.9);
+    /*background-color: rgba(248, 248, 248, 1);*/
+    /* background-image: url("../images/darkmoodybackground.jpg");*/
+}
+
+.dark-section {
+    background-color: rgba(0, 0, 0, 1);
+    /*background-color: rgba(248, 248, 248, 1);*/
+    /* background-image: url("../images/darkmoodybackground.jpg");*/
+}
+
+
+.cursive-h1 {
+    color: rgb(203, 178, 125) !important;
+    font-family: 'Brush Script MT' !important;
+    font-size: 50px;
+    margin: unset;
+}
+
+.straight-h2 {
+    font-size: 50px;
 }
