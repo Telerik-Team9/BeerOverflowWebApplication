@@ -94,6 +94,7 @@ body {
     border-bottom: 5px solid rgb(197, 160, 89) !important;
     letter-spacing: 2px;
     margin-top: 30px;
+    margin-bottom: unset;
     color: white !important;
 }
 
@@ -174,9 +175,10 @@ beer-index {
         letter-spacing: 2px;
     }
 
-    .table :hover {
-        color: white;
-    }
+
+.table {
+    background-color: rgb(12, 12, 12);
+}
 
 
 /* Other */
@@ -224,4 +226,26 @@ beer-index {
 #beer-details {
     /*background-image: url("../images/beerdetailsBG.jpg");*/
     background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+/*ALI*/
+
+.full-screen {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.caption .holder strong.title {
+    font: 20 50px/50px 'Oswald', sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    vertical-align: super 50px;
+}
+
+b, strong {
+    font-weight: bold;
 }
