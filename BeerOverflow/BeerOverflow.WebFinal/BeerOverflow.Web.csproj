@@ -25,4 +25,9 @@
     <ProjectReference Include="..\BeerOverflow.Services\BeerOverflow.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\images\NewFolder\" />
+  </ItemGroup>
+
 </Project>
