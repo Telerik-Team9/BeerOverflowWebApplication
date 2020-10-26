@@ -1,90 +1,88 @@
 ﻿@model BeerDetailsViewModel
-
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Beer</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Beer.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Beer.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Beer.ABV)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Beer.ABV)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Beer.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Beer.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Beer.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Beer.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Beer.ImageURL)
-        </dt>
-        <dd class="col-sm-10">
-            <img src="~/images/beers/@Model.Beer.ImageURL" alt="Alternate Text" width="50px" />
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Beer.Mililiters)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Beer.Mililiters)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Beer.IsBeerOfTheMonth)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Beer.IsBeerOfTheMonth)
-        </dd>
-        <dd class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Beer.StyleName)
-        </dd>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Beer.StyleName)
-        </dd>
-        <dd class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Beer.BreweryName)
-        </dd>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Beer.BreweryName)
-        </dd>
-    </dl>
+<div class="light-section">
+    <div class="container"><br />
+
+        <h1>@Model.Beer.Name</h1><br />
+
+        <div>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Beer.ABV)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Beer.ABV)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Beer.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Beer.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Beer.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Beer.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Beer.Mililiters)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Beer.Mililiters)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Beer.IsBeerOfTheMonth)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Beer.IsBeerOfTheMonth)
+                </dd>
+                <dd class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Beer.StyleName)
+                </dd>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Beer.StyleName)
+                </dd>
+                <dd class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Beer.BreweryName)
+                </dd>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Beer.BreweryName)
+                </dd>
+                <dt class="col-sm-2">
+                    Image
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="~/images/beers/@Model.Beer.ImageURL" alt="Alternate Text" width="50px" />
+                </dd>
+            </dl>
+        </div>
+    </div><br />
 </div>
-<div>
+
+<div class="container"><br />
     @if (User.Identity.IsAuthenticated)
     {
-    <p>
-        <a asp-controller="Account" asp-action="AddToDrankList" asp-route-id="@Model.Beer.Id" method="post">Add to Dranklist</a> |
-        <a asp-controller="Account" asp-action="AddToWishList" asp-route-id="@Model.Beer.Id" method="post">Add to WishList</a> |
-        <a asp-controller="Beers" asp-action="Edit" asp-route-id="@Model.Beer.Id">Edit</a>  |
-        @if (User.IsInRole("Admin"))
-        {
-            if (!Model.Beer.IsUnlisted)
+        <p>
+            <a asp-controller="Account" asp-action="AddToDrankList" asp-route-id="@Model.Beer.Id" method="post">Add to Dranklist</a> |
+            <a asp-controller="Account" asp-action="AddToWishList" asp-route-id="@Model.Beer.Id" method="post">Add to WishList</a> |
+            <a asp-controller="Beers" asp-action="Edit" asp-route-id="@Model.Beer.Id">Edit</a>  |
+            @if (User.IsInRole("Admin"))
             {
-                <a asp-controller="Admin" asp-action="UnlistBeer" asp-route-beerId="@Model.Beer.Id">Unlist</a>
+                if (!Model.Beer.IsUnlisted)
+                {
+                    <a asp-controller="Admin" asp-action="UnlistBeer" asp-route-beerId="@Model.Beer.Id">Unlist</a>
+                }
+                else
+                {
+                    <a asp-controller="Admin" asp-action="RelistBeer" asp-route-beerId="@Model.Beer.Id">Relist</a>
+                }
             }
-            else
-            {
-                <a asp-controller="Admin" asp-action="RelistBeer" asp-route-beerId="@Model.Beer.Id">Relist</a>
-            }
-        }
-    </p>
+        </p>
 
         <form asp-controller="Account" asp-action="AddReview" asp-route-beerId="@Model.Beer.Id" method="post">
             <div class="form-group">
@@ -114,42 +112,43 @@
 
     }
     <a asp-controller="Beers" asp-action="Search">Back to List</a>
-</div>
 
-<table class="table table-hover container-fluid">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Beer.Reviews.First().UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Beer.Reviews.First().Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Beer.Reviews.First().Likes)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Beer.Reviews)
-        {
+    @*Beer Reviews*@
+    <table class="table table-hover container-fluid">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Likes)
-                </td>
-                <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Beer.Reviews.First().UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Beer.Reviews.First().Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Beer.Reviews.First().Likes)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Beer.Reviews)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Likes)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

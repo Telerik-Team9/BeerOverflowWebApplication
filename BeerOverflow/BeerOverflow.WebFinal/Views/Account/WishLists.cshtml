@@ -3,42 +3,45 @@
 @{
     ViewData["Title"] = "WishList";
 }
-    <div class="container">
 
-        <h1>WishLists</h1>
+<partial name="_ManageMenuPartial" />
 
-        @if (Model.Any())
-        {
-            <table class="table">
-                <thead>
+<div class="container">
+
+    <h1>WishLists</h1>
+
+    @if (Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().Name)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().Name)
-                        </th>
-                        <th></th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-controller="Beers" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                <a asp-controller="Beers" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <h3>There are currently no beers in your wishlist</h3>
-        }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h3>There are currently no beers in your wishlist</h3>
+    }
 
-    </div>
+</div>
 <div>
     <a asp-controller="Account" asp-action="Manage">Back to profile</a>
 </div>

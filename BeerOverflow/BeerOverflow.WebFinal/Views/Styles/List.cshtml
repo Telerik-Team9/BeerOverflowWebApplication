@@ -1,24 +1,20 @@
 ﻿@model IEnumerable<StyleViewModel>
-
 @{
     ViewData["Title"] = "ListStyles";
-    //var names = Model
-    //.Select(s => s.Name)
-    //.ToHashSet();
 }
+
+
 <div class="container">
 
-    <h1>ListStyles</h1>
-    <div>
-        <a asp-controller="Home" asp-action="Index">Back to the Home page</a>
-    </div>
-    @if(User.Identity.IsAuthenticated)
+    <h1 class="cover-heading cursive-h1">Styles</h1>
+
+    @if (User.Identity.IsAuthenticated)
     {
-    <div>
-        <p>
-            <a asp-action="Create">Create New</a>
-        </p>
-    </div>
+        <div>
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+        </div>
     }
     <table class="table">
         <thead>

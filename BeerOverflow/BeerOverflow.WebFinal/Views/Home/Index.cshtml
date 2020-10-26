@@ -1,67 +1,61 @@
-﻿@{
+﻿@model BeerOverflow.Web.Models.HomeIndexViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
-
-@model BeerOverflow.Web.Models.HomeIndexViewModel
 
 
 <partial name="_CarouselPartial" />
 
+<div class="dark-section">
+    <br />
+    <div class="row container justify-content-center d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <h1 class="cover-heading cursive-h1">Browse our</h1>
+        <h2 class="cover-heading straight-h2">Best beers</h2>
+        <p class="lead">
+            William Shakespeare
+            <br />“For a quart of Ale is a dish for a king.”
+        </p>
+        @*            <p class="lead">
+                <a class="btn btn-lg btn-secondary" asp-controller="Beers" asp-action="Index">Learn more</a>
+            </p>*@
+    </div>
 
-<body>
+    @*ADD CARDS HERE*@
 
-    <div class="dark-section">
-        <div class="row container cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-            <h1 class="cover-heading cursive-h1">Browse our</h1>
-            <h2 class="cover-heading straight-h2">Best beers</h2>
-            <p class="lead">
-                William Shakespeare
-                <br />“For a quart of Ale is a dish for a king.”
-            </p>
-            @*            <p class="lead">
-                    <a class="btn btn-lg btn-secondary" asp-controller="Beers" asp-action="Index">Learn more</a>
-                </p>*@
-        </div>
-
-        @*ADD CARDS HERE*@
-
-        <div class="container">
-            <div class="row">
-                @foreach (var beer in Model.TopRatedBeers)
-                {
-                    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-                        <div class="card">
-                            <img class="card-img" src="~/images/beers/@beer.ImageURL" alt="@beer.Name">
-                            <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
-                                <h4 class="card-title">@beer.Name</h4>
-                                <div class="link d-flex">
-                                    <a class="card-link text-warning" asp-controller="Beers" asp-action="Details" asp-route-id="@beer.Id">Details</a>
-                                </div>
+    <div class="container">
+        <div class="row">
+            @foreach (var beer in Model.TopRatedBeers)
+            {
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img class="card-img" src="~/images/beers/@beer.ImageURL" alt="@beer.Name">
+                        <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                            <h4 class="card-title">@beer.Name</h4>
+                            <div class="link d-flex">
+                                <a class="card-link text-warning" asp-controller="Beers" asp-action="Details" asp-route-id="@beer.Id">Details</a>
                             </div>
                         </div>
                     </div>
-                }
-            </div>
-            <br /><br />
+                </div>
+            }
         </div>
+        <br /><br />
     </div>
-    <div class="light-section">
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-        <p>SOMETHING HERE</p>
-    </div>
-
-</body>
-
+</div>
+<div class="light-section">
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+    <p>SOMETHING HERE</p>
+</div>
