@@ -266,22 +266,6 @@ b, strong {
     font-weight: bold;
 }
 
-.page-link {
-    background-color: rgb(20, 20, 20) !important;
-    color: rgb(203, 178, 125) !important;
-    border-color: rgb(203, 178, 125) !important;
-    border-radius: 25px;
-    font-weight: 900;
-}
-
-.page-item :hover {
-    background-color: rgb(203, 178, 125) !important;
-    color: rgb(20, 20, 20) !important;
-    border-color: white !important;
-}
-
-
-
 .outer-avatar {
     width: 280px;
     border: 1px solid black;
