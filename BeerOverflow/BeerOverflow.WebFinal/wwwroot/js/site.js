@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 var $item = $('.carousel-item');
-var $wHeight = $(window).height();
+var $wHeight = $(window).height() - 300;
 $item.eq(0).addClass('active');
 $item.height($wHeight);
 $item.addClass('full-screen');
@@ -20,7 +20,7 @@ $('.carousel img').each(function () {
 });
 
 $(window).on('resize', function () {
-    $wHeight = $(window).height();
+    $wHeight = $(window).height() - 300;
     $item.height($wHeight);
 });
 

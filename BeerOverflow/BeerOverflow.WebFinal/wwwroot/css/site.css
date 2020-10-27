@@ -194,7 +194,7 @@ beer-index {
 }
 
 .galleryImg {
-    width: 350px;
+    width: 360px;
     height: auto;
     border: 10px double white;
     margin: 50px;
@@ -204,7 +204,8 @@ beer-index {
 .light-section {
     background-color: rgba(252, 252, 252, 0.9);
     background-image: url("../images/fadedbg.jpg");
-    padding: 70px;
+    padding: 30px;
+    filter: brightness(120%);
 }
 
 .dark-section {
