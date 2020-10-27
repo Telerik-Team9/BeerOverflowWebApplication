@@ -1,6 +1,5 @@
 ﻿using BeerOverflow.Models;
 using BeerOverflow.Services.Contracts;
-using BeerOverflow.Services.DTOs;
 using BeerOverflow.Web.Models;
 using BeerOverflow.Web.ViewModelMappers;
 using Microsoft.AspNetCore.Identity;
