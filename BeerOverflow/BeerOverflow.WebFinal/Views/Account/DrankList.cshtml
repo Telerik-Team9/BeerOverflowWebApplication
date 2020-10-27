@@ -11,7 +11,7 @@
     <h1>DrankList</h1>
     @if (Model.Any())
     {
-        <table class="table">
+        <table class="table table-hover table-dark">
             <thead>
                 <tr>
                     <th>
@@ -39,7 +39,4 @@
     {
         <h3>There are currently no beers in your dranklist</h3>
     }
-</div>
-<div>
-    <a asp-controller="Account" asp-action="Manage">Back to profile</a>
 </div>

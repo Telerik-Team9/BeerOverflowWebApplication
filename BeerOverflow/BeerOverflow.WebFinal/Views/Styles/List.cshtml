@@ -4,46 +4,46 @@
 }
 
 
-<div class="container">
+    <div class="container">
 
-    <h1 class="cover-heading cursive-h1">Styles</h1>
+        <h1 class="cover-heading cursive-h1">Styles</h1>
 
-    @if (User.Identity.IsAuthenticated)
-    {
-        <div>
-            <p>
-                <a asp-action="Create">Create New</a>
-            </p>
-        </div>
-    }
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div>
+                <p>
+                    <a asp-action="Create">Create New</a>
+                </p><br />
+            </div>
+        }
+        <table class="table table-hover table-dark">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    @*<td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        @*<td>
                             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                         </td>*@
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
