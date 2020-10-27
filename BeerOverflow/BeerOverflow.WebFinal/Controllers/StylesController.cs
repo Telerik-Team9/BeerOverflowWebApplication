@@ -18,7 +18,8 @@ namespace BeerOverflow.Web.Controllers
         public StylesController(IStyleService styleService)
         {
             this.styleService = styleService ?? throw new ArgumentNullException(nameof(styleService));
-             }
+        }
+
         // GET: StylesController
         [HttpGet]
         public async Task<ActionResult> List()
@@ -50,9 +51,8 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // POST: StylesController/Create
-        [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Create(StyleViewModel item)
         {
             try
@@ -66,15 +66,16 @@ namespace BeerOverflow.Web.Controllers
             }
         }
 
-        // GET: StylesController/Edit/5
+        // GET: StylesController/Edit/id
+        [Authorize]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: StylesController/Edit/5
+        // POST: StylesController/Edit/id
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit(int id, IFormCollection collection)
         {
             try
@@ -87,15 +88,16 @@ namespace BeerOverflow.Web.Controllers
             }
         }
 
-        // GET: StylesController/Delete/5
-        public ActionResult Delete(int id)
+        // GET: StylesController/Delete/id
+        [Authorize]
+        public ActionResult Delete(int id) // TODO: Not in assignment so not added as functionality
         {
             return View();
         }
 
-        // POST: StylesController/Delete/5
+        // POST: StylesController/Delete/id
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try

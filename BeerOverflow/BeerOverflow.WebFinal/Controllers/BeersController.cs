@@ -24,8 +24,8 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // GET: BeersController
-        [Authorize(Roles = "Admin")]
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> ListUnlisted()
         {
             // Get all beers
@@ -42,7 +42,6 @@ namespace BeerOverflow.Web.Controllers
 
             return View(beerSearchModel);
         }
-
 
         [HttpGet]
         public async Task<ActionResult> Search()
@@ -100,7 +99,7 @@ namespace BeerOverflow.Web.Controllers
             return View(beerSearchViewModel);
         }
 
-        // GET: BeersController/Details/5
+        // GET: BeersController/Details/id
         [HttpGet]
         public async Task<ActionResult> Details(Guid id)
         {
@@ -130,9 +129,8 @@ namespace BeerOverflow.Web.Controllers
         }
 
         // POST: BeersController/Create
-        [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Create(BeerViewModel item)
         {
             try
@@ -146,9 +144,9 @@ namespace BeerOverflow.Web.Controllers
             }
         }
 
-        // GET: BeersController/Edit/5
-        [Authorize]
+        // GET: BeersController/Edit/id
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult> Edit(Guid id)
         {
             var breweries = await this.breweryService.RetrieveAllAsync();
@@ -165,7 +163,7 @@ namespace BeerOverflow.Web.Controllers
             return View(vm);
         }
 
-        // POST: BeersController/Edit/5
+        // POST: BeersController/Edit/id
         [Authorize]
         [HttpPost]
         public async Task<ActionResult> Edit(Guid id, BeerViewModel model)
@@ -181,9 +179,9 @@ namespace BeerOverflow.Web.Controllers
             }
         }
 
-        // GET: BeersController/Delete/5
-        // [Authorize]
+        // GET: BeersController/Delete/id
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult> Delete(Guid id)
         {
             try
@@ -196,22 +194,6 @@ namespace BeerOverflow.Web.Controllers
                 return View();
             }
         }
-
-        // POST: BeersController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Delete(Guid id, BeerViewModel model)
-        //{
-        //    try
-        //    {
-        //        var result = await this.beerService.DeleteAsync(id);
-        //        return RedirectToAction(nameof(Search));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
 
         private async Task<BeerSearchViewModel> LoadBeerSearchViewModel(IEnumerable<BeerViewModel> beers, int page = 1)
         {

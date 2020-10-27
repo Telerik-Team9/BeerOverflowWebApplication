@@ -1,6 +1,7 @@
 ﻿using BeerOverflow.Services.Contracts;
 using BeerOverflow.Web.Models;
 using BeerOverflow.Web.ViewModelMappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,13 +27,9 @@ namespace BeerOverflow.Web.Controllers
             return View(countries);
         }
 
-        // GET: CountriesController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
         // GET: CountriesController/Create
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult> Create()
         {
             var countries = await this.countryService.RetrieveAllAsync();
@@ -44,7 +41,7 @@ namespace BeerOverflow.Web.Controllers
 
         // POST: CountriesController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Create(CountryViewModel item)
         {
             try
@@ -57,47 +54,5 @@ namespace BeerOverflow.Web.Controllers
                 return View();
             }
         }
-
-       // // GET: CountriesController/Edit/5
-       // public ActionResult Edit(int id)
-       // {
-       //     return View();
-       // }
-       //
-       // // POST: CountriesController/Edit/5
-       // [HttpPost]
-       // [ValidateAntiForgeryToken]
-       // public ActionResult Edit(int id, IFormCollection collection)
-       // {
-       //     try
-       //     {
-       //         return RedirectToAction(nameof(List));
-       //     }
-       //     catch
-       //     {
-       //         return View();
-       //     }
-       // }
-       //
-       // // GET: CountriesController/Delete/5
-       // public ActionResult Delete(int id)
-       // {
-       //     return View();
-       // }
-       //
-       // // POST: CountriesController/Delete/5
-       // [HttpPost]
-       // [ValidateAntiForgeryToken]
-       // public ActionResult Delete(int id, IFormCollection collection)
-       //{
-       //    try
-       //    {
-       //        return RedirectToAction(nameof(List));
-       //    }
-       //    catch
-       //    {
-       //        return View();
-       //    }
-       //}
     }
 }

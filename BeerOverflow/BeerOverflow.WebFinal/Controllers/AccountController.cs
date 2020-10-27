@@ -3,6 +3,7 @@ using BeerOverflow.Services.Contracts;
 using BeerOverflow.Services.DTOs;
 using BeerOverflow.Web.Models;
 using BeerOverflow.Web.ViewModelMappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -74,12 +75,14 @@ namespace BeerOverflow.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Manage()
         {
             return View();
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> DrankList()
         {
             var user = await this.userManager.GetUserAsync(User);
@@ -89,6 +92,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> AddToDrankList(Guid id) // TODO: Why doesnt work wth POST?
         {
             try
@@ -111,6 +115,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> WishLists()
         {
             var user = await this.userManager.GetUserAsync(User);
@@ -140,6 +145,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> AddToWishList(Guid id) // TODO: Why doesnt work wth POST?
         {
             try
@@ -162,6 +168,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddReview(Guid beerId, BeerDetailsViewModel model)
         {
             try
@@ -178,6 +185,7 @@ namespace BeerOverflow.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddRating(string beerName, BeerDetailsViewModel model)
         {
             try
