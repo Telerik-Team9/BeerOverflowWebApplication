@@ -3,4 +3,35 @@
 
 @inject SignInManager<User> SignInManager
 
-<partial name="_ManageMenuPartial"/>
+
+
+<div class="row">
+    <partial name="_ManageMenuPartial" />
+    <div class="outer-avatar">
+        <div class="circle-avatar"></div>
+        <img class="avatar" src="~/images/profile_avatar.png" width="300" height="300">
+        <table class="tbl">
+            <tr>
+                <th>My email:</th>
+            </tr>
+            <tr>
+                <td>@User.Identity.Name <br /> <br /></td>
+            </tr>
+            <tr>
+                <th>My role:</th>
+            </tr>
+            <tr>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <h3>Admin</h3>
+                    }
+                    else
+                    {
+                        <h3>User</h3>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
