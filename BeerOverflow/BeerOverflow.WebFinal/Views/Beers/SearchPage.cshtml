@@ -1,0 +1,7 @@
+﻿@model BeerSearchViewModel
+@{
+    ViewData["Title"] = "Beers";
+    var beers = Model.Beers.ToList();
+}
+
+<partial name="Search" />

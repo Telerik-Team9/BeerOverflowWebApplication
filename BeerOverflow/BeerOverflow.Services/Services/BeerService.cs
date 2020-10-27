@@ -274,7 +274,7 @@ namespace BeerOverflow.Services.Services
                 "name" => beers.OrderBy(b => b.Name),
                 "abv" => beers.OrderByDescending(b => b.ABV),
                 "rating" => beers.OrderByDescending(b => b.AvgRating),
-                _ => throw new ArgumentException(),
+                _ => beers
             };
         }
 

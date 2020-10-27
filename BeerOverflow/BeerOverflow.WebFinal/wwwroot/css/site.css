@@ -166,7 +166,6 @@ beer-index {
     letter-spacing: 2px;
 }
 
-
     /*Not Working :(*/
     .btn-primary :hover, .btn-primary :focus, .btn-primary :active {
         background-color: rgb(105, 79, 26) !important;
@@ -175,7 +174,6 @@ beer-index {
         padding: 10px 40px 10px 40px;
         letter-spacing: 2px;
     }
-
 
 .table {
     background-color: rgb(12, 12, 12);
@@ -250,3 +248,17 @@ beer-index {
 b, strong {
     font-weight: bold;
 }
+
+.page-link {
+    background-color: rgb(20, 20, 20) !important;
+    color: rgb(203, 178, 125) !important;
+    border-color: rgb(203, 178, 125) !important;
+    border-radius: 25px;
+    font-weight: 900;
+}
+
+    .page-item :hover {
+        background-color: rgb(203, 178, 125) !important;
+        color: rgb(20, 20, 20) !important;
+        border-color: white !important;
+    }
