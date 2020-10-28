@@ -51,10 +51,10 @@ namespace BeerOverflow.Database.Seed
                 new User()
                 {
                     Id = Guid.Parse("3753d26b-5a35-491f-ae82-5238d243b619"),
-                    UserName = "telerik@academy.com",
-                    NormalizedUserName = "TELERIK@ACADEMY.COM",
-                    Email = "telerik@academy.com",
-                    NormalizedEmail = "TELERIK@ACADEMY.COM",
+                    UserName = "team9@telerik.com",
+                    NormalizedUserName = "TEAM9@TELERIK.COM",
+                    Email = "team9@telerik.com",
+                    NormalizedEmail = "TEAM9@TELERIK.COM",
                     SecurityStamp = Guid.NewGuid().ToString(),
                 },
             };

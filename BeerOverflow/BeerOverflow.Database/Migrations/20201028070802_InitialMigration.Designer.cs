@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeerOverflow.Database.Migrations
 {
     [DbContext(typeof(BeerOverflowDbContext))]
-    [Migration("20201021204849_SeedRatings")]
-    partial class SeedRatings
+    [Migration("20201028070802_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -650,7 +650,7 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("70ee7f0f-0861-4677-859b-dc2ac1c3dac7"),
+                            Id = new Guid("f43502c5-7393-46df-b4f9-7c50e3952fb8"),
                             BeerId = new Guid("c9d64fcf-9e82-46f5-90d4-00e7871bc93d"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -659,7 +659,7 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5bab4988-5026-4938-8e50-0049fe53dfb6"),
+                            Id = new Guid("b229085b-4c59-47b5-b87d-3ff386240565"),
                             BeerId = new Guid("c9d64fcf-9e82-46f5-90d4-00e7871bc93d"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -668,7 +668,7 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d5579fa3-7e49-42f6-a162-9a763c05bed4"),
+                            Id = new Guid("69685334-6e17-4ad2-bef0-eb0e948d95d4"),
                             BeerId = new Guid("aac55056-ef0a-4ffc-8c98-bd686dd5ba86"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -677,7 +677,7 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("15212aaf-11a3-422a-b1ff-39c4d73ef88a"),
+                            Id = new Guid("a0d692bf-53b1-4502-96a4-f602276524ca"),
                             BeerId = new Guid("aac55056-ef0a-4ffc-8c98-bd686dd5ba86"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -686,7 +686,7 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f72598cc-512e-4557-887b-2fdccbc4c431"),
+                            Id = new Guid("f6280c42-4c4b-4c8d-aa76-59b9ff25ec80"),
                             BeerId = new Guid("0e2cff6f-b42a-414b-8e3c-81c157909a2a"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -695,7 +695,7 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3a3b81d6-e757-4119-ab15-68ccc5c75913"),
+                            Id = new Guid("1e862bcc-f559-4b36-ab44-a5cacf9c7256"),
                             BeerId = new Guid("0e2cff6f-b42a-414b-8e3c-81c157909a2a"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -704,7 +704,7 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d46d615a-dd22-44c6-9199-9e7693a92297"),
+                            Id = new Guid("18d75728-a69f-4e2d-9a73-7ad0a4df5f96"),
                             BeerId = new Guid("365ed501-0156-4d62-aef4-1e04c68b8ed6"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -713,7 +713,7 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5606f196-8843-4142-bdb6-23ad0cf666c8"),
+                            Id = new Guid("2dc3d9cb-9385-4b18-a1fe-b6677e20155b"),
                             BeerId = new Guid("365ed501-0156-4d62-aef4-1e04c68b8ed6"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -722,7 +722,7 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("04fca02d-6179-4fb2-b4c9-1414cc5b622a"),
+                            Id = new Guid("ab4a5108-27f2-4b98-b701-ba99718676d3"),
                             BeerId = new Guid("c9d64fcf-9e82-46f5-90d4-00e7871bc93d"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -731,7 +731,7 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("39263ac3-348c-41be-a85c-137ddca7b556"),
+                            Id = new Guid("56d7ff46-5aaf-49c7-a8f9-e6bec7d49e34"),
                             BeerId = new Guid("c9d64fcf-9e82-46f5-90d4-00e7871bc93d"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -740,7 +740,7 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("19540f39-26ee-4329-ba79-2d3fb040ab40"),
+                            Id = new Guid("2f4092c4-299d-4c4a-82fd-f8b9f72497a3"),
                             BeerId = new Guid("d71a9d9d-706f-412d-adce-30c6af6a6af1"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -749,11 +749,65 @@ namespace BeerOverflow.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d341d0ef-2f1f-472c-beef-06cbdd084c2c"),
+                            Id = new Guid("36cbe873-1861-44e3-a044-8528fde7b12b"),
                             BeerId = new Guid("d71a9d9d-706f-412d-adce-30c6af6a6af1"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             RatingGiven = 3,
+                            UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619")
+                        },
+                        new
+                        {
+                            Id = new Guid("900d8e8f-8bdb-4ba2-b837-69c529c4a3fc"),
+                            BeerId = new Guid("629bff51-3e11-4996-ac98-365a8d8a7a66"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 1,
+                            UserId = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270")
+                        },
+                        new
+                        {
+                            Id = new Guid("cc5caace-5b56-481d-863b-5c3092aa9873"),
+                            BeerId = new Guid("629bff51-3e11-4996-ac98-365a8d8a7a66"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 3,
+                            UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619")
+                        },
+                        new
+                        {
+                            Id = new Guid("f4b8959c-b8fc-4c5c-a0ff-2d482d413ae4"),
+                            BeerId = new Guid("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 2,
+                            UserId = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270")
+                        },
+                        new
+                        {
+                            Id = new Guid("1b347e58-8bca-418e-b2da-7588401dcf1b"),
+                            BeerId = new Guid("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 3,
+                            UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619")
+                        },
+                        new
+                        {
+                            Id = new Guid("71d7dd89-a0b5-405f-bd04-5ebc00214e4a"),
+                            BeerId = new Guid("f0e83b17-1a70-4b1a-9d77-05822eb6ca44"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 2,
+                            UserId = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270")
+                        },
+                        new
+                        {
+                            Id = new Guid("b8f6e693-285b-488f-ba61-734374811e21"),
+                            BeerId = new Guid("f0e83b17-1a70-4b1a-9d77-05822eb6ca44"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            RatingGiven = 4,
                             UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619")
                         });
                 });
@@ -807,7 +861,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("03461e43-1ebb-4035-8fa4-e5acf5c923f1"),
                             BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
                             Content = "This is exellent beer!",
-                            CreatedOn = new DateTime(2020, 10, 21, 23, 48, 48, 585, DateTimeKind.Local).AddTicks(2097),
+                            CreatedOn = new DateTime(2020, 10, 28, 9, 8, 1, 451, DateTimeKind.Local).AddTicks(7079),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 120,
@@ -818,11 +872,11 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
                             BeerId = new Guid("1855d14b-ccb6-43b8-a7b3-3936b5010293"),
                             Content = "I didn't really like it. Poor colour, bad taste.",
-                            CreatedOn = new DateTime(2020, 10, 21, 23, 48, 48, 589, DateTimeKind.Local).AddTicks(7072),
+                            CreatedOn = new DateTime(2020, 10, 28, 9, 8, 1, 455, DateTimeKind.Local).AddTicks(482),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 8,
-                            ModifiedOn = new DateTime(2020, 10, 22, 23, 48, 48, 589, DateTimeKind.Local).AddTicks(7161),
+                            ModifiedOn = new DateTime(2020, 10, 29, 9, 8, 1, 455, DateTimeKind.Local).AddTicks(537),
                             UserId = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5")
                         },
                         new
@@ -830,7 +884,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("bc9fa1aa-d58a-4f37-a81d-7a7ca81f27bb"),
                             BeerId = new Guid("f13cdf0f-9f3c-4435-a107-e265e016b7d3"),
                             Content = "It's okay I guess. Very fruity aroma. Light sour, strong sweet taste. Fruity.",
-                            CreatedOn = new DateTime(2020, 10, 21, 23, 48, 48, 589, DateTimeKind.Local).AddTicks(7407),
+                            CreatedOn = new DateTime(2020, 10, 28, 9, 8, 1, 455, DateTimeKind.Local).AddTicks(719),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 22,
@@ -841,7 +895,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("766d9e58-68da-479c-ab97-dc9d1de06bbc"),
                             BeerId = new Guid("643db2ce-29f2-4e33-a35d-3a36b9392ba0"),
                             Content = "Absolutely amazing!. One of the best Bulgarian beers.",
-                            CreatedOn = new DateTime(2020, 10, 21, 23, 48, 48, 589, DateTimeKind.Local).AddTicks(7430),
+                            CreatedOn = new DateTime(2020, 10, 28, 9, 8, 1, 455, DateTimeKind.Local).AddTicks(727),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 0,
@@ -852,7 +906,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("ea4c9558-3832-403c-b70e-7ad0ef13b0a9"),
                             BeerId = new Guid("8fc141ac-8514-4545-bf57-c1e1f4078fbe"),
                             Content = "50/50. Sometimes win, sometimes lun.",
-                            CreatedOn = new DateTime(2020, 10, 21, 23, 48, 48, 589, DateTimeKind.Local).AddTicks(7447),
+                            CreatedOn = new DateTime(2020, 10, 28, 9, 8, 1, 455, DateTimeKind.Local).AddTicks(734),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 14,
@@ -863,7 +917,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("ad9f46e6-5bcf-44f7-89cc-0325be7c20de"),
                             BeerId = new Guid("14af2a6c-5376-459e-91de-b6078c5435ac"),
                             Content = "Very unexpected. Be careful around it!",
-                            CreatedOn = new DateTime(2020, 10, 21, 23, 48, 48, 589, DateTimeKind.Local).AddTicks(7470),
+                            CreatedOn = new DateTime(2020, 10, 28, 9, 8, 1, 455, DateTimeKind.Local).AddTicks(750),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 19,
@@ -874,7 +928,7 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("f404463b-440d-4a45-ae57-6a00df49212e"),
                             BeerId = new Guid("14af2a6c-5376-459e-91de-b6078c5435ac"),
                             Content = "I am scared of that beer.",
-                            CreatedOn = new DateTime(2020, 10, 21, 23, 48, 48, 589, DateTimeKind.Local).AddTicks(7484),
+                            CreatedOn = new DateTime(2020, 10, 28, 9, 8, 1, 455, DateTimeKind.Local).AddTicks(758),
                             IsDeleted = false,
                             IsFlagged = false,
                             Likes = 200,
@@ -908,6 +962,22 @@ namespace BeerOverflow.Database.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("943b692d-330e-405d-a019-c3d728442143"),
+                            ConcurrencyStamp = "715bef58-3ca5-45c3-95b0-4dd0bf16cf50",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = new Guid("07cc27fe-9ca9-4953-9a79-2c79c1e32aff"),
+                            ConcurrencyStamp = "e0ee186f-5ca9-4812-ab35-01338d098973",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("BeerOverflow.Models.Style", b =>
@@ -1113,48 +1183,60 @@ namespace BeerOverflow.Database.Migrations
                             Id = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "e0d087bd-f782-4785-8a9f-47ae35c174d9",
+                            ConcurrencyStamp = "6a0e4073-7c14-4714-8058-f45e92ab9c90",
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "maggieemail@gmail.com",
+                            Email = "scooby@doo.com",
                             EmailConfirmed = false,
                             IsBanned = false,
                             IsDeleted = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "SCOOBY@DOO.COM",
+                            NormalizedUserName = "SCOOBY@DOO.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOV2bFdRepk1S8okz3FjMTyrwepRxsQkgj9/7J7KdDQai2ZBXPB3MEaTs8DMCLVLWw==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "a373a748-0ba6-493f-af0a-9d9b499e009c",
                             TwoFactorEnabled = false,
-                            UserName = "Maggie"
+                            UserName = "scooby@doo.com"
                         },
                         new
                         {
                             Id = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5"),
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "b74a7f98-4f0f-4ea0-abc7-031f7055e44b",
+                            ConcurrencyStamp = "9856a34e-4545-4761-a819-1ef8c5dbc5e1",
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "aliemail@gmail.com",
+                            Email = "johnny@bravo.com",
                             EmailConfirmed = false,
                             IsBanned = false,
                             IsDeleted = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "JOHNNY@BRAVO.COM",
+                            NormalizedUserName = "JOHNNY@BRAVO.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMh+DiSoMl95KsXJw2wH+KjfC+6Cl7keA/SE/Kk1gNYokH6lC1SMrbAR6DpomC97uQ==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "4f38c0f9-c15a-482a-887b-92a4a0da7b0b",
                             TwoFactorEnabled = false,
-                            UserName = "Ali"
+                            UserName = "johnny@bravo.com"
                         },
                         new
                         {
                             Id = new Guid("3753d26b-5a35-491f-ae82-5238d243b619"),
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "0358f039-9ea0-4dfb-a6e4-8de77ebbdea8",
+                            ConcurrencyStamp = "70ea29e5-ec8e-43fe-bd93-805d784376a2",
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "telerikemail@gmail.com",
+                            Email = "team9@telerik.com",
                             EmailConfirmed = false,
                             IsBanned = false,
                             IsDeleted = false,
                             LockoutEnabled = false,
+                            NormalizedEmail = "TEAM9@TELERIK.COM",
+                            NormalizedUserName = "TEAM9@TELERIK.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC2lwti9Rq3sDzBgxLGxYRcdMfqLF/KUV9rj4kvPkOwMeCw9RijArOGjCUhWXM841w==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "2194c121-64d5-4a0b-95b1-db164af1c5a3",
                             TwoFactorEnabled = false,
-                            UserName = "Telerik"
+                            UserName = "team9@telerik.com"
                         });
                 });
 
@@ -1265,6 +1347,23 @@ namespace BeerOverflow.Database.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("1d6e3bae-451f-4c01-8b43-cecc2d404270"),
+                            RoleId = new Guid("943b692d-330e-405d-a019-c3d728442143")
+                        },
+                        new
+                        {
+                            UserId = new Guid("3be6b2ff-021d-4da5-8639-31973b594cc5"),
+                            RoleId = new Guid("943b692d-330e-405d-a019-c3d728442143")
+                        },
+                        new
+                        {
+                            UserId = new Guid("3753d26b-5a35-491f-ae82-5238d243b619"),
+                            RoleId = new Guid("07cc27fe-9ca9-4953-9a79-2c79c1e32aff")
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
